@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.theam')
 
 @section('js')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -62,6 +62,7 @@
 
 
 @section('content')
+<div class="col-md-12">
     <h1>Course</h1>
 
     <table class="table table-bordered data-table">
@@ -76,5 +77,7 @@
         <tbody>
         </tbody>
     </table>
+
+</div>
 
 @endsection

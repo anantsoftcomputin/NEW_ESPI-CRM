@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.theam')
 
 @section('js')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -128,25 +128,33 @@
 
 @endsection
 
+@section('title')
+Enquires
+@endsection
+
 
 @section('content')
-    <h1>Index</h1>
-    <a  href="{{ route('Enquires.create') }}" class="btn btn-info" >Add</a>
-    <br>
-    <table class="table table-bordered data-table">
-        <thead>
-            <tr>
+<div class="col-xl-12 layout-top-spacing" id="cancel-row">
 
-                <th>#</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Status</th>
-                <th width="100px">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+    <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+        <a  href="{{ route('Enquires.create') }}" class="btn btn-info" >Add</a>
+        <br>
+        <table class="table table-bordered data-table">
+            <thead>
+                <tr>
+
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Status</th>
+                    <th width="100px">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 @endsection

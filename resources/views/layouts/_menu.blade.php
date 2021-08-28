@@ -1,5 +1,6 @@
 <li class="menu active">
-    <a href="#dashboard" data-active="true" class="menu-toggle">
+    {{-- <a href="#dashboard" data-active="true" class="menu-toggle"> --}}
+    <a href="#dashboard" data-active="false" class="menu-toggle">
         <div class="base-menu">
             <div class="base-icons">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
@@ -23,8 +24,8 @@
 </li>
 
 
-<li class="menu">
-    <a href="{{ url('/admin/home') }}" data-active="false" class="menu-toggle">
+<li class="menu  menu-single">
+    <a href="{{ route('Application.index') }}" data-active="false" class="menu-toggle">
         <div class="base-menu">
             <div class="base-icons">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
@@ -35,8 +36,8 @@
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
 </li>
 
-<li class="menu">
-    <a href="{{ url('/admin/home') }}" data-active="false" class="menu-toggle">
+<li class="menu  menu-single">
+    <a href="{{ route('University.index') }}" data-active="false" class="menu-toggle">
         <div class="base-menu">
             <div class="base-icons">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-award"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
@@ -46,8 +47,8 @@
     </a>
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
 </li>
-<li class="menu">
-    <a href="{{ url('/admin/home') }}" data-active="false" class="menu-toggle">
+<li class="menu menu-single">
+    <a href="{{ route('Course.index') }}" data-active="false" class="menu-toggle">
         <div class="base-menu">
             <div class="base-icons">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trello"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><rect x="7" y="7" width="3" height="9"></rect><rect x="14" y="7" width="3" height="5"></rect></svg>

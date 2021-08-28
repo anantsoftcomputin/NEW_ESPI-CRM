@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.theam')
 
 @section('js')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -103,9 +103,16 @@
 
 @endsection
 
+@section('title')
+Application
+@endsection
+
 
 @section('content')
+<div class="col-md-12">
     <h1>Application</h1>
+
+    <a  href="{{ route('Enquires.create') }}" class="btn btn-info" >Add</a>
 
     <table class="table table-bordered data-table">
         <thead>
@@ -119,5 +126,7 @@
         <tbody>
         </tbody>
     </table>
+
+</div>
 
 @endsection
