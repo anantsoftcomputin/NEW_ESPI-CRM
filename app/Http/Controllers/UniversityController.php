@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\University\AddUniversity;
 use App\Models\University;
-use Facade\FlareClient\View;
 use Illuminate\Http\Request;
 use DataTables;
+use Illuminate\Support\Facades\Auth;
 
 class UniversityController extends Controller
 {
@@ -38,7 +39,7 @@ class UniversityController extends Controller
      */
     public function create()
     {
-        //
+        return view("university.add");
     }
 
     /**
@@ -47,9 +48,12 @@ class UniversityController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AddUniversity $AddUniversity)
     {
-        //
+        $validated = $AddUniversity->validated();
+        $validated['added_by']=\Auth::user()->id;
+        $university=University::create($validated);
+        return redirect(route('Application.index'));
     }
 
     /**

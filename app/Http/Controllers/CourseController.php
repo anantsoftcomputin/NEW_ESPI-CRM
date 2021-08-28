@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\University;
 use Illuminate\Http\Request;
 use DataTables;
 
@@ -36,13 +37,26 @@ class CourseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        $university=University::all();
+        $university_selected=$request->input('university');
+        if(isset($university))
+        {
+            return view('course.add',compact('university_selected','university'));
+        }
+        else
+        {
 
+
+        }
+
+        // $request
     }
 
     /**
      * Store a newly created resource in storage.
+     *
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response

@@ -60,11 +60,14 @@
 
 @endsection
 
+@section('title')
+Course List
+@endsection
 
 @section('content')
 <div class="col-md-12">
     <h1>Course</h1>
-
+    <a href="{{ route('Course.create') }}?university=1" class="btn btn-info">Add</a>
     <table class="table table-bordered data-table">
         <thead>
             <tr>

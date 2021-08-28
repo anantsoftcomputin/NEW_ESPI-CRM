@@ -36,6 +36,9 @@
             serverSide: true,
             bFilter: false,
             lengthChange: false,
+            oLanguage: {
+                    sEmptyTable: "No Applications Received Yet"
+                },
             ajax: "{{ route('Application.index') }}",
             columns: [
                 {data: 'applied_at', name: 'applied_at'},
@@ -111,8 +114,6 @@ Application
 @section('content')
 <div class="col-md-12">
     <h1>Application</h1>
-
-    <a  href="{{ route('Enquires.create') }}" class="btn btn-info" >Add</a>
 
     <table class="table table-bordered data-table">
         <thead>

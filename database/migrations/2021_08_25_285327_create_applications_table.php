@@ -26,6 +26,9 @@ class CreateApplicationsTable extends Migration
             $table->unsignedBigInteger('course_id');
             $table->foreign('course_id')->references('id')->on('courses');
 
+            $table->unsignedBigInteger('intact_id');
+            $table->foreign('intact_id')->references('id')->on('intacts');
+
             $table->unsignedBigInteger('added_by_id');
             $table->foreign('added_by_id')->references('id')->on('users')->onDelete('cascade');
 

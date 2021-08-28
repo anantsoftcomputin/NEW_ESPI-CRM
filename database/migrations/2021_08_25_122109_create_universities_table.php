@@ -17,7 +17,7 @@ class CreateUniversitiesTable extends Migration
             $table->id();
             $table->string("name");
             $table->text("description")->nullable();
-            $table->string("image");
+            $table->string("image")->default('default.jpg');
             $table->string("address");
             $table->string("phone")->nullable();
             $table->string("email");

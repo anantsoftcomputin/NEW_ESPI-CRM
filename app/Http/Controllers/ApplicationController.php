@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Application;
+use App\Models\Enquiry;
 use Illuminate\Http\Request;
 use DataTables;
 
@@ -34,9 +35,9 @@ class ApplicationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($enquiry)
     {
-        //
+        return view('application.add',compact('enquiry'));
     }
 
     /**

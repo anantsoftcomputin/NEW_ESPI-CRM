@@ -31,6 +31,7 @@ Auth::routes();
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::resource('Enquires', EnquireController::class);
     Route::resource('Application', ApplicationController::class);
+    Route::get('Application/Add/{Enquiry}', [ApplicationController::class,'create'])->name('Application.Add');
     Route::resource('University', UniversityController::class);
     Route::resource('Course', CourseController::class);
     Route::get('CourseDetail/{University?}',[CourseController::class,'CourseDetail'])->name("course.detail");

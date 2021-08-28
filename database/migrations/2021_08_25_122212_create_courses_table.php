@@ -16,7 +16,7 @@ class CreateCoursesTable extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('image');
+            $table->string('image')->default('default.jpg');
             $table->enum('course_level',['post-graduate','under-graduate']);
             $table->unsignedBigInteger('default_assign_emp')->nullable();
             $table->foreign('default_assign_emp')->references('id')->on('users');

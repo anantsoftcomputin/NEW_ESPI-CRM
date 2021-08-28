@@ -33,3 +33,15 @@ if (! function_exists('getCurrentCompany')) {
         dd(Route::current()->getName());
     }
 }
+
+if (! function_exists('InputControl')) {
+    function InputControl($type,$name,$placeholder,$default_value="0") {
+        return "<h1>1231</h1>";
+        //   `<div class="col-md-6">
+        //     <div class="form-group">
+        //         <label for="name">{$placeholder}</label>
+        //         <input type={{ $type }}name" id="name" value="{{old('name')}}" class="form-control" required>
+        //     </div>
+        // </div>`;
+    }
+}

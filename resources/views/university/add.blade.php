@@ -1,27 +1,15 @@
 @extends('layouts.theam')
 
-@section('css')
-<style>
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-    }
-
-    /* Firefox */
-    input[type=number] {
-    -moz-appearance: textfield;
-    }
-</style>
+@section('title')
+Add university
 @endsection
 
 @section('content')
-
-<div class="container">
+<div class="col-md-12">
     <div class="row justify-content-center">
         <div class="col-md-8">
         <div class="card">
-                <div class="card-header">{{ __('enquire.heading') }}</div>
+                <div class="card-header">{{ __('Add University') }}</div>
                 <div class="card-body">
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -32,10 +20,10 @@
                             </ul>
                         </div>
                         @endif
-                    <form method="POST" action="{{ route('Enquires.store') }}">
+                    <form method="POST" action="{{ route('University.store') }}">
                         @csrf
                         <div class="row">
-                            @include('enquiry._enquiris')
+                            @include('university._form')
                             <div class="col-md-12 text-center">
 
                                 <input type="submit" class="btn btn-primary" value="{{ __('enquire.submit_btn') }}">

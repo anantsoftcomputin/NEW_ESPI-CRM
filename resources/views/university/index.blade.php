@@ -1,5 +1,9 @@
 @extends('layouts.theam')
 
+@section('title')
+University
+@endsection
+
 @section('js')
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -56,6 +60,8 @@
 <div class="col-md-12">
 
     <h1>University</h1>
+
+    <a href="{{ route('University.create') }}" class="btn btn-info">Add</a>
 
     <table class="table table-bordered data-table">
         <thead>
