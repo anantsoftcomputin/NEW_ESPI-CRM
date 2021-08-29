@@ -18,10 +18,10 @@
         <div class="submenu" id="dashboard">
             <ul class="submenu-list" data-parent-element="#dashboard">
                 <li class="active">
-                    <a href="index.html"> Analytics </a>
+                    <a href="{{ url('home') }}"> Analytics </a>
                 </li>
                 <li>
-                    <a href="index2.html"> Sales </a>
+                    <a href="{{ url('home') }}"> Sales </a>
                 </li>
             </ul>
         </div>
