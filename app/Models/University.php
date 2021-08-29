@@ -39,4 +39,9 @@ class University extends Model
     {
         return $this->hasOne(Course::class,'id','course_id');
     }
+
+    public function Country()
+    {
+        return $this->belongsTo(Country::class);
+    }
 }

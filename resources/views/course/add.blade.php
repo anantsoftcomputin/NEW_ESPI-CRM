@@ -20,7 +20,7 @@ Add Course
                             </ul>
                         </div>
                         @endif
-                    <form method="POST" action="{{ route('University.store') }}">
+                    <form method="POST" action="{{ route('Course.store') }}">
                         @csrf
                         <div class="row">
                             @include('course._form')

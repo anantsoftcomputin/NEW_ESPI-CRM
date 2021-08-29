@@ -15,7 +15,7 @@ return [
 
     'top_menu' => "Enquiry",
     'heading' => 'Add New Enquiries',
-    'submit_btn' => 'Get Support',
+    'submit_btn' => 'Save',
     'cancel_btn_btn' => 'Cancel',
     'well_done' => 'Well done',
     'success_msg' => 'Success Fully add new Inquire. Thanks For Submit. Your Reference Number Is :code for future track your enquire .',

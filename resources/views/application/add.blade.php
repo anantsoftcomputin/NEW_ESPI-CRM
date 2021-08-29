@@ -20,7 +20,7 @@ Add Application
                             </ul>
                         </div>
                         @endif
-                    <form method="POST" action="{{ route('Enquires.store') }}">
+                    <form method="POST" action="{{ route('Application.store') }}">
                         @csrf
                         <div class="row">
                             @include('application._application_form')
@@ -38,4 +38,9 @@ Add Application
         </div>
     </div>
 </div>
+@endsection
+
+
+@section('js')
+
 @endsection

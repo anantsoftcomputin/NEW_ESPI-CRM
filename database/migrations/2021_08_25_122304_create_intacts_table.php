@@ -17,16 +17,17 @@ class CreateIntactsTable extends Migration
             $table->id();
             $table->string('year');
             $table->string('month');
-            $table->unsignedBigInteger('university_id');
+            $table->unsignedBigInteger('university_id')->default(1);
             $table->foreign('university_id')->references('id')->on('universities');
-            $table->unsignedBigInteger('course_id');
+            $table->unsignedBigInteger('course_id')->default(1);
             $table->foreign('course_id')->references('id')->on('courses');
-            $table->enum('status',['active','deactive']);
+            $table->enum('status',['active','inactive'])->default('active');
             $table->unsignedBigInteger('company_id')->default(1);
             $table->foreign('company_id')->references('id')->on('companies');
             $table->softDeletes();
             $table->timestamps();
         });
+
     }
 
     /**

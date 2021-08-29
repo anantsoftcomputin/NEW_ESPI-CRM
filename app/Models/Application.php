@@ -10,6 +10,18 @@ class Application extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'university_id',
+        'enquiry_id',
+        'course_id',
+        'intact_year_id',
+        'intact_month_id',
+        'added_by_id',
+        'application_id',
+        'status'
+
+    ];
+
     protected static function booted()
     {
         static::addGlobalScope(new CompanyScope);

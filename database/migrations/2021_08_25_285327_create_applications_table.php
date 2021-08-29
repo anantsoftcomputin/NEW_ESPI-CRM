@@ -15,7 +15,7 @@ class CreateApplicationsTable extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
-            $table->date('applied_at');
+            $table->string('application_id')->unique();
 
             $table->unsignedBigInteger('enquiry_id');
             $table->foreign('enquiry_id')->references('id')->on('enquiries');
@@ -26,8 +26,11 @@ class CreateApplicationsTable extends Migration
             $table->unsignedBigInteger('course_id');
             $table->foreign('course_id')->references('id')->on('courses');
 
-            $table->unsignedBigInteger('intact_id');
-            $table->foreign('intact_id')->references('id')->on('intacts');
+            $table->unsignedBigInteger('intact_year_id');
+            $table->foreign('intact_year_id')->references('id')->on('intacts');
+
+            $table->unsignedBigInteger('intact_month_id');
+            $table->foreign('intact_month_id')->references('id')->on('intacts');
 
             $table->unsignedBigInteger('added_by_id');
             $table->foreign('added_by_id')->references('id')->on('users')->onDelete('cascade');
@@ -35,7 +38,7 @@ class CreateApplicationsTable extends Migration
             $table->unsignedBigInteger('company_id')->default(1);
             $table->foreign('company_id')->references('id')->on('companies');
 
-            $table->enum('status',['applied','assign','complete','rejected']);
+            $table->string('status');
             $table->softDeletes();
             $table->timestamps();
         });

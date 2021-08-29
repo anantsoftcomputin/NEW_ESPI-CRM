@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-
+use Illuminate\Support\Facades\Hash;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -21,7 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'phone'
+        'phone',
+        'status'
     ];
 
     /**
@@ -42,4 +43,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function setStatusAttribute($status)
+    {
+        $this->attributes['status'] = ($status)? 1 : 0;
+    }
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = $password;
+        // if(Hash::needsRehash($password)){
+        //     $password = Hash::make($password);
+        //     $this->attributes['password'] = $password;
+        // }
+    }
 }

@@ -41,9 +41,10 @@
                 },
             ajax: "{{ route('Application.index') }}",
             columns: [
-                {data: 'applied_at', name: 'applied_at'},
+                {data: 'application_id', name: 'application_id'},
                 {data: 'university.name', name: 'university.name', orderable: false, searchable: false},
                 { data: 'course.name', name: 'course.name' , orderable: false, searchable: false},
+                {data: 'status', name: 'status'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
             initComplete: function () {
@@ -93,7 +94,7 @@
                 },
                 ajax: data.details_url,
                 columns: [
-                    { data: 'applied_at', name: 'applied_at' },
+                    { data: 'application_id', name: 'application_id' },
                     { data: 'university.name', name: 'university.name',orderable:'false', searchable:'false' },
                     { data: 'course.name', name: 'course.name' },
                     { data: 'status', name: 'status' }
@@ -119,8 +120,9 @@ Application
         <thead>
             <tr>
                 <th>Applied At</th>
-                <th>University_id</th>
+                <th>University</th>
                 <th>Course</th>
+                <th>Status</th>
                 <th width="100px">Action</th>
             </tr>
         </thead>

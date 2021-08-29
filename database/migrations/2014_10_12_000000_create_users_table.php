@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->unsignedBigInteger('added_by')->nullable();
             $table->unsignedBigInteger('company_id')->default(1);
+            $table->boolean('status')->default(true);
             $table->foreign('company_id')->references('id')->on('companies');
             $table->rememberToken();
             $table->timestamps();
@@ -38,8 +39,9 @@ class CreateUsersTable extends Migration
                 'name' => 'Jasmin Shukla',
                 'email' => 'admin@gmail.com',
                 'phone' => '7096111131',
+                'status' => true,
                 'remember_token' => \Carbon\Carbon::now(),
-                'password' => '$2y$10$W04.Ti0ztDhrSqwTErc9Z.GIJyCpP1pbym0YBoGFaaVeVmmbCcUl6'
+                'password' => '$2y$10$s0vOfzyDAM7W/pQOSMBgvuCshx3yQtkoKmSWrF7f/Sest43T1ZoPy'
                 // Pa$$w0rd!
             )
         );

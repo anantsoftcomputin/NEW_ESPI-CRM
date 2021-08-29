@@ -4,6 +4,7 @@ use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EnquireController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\UniversityController;
 use Illuminate\Http\Request;
 
@@ -19,7 +20,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(route('login'));
 });
 
 Route::get('/get_sub_domain', function () {
@@ -35,6 +36,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::resource('University', UniversityController::class);
     Route::resource('Course', CourseController::class);
     Route::get('CourseDetail/{University?}',[CourseController::class,'CourseDetail'])->name("course.detail");
+    Route::resource('Permissions', PermissionController::class)->except(['show','destroy','update']);
 });
 
 Route::get('demo',function(){

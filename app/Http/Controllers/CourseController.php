@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Course\Addcourse;
 use App\Models\Course;
 use App\Models\University;
 use Illuminate\Http\Request;
@@ -61,9 +62,14 @@ class CourseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Addcourse $addcourse)
     {
-        //
+        $validated = $addcourse->validated();
+        $validated['added_by']=\Auth::user()->id;
+        $validated['company_id']=\Auth::user()->company_id;
+        $course=Course::create($validated);
+
+        return redirect(route('Course.index'));
     }
 
     /**

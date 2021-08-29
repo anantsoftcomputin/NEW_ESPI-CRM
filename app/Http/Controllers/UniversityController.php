@@ -22,7 +22,7 @@ class UniversityController extends Controller
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
-                           $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">Edit</a>';
+                           $btn = '<a href="javascript:void(0)" class="edit btn btn-info btn-sm">Edit</a>';
                            $btn .= ' <a href="'.route('course.detail',$row->id).'" class="edit btn btn-primary btn-sm" data-row="'.route('course.detail',$row->id).'">Course</a>';
                             return $btn;
                     })
@@ -53,7 +53,7 @@ class UniversityController extends Controller
         $validated = $AddUniversity->validated();
         $validated['added_by']=\Auth::user()->id;
         $university=University::create($validated);
-        return redirect(route('Application.index'));
+        return redirect(route('University.index'));
     }
 
     /**

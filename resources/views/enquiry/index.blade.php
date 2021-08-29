@@ -31,7 +31,7 @@
         <table class="table details-table" id="application-@{{ id }}">
             <thead>
             <tr>
-                <th>Applied At</th>
+                <th>ApplicationId</th>
                 <th>University</th>
                 <th>Course</th>
                 <th>Status</th>
@@ -115,7 +115,7 @@
                 },
                 ajax: data.details_url,
                 columns: [
-                    { data: 'applied_at', name: 'applied_at' },
+                    { data: 'application_id', name: 'application_id' },
                     { data: 'university.name', name: 'university.name' },
                     { data: 'course.name', name: 'course.name' },
                     { data: 'status', name: 'status' }
