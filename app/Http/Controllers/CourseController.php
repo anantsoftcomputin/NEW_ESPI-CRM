@@ -23,7 +23,6 @@ class CourseController extends Controller
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
                            $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">Edit</a>';
-                        //    $btn .= ' <a href="'.route('course.detail',$row->id).'" class="edit btn btn-primary btn-sm" data-row="'.route('course.detail',$row->id).'">Course</a>';
                             return "#";
                     })
                     ->rawColumns(['action'])

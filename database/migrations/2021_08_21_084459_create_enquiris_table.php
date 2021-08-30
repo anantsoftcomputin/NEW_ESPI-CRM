@@ -18,7 +18,7 @@ class CreateEnquirisTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone')->unique();
-            $table->string('passport_number')->unique()->default('0');
+            $table->string('education')->nullable();
             $table->string('first_language')->default('english');
             $table->date('dob');
             $table->enum('gender',['male','female']);

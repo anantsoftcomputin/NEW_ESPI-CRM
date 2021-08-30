@@ -35,6 +35,7 @@
                 <th>University</th>
                 <th>Course</th>
                 <th>Status</th>
+                <th>Action</th>
             </tr>
             </thead>
         </table>
@@ -65,7 +66,7 @@
                 {data: 'name', name: 'name'},
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
-                {data: 'city.name', name: 'city.name'},
+                {data: 'city.name', name: 'city.name' ,orderable: false, searchable: false},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
             initComplete: function () {
@@ -118,7 +119,9 @@
                     { data: 'application_id', name: 'application_id' },
                     { data: 'university.name', name: 'university.name' },
                     { data: 'course.name', name: 'course.name' },
-                    { data: 'status', name: 'status' }
+                    { data: 'status', name: 'status' },
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+
                 ]
             })
         }
@@ -146,7 +149,7 @@ Enquires
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
-                    <th>Status</th>
+                    <th>City</th>
                     <th width="100px">Action</th>
                 </tr>
             </thead>

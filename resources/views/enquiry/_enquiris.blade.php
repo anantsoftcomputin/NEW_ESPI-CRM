@@ -6,8 +6,16 @@
 </div>
 <div class="col-md-6">
     <div class="form-group">
-        <label for="name">Passport Number</label>
-        <input type="text" name="passport_number" value="{{old('passport_number') ? old('passport_number') : "123456789"}}" id="passport_number" class="form-control" required>
+        <label for="education">Current Education Status</label>
+        <select name="education" id="education" class="form-control">
+            <option value="" selected disabled>Current Education Status</option>
+            <option value="10th">10th</option>
+            <option value="12th">12th</option>
+            <option value="Under-Graduate">Under-Graduate</option>
+            <option value="Graduate">Graduate</option>
+            <option value="Post-Graduate">Post-Graduate</option>
+            <option value="PHD/Doctorate">PHD/Doctorate</option>
+        </select>
     </div>
 </div>
 

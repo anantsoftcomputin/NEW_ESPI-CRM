@@ -68,6 +68,64 @@ Edit Application
                                 </div>
                             </div>
 
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="intact_year_id">Assign Emp</label>
+                                    <input type="intact_month" name="" class="form-control" disabled readonly>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>10th Markseet</label>
+                                    <input type="file" name="" class="form-control" disabled readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>12th Markseet</label>
+                                    <input type="file" name="" class="form-control" disabled readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Diploma Certificate / Marksheet</label>
+                                    <input type="file" name="" class="form-control" disabled readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Bachelor Certificate / Marksheet</label>
+                                    <input type="file" name="" class="form-control" disabled readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Master Certificate / Marksheet</label>
+                                    <input type="file" name="" class="form-control" disabled readonly>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Passport</label>
+                                    <input type="file" name="" class="form-control" disabled readonly>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>SOP</label>
+                                    <input type="file" name="" class="form-control" disabled readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Resume</label>
+                                    <input type="file" name="" class="form-control" disabled readonly>
+                                </div>
+                            </div>
+
                             <div class="col-md-12 text-center">
 
                                 <input type="submit" class="btn btn-primary" value="{{ __('enquire.submit_btn') }}">
