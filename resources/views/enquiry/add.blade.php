@@ -1,5 +1,37 @@
 @extends('layouts.theam')
 
+@section('title')
+Enquiries
+@endsection
+
+@section('js')
+<script>
+    $("#country").change(function(){
+        $('#state option[value!="0"]').remove();
+        $(this).val();
+        let URL="{{ url('api/admin/getState/1') }}";
+        $.ajax(URL,
+			{
+				dataType: 'json', // type of response data
+				timeout: 500,     // timeout milliseconds
+				success: function (data,status,xhr) {   // success callback function
+                    console.log(data);
+                    $.each(data, function(key, value) {
+                        console.log(value);
+                        $('#state')
+                            .append($("<option></option>")
+                                    .attr("value", value.id)
+                                    .text(value.name));
+                    });
+				},
+				error: function (jqXhr, textStatus, errorMessage) { // error callback
+					$('p').append('Error: ' + errorMessage);
+				}
+			});
+    });
+</script>
+@endsection
+
 @section('css')
 <style>
     input::-webkit-outer-spin-button,

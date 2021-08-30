@@ -22,6 +22,7 @@
     <div class="form-group">
         <label for="country">Country</label>
         <select name="country_id" id="country" class="form-control" required>
+            <option value="#" selected disabled>Select Country</option>
             @forelse ( get_country() as $country)
                 <option value="{{ $country->id }}">{{ ucfirst($country->name) }}</option>
             @empty

@@ -82,4 +82,9 @@ class StateController extends Controller
     {
         //
     }
+
+    public function getStateByCountry($var)
+    {
+        return State::where('country_id',$var)->get();
+    }
 }
