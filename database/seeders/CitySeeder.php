@@ -18,18 +18,19 @@ class CitySeeder extends Seeder
         // City::create([
         //     'name' => 'name',
         // ]);
-        // $json = File::get("database/city.json");
-        // $states = json_decode($json);
+        $json = File::get("database/guj.json");
+        $states = json_decode($json);
 
-        // foreach ($states as $key => $value) {
-        //     City::create([
-        //         "name" => $value->name,
-        //         "state_id" => $value->state_id,
-        //     ]);
-        // }
-        City::create([
-            "name" => 'jamnagar',
-            "state_id" => '1',
-        ]);
+        foreach ($states as $key => $value) {
+            City::create([
+                "name" => $value->name,
+                "state_id" => $value->state_id,
+            ]);
+        }
+
+        // City::create([
+        //     "name" => 'jamnagar',
+        //     "state_id" => '1',
+        // ]);
     }
 }

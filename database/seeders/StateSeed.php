@@ -15,19 +15,19 @@ class StateSeed extends Seeder
      */
     public function run()
     {
-        // $json = File::get("database/states.json");
-        // $states = json_decode($json);
+        $json = File::get("database/states.json");
+        $states = json_decode($json);
 
-        // foreach ($states as $key => $value) {
-        //     State::create([
-        //         "name" => $value->name,
-        //         "country_id" => $value->country_id,
-        //     ]);
-        // }
+        foreach ($states as $key => $value) {
+            State::create([
+                "name" => $value->name,
+                "country_id" => $value->country_id,
+            ]);
+        }
 
-        State::create([
-            "name" => 'gujarat',
-            "country_id" => '1',
-        ]);
+        // State::create([
+        //     "name" => 'gujarat',
+        //     "country_id" => '1',
+        // ]);
     }
 }

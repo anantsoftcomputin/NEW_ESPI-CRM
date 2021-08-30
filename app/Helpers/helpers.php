@@ -8,21 +8,21 @@ use Illuminate\Http\Request;
 
 if (! function_exists('get_city')) {
     function get_city() {
-        return City::where('state_id',1)->get();
+        return City::all();
     }
 }
 
 
 if (! function_exists('get_state')) {
     function get_state() {
-        return State::where('country_id',1)->get();
+        return State::where('country_id',101)->get();
     }
 }
 
 
 if (! function_exists('get_country')) {
     function get_country() {
-        return Country::whereIn('id',[1])->get();
+        return Country::whereIn('id',['101','13'])->get();
     }
 }
 

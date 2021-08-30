@@ -9,7 +9,7 @@ Enquiries
     $("#country").change(function(){
         $('#state option[value!="0"]').remove();
         $(this).val();
-        let URL="{{ url('api/admin/getState/1') }}";
+        let URL="{{ url('api/admin/getState/') }}/"+$(this).val();
         $.ajax(URL,
 			{
 				dataType: 'json', // type of response data
