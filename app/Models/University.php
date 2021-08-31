@@ -37,7 +37,7 @@ class University extends Model
 
     public function Course()
     {
-        return $this->hasOne(Course::class,'id','course_id');
+        return $this->hasMany(Course::class,'id','course_id');
     }
 
     public function Country()

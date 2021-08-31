@@ -133,4 +133,9 @@ class CourseController extends Controller
         return view('course.index',compact('uni'));
         // return view('course.index');
     }
+
+    public function getCourseFromUniversity($uni)
+    {
+        return Course::where('university_id',$uni)->get();
+    }
 }

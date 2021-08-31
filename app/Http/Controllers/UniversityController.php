@@ -101,4 +101,21 @@ class UniversityController extends Controller
     {
         //
     }
+
+    public function getUniversityFromCountry($country_id)
+    {
+        return University::where('country_id',$country_id)
+        ->with(['Course' => function ($query) {
+
+        }])->get();
+
+        if($university->relation()->exists())
+        {
+            return $university;
+        }
+        else
+        {
+            return "";
+        }
+    }
 }

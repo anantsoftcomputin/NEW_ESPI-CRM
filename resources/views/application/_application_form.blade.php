@@ -1,7 +1,21 @@
 <div class="col-md-6">
     <div class="form-group">
-        <label for="country">University</label>
+        <label for="country">Contry</label>
         <select name="university_id" id="country" class="form-control" required>
+            <option value="0" disabled selected>Select Contry</option>
+            @forelse ( get_country() as $uni)
+                <option value="{{ $uni->id }}">{{ ucfirst($uni->name) }}</option>
+            @empty
+                <option value="#">No University Availabe </option>
+            @endforelse
+        </select>
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="university">University</label>
+        <select name="university_id" id="University" class="form-control" required>
+            <option value="0" disabled selected>Select University</option>
             @forelse ( $university as $uni)
                 <option value="{{ $uni->id }}">{{ ucfirst($uni->name) }}</option>
             @empty
@@ -13,8 +27,9 @@
 <input type="hidden" name="enquiry_id" value="{{ $enquiry }}">
 <div class="col-md-6">
     <div class="form-group">
-        <label for="city">Course</label>
-        <select name="course_id" id="city" class="form-control" required>
+        <label for="course_id">Course</label>
+        <select name="course_id" id="course_id" class="form-control" required>
+            <option value="0" disabled selected>Select Course</option>
             @forelse ( $course as $city)
                 <option value="{{ $city->id }}">{{ ucfirst($city->name) }}</option>
             @empty

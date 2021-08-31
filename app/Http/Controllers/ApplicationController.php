@@ -90,7 +90,7 @@ class ApplicationController extends Controller
         $intact=Intact::find($Application->intact_month_id);
         $country=$university->Country->name;
         $status=array('Applied');
-        if($country=="canada")
+        if(strtolower($country)=="canada")
         {
             array_push($status,'Process');
             array_push($status,'IELTS & Academic');
@@ -102,7 +102,7 @@ class ApplicationController extends Controller
             array_push($status,'Visa Documents');
             array_push($status,'Visa Application');
         }
-        elseif($country=="australia")
+        elseif(strtolower($country)=="australia")
         {
             array_push($status,'IELTS + Academic');
             array_push($status,'Application For Admission');
@@ -115,7 +115,7 @@ class ApplicationController extends Controller
             array_push($status,'Visa Lodgement On Line Application');
             array_push($status,'Get Visa Stamping Or E-Visa');
         }
-        elseif($country=="usa")
+        elseif(strtolower($country)=="usa")
         {
             array_push($status,'Admission And I-20');
             array_push($status,'Visa Fees');
@@ -125,7 +125,7 @@ class ApplicationController extends Controller
             array_push($status,'Interview Preparation');
             array_push($status,'Tution Fes Payment');
         }
-        elseif($country=="uk")
+        elseif(strtolower($country)=="uk")
         {
             array_push($status,'Assessment For Course & University');
             array_push($status,'Application Process-University');
