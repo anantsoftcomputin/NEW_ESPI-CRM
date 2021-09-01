@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\University\AddUniversity;
+use App\Http\Requests\University\EditUniversity;
 use App\Models\University;
 use Illuminate\Http\Request;
 use DataTables;
@@ -25,6 +26,7 @@ class UniversityController extends Controller
                         $btn="";
                         //    $btn .= '<a href="javascript:void(0)" class="edit btn btn-info btn-sm">Edit</a>';
                            $btn .= ' <a href="'.route('course.detail',$row->id).'" class="edit btn btn-primary btn-sm" data-row="'.route('course.detail',$row->id).'">Course</a>';
+                           $btn .= ' <a href="'.route('University.edit',$row->id).'" class="edit btn btn-primary btn-sm" data-row="'.route('University.edit',$row->id).'">Edit</a>';
                             return $btn;
                     })
                     ->rawColumns(['action'])
@@ -74,9 +76,10 @@ class UniversityController extends Controller
      * @param  \App\Models\University  $university
      * @return \Illuminate\Http\Response
      */
-    public function edit(University $university)
+    public function edit($id)
     {
-        //
+       $university=University::find($id);
+       return view("university.edit",compact("university"));
     }
 
     /**
@@ -86,9 +89,11 @@ class UniversityController extends Controller
      * @param  \App\Models\University  $university
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, University $university)
+    public function update(EditUniversity $request,$university)
     {
-        //
+        $validated = $request->validated();  
+        $university=University::where("id",$university)->update($validated);
+        return redirect(route('University.index'));
     }
 
     /**

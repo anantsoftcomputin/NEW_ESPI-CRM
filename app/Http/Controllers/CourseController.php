@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Course\Addcourse;
+use App\Http\Requests\Course\Editcourse;
 use App\Models\Course;
 use App\Models\University;
 use Illuminate\Http\Request;
@@ -22,8 +23,8 @@ class CourseController extends Controller
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
-                           $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">Edit</a>';
-                            return "#";
+                        $btn = ' <a href="'.route('Course.edit',$row->id).'" class="edit btn btn-primary btn-sm" data-row="'.route('Course.edit',$row->id).'">Edit</a>';
+                            return $btn;
                     })
                     ->rawColumns(['action'])
                     ->make(true);
@@ -67,7 +68,6 @@ class CourseController extends Controller
         $validated['added_by']=\Auth::user()->id;
         $validated['company_id']=\Auth::user()->company_id;
         $course=Course::create($validated);
-
         return redirect(route('Course.index'));
     }
 
@@ -88,9 +88,20 @@ class CourseController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function edit(Course $course)
+    public function edit($id,Request $request)
     {
-        //
+        $Course=Course::find($id);
+        $university=University::all();
+        $university_selected=$request->input('university');
+        if(isset($university))
+        {
+            return view('course.edit',compact('university_selected','university','Course'));
+        }
+        else
+        {
+
+
+        }
     }
 
     /**
@@ -100,9 +111,14 @@ class CourseController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Course $course)
+    public function update(Editcourse $request,$course)
     {
-        //
+        $validated = $request->validated();
+        $validated['added_by']=\Auth::user()->id;
+        $validated['company_id']=\Auth::user()->company_id;
+        $course=Course::where("id",$course)->update($validated);
+
+        return redirect(route('Course.index'));
     }
 
     /**
@@ -118,18 +134,21 @@ class CourseController extends Controller
 
     public function CourseDetail($uni,Request $request)
     {
+       
         if ($request->ajax()) {
             $data = Course::select('*')->where('university_id',$uni)->with('University');
+            
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
-                           $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">Edit</a>';
-                        //    $btn .= ' <a href="'.route('course.detail',$row->id).'" class="edit btn btn-primary btn-sm" data-row="'.route('course.detail',$row->id).'">Course</a>';
+                           $btn = ' <a href="'.route('Course.edit',$row->id).'" class="edit btn btn-primary btn-sm" data-row="'.route('Course.edit',$row->id).'">Edit</a>';
+                           
                             return $btn;
                     })
                     ->rawColumns(['action'])
                     ->make(true);
         }
+       
         return view('course.index',compact('uni'));
         // return view('course.index');
     }
@@ -137,5 +156,12 @@ class CourseController extends Controller
     public function getCourseFromUniversity($uni)
     {
         return Course::where('university_id',$uni)->get();
+    }
+
+    public function CourseDetail_edit(Request $request)
+    {
+        $university=University::all();
+        $data=Course::find($request->course);
+        return view('course.edit',compact('university','data'));
     }
 }

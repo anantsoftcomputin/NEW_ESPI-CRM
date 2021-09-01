@@ -3,10 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\Scopes\CompanyScope;
 use Illuminate\Database\Eloquent\Model;
-
-class Application extends Model
+use App\Scopes\CompanyScope;
+class assessment extends Model
 {
     use HasFactory;
 
@@ -18,7 +17,10 @@ class Application extends Model
         'intact_month_id',
         'added_by_id',
         'application_id',
-        'status'
+        'status',
+        'type',
+        'location',
+        'status',
     ];
 
     protected static function booted()

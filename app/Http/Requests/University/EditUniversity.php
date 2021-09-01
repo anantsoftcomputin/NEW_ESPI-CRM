@@ -4,7 +4,7 @@ namespace App\Http\Requests\University;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddUniversity extends FormRequest
+class EditUniversity extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,7 +29,7 @@ class AddUniversity extends FormRequest
             'email' => 'required',
             'country_id' => 'required',
             'phone' => 'required',
-            "web"=>"required",
+            'web'=>'required',
             'status'=>'required',
         ];
     }

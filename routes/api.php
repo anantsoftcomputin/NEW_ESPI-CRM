@@ -6,7 +6,7 @@ use App\Http\Controllers\StateController;
 use App\Http\Controllers\UniversityController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\CityController; 
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -28,4 +28,5 @@ Route::prefix('admin')->group(function () {
     Route::get('getCourseFromUniversity/{university_id}',[CourseController::class,'getCourseFromUniversity']);
     // Route::get('getUniversityFromCountry/{country_id}',[UniversityController::class,'getUniversityFromCountry']);
     Route::get('getState/{country_id}',[StateController::class,'getStateByCountry']);
+    Route::get('getCity/{state_id}',[CityController::class,'getCityByState']);
 });

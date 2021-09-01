@@ -28,6 +28,29 @@ Enquiries
 				}
 			});
     });
+
+    $("#state").change(function(){
+        $('#city option[value!="0"]').remove();
+        $(this).val();
+        let URL="{{ url('api/admin/getCity/') }}/"+$(this).val();
+        $.ajax(URL,
+			{
+				dataType: 'json', // type of response data
+				success: function (data,status,xhr) {   // success callback function
+                    console.log(data);
+                    $.each(data, function(key, value) {
+                        console.log(value);
+                        $('#city')
+                            .append($("<option></option>")
+                                    .attr("value", value.id)
+                                    .text(value.name));
+                    });
+				},
+				error: function (jqXhr, textStatus, errorMessage) { // error callback
+					$('p').append('Error: ' + errorMessage);
+				}
+			});
+    });
 </script>
 @endsection
 

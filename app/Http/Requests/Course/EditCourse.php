@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\University;
+namespace App\Http\Requests\Course;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddUniversity extends FormRequest
+class Editcourse extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,12 +25,9 @@ class AddUniversity extends FormRequest
     {
         return [
             'name' => 'required',
-            'address' => 'required',
-            'email' => 'required',
-            'country_id' => 'required',
-            'phone' => 'required',
-            "web"=>"required",
-            'status'=>'required',
+            'course_level' => 'required',
+            'status' => 'required',
+            'university_id' => 'required'
         ];
     }
 }

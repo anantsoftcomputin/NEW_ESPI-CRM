@@ -7,7 +7,7 @@ use App\Http\Controllers\EnquireController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\UniversityController;
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\AssessmentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,11 +30,14 @@ Route::get('/get_sub_domain', function () {
 Auth::routes();
 
 Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::get('AssessmentController/Add/{Enquiry}', [AssessmentController::class,'create'])->name('Assessment.Add');
+    Route::resource("assessments",AssessmentController::class);
     Route::resource('Enquires', EnquireController::class);
     Route::resource('Application', ApplicationController::class);
     Route::get('Application/Add/{Enquiry}', [ApplicationController::class,'create'])->name('Application.Add');
     Route::resource('University', UniversityController::class);
     Route::resource('Course', CourseController::class);
+    Route::get("courseDetail/edit/{course?}",[CourseController::class,'CourseDetail_edit']);
     Route::get('CourseDetail/{University?}',[CourseController::class,'CourseDetail'])->name("course.detail");
     Route::resource('Permissions', PermissionController::class)->except(['show','destroy','update']);
 });
