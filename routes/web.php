@@ -30,6 +30,7 @@ Route::get('/get_sub_domain', function () {
 Auth::routes();
 
 Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::get('assessments/{id}/{status}/change_status', [AssessmentController::class,'status_change'])->name('assessment.status');
     Route::get('AssessmentController/Add/{Enquiry}', [AssessmentController::class,'create'])->name('Assessment.Add');
     Route::resource("assessments",AssessmentController::class);
     Route::resource('Enquires', EnquireController::class);

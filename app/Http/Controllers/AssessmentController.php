@@ -27,8 +27,20 @@ class AssessmentController extends Controller
                             return ucfirst($row->status);
                     })
                     ->addColumn('action', function($row){
-                           $btn = '<a href="'.route('assessments.edit',$row->id).'" class="edit btn btn-primary btn-sm">Change Status</a>';
-                            return $btn;
+                        $btn='<a title="Approved" href="'.route('assessment.status',["id"=>$row->id,"status"=>"approved"]).'" class="btn btn-success mb-2 mr-2 rounded-circle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        </a>';
+
+                        $btn .='<a title="On-Hold" href="'.route('assessment.status',["id"=>$row->id,"status"=>"on-hold"]).'" class="btn btn-info mb-2 mr-2 rounded-circle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pause-circle"><circle cx="12" cy="12" r="10"></circle><line x1="10" y1="15" x2="10" y2="9"></line><line x1="14" y1="15" x2="14" y2="9"></line></svg>
+                        </a>';   
+                        
+                        $btn .='<a title="Rejected" href="'.route('assessment.status',["id"=>$row->id,"status"=>"rejected"]).'" class="btn btn-danger mb-2 mr-2 rounded-circle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                        </a>';
+
+                        
+                         return $btn;  
                     })
                     ->rawColumns(['action'])
                     ->make(true);
@@ -116,5 +128,11 @@ class AssessmentController extends Controller
             $code = random_int(10000000, 99999999);
         } while (Application::where("application_id", "=", $code)->first());
         return $code;
+    }
+
+    public function status_change(Request $request)
+    {
+        assessment::where("id",$request->id)->update(["status"=>$request->status]);
+        return redirect(route('assessments.index'));
     }
 }
