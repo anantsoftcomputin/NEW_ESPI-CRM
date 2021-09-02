@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EnquireController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\UniversityController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AssessmentController;
 /*
@@ -30,6 +32,9 @@ Route::get('/get_sub_domain', function () {
 Auth::routes();
 
 Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::resource("users",UserController::class);
+    Route::resource("roles",RoleController::class);
+    Route::resource('permissions',PermissionController::class);
     Route::get('assessments/{id}/{status}/change_status', [AssessmentController::class,'status_change'])->name('assessment.status');
     Route::get('AssessmentController/Add/{Enquiry}', [AssessmentController::class,'create'])->name('Assessment.Add');
     Route::resource("assessments",AssessmentController::class);
