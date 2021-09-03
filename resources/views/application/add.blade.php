@@ -65,7 +65,6 @@ Add Application
 			});
     });
     $("#University").change(function(){
-        alert("CHANGE");
         $('#course_id option[value!="0"]').remove();
         let URL="{{ url('api/admin/getCourseFromUniversity/') }}/"+$(this).val();
         $.ajax(URL,

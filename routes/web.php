@@ -8,6 +8,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\UniversityController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UploadDocumentController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AssessmentController;
 /*
@@ -31,7 +32,14 @@ Route::get('/get_sub_domain', function () {
 
 Auth::routes();
 
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function (){
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
+
 Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::get("uploaddocument",[UploadDocumentController::class,"index"])->name("uploaddocument.index");
+    Route::post("uploaddocument/save",[UploadDocumentController::class,"store"])->name("uploaddocument.store");
+    Route::get("uploaddocument/{assessment?}",[UploadDocumentController::class,'assessment_upload']);
     Route::resource("users",UserController::class);
     Route::resource("roles",RoleController::class);
     Route::resource('permissions',PermissionController::class);

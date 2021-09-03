@@ -62,6 +62,9 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|unique:permissions|max:255',
+        ]);
         foreach (explode(',',$request->name) as  $perm) {
             $permission = Permission::create(['name' => $perm]);
             $permission->assignRole('super-admin');
