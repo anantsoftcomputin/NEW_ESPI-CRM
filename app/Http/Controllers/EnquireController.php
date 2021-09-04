@@ -12,9 +12,12 @@ use App\Mail\AddEnquiry;
 
 class EnquireController extends Controller
 {
-    function __construct()
+    public function __construct()
     {
-
+        $this->middleware('permission:view-enquiry');
+        $this->middleware('permission:create-enquiry', ['only' => ['create','store']]);
+        $this->middleware('permission:update-enquiry', ['only' => ['edit','update']]);
+        $this->middleware('permission:destroy-enquiry', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.

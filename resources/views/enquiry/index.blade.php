@@ -88,7 +88,6 @@
             var tr = $(this).closest('tr');
             var row = table.row(tr);
             var tableId = 'application-' + row.data().id;
-
             console.log(tableId);
 
             if (row.child.isShown()) {
@@ -104,6 +103,7 @@
                 tr.next().find('td').addClass('no-padding bg-gray');
             }
         });
+        
 
         function initTable(tableId, data) {
             $('#' + tableId).DataTable({

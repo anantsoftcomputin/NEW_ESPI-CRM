@@ -57,7 +57,7 @@ class UploadDocumentController extends Controller
                $answers[] = [
                   'filename' =>$FileName,
                   'type' =>$extension,
-                  'assessments_id' =>$request->assessments_id,
+                  'assessment_id' =>$request->assessment_id,
                   'course_recruitment_id'=>$request->course_recruitment_id[$x],
                   'course_id'=>$request->course_id
               ];
@@ -73,9 +73,9 @@ class UploadDocumentController extends Controller
             return back()->with("fileerrors",$fileerrors);
          }
          
-         $assessments_id=$request->assessments_id;
+         $assessment_id=$request->assessment_id;
          $course_id=$request->course_id;
-         return redirect()->route("uploaddocument.index",compact("assessments_id","course_id"));
+         return redirect()->route("uploaddocument.index",compact("assessment_id","course_id"));
      }
 
 }

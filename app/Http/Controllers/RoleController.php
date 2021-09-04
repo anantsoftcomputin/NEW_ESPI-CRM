@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use DataTables;
+use App\Models\User;
 
 class RoleController extends Controller
 {
@@ -15,6 +16,15 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
+     public function __construct()
+    {
+        $this->middleware('permission:view-role');
+        $this->middleware('permission:create-role', ['only' => ['create','store']]);
+        $this->middleware('permission:update-role', ['only' => ['edit','update']]);
+        $this->middleware('permission:destroy-role', ['only' => ['destroy']]);
+    }
+
     public function index(Request $request)
     {
         $title = 'Manage Permissions';

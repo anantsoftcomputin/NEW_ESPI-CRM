@@ -23,13 +23,13 @@ Add User
                     
                     @if(session()->has("fileerrors"))
                     <div class="alert alert-danger">
-                              <?=session()->get("fileerrors")?></li>
+                        <?=session()->get("fileerrors")?></li>
                     </div>
                     @endif
                     <form method="POST" action="{{ route('uploaddocument.store') }}">
                     @csrf
                     <div class="row">
-                        <input type="hidden" name="assessments_id" value="{{$assessment_id}}">
+                        <input type="hidden" name="assessment_id" value="{{$assessment_id}}">
                         <input type="hidden" name="course_id" value="{{$course_id}}">
                     @foreach($CourseRecruitments as $CourseRecruitment)
                     <input type="hidden" name="course_recruitment_id[]" value="{{$CourseRecruitment->id}}">

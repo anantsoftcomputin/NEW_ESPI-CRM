@@ -18,11 +18,8 @@ class CreateUserDocumentsTable extends Migration
             $table->string('filename');
             $table->string('type');
             $table->enum('status',['approve','rejected','under_review'])->default('under_review');
-            $table->unsignedBigInteger('applications_id');
-            $table->foreign('applications_id')->references('id')->on('applications');
             $table->unsignedBigInteger('course_recruitment_id');
             $table->foreign('course_recruitment_id')->references('id')->on('course_recruitments');
-
             $table->timestamps();
         });
     }

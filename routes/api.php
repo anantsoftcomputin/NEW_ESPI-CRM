@@ -4,6 +4,7 @@ use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\UniversityController;
+use App\Http\Controllers\AssessmentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CityController; 
@@ -29,4 +30,5 @@ Route::prefix('admin')->group(function () {
     // Route::get('getUniversityFromCountry/{country_id}',[UniversityController::class,'getUniversityFromCountry']);
     Route::get('getState/{country_id}',[StateController::class,'getStateByCountry']);
     Route::get('getCity/{state_id}',[CityController::class,'getCityByState']);
+    Route::get("assign_user/{user_id?}/{assessment_id?}",[AssessmentController::class,'assessmentAssign']);
 });

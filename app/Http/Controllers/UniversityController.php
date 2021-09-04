@@ -16,6 +16,13 @@ class UniversityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('permission:view-university');
+        $this->middleware('permission:create-university', ['only' => ['create','store']]);
+        $this->middleware('permission:update-university', ['only' => ['edit','update']]);
+        $this->middleware('permission:destroy-university', ['only' => ['destroy']]);
+    }
     public function index(Request $request)
     {
         if ($request->ajax()) {

@@ -38,4 +38,9 @@ class assessment extends Model
     {
         return $this->hasOne(Course::class,'id','course_id');
     }
+
+    public function User()
+    {
+        return $this->hasOne(User::class,'id','assign_id');
+    }
 }

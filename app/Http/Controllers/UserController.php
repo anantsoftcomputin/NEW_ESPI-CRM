@@ -17,6 +17,15 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('permission:view-user');
+        $this->middleware('permission:create-user', ['only' => ['create','store']]);
+        $this->middleware('permission:update-user', ['only' => ['edit','update']]);
+        $this->middleware('permission:destroy-user', ['only' => ['destroy']]);
+    }
+
     public function index(Request $request)
     {
         $title = 'Manage Users';
