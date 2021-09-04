@@ -34,8 +34,8 @@ class EnquireController extends Controller
                     })
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
-                           $btn = '<a href="'.route('Application.Add',$row->id).'" class="edit btn btn-primary btn-sm">Add Application</a>';
-                           $btn .='<a href="'.route('Assessment.Add',$row->id).'" class="assessment btn btn-warning btn-sm">Add Assessment</a>'; 
+                           $btn = "";
+                           $btn .='<a href="'.route('Assessment.Add',$row->id).'" class="assessment btn btn-warning btn-sm">Add Assessment</a>';
                            return $btn;
                     })
                     ->rawColumns(['action'])
