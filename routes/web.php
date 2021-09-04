@@ -32,9 +32,9 @@ Route::get('/get_sub_domain', function () {
 
 Auth::routes();
 
-Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function (){
-    \UniSharp\LaravelFilemanager\Lfm::routes();
-});
+// Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function (){
+//     \UniSharp\LaravelFilemanager\Lfm::routes();
+// });
 
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get("uploaddocument",[UploadDocumentController::class,"index"])->name("uploaddocument.index");
@@ -53,7 +53,6 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::resource('Course', CourseController::class);
     Route::get("courseDetail/edit/{course?}",[CourseController::class,'CourseDetail_edit']);
     Route::get('CourseDetail/{University?}',[CourseController::class,'CourseDetail'])->name("course.detail");
-    Route::resource('Permissions', PermissionController::class)->except(['show','destroy','update']);
 });
 
 Route::get('demo',function(){

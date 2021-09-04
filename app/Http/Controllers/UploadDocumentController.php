@@ -23,7 +23,7 @@ class UploadDocumentController extends Controller
                  ->make(true);
      }
      return view('uploaddocument.view_document');
-   
+
     }
 
     public function assessment_upload($assessment_id)
@@ -40,7 +40,7 @@ class UploadDocumentController extends Controller
      {
         $course_recruitment_id=count($request->course_recruitment_id);
         $validate_array = ['name' => 'required'];
-        $fileerrors="<ul>";
+        $fileerrors="";
         $answers=array();
         for($x=0; $x<$course_recruitment_id; $x++) {
             $base=basename($request->filepath[$x], ".d").PHP_EOL;
@@ -51,7 +51,7 @@ class UploadDocumentController extends Controller
             $prefix = "files/";
             $index = strpos($string, $prefix) + strlen($prefix);
             $FileName = substr($string, $index);
-            
+
             if(trim($extension)==trim($request->type[$x]))
             {
                $answers[] = [
@@ -68,11 +68,14 @@ class UploadDocumentController extends Controller
          if(isset($answers)){
             UserDocuments::insert($answers);
          }
-         if(isset($fileerrors))
+         if(empty($fileerrors))
+         {
+         }
+         else
          {
             return back()->with("fileerrors",$fileerrors);
          }
-         
+
          $assessment_id=$request->assessment_id;
          $course_id=$request->course_id;
          return redirect()->route("uploaddocument.index",compact("assessment_id","course_id"));
