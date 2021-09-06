@@ -16,6 +16,10 @@ use App\Models\User;
 
 class AssessmentController extends Controller
 {
+    public function __construct()
+    {
+        $this->AutoAddApplication=true;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,10 +28,13 @@ class AssessmentController extends Controller
 
     public function index(Request $request)
     {
-
-
         if ($request->ajax()) {
-            $data = assessment::select('*')->with('University','Course','User');
+            $data = assessment::select('*')->where('status', '!=', 'approved')->with('University','Course','User');
+            if(Auth::user()->hasRole('Counsellor'))
+            {
+                $data->where('assign_id',Auth::user()->id);
+                //assign_id
+            }
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('status', function($row){
@@ -125,6 +132,13 @@ class AssessmentController extends Controller
         $validated['type']="default";
         $validated['location']="default";
         assessment::create($validated);
+
+        if($this->AutoAddApplication==true)
+        {
+            $validated['application_id']=$this->generateUniqueCode();
+            $Application=Application::create($validated);
+        }
+
         return redirect(route('assessments.index'));
     }
 
@@ -175,10 +189,7 @@ class AssessmentController extends Controller
 
     public function status_change(Request $request)
     {
-
-
         // $request->status
-
         assessment::where("id",$request->id)->update(["status"=>$request->status]);
         if($request->status=="approved")
         {

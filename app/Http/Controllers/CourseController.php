@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Course\Addcourse;
-use App\Http\Requests\Course\Editcourse;
+use App\Http\Requests\Course\EditCourse;
 use App\Models\Course;
 use App\Models\University;
 use Illuminate\Http\Request;
@@ -111,7 +111,7 @@ class CourseController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function update(Editcourse $request,$course)
+    public function update(EditCourse $request,$course)
     {
         $validated = $request->validated();
         $validated['added_by']=\Auth::user()->id;
@@ -134,21 +134,21 @@ class CourseController extends Controller
 
     public function CourseDetail($uni,Request $request)
     {
-       
+
         if ($request->ajax()) {
             $data = Course::select('*')->where('university_id',$uni)->with('University');
-            
+
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
                            $btn = ' <a href="'.route('Course.edit',$row->id).'" class="edit btn btn-primary btn-sm" data-row="'.route('Course.edit',$row->id).'">Edit</a>';
-                           
+
                             return $btn;
                     })
                     ->rawColumns(['action'])
                     ->make(true);
         }
-       
+
         return view('course.index',compact('uni'));
         // return view('course.index');
     }

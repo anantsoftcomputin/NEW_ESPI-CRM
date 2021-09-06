@@ -8,6 +8,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\UniversityController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\EnquiryDetailController;
 use App\Http\Controllers\UploadDocumentController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AssessmentController;
@@ -42,6 +43,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get("uploaddocument/{assessment?}",[UploadDocumentController::class,'assessment_upload']);
     Route::resource("users",UserController::class);
     Route::resource("roles",RoleController::class);
+    Route::resource("EnquiryDetail",EnquiryDetailController::class);
     Route::resource('permissions',PermissionController::class);
     Route::get('assessments/{id}/{status}/change_status', [AssessmentController::class,'status_change'])->name('assessment.status');
     Route::get('AssessmentController/Add/{Enquiry}', [AssessmentController::class,'create'])->name('Assessment.Add');

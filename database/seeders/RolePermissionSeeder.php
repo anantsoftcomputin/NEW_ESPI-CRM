@@ -62,6 +62,21 @@ class RolePermissionSeeder extends Seeder
         $admin= Role::create(['name' => 'super-admin']);
         $admin->syncPermissions($permissions);
 
+
+        $permissions_counsellor = [
+            'view-application',
+            'create-application',
+            'view-assessment',
+            'create-assessment',
+            'view-enquiry',
+            'create-enquiry',
+            'view-course',
+            'create-course',
+            'view-university',
+            'create-university',
+        ];
+        $Counsellor= Role::create(['name' => 'counsellor']);
+        $Counsellor->syncPermissions($permissions_counsellor);
         $usr = User::find(1);
 
         $usr->assignRole($admin);
@@ -69,7 +84,7 @@ class RolePermissionSeeder extends Seeder
         $usr->syncPermissions($permissions);
 
         // Create user & role
-        
+
 
     }
 }

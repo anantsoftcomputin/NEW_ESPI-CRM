@@ -126,4 +126,5 @@ class EnquireController extends Controller
     {
         //
     }
+
 }
