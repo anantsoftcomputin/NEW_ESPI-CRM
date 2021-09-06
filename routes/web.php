@@ -43,7 +43,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get("uploaddocument/{assessment?}",[UploadDocumentController::class,'assessment_upload']);
     Route::resource("users",UserController::class);
     Route::resource("roles",RoleController::class);
-    Route::resource("EnquiryDetail",EnquiryDetailController::class);
+    Route::get("EnquiryDetail/add/{id?}",[EnquiryDetailController::class,'Add'])->name('EnquiryDetail.add');
+    Route::post("EnquiryDetail/store/{id?}",[EnquiryDetailController::class,'store'])->name('EnquiryDetail.store');
     Route::resource('permissions',PermissionController::class);
     Route::get('assessments/{id}/{status}/change_status', [AssessmentController::class,'status_change'])->name('assessment.status');
     Route::get('AssessmentController/Add/{Enquiry}', [AssessmentController::class,'create'])->name('Assessment.Add');

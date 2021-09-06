@@ -15,6 +15,8 @@ class CreateEnquiryDetailsTable extends Migration
     {
         Schema::create('enquiry_details', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('enquiry_id');
+            $table->foreign('enquiry_id')->references('id')->on('enquiries');
             $table->timestamps();
         });
     }

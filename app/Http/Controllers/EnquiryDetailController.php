@@ -7,79 +7,16 @@ use Illuminate\Http\Request;
 
 class EnquiryDetailController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function add($id)
     {
-        return view('enquiry.detail');
+        return view('enquiry.detail',compact('id'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function store($id,Request $request)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\EnquiryDetail  $enquiryDetail
-     * @return \Illuminate\Http\Response
-     */
-    public function show(EnquiryDetail $enquiryDetail)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\EnquiryDetail  $enquiryDetail
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(EnquiryDetail $enquiryDetail)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\EnquiryDetail  $enquiryDetail
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, EnquiryDetail $enquiryDetail)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\EnquiryDetail  $enquiryDetail
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(EnquiryDetail $enquiryDetail)
-    {
-        //
+        $EnquiryDetail=new EnquiryDetail();
+        $EnquiryDetail->enquiry_id =$id;
+        $EnquiryDetail->save();
+        return redirect(route('Enquires.index'));
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\enquire\AddEnquireRequest;
 use Mail;
 use DataTables;
+use App\Models\EnquiryDetail;
 use App\Mail\AddEnquiry;
 use App\Models\User;
 
@@ -40,13 +41,25 @@ class EnquireController extends Controller
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
                            $btn = "";
-                           $btn .='<a href="'.route('Assessment.Add',$row->id).'" class="assessment btn btn-warning btn-sm">Add Assessment</a>';
+                           if($this->existdetail($row->id))
+                           {
+                            $btn .='<a href="'.route('Assessment.Add',$row->id).'" class="assessment btn btn-warning btn-sm">Add Assessment</a>';
+                           }
+                           else
+                           {
+                               $btn .='<a href="'.route('EnquiryDetail.add',$row->id).'" class="assessment btn btn-info btn-sm">Add Detail Enquiry</a>';
+                           }
                            return $btn;
                     })
                     ->rawColumns(['action'])
                     ->make(true);
         }
         return view('enquiry.index');
+    }
+
+    public function existdetail($id)
+    {
+        return EnquiryDetail::where('enquiry_id',"=",$id)->first();
     }
 
     /**
