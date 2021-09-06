@@ -28,12 +28,14 @@ class CreateEnquirisTable extends Migration
             $table->unsignedBigInteger('city_id');
             $table->unsignedBigInteger('country_id');
             $table->unsignedBigInteger('state_id');
+            $table->unsignedBigInteger('counsellor_id');
             $table->unsignedBigInteger('added_by_id');
             $table->enum('status',['pending','assign','complete','rejected','applied']);
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->foreign('state_id')->references('id')->on('states')->onDelete('cascade');
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
             $table->foreign('added_by_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('counsellor_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('company_id')->default(1);
             $table->foreign('company_id')->references('id')->on('companies');
             $table->softDeletes();

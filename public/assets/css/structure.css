@@ -13,7 +13,7 @@ html {
   direction: ltr; }
 
 body {
-  color: #888ea8;
+  color: #000000;
   height: 100%;
   font-size: 0.875rem;
   background: #fafafa;
@@ -40,7 +40,7 @@ h1, h2, h3, h4, h5, h6 {
 p {
   margin-top: 0;
   margin-bottom: 0.625rem;
-  color: #515365; }
+  color: #000000; }
 
 hr {
   margin-top: 20px;
@@ -72,7 +72,7 @@ code {
       .page-header .breadcrumb-one .breadcrumb-item:first-child {
         padding: 0px 8px 0px 0; }
       .page-header .breadcrumb-one .breadcrumb-item a {
-        color: #888ea8;
+        color: #000000;
         font-size: 13px;
         font-weight: 600; }
         .page-header .breadcrumb-one .breadcrumb-item a:hover {
@@ -208,7 +208,7 @@ code {
   max-width: 58.333333%;
   margin-left: 80px; }
 
-/* 
+/*
 =====================
     Navigation Bar
 =====================
@@ -651,7 +651,7 @@ header.navbar {
       height: 17px;
       stroke-width: 2; }
 
-/* 
+/*
 ===============
     Sidebar
 ===============
@@ -721,7 +721,7 @@ header.navbar {
     font-size: 13px;
     font-style: normal;
     font-weight: 400;
-    color: #515365;
+    color: #000000;
     transition: color .3s;
     transition: background .3s; }
     .sidebar-wrapper #compactSidebar .menu-categories a.menu-toggle > div.base-menu {
@@ -731,7 +731,7 @@ header.navbar {
       .sidebar-wrapper #compactSidebar .menu-categories a.menu-toggle .base-icons svg {
         position: relative;
         display: inline-block;
-        color: #3b3f5c;
+        color: #000000;
         vertical-align: middle;
         width: 26px;
         height: 26px;
@@ -740,7 +740,7 @@ header.navbar {
       font-size: 13px;
       margin-top: 8px;
       display: inline-block;
-      color: #3b3f5c;
+      color: #000000;
       font-weight: 600; }
   .sidebar-wrapper #compactSidebar .menu-categories li.menu:hover a.menu-toggle .base-icons svg {
     color: #4361ee;
@@ -803,7 +803,7 @@ header.navbar {
         .sidebar-wrapper #compact_submenuSidebar .submenu ul.submenu-list li a {
           padding: 9px 32px;
           display: block;
-          color: #515365;
+          color: #000000;
           cursor: pointer;
           font-size: 12px;
           font-weight: 600;
@@ -822,7 +822,7 @@ header.navbar {
           display: flex;
           justify-content: space-between; }
           .sidebar-wrapper #compact_submenuSidebar .submenu ul.submenu-list li.sub-submenu a[aria-expanded="true"] {
-            color: #515365;
+            color: #000000;
             /* background-color: #515365; */ }
             .sidebar-wrapper #compact_submenuSidebar .submenu ul.submenu-list li.sub-submenu a[aria-expanded="true"] svg {
               transform: rotate(90deg); }
@@ -905,7 +905,7 @@ header.navbar {
   -webkit-animation-name: e-fadeInUp;
   animation-name: e-fadeInUp; }
 
-/*  
+/*
     ======================
         Footer-wrapper
     ======================
@@ -926,11 +926,11 @@ header.navbar {
 
 .footer-wrapper .footer-section p {
   margin-bottom: 0;
-  color: #515365;
+  color: #000000;
   font-size: 13px;
   letter-spacing: 1px; }
   .footer-wrapper .footer-section p a {
-    color: #515365; }
+    color: #000000; }
 
 .footer-wrapper .footer-section svg {
   color: #e7515a;
@@ -939,7 +939,7 @@ header.navbar {
   height: 15px;
   vertical-align: text-top; }
 
-/*  
+/*
     ======================
         MEDIA QUERIES
     ======================

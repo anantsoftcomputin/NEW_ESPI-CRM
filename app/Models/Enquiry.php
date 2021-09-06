@@ -22,6 +22,7 @@ class Enquiry extends Model
         'city_id',
         'country_id',
         'state_id',
+        'counsellor_id',
         'added_by_id'
     ];
 

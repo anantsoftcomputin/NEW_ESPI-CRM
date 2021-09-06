@@ -8,7 +8,7 @@ use App\Http\Requests\enquire\AddEnquireRequest;
 use Mail;
 use DataTables;
 use App\Mail\AddEnquiry;
-
+use App\Models\User;
 
 class EnquireController extends Controller
 {
@@ -28,6 +28,11 @@ class EnquireController extends Controller
     {
         if ($request->ajax()) {
             $data = Enquiry::select('*')->with('City','State','Country');
+
+            if(\Auth::user()->roles->pluck('name')=="Counsellor")
+            {
+                $data->where('counsellor_id',\Auth::user()->id);
+            }
             return Datatables::of($data)
                     ->addColumn('details_url', function($user) {
                         return url('api/admin/inquiry/'.$user->id);
@@ -51,7 +56,9 @@ class EnquireController extends Controller
      */
     public function create()
     {
-        return view('enquiry.add');
+        $user=User::role('Counsellor')->get();
+        //$user=User::where('company_id','1')->whereNotIn('id',[\Auth::user()->id])->get();
+        return view('enquiry.add',compact('user'));
     }
 
     /**
