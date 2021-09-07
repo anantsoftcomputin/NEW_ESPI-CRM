@@ -61,7 +61,9 @@ class RolePermissionSeeder extends Seeder
         // Create Super user & role
         $admin= Role::create(['name' => 'super-admin']);
         $admin->syncPermissions($permissions);
-
+        $usr = User::find(1);
+        $usr->assignRole($admin);
+        $usr->syncPermissions($permissions);
 
         $permissions_counsellor = [
             'view-application',
@@ -77,11 +79,10 @@ class RolePermissionSeeder extends Seeder
         ];
         $Counsellor= Role::create(['name' => 'counsellor']);
         $Counsellor->syncPermissions($permissions_counsellor);
-        $usr = User::find(1);
 
-        $usr->assignRole($admin);
-
-        $usr->syncPermissions($permissions);
+        $usr = User::find(2);
+        $usr->assignRole($Counsellor);
+        $usr->syncPermissions($permissions_counsellor);
 
         // Create user & role
 

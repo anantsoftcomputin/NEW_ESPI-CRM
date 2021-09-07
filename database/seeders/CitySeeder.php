@@ -18,7 +18,7 @@ class CitySeeder extends Seeder
         // City::create([
         //     'name' => 'name',
         // ]);
-        $json = File::get("database/guj.json");
+        $json = File::get("database/city.json");
         $states = json_decode($json);
 
         foreach ($states as $key => $value) {
