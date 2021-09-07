@@ -17,6 +17,7 @@ class CreateEnquiryDetailsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('enquiry_id');
             $table->foreign('enquiry_id')->references('id')->on('enquiries');
+            $table->text('data')->nullable();
             $table->timestamps();
         });
     }
