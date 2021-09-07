@@ -84,6 +84,8 @@ class EnquireController extends Controller
     {
         $validated = $request->validated();
         $validated['added_by_id'] = \Auth::user()->id;
+        $validated["referance_source"]=$request->referance_source;
+        $validated["remarks"]=$request->remarks;
         $enq=Enquiry::create($validated);
         // $details = [
         //         'title' => 'New Enquires from '.$request->name,

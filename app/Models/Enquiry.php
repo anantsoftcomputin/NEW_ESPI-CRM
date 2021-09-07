@@ -23,7 +23,9 @@ class Enquiry extends Model
         'country_id',
         'state_id',
         'counsellor_id',
-        'added_by_id'
+        'added_by_id',
+        "referance_source",
+        "remarks",
     ];
 
     protected static function booted()
