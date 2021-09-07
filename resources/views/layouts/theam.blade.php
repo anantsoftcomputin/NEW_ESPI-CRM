@@ -24,9 +24,9 @@
 <body class="dashboard-analytics">
 
     <!-- BEGIN LOADER -->
-    <div id="load_screen"> <div class="loader"> <div class="loader-content">
+    {{-- <div id="load_screen"> <div class="loader"> <div class="loader-content">
         <div class="spinner-grow align-self-center"></div>
-    </div></div></div>
+    </div></div></div> --}}
     <!--  END LOADER -->
 
     <!--  BEGIN NAVBAR  -->
@@ -243,7 +243,7 @@
             </div>
             <div class="bg-light clearfix" style="padding: 10px 20px 10px 20px;">
                 <a title="Enquiry" href="{{ route('Enquires.create') }}"><button type="button" class="btn btn-primary float-right ml-2 rounded-circle">+</button></a>
-            </div>                        
+            </div>
             <div class="footer-wrapper">
                 <div class="footer-section f-section-1">
                     <p class="">Copyright © 2021 <a target="_blank" href="https://designreset.com">ASC</a>, All rights reserved.</p>
