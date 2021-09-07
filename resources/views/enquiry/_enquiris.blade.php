@@ -97,3 +97,28 @@
         </select>
     </div>
 </div>
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="user">Select Counsellor</label>
+        <select name="counsellor_id" value="{{old('user')}}" id="user" class="form-control" required>
+            <option value="#" selected disabled>Select Councillor</option>
+            @foreach ($user as $item)
+            <option value="{{ $item->id }}">{{ $item->name }}</option>
+            @endforeach
+        </select>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="gender">Referance Source</label>
+        <input type="text" value="Walking" name="referance_source" id="referance_source" class="form-control">
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="form-group">
+        <label for="gender">Remarks</label>
+        <input type="text" value="{{old('remarks')}}" name="remarks" id="remarks" class="form-control">
+    </div>
+</div>

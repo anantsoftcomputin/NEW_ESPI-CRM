@@ -39,7 +39,7 @@ h1, h2, h3, h4, h5, h6 {
 p {
   margin-top: 0;
   margin-bottom: 0.625rem;
-  color: #515365; }
+  color: #000000; }
 
 hr {
   margin-top: 20px;
@@ -157,11 +157,11 @@ blockquote.media-object .media .usr-img img {
   .list-icon .list-text {
     font-size: 14px;
     font-weight: 600;
-    color: #515365;
+    color: #000000;
     letter-spacing: 1px; }
 
 a {
-  color: #515365;
+  color: #000000;
   outline: none; }
   a:hover {
     color: #555555;
@@ -193,7 +193,7 @@ span.red {
 /*      Form Group Label       */
 .form-group label, label {
   font-size: 15px;
-  color: #888ea8;
+  color: #000000;
   letter-spacing: 1px; }
 
 /*  Disable forms     */
@@ -204,7 +204,7 @@ span.red {
 .form-control {
   height: auto;
   border: 1px solid #bfc9d4;
-  color: #3b3f5c;
+  color: #000000;
   font-size: 15px;
   padding: 8px 10px;
   letter-spacing: 1px;
@@ -216,7 +216,7 @@ span.red {
   .form-control:focus {
     box-shadow: 0 0 5px 2px rgba(194, 213, 255, 0.619608);
     border-color: #4361ee;
-    color: #3b3f5c; }
+    color: #000000; }
   .form-control::-webkit-input-placeholder, .form-control::-ms-input-placeholder, .form-control::-moz-placeholder {
     color: #bfc9d4;
     font-size: 15px; }
@@ -329,7 +329,7 @@ select.form-control.form-custom {
   .custom-file-label::after {
     height: auto;
     padding: 8px 12px;
-    color: #515365; }
+    color: #000000; }
 
 /*      Input Group      */
 .input-group button:hover, .input-group .btn:hover, .input-group button:focus, .input-group .btn:focus {
@@ -1646,7 +1646,7 @@ input[disabled], select[disabled], textarea[disabled], input[readonly], select[r
 
 .table > tbody > tr > td {
   vertical-align: middle;
-  color: #515365;
+  color: #000000;
   font-size: 13px;
   letter-spacing: 1px; }
 
@@ -1668,7 +1668,7 @@ input[disabled], select[disabled], textarea[disabled], input[readonly], select[r
 
 .table > tbody > tr > td .admin-name {
   font-weight: 700;
-  color: #515365; }
+  color: #000000; }
 
 .table > tbody > tr > td .progress {
   width: 135px;
@@ -1810,13 +1810,13 @@ table .badge-success, table .badge-primary, table .badge-warning, table .badge-d
   padding: 16px 12px;
   color: #fff; }
 
-/*  
+/*
     ==========================
-        Background Colors  
+        Background Colors
     ==========================
 */
-/*  
-    Default  
+/*
+    Default
 */
 .bg-primary {
   background-color: #4361ee !important;
@@ -1853,8 +1853,8 @@ table .badge-success, table .badge-primary, table .badge-warning, table .badge-d
   border-color: #3b3f5c;
   color: #fff; }
 
-/*  
-    Light Background  
+/*
+    Light Background
 */
 .bg-light-primary {
   background-color: #eaf1ff !important;
@@ -1891,7 +1891,7 @@ table .badge-success, table .badge-primary, table .badge-warning, table .badge-d
   border-color: #e3e4eb;
   color: #fff; }
 
-/*  
+/*
     Progress Bar
 */
 .progress {

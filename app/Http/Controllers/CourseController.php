@@ -6,8 +6,10 @@ use App\Http\Requests\Course\Addcourse;
 use App\Http\Requests\Course\Editcourse;
 use App\Models\Course;
 use App\Models\University;
+use App\Models\CourseRecruitments;
 use Illuminate\Http\Request;
 use DataTables;
+use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
@@ -19,7 +21,7 @@ class CourseController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Course::select('*')->with('University');
+            $data = Course::orderBy("id","desc")->select('*')->with('University');
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
@@ -68,6 +70,26 @@ class CourseController extends Controller
         $validated['added_by']=\Auth::user()->id;
         $validated['company_id']=\Auth::user()->company_id;
         $course=Course::create($validated);
+
+        $totdocuments=count($addcourse->documents);
+        for($i=0;$i<$totdocuments;$i++)
+        {
+            if($addcourse->documents[$i])
+            {
+                $data[]=[
+                    "course_id"=>$course->id,
+                    "documents"=>$addcourse->documents[$i],
+                    "type"=>$addcourse->type[$i],
+                    "status"=>$addcourse->status[$i],
+                    "company_id"=>Auth::user()->company_id,
+                ];
+            }
+        }
+
+        if(isset($data)){
+            CourseRecruitments::insert($data);
+        }
+
         return redirect(route('Course.index'));
     }
 
@@ -92,15 +114,16 @@ class CourseController extends Controller
     {
         $Course=Course::find($id);
         $university=University::all();
+        $course_recruitments=CourseRecruitments::where("course_id",$id)
+        ->get();
         $university_selected=$request->input('university');
         if(isset($university))
         {
-            return view('course.edit',compact('university_selected','university','Course'));
+            return view('course.edit',compact("course_recruitments",'university_selected','university','Course'));
         }
         else
         {
-
-
+            
         }
     }
 
@@ -113,10 +136,50 @@ class CourseController extends Controller
      */
     public function update(Editcourse $request,$course)
     {
+        //dd($course);
         $validated = $request->validated();
         $validated['added_by']=\Auth::user()->id;
         $validated['company_id']=\Auth::user()->company_id;
-        $course=Course::where("id",$course)->update($validated);
+        $courses=Course::where("id",$course)->update($validated);
+        
+        if(isset($request->course_recruitment_id))
+        {
+            $totdocuments=count($request->course_recruitment_id);
+            for($i=0;$i<$totdocuments;$i++)
+            {
+                if($request->course_recruitment_id[$i])
+                {
+                    $CourseRecruitments=CourseRecruitments::find($request->course_recruitment_id[$i]);
+                    $CourseRecruitments->documents=$request->course_documents[$i];
+                    $CourseRecruitments->type=$request->course_type[$i];
+                    $CourseRecruitments->status=$request->course_status[$i];
+                    $CourseRecruitments->course_id=$course;
+                    $CourseRecruitments->save();
+                }
+            }
+        }
+        
+        if(isset($request->documents))
+        {
+            $totdocuments=count($request->documents);
+            for($i=0;$i<$totdocuments;$i++)
+            {
+                if($request->documents[$i])
+                {
+                    $data[]=[
+                        "course_id"=>$course,
+                        "documents"=>$request->documents[$i],
+                        "type"=>$request->type[$i],
+                        "status"=>$request->status[$i],
+                        "company_id"=>Auth::user()->company_id,
+                    ];
+                }
+            }
+        }
+        
+        if(isset($data)){
+            CourseRecruitments::insert($data);
+        }
 
         return redirect(route('Course.index'));
     }
@@ -164,4 +227,6 @@ class CourseController extends Controller
         $data=Course::find($request->course);
         return view('course.edit',compact('university','data'));
     }
+
+    
 }

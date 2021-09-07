@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -20,5 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UniversitySeeder::class);
         $this->call(CourseSeeder::class);
         $this->call(IntactSeeder::class);
+        $this->call(RolePermissionSeeder::class);
     }
 }

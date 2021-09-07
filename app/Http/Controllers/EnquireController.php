@@ -7,14 +7,18 @@ use Illuminate\Http\Request;
 use App\Http\Requests\enquire\AddEnquireRequest;
 use Mail;
 use DataTables;
+use App\Models\EnquiryDetail;
 use App\Mail\AddEnquiry;
-
+use App\Models\User;
 
 class EnquireController extends Controller
 {
-    function __construct()
+    public function __construct()
     {
-
+        $this->middleware('permission:view-enquiry');
+        $this->middleware('permission:create-enquiry', ['only' => ['create','store']]);
+        $this->middleware('permission:update-enquiry', ['only' => ['edit','update']]);
+        $this->middleware('permission:destroy-enquiry', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -25,20 +29,37 @@ class EnquireController extends Controller
     {
         if ($request->ajax()) {
             $data = Enquiry::select('*')->with('City','State','Country');
+
+            if(\Auth::user()->roles->pluck('name')=="Counsellor")
+            {
+                $data->where('counsellor_id',\Auth::user()->id);
+            }
             return Datatables::of($data)
                     ->addColumn('details_url', function($user) {
                         return url('api/admin/inquiry/'.$user->id);
                     })
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
-                           $btn = '<a href="'.route('Application.Add',$row->id).'" class="edit btn btn-primary btn-sm">Add Application</a>';
-                           $btn .='<a href="'.route('Assessment.Add',$row->id).'" class="assessment btn btn-warning btn-sm">Add Assessment</a>'; 
+                           $btn = "";
+                           if($this->existdetail($row->id))
+                           {
+                            $btn .='<a href="'.route('Assessment.Add',$row->id).'" class="assessment btn btn-warning btn-sm">Add Assessment</a>';
+                           }
+                           else
+                           {
+                               $btn .='<a href="'.route('EnquiryDetail.add',$row->id).'" class="assessment btn btn-info btn-sm">Add Detail Enquiry</a>';
+                           }
                            return $btn;
                     })
                     ->rawColumns(['action'])
                     ->make(true);
         }
         return view('enquiry.index');
+    }
+
+    public function existdetail($id)
+    {
+        return EnquiryDetail::where('enquiry_id',"=",$id)->first();
     }
 
     /**
@@ -48,7 +69,9 @@ class EnquireController extends Controller
      */
     public function create()
     {
-        return view('enquiry.add');
+        $user=User::role('Counsellor')->get();
+        //$user=User::where('company_id','1')->whereNotIn('id',[\Auth::user()->id])->get();
+        return view('enquiry.add',compact('user'));
     }
 
     /**
@@ -61,6 +84,8 @@ class EnquireController extends Controller
     {
         $validated = $request->validated();
         $validated['added_by_id'] = \Auth::user()->id;
+        $validated["referance_source"]=$request->referance_source;
+        $validated["remarks"]=$request->remarks;
         $enq=Enquiry::create($validated);
         // $details = [
         //         'title' => 'New Enquires from '.$request->name,
@@ -116,4 +141,5 @@ class EnquireController extends Controller
     {
         //
     }
+
 }

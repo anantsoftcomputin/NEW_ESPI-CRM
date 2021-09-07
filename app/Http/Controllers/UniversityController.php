@@ -16,6 +16,13 @@ class UniversityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('permission:view-university');
+        $this->middleware('permission:create-university', ['only' => ['create','store']]);
+        $this->middleware('permission:update-university', ['only' => ['edit','update']]);
+        $this->middleware('permission:destroy-university', ['only' => ['destroy']]);
+    }
     public function index(Request $request)
     {
         if ($request->ajax()) {
@@ -24,10 +31,13 @@ class UniversityController extends Controller
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
                         $btn="";
-                        //    $btn .= '<a href="javascript:void(0)" class="edit btn btn-info btn-sm">Edit</a>';
-                           $btn .= ' <a href="'.route('course.detail',$row->id).'" class="edit btn btn-primary btn-sm" data-row="'.route('course.detail',$row->id).'">Course</a>';
-                           $btn .= ' <a href="'.route('University.edit',$row->id).'" class="edit btn btn-primary btn-sm" data-row="'.route('University.edit',$row->id).'">Edit</a>';
-                            return $btn;
+                        if(Auth::user()->hasAnyPermission(['view-course'])){
+                           $btn .= ' <a href="'.route('course.detail',$row->id).'" title="View Course" class="btn btn-primary btn-sm" data-row="'.route('course.detail',$row->id).'">Course</a>';
+                        }
+                        if(Auth::user()->hasAnyPermission(['update-university'])){
+                           $btn .= ' <a href="'.route('University.edit',$row->id).'" title="Edit University" class="edit btn btn-primary btn-sm" data-row="'.route('University.edit',$row->id).'">Edit</a>';
+                        }
+                        return $btn;
                     })
                     ->rawColumns(['action'])
                     ->make(true);
@@ -91,7 +101,7 @@ class UniversityController extends Controller
      */
     public function update(EditUniversity $request,$university)
     {
-        $validated = $request->validated();  
+        $validated = $request->validated();
         $university=University::where("id",$university)->update($validated);
         return redirect(route('University.index'));
     }

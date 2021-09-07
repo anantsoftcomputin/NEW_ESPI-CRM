@@ -27,7 +27,7 @@
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script> --}}
 
     <script id="details-template" type="text/x-handlebars-template">
-        <div class="label label-info">User @{{ name }}'s Posts</div>
+        <div class="label label-info">User @{{ name }}'s Application</div>
         <table class="table details-table" id="application-@{{ id }}">
             <thead>
             <tr>
@@ -88,7 +88,6 @@
             var tr = $(this).closest('tr');
             var row = table.row(tr);
             var tableId = 'application-' + row.data().id;
-
             console.log(tableId);
 
             if (row.child.isShown()) {
@@ -104,6 +103,7 @@
                 tr.next().find('td').addClass('no-padding bg-gray');
             }
         });
+
 
         function initTable(tableId, data) {
             $('#' + tableId).DataTable({

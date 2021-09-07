@@ -18,6 +18,14 @@ class ApplicationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // public function __construct()
+    // {
+    //     $this->middleware('permission:view-application');
+    //     $this->middleware('permission:create-application', ['only' => ['create','store']]);
+    //     $this->middleware('permission:update-application', ['only' => ['edit','update']]);
+    //     $this->middleware('permission:destroy-application', ['only' => ['destroy']]);
+    // }
+
     public function index(Request $request)
     {
         if ($request->ajax()) {

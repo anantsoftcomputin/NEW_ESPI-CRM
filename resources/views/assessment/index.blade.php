@@ -44,6 +44,7 @@
                 {data: 'university.name', name: 'university.name', orderable: false, searchable: false},
                 { data: 'course.name', name: 'course.name' , orderable: false, searchable: false},
                 { data: 'status', name: 'status' , orderable: false, searchable: false},
+                { data: 'assign_to', name: 'assign_to' , orderable: false, searchable: false},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
             initComplete: function () {
@@ -56,32 +57,12 @@
                     column.search(val ? val : '', true, false).draw();
                 });
             });
-        }
+            }
         });
 
             // Add event listener for opening and closing details
 
-            $('.data-table tbody').on('click', 'td.details-control', function () {
-            var tr = $(this).closest('tr');
-            var row = table.row(tr);
-            var tableId = 'application-' + row.data().id;
-
-            console.log(tableId);
-
-            if (row.child.isShown()) {
-                // This row is already open - close it
-                row.child.hide();
-                tr.removeClass('shown');
-            } else {
-                // Open this row
-                row.child(template(row.data())).show();
-                initTable(tableId, row.data());
-                console.log(row.data());
-                tr.addClass('shown');
-                tr.next().find('td').addClass('no-padding bg-gray');
-            }
-        });
-
+        
         function initTable(tableId, data) {
             $('#' + tableId).DataTable({
                 processing: true,
@@ -96,10 +77,26 @@
                     { data: 'university.name', name: 'university.name',orderable:'false', searchable:'false' },
                     { data: 'course.name', name: 'course.name' },
                     {data: 'status', name: 'status'},
+                    {data: 'assign_to', name: 'assign_to'},
+                    { data: 'user.name', name: 'user.name',orderable:'false', searchable:'false' },
                 ]
             })
         }
         });
+
+        function assign_action(user,assessment_id)
+        {
+            let URL="{{ url('api/admin/assign_user/') }}/"+user+'/'+assessment_id;
+            $.ajax(URL,
+                {
+                    success: function () {   // success callback function
+                        $('.data-table').DataTable().ajax.reload();
+                    },
+                    error: function (jqXhr, textStatus, errorMessage) { // error callback
+                        $('p').append('Error: ' + errorMessage);
+                    }
+                });
+        }
         // Add event listener for opening and closing details
 </script>
 
@@ -120,6 +117,7 @@ Application
                 <th>University</th>
                 <th>Course</th>
                 <th>Status</th>
+                <th>Assign To</th>
                 <th width="200px">Action</th>
             </tr>
         </thead>

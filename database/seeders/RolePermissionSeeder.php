@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
@@ -17,7 +19,7 @@ class RolePermissionSeeder extends Seeder
     {
         // Reset cached roles and permissions
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
-        // create permissions
+        // // create permissions
         $permissions = [
             'view-user',
             'create-user',
@@ -31,6 +33,27 @@ class RolePermissionSeeder extends Seeder
             'update-permission',
             'destroy-role',
             'destroy-permission',
+            'update-settings',
+            'view-application',
+            'create-application',
+            'destroy-application',
+            'update-application',
+            'view-assessment',
+            'create-assessment',
+            'destroy-assessment',
+            'update-assessment',
+            'view-enquiry',
+            'create-enquiry',
+            'destroy-enquiry',
+            'update-enquiry',
+            'view-course',
+            'create-course',
+            'destroy-course',
+            'update-course',
+            'view-university',
+            'create-university',
+            'destroy-university',
+            'update-university',
         ];
         foreach ($permissions as $permission) {
             Permission::create(['name' => $permission]);
@@ -38,61 +61,31 @@ class RolePermissionSeeder extends Seeder
         // Create Super user & role
         $admin= Role::create(['name' => 'super-admin']);
         $admin->syncPermissions($permissions);
-
-        $usr = User::create([
-            'company_id' => 1,
-            'name'=> 'Admin',
-            'email' => 'admin@email.com',
-            'password' => 'secret',
-            'status' => true,
-            'email_verified_at' => now(),
-        ]);
-
+        $usr = User::find(1);
         $usr->assignRole($admin);
-
         $usr->syncPermissions($permissions);
 
+        $permissions_counsellor = [
+            'view-application',
+            'create-application',
+            'view-assessment',
+            'create-assessment',
+            'view-enquiry',
+            'create-enquiry',
+            'view-course',
+            'create-course',
+            'view-university',
+            'create-university',
+        ];
+        $Counsellor= Role::create(['name' => 'counsellor']);
+        $Counsellor->syncPermissions($permissions_counsellor);
+
+        $usr = User::find(2);
+        $usr->assignRole($Counsellor);
+        $usr->syncPermissions($permissions_counsellor);
+
         // Create user & role
-        $role = Role::create(['name' => 'user']);
-        $role->givePermissionTo('update-settings');
-        $role->givePermissionTo('view-user');
 
-        $user = User::create([
-            'company_id' => 1,
-            'name'=> 'User',
-            'email' => 'user@email.com',
-            'password' => 'secret',
-            'status' => true,
-            'email_verified_at' => now(),
-        ]);
-        $user->assignRole($role);
 
-        $role = Role::create(['name' => 'employe']);
-        $role->givePermissionTo('create-task');
-        $role->givePermissionTo('view-task');
-
-        $user = User::create([
-            'company_id' => 1,
-            'name'=> 'employe',
-            'email' => 'employe@email.com',
-            'password' => 'secret',
-            'status' => true,
-            'email_verified_at' => now(),
-        ]);
-        $user->assignRole($role);
-
-        $role = Role::create(['name' => 'client']);
-        $role->givePermissionTo('create-task');
-        $role->givePermissionTo('view-task');
-
-        $user = User::create([
-            'company_id' => 1,
-            'name'=> 'Client',
-            'email' => 'client@email.com',
-            'password' => 'secret',
-            'status' => true,
-            'email_verified_at' => now(),
-        ]);
-        $user->assignRole($role);
     }
 }

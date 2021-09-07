@@ -18,7 +18,7 @@ return [
     'submit_btn' => 'Get Support',
     'cancel_btn_btn' => 'Cancel',
     'well_done' => 'Well done',
-    'success_msg' => 'Success Fully add new Inquire. Thanks For Submit. Your Reference Number Is :code for future track your enquire .',
+    'success_msg' => 'SuccessFully add new Inquire. Thanks For Submitting. please Save this :code for future enquiry.',
     'go_back' => 'Go Back'
 
 

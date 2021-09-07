@@ -26,7 +26,11 @@
 
                         <h1 class="">Sign In</h1>
                         <p class="">Log in to your account to continue.</p>
-
+                        @if(session()->has("error_login"))
+                            <div class="alert alert-danger">
+                                <strong>{{session()->get("error_login")}}</strong>
+                            </div>
+                        @endif
                         {{-- <form class="text-left">
                             <div class="form">
 

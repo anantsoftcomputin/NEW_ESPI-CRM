@@ -14,11 +14,11 @@ return [
     */
 
     'top_menu' => "Enquiry",
-    'heading' => 'Add New Enquiries',
+    'heading' => 'Add Detail Enquiries',
     'submit_btn' => 'Save',
     'cancel_btn_btn' => 'Cancel',
     'well_done' => 'Well done',
-    'success_msg' => 'Success Fully add new Inquire. Thanks For Submit. Your Reference Number Is :code for future track your enquire .',
+    'success_msg' => 'SuccessFully added new Enquiry. Thanks For Submitting. please Save this [ :code ] for future enquiry.',
     'go_back' => 'Go Back'
 
 

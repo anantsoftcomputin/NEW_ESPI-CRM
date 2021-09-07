@@ -46,6 +46,18 @@ class CreateUsersTable extends Migration
             )
         );
 
+        DB::table('users')->insert(
+            array(
+                'name' => 'Sagar Thakor',
+                'email' => 'sagar@gmail.com',
+                'phone' => '9173311121',
+                'status' => true,
+                'remember_token' => \Carbon\Carbon::now(),
+                'password' => '$2y$10$s0vOfzyDAM7W/pQOSMBgvuCshx3yQtkoKmSWrF7f/Sest43T1ZoPy'
+                // Pa$$w0rd!
+            )
+        );
+
     }
 
     /**

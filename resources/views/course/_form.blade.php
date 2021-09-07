@@ -47,3 +47,105 @@
 
 
 </div>
+
+<div class="col-md-12">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+      <table class="table table-bordered" id="tbl_posts">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Documents</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="tbl_posts_body">
+      
+        </tbody>
+        <tfoot>
+            <td colspan="5"><div class="well clearfix text-right">
+        <a class="btn btn-primary pull-right add-record" data-added="0"><i class="glyphicon glyphicon-plus"></i> Add More Document</a>
+ </div></td>
+        </tfoot>
+      </table>
+    </div> 
+  
+  <div style="display:none;">
+    <table id="sample_table">
+      <tr id="">
+       <td><span class="sn"></span>.</td>
+       <td><input type="text" name="documents[]" class="form-control"></div></td>
+       <td>
+           <select class="form-control" name="type[]">
+               <option value="">select type</option>
+               <option>pdf</option>
+               <option>jpg</option>
+               <option>doc</option>
+            </select>
+        </td>
+        <td>
+           <select class="form-control" name="status[]">
+               <option value="">select status</option>
+               <option value="active">Active</option>
+               <option value="de-active">De-Active</option>
+            </select>
+        </td>
+       <td>
+        <div class="icon-container">
+            <a class="btn btn-xs btn-danger delete-record" title="Delete" data-id="0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg><span class="icon-name"></span>
+            </a>
+        </div>
+        </td>
+     </tr>
+   </table>
+ </div>
+ 
+<script>
+    jQuery(document).delegate('a.add-record', 'click', function(e) {
+     e.preventDefault();    
+     var content = jQuery('#sample_table tr'),
+     size = jQuery('#tbl_posts >tbody >tr').length + 1,
+     element = null,    
+     element = content.clone();
+     element.attr('id', 'rec-'+size);
+     element.find('.delete-record').attr('data-id', size);
+     element.appendTo('#tbl_posts_body');
+     element.find('.sn').html(size);
+   });
+
+   jQuery(document).delegate('a.delete-record', 'click', function(e) {
+     e.preventDefault();    
+     var didConfirm = confirm("Are you sure You want to delete");
+     if (didConfirm == true) {
+      var id = jQuery(this).attr('data-id');
+      var targetDiv = jQuery(this).attr('targetDiv');
+      var course_requirementid=jQuery('#cr_' + id).val();
+      let URL="{{ url('api/admin/course_requirement/delete/') }}/"+course_requirementid;
+      if(course_requirementid){
+         $.ajax(URL,
+            {
+                dataType: 'json', // type of response data
+				success: function (data,status,xhr) {
+                    
+                }
+            }
+         );
+      }
+      jQuery('#rec-' + id).remove();
+      
+    //regnerate index number on table
+    $('#tbl_posts_body tr').each(function(index) {
+      //alert(index);
+      $(this).find('span.sn').html(index+1);
+    });
+    return true;
+  } else {
+    return false;
+  }
+});
+
+</script>
+</div>

@@ -68,7 +68,8 @@
         <label for="status">Status</label>
         <select name="status" id="status" class="form-control" required>
             <option value="#" selected disabled>Status</option>
-            <option value="approved">Approved</option>
+            {{-- <option value="approved">Approved</option> --}}
+            <option value="process" selected>In Process</option>
             <option value="rejected">Rejected</option>
             <option value="on-hold">On-Hold</option>
         </select>
