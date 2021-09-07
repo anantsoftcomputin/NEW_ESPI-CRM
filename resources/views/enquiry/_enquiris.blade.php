@@ -26,6 +26,14 @@
         <label for="email">Email</label>
         <input type="text" name="email" id="email" value="{{old('email')}}" class="form-control" required>
     </div>
+    <label class="error_msg" style='color:red'></label>
+    <a class="btn btn-sm btn-primary" id="generate_otp">Generate OTP</a>
+
+    <div class="form-group">
+        <label for="OTP">OTP</label>
+        <input type="text" name="otp" id="otp" class="form-control">
+    </div>
+
     {{-- row 2  --}}
     <div class="form-group">
         <label for="country">Country</label>

@@ -52,6 +52,29 @@ Enquiries
 			});
     });
 </script>
+
+<script>
+   $("#generate_otp").click(function(){
+        $('.error_message').html("");
+        var email=$("#email").val();
+        if(email==""){
+            $('.error_message').html("Please enter email id");
+        }else{
+            let URL="{{ url('api/admin/otp_send/') }}/"+email;
+            $.ajax(URL,
+                {
+                    dataType: 'json', // type of response data
+                    success: function (data,status,xhr) {   // success callback function
+                        console.log(data);
+                    },
+                    error: function (jqXhr, textStatus, errorMessage) { // error callback
+                        $('p').append('Error: ' + errorMessage);
+                    }
+                });
+        }
+        
+    });
+</script>
 @endsection
 
 @section('css')

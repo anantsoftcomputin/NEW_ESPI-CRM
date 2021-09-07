@@ -16,7 +16,7 @@ class EnquireController extends Controller
     public function __construct()
     {
         $this->middleware('permission:view-enquiry');
-        $this->middleware('permission:create-enquiry', ['only' => ['create','store']]);
+        $this->middleware('permission:create-enquiry', ['only' => ['create','store','sendOtp']]);
         $this->middleware('permission:update-enquiry', ['only' => ['edit','update']]);
         $this->middleware('permission:destroy-enquiry', ['only' => ['destroy']]);
     }
@@ -140,6 +140,11 @@ class EnquireController extends Controller
     public function destroy(Enquiri $enquiri)
     {
         //
+    }
+
+    public function sendOtp(Request $request)
+    {
+        dd($request->email);
     }
 
 }

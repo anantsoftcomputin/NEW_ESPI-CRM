@@ -8,6 +8,7 @@ use App\Http\Controllers\AssessmentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CityController; 
+use App\Http\Controllers\EnquireController; 
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -24,6 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::prefix('admin')->group(function () {
+    Route::get("otp_send/{email?}",[EnquireController::class,'sendOtp']);
     Route::get('inquiry/{id?}',[ApplicationController::class,'detailFromEnq']);
     Route::get('getUniversityFromCountry/{country_id}',[UniversityController::class,'getUniversityFromCountry']);
     Route::get('getCourseFromUniversity/{university_id}',[CourseController::class,'getCourseFromUniversity']);
