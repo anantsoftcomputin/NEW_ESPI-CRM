@@ -1,5 +1,9 @@
 @extends('layouts.theam')
 
+@section('title')
+Enquiry Detail
+@endsection
+
 @section('content')
 <div class="col-lg-12 layout-spacing">
     <form method="post" action="{{ route('EnquiryDetail.store',$id) }}" id="form-detail">
@@ -20,7 +24,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Maritial Status</label>
-                                    <Select class="form-control">
+                                    <Select class="form-control" name="marital_status" required>
                                         <option value="unmarried" selected>Unmarried</option>
                                         <option value="married">married</option>
                                     </Select>
@@ -30,7 +34,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Passport</label>
-                                    <Select class="form-control">
+                                    <Select class="form-control" name="passport" required>
                                         <option value="yes" selected>Yes</option>
                                         <option value="no">no</option>
                                     </Select>
@@ -39,25 +43,25 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Country Intrested</label>
-                                    <input type="text" name="name" id="name" value="" class="form-control" required="">
+                                    <input type="text" name="country_intrusted" id="name" value="" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Reference Name</label>
-                                    <input type="text" name="name" id="name" value="" class="form-control" required="">
+                                    <input type="text" name="reference_name" id="name" value="" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Reference Phone</label>
-                                    <input type="number" name="name" id="name" value="" class="form-control" required="">
+                                    <input type="number" name="reference_phone" id="name" value="" class="form-control" required="">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Reference Code</label>
-                                    <input type="text" name="name" id="name" value="" class="form-control" required="">
+                                    <input type="text" name="reference_code" id="name" value="" class="form-control" required="">
                                 </div>
                             </div>
                         </div>
@@ -83,25 +87,25 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Year of passing </label>
-                                    <input type="text" name="name" id="name" value="" class="form-control" required="">
+                                    <input type="text" name="educatuion_year_of_passing" id="name" value="" class="form-control" required="">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Percentage</label>
-                                    <input type="text" name="name" id="name" value="" class="form-control" required="">
+                                    <input type="text" name="educatuion_percentage" id="name" value="" class="form-control" required="">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Name of Institute/School</label>
-                                    <input type="text" name="name" id="name" value="" class="form-control" required="">
+                                    <input type="text" name="educatuion_institute" id="name" value="" class="form-control" required="">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Medium of Education</label>
-                                    <input type="number" name="name" id="name" value="" class="form-control" required="">
+                                    <input type="number" name="educatuion_medium" id="name" value="" class="form-control" required="">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -156,7 +160,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Work Profile</label>
-                                    <input type="text" name="name" id="name" value="" class="form-control" required="">
+                                    <input type="text" name="work_profile" id="name" value="" class="form-control" required="">
                                 </div>
                             </div>
                         </div>
