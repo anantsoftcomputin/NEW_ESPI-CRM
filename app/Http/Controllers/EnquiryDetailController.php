@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Enquiry;
 use App\Models\EnquiryDetail;
 use Illuminate\Http\Request;
 
@@ -9,7 +10,8 @@ class EnquiryDetailController extends Controller
 {
     public function add($id)
     {
-        return view('enquiry.detail',compact('id'));
+        $enquiry=Enquiry::find($id);
+        return view('enquiry.detail',compact('id','enquiry'));
     }
 
     public function store($id,Request $request)

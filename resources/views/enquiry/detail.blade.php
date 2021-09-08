@@ -26,8 +26,10 @@ Enquiry Detail
                                 <div class="form-group">
                                     <label for="name">Maritial Status</label>
                                     <Select class="form-control" name="marital_status" required>
-                                        <option value="unmarried" selected>Unmarried</option>
-                                        <option value="married">married</option>
+                                        @foreach (config('espi.enquires_detail.marital_status') as $item)
+                                            <option value="{{ $item }}">{{ $item }}</option>
+                                        @endforeach
+                                        {{-- <option value="married">married</option> --}}
                                     </Select>
 
                                 </div>
@@ -56,19 +58,19 @@ Enquiry Detail
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Reference Name</label>
-                                    <input type="text" name="reference_name" id="name" value="" class="form-control" required>
+                                    <input type="text" name="reference_name" id="name" value="{{ $enquiry->reference_name }}" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Reference Phone</label>
-                                    <input type="number" name="reference_phone" id="name" value="" class="form-control" required="">
+                                    <input type="number" name="reference_phone" id="name" value="{{ $enquiry->reference_phone }}" class="form-control" required="">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Reference Code</label>
-                                    <input type="text" name="reference_code" id="name" value="" class="form-control" required="">
+                                    <input type="text" name="reference_code" id="name" value="{{ $enquiry->reference_code }}" class="form-control" required="">
                                 </div>
                             </div>
                         </div>
@@ -91,6 +93,39 @@ Enquiry Detail
                                    </select>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="table-responsive">
+                                <table class="table table-bordered mb-4">
+                                    <thead>
+                                        <tr>
+                                            <th>Degree</th>
+                                            <th>Degree Name/Stream</th>
+                                            <th>Year of passing</th>
+                                            <th>percentage</th>
+                                            <th>Name of Institute</th>
+                                            <th>Medium of Education</th>
+                                            <th>Degree University</th>
+                                            <th>Backlogs</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="row_education">
+                                            <th><h2>10<sup>TH</sup></h2></th>
+                                            <th><input type="text" class="form-control"></th>
+                                            <th><input type="text" class="form-control"></th>
+                                            <th><input type="text" class="form-control"></th>
+                                            <th><input type="text" class="form-control"></th>
+                                            <th><input type="text" class="form-control"></th>
+                                            <th><input type="text" class="form-control"></th>
+                                            <th><input type="text" class="form-control"></th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: none;">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Year of passing </label>
