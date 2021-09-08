@@ -14,9 +14,9 @@ class AddReferencesSource extends Migration
     public function up()
     {
         Schema::table('enquiries', function (Blueprint $table) {
-            $table->string("referance_name")->nullable();
-            $table->string("referance_phone")->nullable();
-            $table->string("referance_code")->nullable();
+            $table->string("reference_name")->nullable();
+            $table->string("reference_phone")->nullable();
+            $table->string("reference_code")->nullable();
         });
     }
 
