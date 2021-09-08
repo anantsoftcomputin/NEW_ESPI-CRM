@@ -4,7 +4,13 @@ use App\Models\City;
 use App\Models\State;
 use App\Models\Country;
 use Illuminate\Http\Request;
+use App\Models\Company;
 
+if (! function_exists('get_company_by_id')) {
+    function get_company_by_id($id) {
+        return Company::find($id);
+    }
+}
 
 if (! function_exists('get_city')) {
     function get_city() {
@@ -12,6 +18,23 @@ if (! function_exists('get_city')) {
     }
 }
 
+if (! function_exists('get_city_by_id')) {
+    function get_city_by_id($city_id) {
+        return City::find($city_id);
+    }
+}
+
+if (! function_exists('get_state_by_id')) {
+    function get_country_by_id($state_id) {
+        return State::find($state_id);
+    }
+}
+
+if (! function_exists('get_country_by_id')) {
+    function get_country_by_id($country_id) {
+        return Country::find($country_id);
+    }
+}
 
 if (! function_exists('get_state')) {
     function get_state() {
@@ -51,4 +74,6 @@ if (! function_exists('InputControl')) {
         //     </div>
         // </div>`;
     }
+
+    
 }

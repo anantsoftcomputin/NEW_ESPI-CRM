@@ -26,6 +26,7 @@ class Enquiry extends Model
         'added_by_id',
         "referance_source",
         "remarks",
+        "postal_code",
     ];
 
     protected static function booted()

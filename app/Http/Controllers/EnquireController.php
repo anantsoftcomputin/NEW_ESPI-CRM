@@ -10,6 +10,8 @@ use DataTables;
 use App\Models\EnquiryDetail;
 use App\Mail\AddEnquiry;
 use App\Models\User;
+use App\Mail\EnquiryOtpMailsendWhenImport;
+use Auth;
 
 class EnquireController extends Controller
 {
@@ -28,7 +30,7 @@ class EnquireController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Enquiry::select('*')->with('City','State','Country');
+            $data = Enquiry::orderBy("updated_at","desc")->select('*')->with('City','State','Country');
 
             if(\Auth::user()->roles->pluck('name')=="Counsellor")
             {
@@ -85,6 +87,9 @@ class EnquireController extends Controller
         $validated = $request->validated();
         $validated['added_by_id'] = \Auth::user()->id;
         $validated["referance_source"]=$request->referance_source;
+        $validated["referance_name"]=$request->referance_name;
+        $validated["referance_phone"]=$request->referance_phone;
+        $validated["referance_code"]=$request->referance_code;
         $validated["remarks"]=$request->remarks;
         $enq=Enquiry::create($validated);
         // $details = [
@@ -151,8 +156,46 @@ class EnquireController extends Controller
     {
         $check=Enquiry::where("email",$request->email)->first();
         if($check){
-            return $check->email;
+            return $check;
         }
     }
 
+    public function getEnquiryByEmail(Request $request)
+    {
+        return Enquiry::where("email",$request->email)->first();
+    }
+
+    public function enquiryOtpSend($id)
+    {
+        $otp= rand(100000, 999999);
+
+        $enquiry=Enquiry::find($id);
+        $enquiry->otp=$otp;
+        $enquiry->save();
+        
+        $company=get_company_by_id($enquiry->company_id);
+        $branch=$company->name ?? "";
+        $details = [
+                'otp' => 'Your OTP '.$otp,
+                'enq_id' => $enquiry->id,
+                'url' => url('/login'),
+                "Branch"=>$branch,
+            ];
+            
+        Mail::to($enquiry->email)->send(new EnquiryOtpMailsendWhenImport($details));
+
+        return view("enquiry.verifyOtp",compact("otp","enquiry","branch"));
+    }
+
+    function verify_otp(Request $request)
+    {
+        $enquiry=Enquiry::where("otp","=",$request->otp)
+        ->where("id",$request->id)->first();
+        if($enquiry)
+        {
+            $enquiry->company_id=Auth::user()->company_id;
+            $enquiry->save();
+            return redirect()->route("Enquires.index");
+        }
+    }
 }

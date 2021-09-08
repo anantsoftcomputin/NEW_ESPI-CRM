@@ -49,6 +49,7 @@ $(document).ready(function(){
     });
 
     $("#email").focusout(function(){
+        $("#user_exist").empty();
         var email=$(this).val();
         let URL="{{ url('api/admin/checkemail/') }}/"+email;
         $.ajax(URL,
@@ -56,7 +57,8 @@ $(document).ready(function(){
 			success: function (data) { 
                 if(data)
                 {
-                    $("#user_exist").html("This Email id already Exists ! Do you want to retrive data <a onclick='getdata()' style='cursor:pointer;color:green'>Yes</a> <a style='cursor:pointer;color:red'>No</a>");
+                    var otpRoute="{{url('admin/enquiryOtpSend/')}}/"+data.id;
+                    $("#user_exist").html("This Email id already Exists ! Do you want to retrive data <a href='"+otpRoute+"' style='cursor:pointer;color:green'>Yes</a> <a style='cursor:pointer;color:red'>No</a>");
                 }
             }
         });
@@ -66,11 +68,18 @@ $(document).ready(function(){
 
     function getdata(){
       var email=$("#email").val();
-      let URL="{{ url('api/admin/getenquiry/') }}/"+email;
+      let URL="{{ url('api/admin/getEnquiry/') }}/"+email;
       $.ajax(URL,
 		{
 			success: function (data,status,xhr) { 
-                console.log(data);
+                $("#name").val(data.name);
+                $('#education option[value='+data.education+']').attr('selected','selected');
+                $('#country option[value='+data.country_id+']').attr('selected','selected');
+                $('#state option[value='+data.state_id+']').attr('selected','selected');
+                $('#city option[value='+data.city_id+']').attr('selected','selected');
+                $("#phone").val(data.phone);
+                $("#pin_code").val(data.pin_code);
+                $("#address").val(data.address);
             },
             error: function (jqXhr, textStatus, errorMessage) { // error callback
 					$('p').append('Error: ' + errorMessage);
