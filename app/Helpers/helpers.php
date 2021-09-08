@@ -21,8 +21,15 @@ if (! function_exists('get_state')) {
 
 
 if (! function_exists('get_country')) {
-    function get_country() {
-        return Country::whereIn('id',['101','13'])->get();
+    function get_country($allowed="1") {
+        if($allowed=='0')
+        {
+            return Country::all();
+        }
+        else
+        {
+            return Country::whereIn('id',['101','13'])->get();
+        }
     }
 }
 

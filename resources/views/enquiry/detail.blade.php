@@ -4,6 +4,7 @@
 Enquiry Detail
 @endsection
 
+
 @section('content')
 <div class="col-lg-12 layout-spacing">
     <form method="post" action="{{ route('EnquiryDetail.store',$id) }}" id="form-detail">
@@ -43,7 +44,13 @@ Enquiry Detail
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Country Intrested</label>
-                                    <input type="text" name="country_intrusted" id="name" value="" class="form-control" required>
+                                    {{-- <input type="text" name="country_intrusted" id="name" value="" class="form-control tagging" required> --}}
+                                    <select class="form-control tagging" multiple="multiple">
+                                        @foreach (get_country(0) as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -423,7 +430,21 @@ Enquiry Detail
 <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jquery-step/jquery.steps.css') }}">
 <script src="{{ asset('plugins/jquery-step/jquery.steps.min.js') }}"></script>
 <script src="{{ asset('plugins/jquery-step/custom-jquery.steps.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="{{ asset('plugins/select2/select2.min.css') }}">
+<style>
+.select2-search__field {
+    display: block;
+    border: 0px solid #ccc!important;
+}
+</style>
+<script src="{{ asset('plugins/select2/select2.min.js') }}"></script>
 <script>
+    // SELECT2 PAGE JS
+    $(".tagging").select2({
+        tags: false
+    });
+    // END SELECT2 PAGE JS
+
 
     $("a").click(function(){
         if($(this).text()=="Finish")
