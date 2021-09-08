@@ -25,6 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::prefix('admin')->group(function () {
+    Route::get("checkemail/{email?}",[EnquireController::class,"checkEmail"]);
     Route::get("otp_send/{email?}",[EnquireController::class,'sendOtp']);
     Route::get('inquiry/{id?}',[ApplicationController::class,'detailFromEnq']);
     Route::get('getUniversityFromCountry/{country_id}',[UniversityController::class,'getUniversityFromCountry']);
