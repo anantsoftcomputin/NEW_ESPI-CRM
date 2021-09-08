@@ -8,14 +8,14 @@ use Illuminate\Http\Request;
 
 if (! function_exists('get_city')) {
     function get_city() {
-        return City::all();
+        return [];
     }
 }
 
 
 if (! function_exists('get_state')) {
     function get_state() {
-        return State::where('country_id',101)->get();
+        return [];
     }
 }
 
