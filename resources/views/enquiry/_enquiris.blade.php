@@ -22,7 +22,7 @@
     <div class="form-group">
         <label for="education">Current Education Status</label>
         <select name="education" id="education" class="form-control">
-            <option value="" selected disabled>Current Education Status</option>
+            <option value="{{old('education')}} ?? ''" selected disabled>{{old('education') ?? "Current Education Status"}}</option>
             <option value="10th">10th</option>
             <option value="12th">12th</option>
             <option value="Under-Graduate">Under-Graduate</option>
@@ -38,9 +38,9 @@
     <div class="form-group">
         <label for="country">Country</label>
         <select name="country_id" id="country" class="form-control" required>
-            <option value="#" selected disabled>Select Country</option>
+        <option value="" selected disabled>select country</option>
             @forelse ( get_country() as $country)
-                <option value="{{ $country->id }}">{{ ucfirst($country->name) }}</option>
+                <option @if(old("country_id") == $country->id) selected @endif value="{{ $country->id }}">{{ ucfirst($country->name) }}</option>
             @empty
                 <option value="#">No Country Availabe </option>
             @endforelse
@@ -53,7 +53,7 @@
         <label for="state">State</label>
         <select name="state_id" id="state" value="{{old('state_id')}}" class="form-control" required>
             @forelse ( get_state() as $state)
-                <option value="{{ $state->id }}">{{ ucfirst($state->name) }}</option>
+                <option @if(old("state_id") == $state->id) selected @endif value="{{ $state->id }}">{{ ucfirst($state->name) }}</option>
             @empty
                 <option value="#">No state Availabe </option>
             @endforelse
@@ -68,7 +68,7 @@
         <label for="city">City</label>
         <select name="city_id" id="city" class="form-control" required>
             @forelse ( get_city() as $city)
-                <option value="{{ $city->id }}">{{ ucfirst($city->name) }}</option>
+                <option @if(old("city_id") == $city->id) selected @endif value="{{ $city->id }}">{{ ucfirst($city->name) }}</option>
             @empty
                 <option value="#">No city Availabe </option>
             @endforelse
@@ -90,7 +90,7 @@
     <div class="col-md-6">
     <div class="form-group">
         <label for="city">Pincode</label>
-        <input type="number" min="111111" value="{{old('pin_code')}}" max="999999" name="pin_code" id="pin_code" class="form-control" required>
+        <input type="number" min="111111" value="{{old('postal_code')}}" max="999999" name="postal_code" id="postal_code" class="form-control" required>
     </div>
 </div>
 <div class="col-md-12">
@@ -120,7 +120,7 @@
         <select name="counsellor_id" value="{{old('user')}}" id="user" class="form-control" required>
             <option value="#" selected disabled>Select Counsellor</option>
             @foreach ($user as $item)
-            <option value="{{ $item->id }}">{{ $item->name }}</option>
+            <option @if(old("counsellor_id") == $item->id) selected @endif value="{{ $item->id }}">{{ $item->name }}</option>
             @endforeach
         </select>
     </div>
