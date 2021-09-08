@@ -6,6 +6,78 @@ Enquiries
 
 @section('js')
 <script>
+$(document).ready(function(){
+    
+    $("#ref_name_label").html("Referance Name");
+    $("#ref_phone_label").html("Reference Phone");
+    $("#ref_code_label").html("Reference Code");
+    $("#ref_name_div").hide();
+    $("#ref_phone_div").hide();
+    $("#ref_code_div").hide();
+
+    $("#referance_source").change(function(){
+        $("#ref_name_div").hide();
+        $("#ref_phone_div").hide();
+        $("#ref_code_div").hide();
+
+        var rsource=$(this).val();
+        if(rsource=="Reference")
+        {
+            $("#ref_name_label").html("Referance Name");
+            $("#ref_phone_label").html("Reference Phone");
+            $("#ref_code_label").html("Reference Code");
+            $("#ref_name_div").show();
+            $("#ref_phone_div").show();
+            $("#ref_code_div").show();
+        }
+        if(rsource=="Agent")
+        {
+            $("#ref_name_label").html("Agent Name");
+            $("#ref_phone_label").html("Agent Phone");
+            $("#ref_code_label").html("Agent Code");
+            $("#ref_name_div").show();
+            $("#ref_phone_div").show();
+            $("#ref_code_div").show();
+        }
+        if(rsource=="Classes")
+        {
+            $("#ref_name_label").html("Class Name");
+            $("#ref_name_div").show();
+            $("#ref_phone_div").hide();
+            $("#ref_code_div").hide();
+        }
+    });
+
+    $("#email").focusout(function(){
+        var email=$(this).val();
+        let URL="{{ url('api/admin/checkemail/') }}/"+email;
+        $.ajax(URL,
+		{
+			success: function (data) { 
+                if(data)
+                {
+                    $("#user_exist").html("This Email id already Exists ! Do you want to retrive data <a onclick='getdata()' style='cursor:pointer;color:green'>Yes</a> <a style='cursor:pointer;color:red'>No</a>");
+                }
+            }
+        });
+    });
+
+});
+
+    function getdata(){
+      var email=$("#email").val();
+      let URL="{{ url('api/admin/getenquiry/') }}/"+email;
+      $.ajax(URL,
+		{
+			success: function (data,status,xhr) { 
+                console.log(data);
+            },
+            error: function (jqXhr, textStatus, errorMessage) { // error callback
+					$('p').append('Error: ' + errorMessage);
+            }
+        });
+    }
+
     $("#country").change(function(){
         $('#state option[value!="0"]').remove();
         $(this).val();
@@ -29,6 +101,8 @@ Enquiries
 			});
     });
 
+       
+    
     $("#state").change(function(){
         $('#city option[value!="0"]').remove();
         $(this).val();
@@ -51,6 +125,32 @@ Enquiries
 				}
 			});
     });
+</script>
+
+<script>
+    
+     $("#generate_otp").click(function(){
+        $('.error_message').html("");
+        var email=$("#email").val();
+        if(email==""){
+            $('.error_message').html("Please enter email id");
+        }else{
+            let URL="{{ url('api/admin/otp_send/') }}/"+email;
+            $.ajax(URL,
+                {
+                    dataType: 'json',
+                    method:"get", // type of response data
+                    success: function (data,status,xhr) {   // success callback function
+                        console.log(data);
+                    },
+                    error: function (jqXhr, textStatus, errorMessage) { // error callback
+                        $('p').append('Error: ' + errorMessage);
+                    }
+                });
+        }
+        
+    });
+   
 </script>
 @endsection
 

@@ -15,10 +15,10 @@ class EnquireController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:view-enquiry');
-        $this->middleware('permission:create-enquiry', ['only' => ['create','store']]);
-        $this->middleware('permission:update-enquiry', ['only' => ['edit','update']]);
-        $this->middleware('permission:destroy-enquiry', ['only' => ['destroy']]);
+        // $this->middleware('permission:view-enquiry');
+        // $this->middleware('permission:create-enquiry', ['only' => ['create','store','sendOtp']]);
+        // $this->middleware('permission:update-enquiry', ['only' => ['edit','update']]);
+        // $this->middleware('permission:destroy-enquiry', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -140,6 +140,19 @@ class EnquireController extends Controller
     public function destroy(Enquiri $enquiri)
     {
         //
+    }
+
+    public function sendOtp(Request $request)
+    {
+        dd($request->email);
+    }
+
+    public function checkEmail(Request $request)
+    {
+        $check=Enquiry::where("email",$request->email)->first();
+        if($check){
+            return $check->email;
+        }
     }
 
 }

@@ -34,6 +34,7 @@ Auth::routes();
 // });
 
 Route::middleware('auth')->prefix('admin')->group(function () {
+    
     Route::get("uploaddocument",[UploadDocumentController::class,"index"])->name("uploaddocument.index");
     Route::post("uploaddocument/save",[UploadDocumentController::class,"store"])->name("uploaddocument.store");
     Route::get("uploaddocument/{assessment?}",[UploadDocumentController::class,'assessment_upload']);
