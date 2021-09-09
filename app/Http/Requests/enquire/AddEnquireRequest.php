@@ -46,7 +46,7 @@ class AddEnquireRequest extends FormRequest
             'country_id' => 'required|'.Rule::in($this->country),
             'city_id' => 'required|'.Rule::in($this->city),
             'state_id' => 'required|'.Rule::in($this->state),
-            'pin_code' => 'required|max:6|min:6',
+            'postal_code' => 'required|max:6|min:6',
             'address' => 'required',
             'gender' => 'required|'.Rule::in(['male', 'female']),
             'counsellor_id' => 'required',

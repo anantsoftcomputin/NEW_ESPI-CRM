@@ -34,6 +34,7 @@ Auth::routes();
 // });
 
 Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::get('enquiry/resendotp/{id}', [EnquireController::class,'enquiryOtpSend'])->name('enquiry.resendotp');
     Route::post("verify_otp",[EnquireController::class,"verify_otp"])->name("verify_otp");
     Route::get("enquiryOtpSend/{id?}",[EnquireController::class,'enquiryOtpSend']);
     Route::get("uploaddocument",[UploadDocumentController::class,"index"])->name("uploaddocument.index");

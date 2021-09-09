@@ -6,8 +6,18 @@ Enquiries
 
 @section('js')
 <script>
+
 $(document).ready(function(){
-    
+    $("#general_assessment").hide();
+    $('input[type="checkbox"]').click(function(){
+            if($(this).prop("checked") == true){
+                $("#general_assessment").show();
+            }
+            else if($(this).prop("checked") == false){
+                $("#general_assessment").hide();
+            }
+        });
+
     $("#ref_name_label").html("Referance Name");
     $("#ref_phone_label").html("Reference Phone");
     $("#ref_code_label").html("Reference Code");
@@ -58,7 +68,7 @@ $(document).ready(function(){
                 if(data)
                 {
                     var otpRoute="{{url('admin/enquiryOtpSend/')}}/"+data.id;
-                    $("#user_exist").html("This Email id already Exists ! Do you want to retrive data <a href='"+otpRoute+"' style='cursor:pointer;color:green'>Yes</a> <a style='cursor:pointer;color:red'>No</a>");
+                    $("#user_exist").html("This Email id already Exists ! Do you want to retrive data &nbsp; <a href='"+otpRoute+"' class='text-primary'>Yes</a>");
                 }
             }
         });
@@ -182,7 +192,7 @@ $(document).ready(function(){
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
         <div class="card">
                 <div class="card-header">{{ __('enquire.heading') }}</div>
                 <div class="card-body">

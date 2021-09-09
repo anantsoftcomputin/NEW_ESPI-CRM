@@ -12,6 +12,9 @@ use App\Mail\AddEnquiry;
 use App\Models\User;
 use App\Mail\EnquiryOtpMailsendWhenImport;
 use Auth;
+use App\Models\University;
+use App\Models\Course;
+use App\Models\Intact;
 
 class EnquireController extends Controller
 {
@@ -72,8 +75,13 @@ class EnquireController extends Controller
     public function create()
     {
         $user=User::role('Counsellor')->get();
+
+        $university=University::all();
+        $course=Course::all();
+        $intake=Intact::all();
+
         //$user=User::where('company_id','1')->whereNotIn('id',[\Auth::user()->id])->get();
-        return view('enquiry.add',compact('user'));
+        return view('enquiry.add',compact('user','university','course','intake'));
     }
 
     /**
@@ -92,6 +100,18 @@ class EnquireController extends Controller
         $validated["referance_code"]=$request->referance_code;
         $validated["remarks"]=$request->remarks;
         $enq=Enquiry::create($validated);
+
+        $assessment=new assessment();
+        $assessment->enquiry_id=$enq->id;
+        $assessment->university_id=$request->university_id;
+        $assessment->course_id=$request->course_id;
+        $assessment->intact_year_id=$request->intact_year_id;
+        $assessment->intact_month_id=$request->intact_month_id;
+        $assessment->added_by_id=\Auth::user()->id;
+        $assessment->company_id=\Auth::user()->company_id;
+        $assessment->status=$request->status;
+        $assessment->assign_id=$request->counsellor_id;
+        $assessment->save();
         // $details = [
         //         'title' => 'New Enquires from '.$request->name,
         //         'url' => url('/login'),
@@ -196,6 +216,8 @@ class EnquireController extends Controller
             $enquiry->company_id=Auth::user()->company_id;
             $enquiry->save();
             return redirect()->route("Enquires.index");
+        }else{
+            return back()->with("message","Invalid OTP");
         }
     }
 }

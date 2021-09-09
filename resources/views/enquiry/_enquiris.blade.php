@@ -19,6 +19,14 @@
 </div>
 
 <div class="col-md-6">
+    {{-- row 1  --}}
+    <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="number" min="1111111111" max="9999999999" value="{{old('phone')}}" name="phone" id="phone" class="form-control" required>
+    </div>
+</div>
+
+<div class="col-md-6">
     <div class="form-group">
         <label for="education">Current Education Status</label>
         <select name="education" id="education" class="form-control">
@@ -76,13 +84,7 @@
     </div>
 </div>
 
-<div class="col-md-6">
-    {{-- row 1  --}}
-    <div class="form-group">
-        <label for="phone">Phone</label>
-        <input type="number" min="1111111111" max="9999999999" value="{{old('phone')}}" name="phone" id="phone" class="form-control" required>
-    </div>
-</div>
+
     {{-- row 2  --}}
    
 
@@ -165,6 +167,99 @@
         <input type="text" value="{{old('remarks')}}" name="remarks" id="remarks" class="form-control">
     </div>
 </div>
+<div class="col-md-12">
+<div class="n-chk">
+    <label class="new-control new-checkbox checkbox-primary">
+      <input type="checkbox" class="new-control-input">
+      <span class="new-control-indicator"></span>General Assessment
+    </label>
+</div>
+
+<div class="row" id="general_assessment">
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="country">Country</label>
+        <select name="university_id" id="country" class="form-control" required>
+            <option value="0" disabled selected>Select Country</option>
+            @forelse ( get_country() as $uni)
+                <option value="{{ $uni->id }}">{{ ucfirst($uni->name) }}</option>
+            @empty
+                <option value="#">No Country Avalible </option>
+            @endforelse
+        </select>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="university">University</label>
+        <select name="university_id" id="University" class="form-control" required>
+            <option value="0" disabled selected>Select University</option>
+            @forelse ( $university as $uni)
+                <option value="{{ $uni->id }}">{{ ucfirst($uni->name) }}</option>
+            @empty
+                <option value="#">No University Avalible </option>
+            @endforelse
+        </select>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="course_id">Course</label>
+        <select name="course_id" id="course_id" class="form-control" required>
+            <option value="0" disabled selected>Select Course</option>
+            @forelse ( $course as $city)
+                <option value="{{ $city->id }}">{{ ucfirst($city->name) }}</option>
+            @empty
+                <option value="#">No Course Avalible </option>
+            @endforelse
+        </select>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="intact_month_id">Intake Month</label>
+        {{-- <input type="intact_month" value="{{old('intact_month')}}" name="intact_month" id="intact_month" class="form-control" required> --}}
+        <select name="intact_month_id" id="" class="form-control" required>
+            @forelse ($intake as $item_intack)
+                <option value="{{ $item_intack->id }}">{{ $item_intack->month }}</option>
+            @empty
+                <option value="01">jan</option>
+            @endforelse
+        </select>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="intact_year_id">Intake Year</label>
+        <select name="intact_year_id" id="intact_year_id" class="form-control" required>
+            <option value="01">2021</option>
+            <option value="02">2022</option>
+        </select>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="status">Status</label>
+        <select name="status" id="status" class="form-control" required>
+            <option value="#" selected disabled>Status</option>
+            {{-- <option value="approved">Approved</option> --}}
+            <option value="process" selected>In Process</option>
+            <option value="rejected">Rejected</option>
+            <option value="on-hold">On-Hold</option>
+        </select>
+    </div>
+</div>
+
+</div>
+</div>
+
+
 
 
 
