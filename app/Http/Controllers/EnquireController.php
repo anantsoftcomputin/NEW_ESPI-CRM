@@ -15,6 +15,7 @@ use Auth;
 use App\Models\University;
 use App\Models\Course;
 use App\Models\Intact;
+use App\Models\assessment;
 
 class EnquireController extends Controller
 {
@@ -109,8 +110,8 @@ class EnquireController extends Controller
         $assessment->intact_month_id=$request->intact_month_id;
         $assessment->added_by_id=\Auth::user()->id;
         $assessment->company_id=\Auth::user()->company_id;
-        $assessment->status=$request->status;
         $assessment->assign_id=$request->counsellor_id;
+        $assessment->status=$request->status;
         $assessment->save();
         // $details = [
         //         'title' => 'New Enquires from '.$request->name,
@@ -217,7 +218,7 @@ class EnquireController extends Controller
             $enquiry->save();
             return redirect()->route("Enquires.index");
         }else{
-            return back()->with("message","Invalid OTP");
+            return back()->with("error","Invalid OTP");
         }
     }
 }

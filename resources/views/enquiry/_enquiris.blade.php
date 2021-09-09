@@ -148,17 +148,17 @@
 
 <div class="col-md-6" id="ref_name_div">
     <label id="ref_name_label">Reference Name</label>
-    <input type="text" name="referance_name" id="ref_name" class="form-control">
+    <input type="text" name="referance_name" value="{{old('referance_name')}}" id="ref_name" class="form-control">
 </div>
 
 <div class="col-md-6" id="ref_phone_div">
     <label id="ref_phone_label">Reference Phone</label>
-    <input type="text" name="referance_phone" id="ref_phone" class="form-control">
+    <input type="text" name="referance_phone" value="{{old('referance_phone')}}" id="ref_phone" class="form-control">
 </div>
 
 <div class="col-md-6" id="ref_code_div"> 
     <label id="ref_code_label">Reference Code</label>
-    <input type="text" name="referance_code" id="ref_code" class="form-control">
+    <input type="text" name="referance_code" value="{{old('referance_code')}}" id="ref_code" class="form-control">
 </div>
 
 <div class="col-md-12">
@@ -197,7 +197,7 @@
         <select name="university_id" id="University" class="form-control" required>
             <option value="0" disabled selected>Select University</option>
             @forelse ( $university as $uni)
-                <option value="{{ $uni->id }}">{{ ucfirst($uni->name) }}</option>
+                <option @if(old("university_id") == $uni->id) selected @endif value="{{ $uni->id }}">{{ ucfirst($uni->name) }}</option>
             @empty
                 <option value="#">No University Avalible </option>
             @endforelse
@@ -211,7 +211,7 @@
         <select name="course_id" id="course_id" class="form-control" required>
             <option value="0" disabled selected>Select Course</option>
             @forelse ( $course as $city)
-                <option value="{{ $city->id }}">{{ ucfirst($city->name) }}</option>
+                <option @if(old("course_id") == $city->id) selected @endif value="{{ $city->id }}">{{ ucfirst($city->name) }}</option>
             @empty
                 <option value="#">No Course Avalible </option>
             @endforelse
@@ -225,7 +225,7 @@
         {{-- <input type="intact_month" value="{{old('intact_month')}}" name="intact_month" id="intact_month" class="form-control" required> --}}
         <select name="intact_month_id" id="" class="form-control" required>
             @forelse ($intake as $item_intack)
-                <option value="{{ $item_intack->id }}">{{ $item_intack->month }}</option>
+                <option @if(old("intact_month") == $item_intack->id) selected @endif value="{{ $item_intack->id }}">{{ $item_intack->month }}</option>
             @empty
                 <option value="01">jan</option>
             @endforelse
@@ -237,8 +237,8 @@
     <div class="form-group">
         <label for="intact_year_id">Intake Year</label>
         <select name="intact_year_id" id="intact_year_id" class="form-control" required>
-            <option value="01">2021</option>
-            <option value="02">2022</option>
+            <option value="01" @if(old("intact_year_id") == "01") selected @endif>2021</option>
+            <option value="02" @if(old("intact_year_id") == "02") selected @endif>2022</option>
         </select>
     </div>
 </div>
@@ -249,9 +249,9 @@
         <select name="status" id="status" class="form-control" required>
             <option value="#" selected disabled>Status</option>
             {{-- <option value="approved">Approved</option> --}}
-            <option value="process" selected>In Process</option>
-            <option value="rejected">Rejected</option>
-            <option value="on-hold">On-Hold</option>
+            <option value="process" @if(old("status") == "process") selected @endif selected>In Process</option>
+            <option value="rejected" @if(old("status") == "rejected") selected @endif>Rejected</option>
+            <option value="on-hold" @if(old("status") == "on-hold") selected @endif>On-Hold</option>
         </select>
     </div>
 </div>
