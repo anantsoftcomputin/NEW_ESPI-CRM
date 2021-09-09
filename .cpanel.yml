@@ -1,7 +1,6 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home2/espicdzk/public_html/
-    - /bin/cp /public/index.html $DEPLOYPATH
-    - /bin/cp /public/css/app.css $DEPLOYPATH
+    - export DEPLOYPATH=public_html/
+    - /bin/cp * $DEPLOYPATH
 
