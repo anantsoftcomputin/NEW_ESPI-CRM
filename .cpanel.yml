@@ -2,6 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home2/espicdzk/public_html/
-    - /bin/rm -Rf $DEPLOYPATH
-    - /bin/mkdir $DEPLOYPATH
-    - /bin/cp -R public/ $DEPLOYPATH
+    - /bin/cp -r /home2/espicdzk/repositories/espicrm/public/ * $DEPLOYPATH
