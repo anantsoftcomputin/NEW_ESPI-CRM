@@ -1,6 +1,8 @@
 <input type="hidden" name="enquiry_id" value="{{$enquiry}}">
 <div class="col-md-12">
 <div class="table-responsive">
+
+
 <table role="table" class="table table-bordered" id="tbl_posts">
   <thead role="rowgroup">
     <tr role="row">
@@ -28,8 +30,8 @@
     <tr id="rec-1" role="row">
     <td role="cell" class="text-center"><span class="sn">1</span>.</td>
       <td class="text-center" role="cell">
-        <select name="country_id[]" id="country" class="form-control" required>
-                <option value="0" disabled selected>Select Country</option>
+        <select name="country_id[]"  class="form-control">
+                <option value="" selected>Select Country</option>
                 @forelse ( get_country() as $uni)
                     <option value="{{ $uni->id }}">{{ ucfirst($uni->name) }}</option>
                 @empty
@@ -38,13 +40,13 @@
             </select>
       </td>
       <td role="cell">
-        <select name="intact_year_id[]" id="intact_year_id" class="form-control" required>
+        <select name="intact_year_id[]" class="form-control">
             <option value="01">2021</option>
             <option value="02">2022</option>
         </select>
       </td>
       <td role="cell"> 
-        <select name="intact_month_id[]" id="" class="form-control" required>
+        <select name="intact_month_id[]" class="form-control">
             @forelse ($intake as $item_intack)
             <option value="{{ $item_intack->id }}">{{ $item_intack->month }}</option>
             @empty
@@ -53,8 +55,8 @@
         </select>
       </td>  
       <td role="cell">
-            <select name="university_id[]" id="University" class="form-control" required>
-                <option value="0" disabled selected>Select University</option>
+            <select name="university_id[]" class="form-control">
+                <option value="" selected>Select University</option>
                 @forelse ( $university as $uni)
                     <option value="{{ $uni->id }}">{{ ucfirst($uni->name) }}</option>
                 @empty
@@ -63,8 +65,8 @@
             </select>
       </td>
       <td role="cell">
-        <select name="course_id[]" id="course_id" class="form-control" required>
-                <option value="0" disabled selected>Select Course</option>
+        <select name="course_id[]" class="form-control">
+                <option value="" selected>Select Course</option>
                 @forelse ( $course as $city)
                     <option value="{{ $city->id }}">{{ ucfirst($city->name) }}</option>
                 @empty
@@ -116,7 +118,7 @@
 </div>
 </div>
 
-<div class="col-xs-12">
+<div class="col-md-12 mt-3">
     <div class="text-right">
         <a class="btn btn-primary pull-right add-record" data-added="0">
             <i class="glyphicon glyphicon-plus"></i> Add Assessment
@@ -131,8 +133,8 @@
       <tr role="rowgroup" id="">
        <td class="text-center" role="cell"><span class="sn"></span>.</td>
        <td role="cell">
-        <select id="country" name="country_id[]" class="form-control" required>
-                <option value="0" disabled selected>Select Country</option>
+        <select id="country" name="country_id[]" class="form-control add_country">
+                <option value="" selected>Select Country</option>
                 @forelse ( get_country() as $uni)
                     <option value="{{ $uni->id }}">{{ ucfirst($uni->name) }}</option>
                 @empty
@@ -141,13 +143,13 @@
             </select>
       </td>
       <td role="cell">
-        <select name="intact_year_id[]" id="intact_year_id" class="form-control" required>
+        <select name="intact_year_id[]" id="intact_year_id" class="form-control add_intact_year_id">
             <option value="01">2021</option>
             <option value="02">2022</option>
         </select>
       </td>
       <td role="cell"> 
-        <select name="intact_month_id[]" id="" class="form-control" required>
+        <select name="intact_month_id[]" id="intact_month_id" class="form-control add_intact_month_id">
             @forelse ($intake as $item_intack)
             <option value="{{ $item_intack->id }}">{{ $item_intack->month }}</option>
             @empty
@@ -156,8 +158,8 @@
         </select>
       </td>  
       <td role="cell">
-            <select name="university_id[]" id="University" class="form-control" required>
-                <option value="0" disabled selected>Select University</option>
+            <select name="university_id[]" id="University" class="form-control add_university">
+                <option value="" selected>Select University</option>
                 @forelse ( $university as $uni)
                     <option value="{{ $uni->id }}">{{ ucfirst($uni->name) }}</option>
                 @empty
@@ -166,8 +168,8 @@
             </select>
       </td>
       <td role="cell">
-        <select name="course_id[]" id="course_id" class="form-control" required>
-                <option value="0" disabled selected>Select Course</option>
+        <select name="course_id[]" id="course_id" class="form-control add_course_id">
+                <option value="" selected>Select Course</option>
                 @forelse ( $course as $city)
                     <option value="{{ $city->id }}">{{ ucfirst($city->name) }}</option>
                 @empty
@@ -176,37 +178,37 @@
             </select>
       </td>
       <td role="cell">
-          <input type="text" name="specialization[]" class="form-control">
+          <input type="text" id="specialization" name="specialization[]" class="form-control add_specialization">
       </td>
       <td role="cell">
-          <input type="text" name="program_link[]" class="form-control">
+          <input type="text" id="program_link" name="program_link[]" class="form-control">
       </td>
       <td role="cell">
-          <input type="text" name="level[]" class="form-control">
+          <input type="text" id="level" name="level[]" class="form-control">
       </td>
       <td role="cell">
-          <input type="text" name="duration[]" class="form-control">
+          <input type="text" id="duration" name="duration[]" class="form-control">
       </td>
       <td role="cell">
-          <input type="text" name="campus[]" class="form-control">
+          <input type="text" id="campus" name="campus[]" class="form-control">
       </td>
       <td role="cell">
-          <input type="text" name="entry_req[]" class="form-control">
+          <input type="text" id="entry_req" name="entry_req[]" class="form-control">
       </td>
       <td role="cell">
-          <input type="text" name="app_fee[]" class="form-control">
+          <input type="text" id="app_fee" name="app_fee[]" class="form-control">
       </td>
       <td role="cell">
-          <input type="text" name="app_deadline[]" class="form-control">
+          <input type="text" id="app_deadline" name="app_deadline[]" class="form-control">
       </td>
       <td role="cell">
-          <input type="text" name="tution_fee[]" class="form-control">
+          <input type="text" id="tution_fee" name="tution_fee[]" class="form-control">
       </td>
       <td role="cell">
-          <input type="text" name="scholarship[]" class="form-control">
+          <input type="text" id="scholarship" name="scholarship[]" class="form-control">
       </td>
       <td role="cell">
-          <input type="text" name="remarks[]" class="form-control">
+          <input type="text" id="remarks" name="remarks[]" class="form-control">
       </td>
       <td role="cell">
         <a class="btn btn-xs btn-danger delete-record" title="Delete" data-id="0">
