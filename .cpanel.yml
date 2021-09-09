@@ -1,6 +1,6 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=public_html/
+    - export DEPLOYPATH=/home2/espicdzk/public_html/espicrm/
     - /bin/cp * $DEPLOYPATH
 
