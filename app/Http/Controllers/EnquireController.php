@@ -102,17 +102,21 @@ class EnquireController extends Controller
         $validated["remarks"]=$request->remarks;
         $enq=Enquiry::create($validated);
 
-        $assessment=new assessment();
-        $assessment->enquiry_id=$enq->id;
-        $assessment->university_id=$request->university_id;
-        $assessment->course_id=$request->course_id;
-        $assessment->intact_year_id=$request->intact_year_id;
-        $assessment->intact_month_id=$request->intact_month_id;
-        $assessment->added_by_id=\Auth::user()->id;
-        $assessment->company_id=\Auth::user()->company_id;
-        $assessment->assign_id=$request->counsellor_id;
-        $assessment->status=$request->status;
-        $assessment->save();
+        if(isset($request->generalassessment))
+        {
+            $assessment=new assessment();
+            $assessment->enquiry_id=$enq->id;
+            $assessment->university_id=$request->university_id;
+            $assessment->course_id=$request->course_id;
+            $assessment->intact_year_id=$request->intact_year_id;
+            $assessment->intact_month_id=$request->intact_month_id;
+            $assessment->added_by_id=\Auth::user()->id;
+            $assessment->company_id=\Auth::user()->company_id;
+            $assessment->assign_id=$request->counsellor_id;
+            $assessment->status=$request->status;
+            $assessment->save();
+        }
+        
         // $details = [
         //         'title' => 'New Enquires from '.$request->name,
         //         'url' => url('/login'),

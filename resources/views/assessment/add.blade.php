@@ -1,13 +1,14 @@
 @extends('layouts.theam')
 
 @section('title')
-Add Course
+Add Assessment
 @endsection
+
 
 @section('content')
 <div class="col-md-12">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
         <div class="card">
                 <div class="card-header">{{ __('Add Assessment') }}</div>
                 <div class="card-body">

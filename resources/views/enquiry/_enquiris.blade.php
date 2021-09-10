@@ -170,7 +170,7 @@
 <div class="col-md-12">
 <div class="n-chk">
     <label class="new-control new-checkbox checkbox-primary">
-      <input type="checkbox" class="new-control-input">
+      <input type="checkbox" name="generalassessment" class="new-control-input">
       <span class="new-control-indicator"></span>General Assessment
     </label>
 </div>
@@ -180,8 +180,8 @@
 <div class="col-md-6">
     <div class="form-group">
         <label for="country">Country</label>
-        <select name="university_id" id="country" class="form-control" required>
-            <option value="0" disabled selected>Select Country</option>
+        <select name="country_id" id="country" class="form-control" >
+            <option value="" disabled selected>Select Country</option>
             @forelse ( get_country() as $uni)
                 <option value="{{ $uni->id }}">{{ ucfirst($uni->name) }}</option>
             @empty
@@ -194,8 +194,8 @@
 <div class="col-md-6">
     <div class="form-group">
         <label for="university">University</label>
-        <select name="university_id" id="University" class="form-control" required>
-            <option value="0" disabled selected>Select University</option>
+        <select name="university_id" id="University" class="form-control">
+            <option value="" selected>Select University</option>
             @forelse ( $university as $uni)
                 <option @if(old("university_id") == $uni->id) selected @endif value="{{ $uni->id }}">{{ ucfirst($uni->name) }}</option>
             @empty
@@ -208,8 +208,8 @@
 <div class="col-md-6">
     <div class="form-group">
         <label for="course_id">Course</label>
-        <select name="course_id" id="course_id" class="form-control" required>
-            <option value="0" disabled selected>Select Course</option>
+        <select name="course_id" id="course_id" class="form-control">
+            <option value="" selected>Select Course</option>
             @forelse ( $course as $city)
                 <option @if(old("course_id") == $city->id) selected @endif value="{{ $city->id }}">{{ ucfirst($city->name) }}</option>
             @empty
@@ -236,7 +236,7 @@
 <div class="col-md-6">
     <div class="form-group">
         <label for="intact_year_id">Intake Year</label>
-        <select name="intact_year_id" id="intact_year_id" class="form-control" required>
+        <select name="intact_year_id" id="intact_year_id" class="form-control">
             <option value="01" @if(old("intact_year_id") == "01") selected @endif>2021</option>
             <option value="02" @if(old("intact_year_id") == "02") selected @endif>2022</option>
         </select>
@@ -246,8 +246,8 @@
 <div class="col-md-6">
     <div class="form-group">
         <label for="status">Status</label>
-        <select name="status" id="status" class="form-control" required>
-            <option value="#" selected disabled>Status</option>
+        <select name="status" id="status" class="form-control">
+            <option value="" disabled>Status</option>
             {{-- <option value="approved">Approved</option> --}}
             <option value="process" @if(old("status") == "process") selected @endif selected>In Process</option>
             <option value="rejected" @if(old("status") == "rejected") selected @endif>Rejected</option>
