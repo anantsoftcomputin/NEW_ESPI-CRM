@@ -9,6 +9,7 @@
                <option value="12th">12th</option>
                <option value="graduate">Graduate</option>
                <option value="master">Master</option>
+
            </select>
         </div>
     </div>

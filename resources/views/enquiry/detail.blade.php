@@ -78,7 +78,7 @@ Enquiry Detail
                     </section>
                     <h3>Education Summary</h3>
                     <section>
-                        @include('enquiry.stap_2_ education_summary')
+                        @include('enquiry.stap_2_education_summary')
                     </section>
                     <h3>Work Experience</h3>
                     <section>
