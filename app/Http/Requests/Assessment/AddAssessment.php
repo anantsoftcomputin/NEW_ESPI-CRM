@@ -29,7 +29,7 @@ class AddAssessment extends FormRequest
             'intact_month_id' => 'required',
             'enquiry_id' => 'required',
             'intact_year_id' => 'required',
-            'status'=>'required',
+            // 'status'=>'required',
         ];
     }
 }

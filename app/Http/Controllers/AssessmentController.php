@@ -18,7 +18,7 @@ class AssessmentController extends Controller
 {
     public function __construct()
     {
-        $this->AutoAddApplication=true;
+        $this->AutoAddApplication=false;
     }
     /**
      * Display a listing of the resource.
@@ -127,17 +127,52 @@ class AssessmentController extends Controller
      */
     public function store(AddAssessment $AddAssessment)
     {
-        $validated = $AddAssessment->validated();
-        $validated['added_by_id'] = \Auth::user()->id;
-        $validated['type']="default";
-        $validated['location']="default";
-        assessment::create($validated);
-
-        if($this->AutoAddApplication==true)
+        if(isset($AddAssessment->country_id))
         {
-            $validated['application_id']=$this->generateUniqueCode();
-            $Application=Application::create($validated);
+            $totassesment=count($AddAssessment->country_id);
+            for($i=0;$i<$totassesment;$i++)
+            {
+                if($AddAssessment->country_id[$i])
+                {
+                    $data[]=[
+                        'university_id' =>$AddAssessment->university_id[$i],
+                        'course_id' => $AddAssessment->course_id[$i],
+                        'intact_month_id' =>$AddAssessment->intact_month_id[$i],
+                        'intact_year_id' =>$AddAssessment->intact_year_id[$i],
+                        'enquiry_id' => $AddAssessment->enquiry_id,
+                        'added_by_id'=>\Auth::user()->id,
+                        'specialization'=>$AddAssessment->specialization[$i],
+                        'program_link'=>$AddAssessment->program_link[$i],
+                        'level'=>$AddAssessment->level[$i],
+                        'duration'=>$AddAssessment->duration[$i],
+                        'campus'=>$AddAssessment->campus[$i],
+                        'entry_req'=>$AddAssessment->entry_req[$i],
+                        'app_fee'=>$AddAssessment->app_fee[$i],
+                        'app_deadline'=>$AddAssessment->app_deadline[$i],
+                        'tution_fee'=>$AddAssessment->tution_fee[$i],
+                        'scholarship'=>$AddAssessment->scholarship[$i],
+                        'remarks'=>$AddAssessment->remarks[$i],
+                        'type'=>"default",
+                        'location'=>"default",
+                        'status'=>"process",
+                    ];
+                }
+                
+            }
+            assessment::insert($data);
+            // $validated = $AddAssessment->validated();
+            // $validated['added_by_id'] = \Auth::user()->id;
+            // $validated['type']="default";
+            // $validated['location']="default";
+            // assessment::create($validated);
+
+            if($this->AutoAddApplication==true)
+            {
+                $validated['application_id']=$this->generateUniqueCode();
+                $Application=Application::create($validated);
+            }
         }
+        
 
         return redirect(route('assessments.index'));
     }

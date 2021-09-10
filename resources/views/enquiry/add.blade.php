@@ -8,6 +8,41 @@ Enquiries
 <script>
 
 $(document).ready(function(){
+    var state_id=$("#state").val();
+    if(state_id)
+    {
+        let URL="{{ url('api/admin/getStateById/') }}/"+state_id;
+        $.ajax(URL,
+			{
+				dataType: 'json', // type of response data
+				success: function (data,status,xhr) {
+                    console.log(data);
+                    $('#state').html("<option disabled value="+data.id+" selected>"+data.name+"</option>");
+                    
+				},
+				error: function (jqXhr, textStatus, errorMessage) { // error callback
+					$('p').append('Error: ' + errorMessage);
+				}
+			});
+    }
+
+    var city_id=$("#city").val();
+    if(city_id)
+    {
+        let URL="{{ url('api/admin/getCityById/') }}/"+state_id;
+        $.ajax(URL,
+			{
+				dataType: 'json', // type of response data
+				success: function (data,status,xhr) {
+                    console.log(data);
+                    $('#city').html("<option disabled value="+data.id+" selected>"+data.name+"</option>");
+				},
+				error: function (jqXhr, textStatus, errorMessage) { // error callback
+					$('p').append('Error: ' + errorMessage);
+				}
+			});
+    }
+    
     $("#general_assessment").hide();
     $('input[type="checkbox"]').click(function(){
             if($(this).prop("checked") == true){

@@ -78,155 +78,60 @@ Enquiry Detail
                     </section>
                     <h3>Education Summary</h3>
                     <section>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name">Select Last Educatuion</label>
-                                    <select class="form-control" name="last_education" onchange="toggle_last_education(this)">
-                                       <option value="">Select Last Educatuion</option>
-                                       <option value="10th">10th</option>
-                                       <option value="Diploma">Diploma</option>
-                                       <option value="12th">12th</option>
-                                       <option value="Graduate">Graduate</option>
-                                       <option value="Master">Master</option>
-                                       <option value="PHD">PHD</option>
-                                   </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="table-responsive">
-                                <table class="table table-bordered mb-4">
-                                    <thead>
-                                        <tr>
-                                            <th>Degree</th>
-                                            <th>Degree Name/Stream</th>
-                                            <th>Year of passing</th>
-                                            <th>percentage</th>
-                                            <th>Name of Institute</th>
-                                            <th>Medium of Education</th>
-                                            <th>Degree University</th>
-                                            <th>Backlogs</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="row_education">
-                                            <th><h2>10<sup>TH</sup></h2></th>
-                                            <th><input type="text" class="form-control"></th>
-                                            <th><input type="text" class="form-control"></th>
-                                            <th><input type="text" class="form-control"></th>
-                                            <th><input type="text" class="form-control"></th>
-                                            <th><input type="text" class="form-control"></th>
-                                            <th><input type="text" class="form-control"></th>
-                                            <th><input type="text" class="form-control"></th>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <div class="row" style="display: none;">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name">Year of passing </label>
-                                    <input type="text" name="educatuion_year_of_passing" id="name" value="" class="form-control" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name">Percentage</label>
-                                    <input type="text" name="educatuion_percentage" id="name" value="" class="form-control" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name">Name of Institute/School</label>
-                                    <input type="text" name="educatuion_institute" id="name" value="" class="form-control" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name">Medium of Education</label>
-                                    <input type="number" name="educatuion_medium" id="name" value="" class="form-control" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name">Board</label>
-                                    <input type="text" name="name" id="name" value="" class="form-control" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name">Backlogs</label>
-                                    <input type="text" name="name" id="name" value="" class="form-control" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name">Gap Information if You Have</label>
-                                    <input type="text" name="name" id="name" value="" class="form-control" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name">Gap Details During Education</label>
-                                    <input type="text" name="name" id="name" value="" class="form-control" required="">
-                                </div>
-                            </div>
-                        </div>
-
+                        @include('enquiry.stap_2_education_summary')
                     </section>
                     <h3>Work Experience</h3>
                     <section>
                         <h1>Work Experience</h1>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name">Name of the company</label>
-                                    <input type="text" name="name" id="name" value="" class="form-control" required="">
+                        <div class="row" id="experience_detail_history">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="name">Name of the company</label>
+                                        <input type="text" name="work_company[]" id="name" value="" class="form-control" required="">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name">From</label>
-                                    <input type="text" name="name" id="name" value="" class="form-control" required="">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="name">From</label>
+                                        <input type="date" name="work_from[]" id="name" value="" class="form-control" required="">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name">To</label>
-                                    <input type="text" name="name" id="name" value="" class="form-control" required="">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="name">To</label>
+                                        <input type="date" name="to_work_from[]" id="name" value="" class="form-control" required="">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name">Work Profile</label>
-                                    <input type="text" name="work_profile" id="name" value="" class="form-control" required="">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="name">Work Profile</label>
+                                        <input type="text" name="work_profile[]" id="name" value="" class="form-control" required="">
+                                    </div>
                                 </div>
-                            </div>
                         </div>
+                        <a href="#" id="add_more_expiriance" class="btn btn-info" style="float: right;">Add More Expiriance</a>
                         <h1>Travel History</h1>
-                        <div class="row">
-                            <div class="col-md-6">
+                        <div class="row"  id="travel_detail_history">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="name">Name of the company</label>
-                                    <input type="text" name="name" id="name" value="" class="form-control" required="">
+                                    <input type="text" name="travel_company[]" id="name" value="" class="form-control" required="">
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="name">Visit Purpose</label>
-                                    <input type="text" name="name" id="name" value="" class="form-control" required="">
+                                    <input type="text" name="travel_purpose[]" id="name" value="" class="form-control" required="">
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="name">Duration Of Stay</label>
-                                    <input type="text" name="name" id="name" value="" class="form-control" required="">
+                                    <input type="text" name="travel_stay[]" id="name" value="" class="form-control" required="">
                                 </div>
                             </div>
                         </div>
+                        <a href="#" id="add_more_history" class="btn btn-info" style="float: right;">Add More Travel</a>
 
                     </section>
                     <h3>Online Exam Details</h3>
@@ -254,7 +159,7 @@ Enquiry Detail
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Type of Exam</label>
-                                    <select name="exam_status1" class="form-control">
+                                    <select name="exam_type" class="form-control">
                                             <option value="">Type of exam</option>
                                             <option value="IELTS">IELTS</option>
                                             <option value="TOELF">TOELF</option>
@@ -273,26 +178,26 @@ Enquiry Detail
                         <div class="row hiddan_data" style="display:none;">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="name">Year of passing </label>
-                                        <input type="text" name="name" id="name" value="" class="form-control" required="">
+                                        <label for="name">Year of passing</label>
+                                        <input type="text" name="online_exam_details_year_of_passing" id="name" class="form-control" required="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="name">Percentage</label>
-                                        <input type="text" name="name" id="name" value="" class="form-control" required="">
+                                        <input type="text" name="online_exam_details_percentage" id="name" value="" class="form-control" required="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="name">Name of Institute/School</label>
-                                        <input type="text" name="name" id="name" value="" class="form-control" required="">
+                                        <input type="text" name="online_exam_details_institute" id="name" value="" class="form-control" required="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="name">Medium of Education</label>
-                                        <input type="number" name="name" id="name" value="" class="form-control" required="">
+                                        <input type="number" name="online_exam_details_medium" id="name" value="" class="form-control" required="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -466,6 +371,8 @@ Enquiry Detail
 <script src="{{ asset('plugins/jquery-step/jquery.steps.min.js') }}"></script>
 <script src="{{ asset('plugins/jquery-step/custom-jquery.steps.js') }}"></script>
 <link rel="stylesheet" type="text/css" href="{{ asset('plugins/select2/select2.min.css') }}">
+<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <style>
 .select2-search__field {
     display: block;
@@ -473,8 +380,112 @@ Enquiry Detail
 }
 </style>
 <script src="{{ asset('plugins/select2/select2.min.js') }}"></script>
+<script id="details-template" type="text/x-handlebars-template">
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="name">Name of the company</label>
+            <input type="text" name="work_company[]" id="name" value="" class="form-control" required="">
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="name">From</label>
+            <input type="date" name="work_from[]" id="name" value="" class="form-control" required="">
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="name">To</label>
+            <input type="date" name="to_work_from[]" id="name" value="" class="form-control" required="">
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="name">Work Profile</label>
+            <input type="text" name="work_profile[]" id="name" value="" class="form-control" required="">
+        </div>
+    </div>
+</script>
+<script id="details-template-travel" type="text/x-handlebars-template">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="name">Name of the company</label>
+            <input type="text" name="travel_company[]" id="name" value="" class="form-control" required="">
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="name">Visit Purpose</label>
+            <input type="text" name="travel_purpose[]" id="name" value="" class="form-control" required="">
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="name">Duration Of Stay</label>
+            <input type="text" name="travel_stay[]" id="name" value="" class="form-control" required="">
+        </div>
+    </div>
+</script>
 <script>
     // SELECT2 PAGE JS
+
+
+    var data = {
+        'items': [
+            {"id":"2", "comment": "xxxxxxxx"},
+            {"id":"3", "comment": "yyyyyyy"}
+        ]
+    };
+    $("#add_more_expiriance").click(function(e){
+        e.preventDefault();
+        var template = Handlebars.compile($("#details-template").html());
+        console.log(template);
+        var row = $("#experience_detail_history");
+        row.append(template(data));
+        console.log(row);
+    });
+
+    $("#add_more_history").click(function(e){
+        e.preventDefault();
+        var template = Handlebars.compile($("#details-template-travel").html());
+        console.log(template);
+        var row = $("#travel_detail_history");
+        row.append(template(data));
+        console.log(row);
+    });
+
+    function toggle_last_education(e)
+    {
+        if(e=="master")
+        {
+            $(".education").hide();
+            $("#master_detail").show();
+        }
+        if(e=="10th")
+        {
+            $(".education").hide();
+            $("#ssc_detail").show();
+        }
+        if(e=="12th")
+        {
+            $(".education").hide();
+            $("#ssc_detail").show();
+            $("#hsc_detail").show();
+        }
+        if(e=="diploma")
+        {
+            $(".education").hide();
+            $("#ssc_detail").show();
+            $("#diploma_detail").show();
+        }
+        if(e=="graduate")
+        {
+            $(".education").hide();
+            $("#degree_detail").show();
+        }
+
+    }
+
     $(".tagging").select2({
         tags: false
     });
