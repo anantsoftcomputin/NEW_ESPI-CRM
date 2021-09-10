@@ -9,7 +9,6 @@
                <option value="12th">12th</option>
                <option value="graduate">Graduate</option>
                <option value="master">Master</option>
-               {{-- <option value="phd">PHD</option> --}}
            </select>
         </div>
     </div>
