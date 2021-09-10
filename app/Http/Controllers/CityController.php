@@ -87,4 +87,10 @@ class CityController extends Controller
     {
         return City::where('state_id',$var)->get();
     }
+
+    public function getCityById($id)
+    {
+        return get_city_by_id($id);
+    }
+    
 }

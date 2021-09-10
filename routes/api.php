@@ -32,6 +32,8 @@ Route::prefix('admin')->group(function () {
     Route::get('getUniversityFromCountry/{country_id}',[UniversityController::class,'getUniversityFromCountry']);
     Route::get('getCourseFromUniversity/{university_id}',[CourseController::class,'getCourseFromUniversity']);
     // Route::get('getUniversityFromCountry/{country_id}',[UniversityController::class,'getUniversityFromCountry']);
+    Route::get('getStateById/{state_id}/',[StateController::class,'getStateById']);
+    Route::get('getCityById/{state_id}/',[CityController::class,'getCityById']);
     Route::get('getState/{country_id}',[StateController::class,'getStateByCountry']);
     Route::get('getCity/{state_id}',[CityController::class,'getCityByState']);
     Route::get("assign_user/{user_id?}/{assessment_id?}",[AssessmentController::class,'assessmentAssign']);
