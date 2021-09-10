@@ -119,7 +119,7 @@ Application
     <table class="table table-bordered data-table">
         <thead>
             <tr>
-                <th>Application Ref ##</th>
+                <th>Application Ref #</th>
                 <th>University</th>
                 <th>Course</th>
                 <th>Status</th>
