@@ -75,19 +75,19 @@ class AssessmentController extends Controller
                         if(empty($row->assign_id))
                         {
                             $btn .="<select name='assign[]' onchange='assign_action(this.value,".$row->id.")' class='assign form-control'>";
-                        if(empty($row->assign_id))
-                        {
-                            $btn .="<option value=''>select assign</option>";
-                        }
-                        foreach($users as $user)
-                        {
-                            $btn .="<option value='$user->id'";
-                            if($user->id==$row->assign_id)
+                            if(empty($row->assign_id))
                             {
-                                $btn .="selected";
+                                $btn .="<option value=''>select assign</option>";
                             }
-                            $btn .= '>' . $user->name . '</option>';
-                        }
+                            foreach($users as $user)
+                            {
+                                $btn .="<option value='$user->id'";
+                                if($user->id==$row->assign_id)
+                                {
+                                    $btn .="selected";
+                                }
+                                $btn .= '>' . $user->name . '</option>';
+                            }
                         $btn .="</select>";
                         }
 
@@ -157,7 +157,7 @@ class AssessmentController extends Controller
                         'status'=>"process",
                     ];
                 }
-                
+
             }
             assessment::insert($data);
             // $validated = $AddAssessment->validated();
@@ -172,7 +172,7 @@ class AssessmentController extends Controller
                 $Application=Application::create($validated);
             }
         }
-        
+
 
         return redirect(route('assessments.index'));
     }
