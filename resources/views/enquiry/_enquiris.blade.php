@@ -59,6 +59,7 @@
 <div class="col-md-6">
     <div class="form-group">
         <label for="state">State</label>
+        
         <select name="state_id" id="state" value="{{old('state_id')}}" class="form-control" required>
             @forelse ( get_state() as $state)
                 <option @if(old("state_id") == $state->id) selected @endif value="{{ $state->id }}">{{ ucfirst($state->name) }}</option>
