@@ -456,7 +456,32 @@ Enquiry Detail
 
     function toggle_last_education(e)
     {
-        alert($(this).find('option:selected').text());
+        if(e=="master")
+        {
+            $(".education").hide();
+            $("#master_detail").show();
+        }
+        if(e=="10th")
+        {
+            $(".education").hide();
+            $("#ssc_detail").show();
+        }
+        if(e=="12th")
+        {
+            $(".education").hide();
+            $("#hsc_detail").show();
+        }
+        if(e=="diploma")
+        {
+            $(".education").hide();
+            $("#diploma_detail").show();
+        }
+        if(e=="graduate")
+        {
+            $(".education").hide();
+            $("#degree_detail").show();
+        }
+
     }
 
     $(".tagging").select2({
