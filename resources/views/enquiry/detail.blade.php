@@ -109,7 +109,7 @@ Enquiry Detail
                                     </div>
                                 </div>
                         </div>
-                        <a href="#" id="add_more_expiriance" class="btn btn-info">Add More Expiriance</a>
+                        <a href="#" id="add_more_expiriance" class="btn btn-info" style="float: right;">Add More Expiriance</a>
                         <h1>Travel History</h1>
                         <div class="row"  id="travel_detail_history">
                             <div class="col-md-4">
@@ -131,7 +131,7 @@ Enquiry Detail
                                 </div>
                             </div>
                         </div>
-                        <a href="#" id="add_more_history" class="btn btn-info">Add More Travel</a>
+                        <a href="#" id="add_more_history" class="btn btn-info" style="float: right;">Add More Travel</a>
 
                     </section>
                     <h3>Online Exam Details</h3>
@@ -469,11 +469,13 @@ Enquiry Detail
         if(e=="12th")
         {
             $(".education").hide();
+            $("#ssc_detail").show();
             $("#hsc_detail").show();
         }
         if(e=="diploma")
         {
             $(".education").hide();
+            $("#ssc_detail").show();
             $("#diploma_detail").show();
         }
         if(e=="graduate")
