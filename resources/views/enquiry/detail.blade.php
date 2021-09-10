@@ -115,19 +115,19 @@ Enquiry Detail
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="name">Name of the company</label>
-                                    <input type="text" name="name" id="name" value="" class="form-control" required="">
+                                    <input type="text" name="travel_company[]" id="name" value="" class="form-control" required="">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="name">Visit Purpose</label>
-                                    <input type="text" name="name" id="name" value="" class="form-control" required="">
+                                    <input type="text" name="travel_purpose[]" id="name" value="" class="form-control" required="">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="name">Duration Of Stay</label>
-                                    <input type="text" name="name" id="name" value="" class="form-control" required="">
+                                    <input type="text" name="travel_stay[]" id="name" value="" class="form-control" required="">
                                 </div>
                             </div>
                         </div>
@@ -159,7 +159,7 @@ Enquiry Detail
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Type of Exam</label>
-                                    <select name="exam_status1" class="form-control">
+                                    <select name="exam_type" class="form-control">
                                             <option value="">Type of exam</option>
                                             <option value="IELTS">IELTS</option>
                                             <option value="TOELF">TOELF</option>
@@ -178,26 +178,26 @@ Enquiry Detail
                         <div class="row hiddan_data" style="display:none;">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="name">Year of passing </label>
-                                        <input type="text" name="name" id="name" value="" class="form-control" required="">
+                                        <label for="name">Year of passing</label>
+                                        <input type="text" name="online_exam_details_year_of_passing" id="name" class="form-control" required="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="name">Percentage</label>
-                                        <input type="text" name="name" id="name" value="" class="form-control" required="">
+                                        <input type="text" name="online_exam_details_percentage" id="name" value="" class="form-control" required="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="name">Name of Institute/School</label>
-                                        <input type="text" name="name" id="name" value="" class="form-control" required="">
+                                        <input type="text" name="online_exam_details_institute" id="name" value="" class="form-control" required="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="name">Medium of Education</label>
-                                        <input type="number" name="name" id="name" value="" class="form-control" required="">
+                                        <input type="number" name="online_exam_details_medium" id="name" value="" class="form-control" required="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -410,19 +410,19 @@ Enquiry Detail
     <div class="col-md-4">
         <div class="form-group">
             <label for="name">Name of the company</label>
-            <input type="text" name="name" id="name" value="" class="form-control" required="">
+            <input type="text" name="travel_company[]" id="name" value="" class="form-control" required="">
         </div>
     </div>
     <div class="col-md-4">
         <div class="form-group">
             <label for="name">Visit Purpose</label>
-            <input type="text" name="name" id="name" value="" class="form-control" required="">
+            <input type="text" name="travel_purpose[]" id="name" value="" class="form-control" required="">
         </div>
     </div>
     <div class="col-md-4">
         <div class="form-group">
             <label for="name">Duration Of Stay</label>
-            <input type="text" name="name" id="name" value="" class="form-control" required="">
+            <input type="text" name="travel_stay[]" id="name" value="" class="form-control" required="">
         </div>
     </div>
 </script>
