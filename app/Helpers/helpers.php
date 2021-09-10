@@ -25,7 +25,7 @@ if (! function_exists('get_city_by_id')) {
 }
 
 if (! function_exists('get_state_by_id')) {
-    function get_country_by_id($state_id) {
+    function get_state_by_id($state_id) {
         return State::find($state_id);
     }
 }

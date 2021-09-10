@@ -46,7 +46,7 @@
     <div class="form-group">
         <label for="country">Country</label>
         <select name="country_id" id="country" class="form-control" required>
-        <option value="" selected disabled>select country</option>
+            <option value="{{old('country_id')}}">{{old("country_id")}}</option>
             @forelse ( get_country() as $country)
                 <option @if(old("country_id") == $country->id) selected @endif value="{{ $country->id }}">{{ ucfirst($country->name) }}</option>
             @empty
@@ -61,6 +61,7 @@
         <label for="state">State</label>
         
         <select name="state_id" id="state" value="{{old('state_id')}}" class="form-control" required>
+            <option value="{{old('state_id')}}">{{old("state_id")}}</option>
             @forelse ( get_state() as $state)
                 <option @if(old("state_id") == $state->id) selected @endif value="{{ $state->id }}">{{ ucfirst($state->name) }}</option>
             @empty
@@ -76,6 +77,7 @@
     <div class="form-group">
         <label for="city">City</label>
         <select name="city_id" id="city" class="form-control" required>
+        <option value="{{old('city_id')}}">{{old('city_id')}}</option>
             @forelse ( get_city() as $city)
                 <option @if(old("city_id") == $city->id) selected @endif value="{{ $city->id }}">{{ ucfirst($city->name) }}</option>
             @empty
@@ -132,7 +134,7 @@
 <div class="col-md-6">
     <div class="form-group">
         <label for="country">Know About Us</label>
-        <select name="referance_source" id="referance_source" class="form-control" required>
+        <select name="referance_source" id="referance_source" class="form-control">
             <option value="">Know About Us</option>
 			<option value="Facebook">Facebook</option>
 			<option value="Instagram">Instagram</option>
