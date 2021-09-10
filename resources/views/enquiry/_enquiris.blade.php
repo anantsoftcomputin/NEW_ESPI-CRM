@@ -46,7 +46,7 @@
     <div class="form-group">
         <label for="country">Country</label>
         <select name="country_id" id="country" class="form-control" required>
-            <option value="{{old('country_id')}}">{{old("country_id")}}</option>
+            <option value="{{old('country_id')}}">{{old("country_id") ?? "select country"}}</option>
             @forelse ( get_country() as $country)
                 <option @if(old("country_id") == $country->id) selected @endif value="{{ $country->id }}">{{ ucfirst($country->name) }}</option>
             @empty
@@ -183,8 +183,8 @@
 <div class="col-md-6">
     <div class="form-group">
         <label for="country">Country</label>
-        <select name="university_id" id="country" class="form-control" required>
-            <option value="0" disabled selected>Select Country</option>
+        <select name="country_id" id="country" class="form-control" required>
+            <option value="" disabled selected>Select Country</option>
             @forelse ( get_country() as $uni)
                 <option value="{{ $uni->id }}">{{ ucfirst($uni->name) }}</option>
             @empty
@@ -198,7 +198,7 @@
     <div class="form-group">
         <label for="university">University</label>
         <select name="university_id" id="University" class="form-control" required>
-            <option value="0" disabled selected>Select University</option>
+            <option value="" disabled selected>Select University</option>
             @forelse ( $university as $uni)
                 <option @if(old("university_id") == $uni->id) selected @endif value="{{ $uni->id }}">{{ ucfirst($uni->name) }}</option>
             @empty
@@ -212,7 +212,7 @@
     <div class="form-group">
         <label for="course_id">Course</label>
         <select name="course_id" id="course_id" class="form-control" required>
-            <option value="0" disabled selected>Select Course</option>
+            <option value="" disabled selected>Select Course</option>
             @forelse ( $course as $city)
                 <option @if(old("course_id") == $city->id) selected @endif value="{{ $city->id }}">{{ ucfirst($city->name) }}</option>
             @empty
