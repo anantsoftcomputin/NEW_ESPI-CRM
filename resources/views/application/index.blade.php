@@ -61,7 +61,6 @@
         });
 
             // Add event listener for opening and closing details
-
             $('.data-table tbody').on('click', 'td.details-control', function () {
             var tr = $(this).closest('tr');
             var row = table.row(tr);
