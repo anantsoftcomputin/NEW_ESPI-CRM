@@ -403,9 +403,8 @@ $(document).ready(function(){
                         <div class="row">
                             @include('enquiry._enquiris')
                             <div class="col-md-12 text-center">
-
                                 <input type="submit" class="btn btn-primary" value="{{ __('enquire.submit_btn') }}">
-                                <input type="button" class="btn btn-danger" value="{{ __('enquire.cancel_btn_btn') }}">
+                                <a href="{{route('Enquires.index')}}" class="btn btn-danger" >{{ __('enquire.cancel_btn_btn') }}</a>
                             </div>
                         </div>
 
