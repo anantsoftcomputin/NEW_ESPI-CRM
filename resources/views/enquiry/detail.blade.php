@@ -63,6 +63,10 @@ Enquiry Detail
 <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <style>
+.refusal_hide
+{
+    display: none;
+}
 .select2-search__field {
     display: block;
     border: 0px solid #ccc!important;
@@ -243,8 +247,37 @@ Enquiry Detail
 
     }
 
-    $("#rejection_if_any").click(function(){
-        alert("rejection_if_any");
+    $("#rejection_if_any").change(function(){
+        console.log($(this).find(":selected").text());
+        if($(this).find(":selected").text()=="Yes")
+        {
+            $(".refusal_hide").show();
+        }
+        else
+        {
+            $(".refusal_hide").hide();
+        }
     });
+
+    $("#ref_code").focusout(function(){
+        var refCode=$("#ref_code").val();
+        $('#ref_phone').val("");
+        $('#ref_name').val("");
+        let URL="{{ url('api/admin/getReferralByCode/') }}/"+refCode;
+        $.ajax(URL,
+			{
+				dataType: 'json', // type of response data
+				success: function (data,status,xhr) {
+                    console.log(data);
+                    $('#ref_phone').val(data.reference_phone);
+                    $('#ref_name').val(data.reference_name);
+				},
+				error: function (jqXhr, textStatus, errorMessage) { // error callback
+					$('#ref_phone').val("");
+                    $('#ref_name').val("");
+				}
+			});
+    });
+
 </script>
 @endsection
