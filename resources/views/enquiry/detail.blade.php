@@ -242,5 +242,9 @@ Enquiry Detail
         }
 
     }
+
+    $("#rejection_if_any").click(function(){
+        alert("rejection_if_any");
+    });
 </script>
 @endsection

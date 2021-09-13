@@ -5,7 +5,7 @@
             <select class="form-control" id="exam_status" name="exam_status" onchange="toggle_exam_status(this)">
                 <option value="">Select Exam Status</option>
                 <option value="Completed">Completed</option>
-                <option value="Planing">Planing</option>
+                <option value="Planning">Planning</option>
             </select>
             {{-- <select class="form-control" name="last_education" onchange="toggle_last_education(this)">
                <option value="">Select Last Educatuion</option>
@@ -24,7 +24,7 @@
             <select name="exam_type" class="form-control">
                     <option value="">Type of exam</option>
                     <option value="IELTS">IELTS</option>
-                    <option value="TOELF">TOEFL</option>
+                    <option value="TOEFL">TOEFL</option>
                     <option value="SAT">SAT</option>
                     <option value="GRE">GRE</option>
                     <option value="GMAT">GMAT</option>
@@ -40,52 +40,47 @@
 <div class="row hiddan_data" style="display:none;">
         <div class="col-md-6">
             <div class="form-group">
-                <label for="name">Year of passing</label>
-                <input type="text" name="online_exam_details_year_of_passing" id="name" class="form-control" required="">
+                <label for="name">V/L Score</label>
+                <input type="text" name="vl_score1" id="name" class="form-control" required="">
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label for="name">Percentage</label>
-                <input type="text" name="online_exam_details_percentage" id="name" value="" class="form-control" required="">
+                <label for="name">Q/S Score</label>
+                <input type="text" name="qs_score1" id="name" value="" class="form-control" required="">
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label for="name">Name of Institute/School</label>
-                <input type="text" name="online_exam_details_institute" id="name" value="" class="form-control" required="">
+                <label for="name">A/R Score</label>
+                <input type="text" name="ar_score1" id="name" value="" class="form-control" required="">
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label for="name">Medium of Education</label>
-                <input type="number" name="online_exam_details_medium" id="name" value="" class="form-control" required="">
+                <label for="name">Writing Score</label>
+                <input type="number" name="writing_score" id="name" value="" class="form-control" required="">
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label for="name">Board</label>
-                <input type="text" name="name" id="name" value="" class="form-control" required="">
+                <label for="name">Overall Score/Total</label>
+                <input type="text" name="overall_score" id="name" value="" class="form-control" required="">
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label for="name">Backlogs</label>
-                <input type="text" name="name" id="name" value="" class="form-control" required="">
+                <label for="name">Exam Date</label>
+                <input type="date" name="exam_date" id="name" value="" class="form-control" required="">
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label for="name">Gap Information if You Have</label>
-                <input type="text" name="name" id="name" value="" class="form-control" required="">
+                <label for="name">Consultancy/Institute Name</label>
+                <input type="text" name="consultancy_name" id="name" value="" class="form-control" required="">
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="name">Gap Details During Education</label>
-                <input type="text" name="name" id="name" value="" class="form-control" required="">
-            </div>
-        </div>
+
 </div>
 
 <div class="row hiddan_data_data" style="display:none;">
