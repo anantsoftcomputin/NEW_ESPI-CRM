@@ -258,5 +258,26 @@ Enquiry Detail
             $(".refusal_hide").hide();
         }
     });
+
+    $("#ref_code").focusout(function(){
+        var refCode=$("#ref_code").val();
+        $('#ref_phone').val("");
+        $('#ref_name').val("");
+        let URL="{{ url('api/admin/getReferralByCode/') }}/"+refCode;
+        $.ajax(URL,
+			{
+				dataType: 'json', // type of response data
+				success: function (data,status,xhr) {
+                    console.log(data);
+                    $('#ref_phone').val(data.reference_phone);
+                    $('#ref_name').val(data.reference_name);
+				},
+				error: function (jqXhr, textStatus, errorMessage) { // error callback
+					$('#ref_phone').val("");
+                    $('#ref_name').val("");
+				}
+			});
+    });
+
 </script>
 @endsection

@@ -34,6 +34,12 @@
     </div>
     <div class="col-md-6">
         <div class="form-group">
+            <label for="name">Reference Code</label>
+            <input type="text" name="reference_code" id="ref_code" value="{{ $enquiry->reference_code }}" class="form-control" required="">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
             <label for="name">Reference Name</label>
             <input type="text" name="reference_name" id="name" value="{{ $enquiry->reference_name }}" class="form-control" required>
         </div>
@@ -42,12 +48,6 @@
         <div class="form-group">
             <label for="name">Reference Phone</label>
             <input type="number" name="reference_phone" id="name" value="{{ $enquiry->reference_phone }}" class="form-control" required="">
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="name">Reference Code</label>
-            <input type="text" name="reference_code" id="name" value="{{ $enquiry->reference_code }}" class="form-control" required="">
         </div>
     </div>
 </div>
