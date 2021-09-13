@@ -1,7 +1,7 @@
 @extends('layouts.theam')
 
 @section('title')
-Add Enquiry
+Update Enquiry
 @endsection
 
 
@@ -113,42 +113,28 @@ Add Enquiry
 <script>
 
 $(document).ready(function () {
-
-    $( function() {
-    $( ".disableFuturedate" ).datepicker({
-      changeMonth: true,
-      changeYear: true
-    });
-  } );
     var currentDate = new Date();  
+      $('.disableFuturedate').datepicker({
+      changeMonth: true,
+      changeYear: true,
+      format: 'dd-mm-yyyy',
+      autoclose:true,
+      yearRange: '1950:'+"{{date('Y')}}",
+      endDate: "currentDate",
+      maxDate: currentDate
+      }).on('changeDate', function (ev) {
+         $(this).datepicker('hide');
+      });
+      $('.disableFuturedate').keyup(function () {
+         if (this.value.match(/[^0-9]/g)) {
+            this.value = this.value.replace(/[^0-9^-]/g, '');
+         }
+      });
    });
 
 $(document).ready(function(){
-    var country_id=$("#country").val();
-    if(country_id)
-    {
-        $('#state option[value!="0"]').remove();
-        let URL="{{ url('api/admin/getState/') }}/"+country_id;
-        $.ajax(URL,
-			{
-				dataType: 'json', // type of response data
-				success: function (data,status,xhr) {   // success callback function
-                    console.log(data);
-                    $.each(data, function(key, value) {
-                        console.log(value);
-                        $('#state')
-                            .append($("<option></option>")
-                                    .attr("value", value.id)
-                                    .text(value.name));
-                    });
-				},
-				error: function (jqXhr, textStatus, errorMessage) { // error callback
-					$('p').append('Error: ' + errorMessage);
-				}
-			});
-    }
-    
-    var state_id="{{old('state_id')}}";
+      
+    var state_id="{{$enquiry->state_id}}";
     if(state_id)
     {
         let URL="{{ url('api/admin/getStateById/') }}/"+state_id;
@@ -165,7 +151,7 @@ $(document).ready(function(){
 			});
     }
 
-    var city_id="{{old('city_id')}}";
+    var city_id="{{$enquiry->city_id}}";
     if(city_id)
     {
         let URL="{{ url('api/admin/getCityById/') }}/"+city_id;
@@ -397,12 +383,12 @@ $(document).ready(function(){
                             </ul>
                         </div>
                         @endif
-                    <form method="POST" action="{{ route('Enquires.store') }}">
+                    <form method="POST" action="{{ route('Enquires.update',$enquiry->id) }}">
                         @csrf
+                        @method('patch')
                         <div class="row">
-                            @include('enquiry._enquiris')
+                            @include('enquiry._edit_form')
                             <div class="col-md-12 text-center">
-
                                 <input type="submit" class="btn btn-primary" value="{{ __('enquire.submit_btn') }}">
                                 <input type="button" class="btn btn-danger" value="{{ __('enquire.cancel_btn_btn') }}">
                             </div>

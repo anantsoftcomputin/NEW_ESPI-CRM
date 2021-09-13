@@ -15,7 +15,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-
 {{-- //cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css --}}
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
     <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
@@ -142,6 +141,7 @@ Enquires
     <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
         <a  href="{{ route('Enquires.create') }}" class="btn btn-info" >Add</a>
         <br>
+        
         <table class="table table-bordered data-table">
             <thead>
                 <tr>

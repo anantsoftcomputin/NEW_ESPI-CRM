@@ -5,6 +5,13 @@ use App\Models\State;
 use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Models\Company;
+use App\Models\ReferralCode;
+
+if (! function_exists('get_Referral_By_Code')) {
+    function get_Referral_By_Code($code) {
+        return ReferralCode::where("reference_code",$code)->first();
+    }
+}
 
 if (! function_exists('get_company_by_id')) {
     function get_company_by_id($id) {

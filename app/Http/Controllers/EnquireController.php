@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Enquiry;
 use Illuminate\Http\Request;
 use App\Http\Requests\enquire\AddEnquireRequest;
+use App\Http\Requests\enquire\EditEnquireRequest;
 use Mail;
 use DataTables;
 use App\Models\EnquiryDetail;
@@ -80,9 +81,10 @@ class EnquireController extends Controller
         $university=University::all();
         $course=Course::all();
         $intake=Intact::all();
-
+        $page="Enquiry";
+        $title="Add New Enquiry";
         //$user=User::where('company_id','1')->whereNotIn('id',[\Auth::user()->id])->get();
-        return view('enquiry.add',compact('user','university','course','intake'));
+        return view('enquiry.add',compact('user','university','course','intake','page','title'));
     }
 
     /**
@@ -94,12 +96,15 @@ class EnquireController extends Controller
     public function store(AddEnquireRequest $request)
     {
         $validated = $request->validated();
+        $validated['enquiry_id'] ="ESPI_".$this->generateUniqueCode();
+        $validated['dob']=date("Y-m-d",strtotime($request->dob));
         $validated['added_by_id'] = \Auth::user()->id;
         $validated["referance_source"]=$request->referance_source;
-        $validated["referance_name"]=$request->referance_name;
-        $validated["referance_phone"]=$request->referance_phone;
-        $validated["referance_code"]=$request->referance_code;
+        $validated["reference_name"]=$request->reference_name;
+        $validated["reference_phone"]=$request->reference_phone;
+        $validated["reference_code"]=$request->reference_code;
         $validated["remarks"]=$request->remarks;
+        $validated["preferred_country"]=$request->preferred_country;
         $enq=Enquiry::create($validated);
 
         if(isset($request->generalassessment))
@@ -144,9 +149,16 @@ class EnquireController extends Controller
      * @param  \App\Models\Enquiri  $enquiri
      * @return \Illuminate\Http\Response
      */
-    public function edit(Enquiri $enquiri)
+    public function edit($enquiri)
     {
-        //
+        $user=User::role('Counsellor')->get();
+        $university=University::all();
+        $course=Course::all();
+        $intake=Intact::all();
+        $page="Enquiry";
+        $title="Update Enquiry";
+        $enquiry=Enquiry::find($enquiri);
+        return view('enquiry.edit',compact('user','university','course','intake','page','title','enquiry'));
     }
 
     /**
@@ -156,9 +168,22 @@ class EnquireController extends Controller
      * @param  \App\Models\Enquiri  $enquiri
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Enquiri $enquiri)
+    public function update(Request $request,$enquiry)
     {
-        //
+        $validated =request()->except(['_token','_method']);
+        $validated['company_id']=\Auth::user()->company_id;
+        $validated['dob']=date("Y-m-d",strtotime($request->dob));
+        $validated['added_by_id'] = \Auth::user()->id;
+        $validated["referance_source"]=$request->referance_source;
+        $validated["reference_name"]=$request->reference_name;
+        $validated["reference_phone"]=$request->reference_phone;
+        $validated["reference_code"]=$request->reference_code;
+        $validated["remarks"]=$request->remarks;
+        $validated["preferred_country"]=$request->preferred_country;
+        $enquiry=Enquiry::where("id",$enquiry)->update($validated);
+        $enq=Enquiry::find($enquiry);
+       
+        return view('success',compact('enq'));
     }
 
     /**
@@ -218,11 +243,18 @@ class EnquireController extends Controller
         ->where("id",$request->id)->first();
         if($enquiry)
         {
-            $enquiry->company_id=Auth::user()->company_id;
-            $enquiry->save();
-            return redirect()->route("Enquires.index");
+            return redirect()->route('Enquires.edit',$enquiry->id);
+            //$this->edit($enquiry->id);
         }else{
             return back()->with("error","Invalid OTP");
         }
+    }
+
+    public function generateUniqueCode()
+    {
+        do {
+            $code = random_int(10000000, 99999999);
+        } while (Enquiry::where("enquiry_id", "=", $code)->first());
+        return $code;
     }
 }

@@ -27,29 +27,29 @@ Edit Application
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="country">University</label>
-                                    <input type="text" class="form-control" value="{{ $university->name }}">
+                                    <input type="text" readonly class="form-control" value="{{ $university->name }}">
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="city">Course</label>
-                                    <input type="text" class="form-control" value="{{ $course->name }}">
+                                    <input type="text" readonly class="form-control" value="{{ $course->name }}">
                                 </div>
                             </div>
 
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="intact_month_id">Intact Month</label>
-                                    <input type="intact_month" value="{{ $intact->month }}" name="intact_month" id="intact_month" class="form-control" required>
+                                    <label for="intact_month_id">Intake Month</label>
+                                    <input type="intact_month" readonly value="{{ $intact->month }}" name="intact_month" id="intact_month" class="form-control" required>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="intact_year_id">Intact Year</label>
-                                    <input type="intact_month" value="2021" name="intact_month" class="form-control" required>
+                                    <label for="intact_year_id">Intake Year</label>
+                                    <input type="intact_month" readonly value="2021" name="intact_month" class="form-control" required>
                                 </div>
                             </div>
 

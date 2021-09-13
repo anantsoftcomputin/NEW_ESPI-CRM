@@ -20,7 +20,7 @@
       <th role="columnheader">Entry Req</th>
       <th role="columnheader">App Fee</th>
       <th role="columnheader">App Deadline</th>
-      <th role="columnheader">Tution Fee</th>
+      <th role="columnheader">Tuition Fee</th>
       <th role="columnheader">Scholarship</th>
       <th role="columnheader">Remark</th>
       <th role="columnheader">Action</th>
@@ -35,7 +35,7 @@
                 @forelse ( get_country() as $uni)
                     <option value="{{ $uni->id }}">{{ ucfirst($uni->name) }}</option>
                 @empty
-                    <option value="#">No Country Avalible </option>
+                    <option value="#">No Country Available </option>
                 @endforelse
             </select>
       </td>
@@ -55,7 +55,7 @@
         </select>
       </td>  
       <td role="cell">
-            <select name="university_id[]" class="form-control">
+            <select name="university_id[]" onchange="get_course(this)" class="form-control university">
                 <option value="" selected>Select University</option>
                 @forelse ( $university as $uni)
                     <option value="{{ $uni->id }}">{{ ucfirst($uni->name) }}</option>
@@ -65,12 +65,12 @@
             </select>
       </td>
       <td role="cell">
-        <select name="course_id[]" class="form-control">
+        <select name="course_id[]" class="form-control course">
                 <option value="" selected>Select Course</option>
                 @forelse ( $course as $city)
                     <option value="{{ $city->id }}">{{ ucfirst($city->name) }}</option>
                 @empty
-                    <option value="#">No Course Avalible </option>
+                    <option value="#">No Course Available </option>
                 @endforelse
             </select>
       </td>
@@ -108,9 +108,9 @@
           <input type="text" name="remarks[]" class="form-control">
       </td>
       <td role="cell">
-            <a class="btn btn-xs btn-danger delete-record" title="Delete" data-id="1">
+            <!-- <a class="btn btn-xs btn-danger delete-record" title="Delete" data-id="1">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg><span class="icon-name"></span>
-            </a>
+            </a> -->
     </td>
     </tr>
    </tbody>
@@ -138,7 +138,7 @@
                 @forelse ( get_country() as $uni)
                     <option value="{{ $uni->id }}">{{ ucfirst($uni->name) }}</option>
                 @empty
-                    <option value="#">No Country Avalible </option>
+                    <option value="#">No Country Available </option>
                 @endforelse
             </select>
       </td>
@@ -158,22 +158,22 @@
         </select>
       </td>  
       <td role="cell">
-            <select name="university_id[]" id="University" class="form-control add_university">
+            <select name="university_id[]" onchange="get_course(this)" id="University" class="form-control university add_university">
                 <option value="" selected>Select University</option>
                 @forelse ( $university as $uni)
                     <option value="{{ $uni->id }}">{{ ucfirst($uni->name) }}</option>
                 @empty
-                    <option value="#">No University Avalible </option>
+                    <option value="#">No University Available </option>
                 @endforelse
             </select>
       </td>
       <td role="cell">
-        <select name="course_id[]" id="course_id" class="form-control add_course_id">
+        <select name="course_id[]" id="course_id" class="form-control add_course_id course">
                 <option value="" selected>Select Course</option>
                 @forelse ( $course as $city)
                     <option value="{{ $city->id }}">{{ ucfirst($city->name) }}</option>
                 @empty
-                    <option value="#">No Course Avalible </option>
+                    <option value="#">No Course Available </option>
                 @endforelse
             </select>
       </td>
@@ -295,7 +295,33 @@
 
 <script>
     
-  
+    function get_course(ele) {
+        var university=$(ele).closest('tr').find('.university').val();
+        let URL="{{ url('api/admin/getCourseFromUniversity/') }}/"+university;
+        $.ajax(URL,
+			{
+				dataType: 'json', // type of response data
+				success: function (data,status,xhr) {   // success callback function
+                    console.log(data);
+                    $(ele).closest('tr').find('.course')
+                    .find('option')
+                    .remove()
+                    .end()
+                    .append('<option value="">select course</option>')
+                    .val('whatever');                
+                    $.each(data, function(key, value) {
+                        console.log(value);
+                        $(ele).closest('tr').find('.course')
+                            .append($("<option></option>")
+                                    .attr("value", value.id)
+                                    .text(value.name));
+                    });
+				},
+				error: function (jqXhr, textStatus, errorMessage) { // error callback
+					$('p').append('Error: ' + errorMessage);
+				}
+			});
+    }
     jQuery(document).delegate('a.add-record', 'click', function(e) {
      e.preventDefault();    
      var content = jQuery('#sample_table tr'),

@@ -8,6 +8,12 @@
 			@Import	Mixins
 	===============================
 */
+/* validation error icon */
+.mandatory:after {
+  content: '*';
+  color: #ED2D2C;
+}
+
 html {
   min-height: 100%; }
 

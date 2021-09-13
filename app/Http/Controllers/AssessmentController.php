@@ -29,7 +29,7 @@ class AssessmentController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = assessment::select('*')->where('status', '!=', 'approved')->with('University','Course','User');
+            $data = assessment::select('*')->where('status', '!=', 'approved')->with('University','Course','User','Enquiry');
             if(Auth::user()->hasRole('Counsellor'))
             {
                 $data->where('assign_id',Auth::user()->id);
@@ -43,7 +43,7 @@ class AssessmentController extends Controller
                     ->addColumn('assign_to', function($row){
                         if(empty($row->assign_id))
                         {
-                            $assign_to="Not-Assign yet";
+                            $assign_to="Not-Assigned yet";
                         }else{
                             $assign_to=$row->user->name;
                         }
@@ -52,7 +52,7 @@ class AssessmentController extends Controller
                     })
                     ->addColumn('action', function($row){
                         $btn ="<div class='row'>
-                        <div class='col-md-6'>";
+                        <div class='col-md-4'>";
                         $btn .='<div class="dropdown show">
                         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Action
@@ -71,7 +71,7 @@ class AssessmentController extends Controller
                       }
                       if(isset($users))
                       {
-                        $btn .="<div class='col-md-6'>";
+                        $btn .="<div class='col-md-8'>";
                         if(empty($row->assign_id))
                         {
                             $btn .="<select name='assign[]' onchange='assign_action(this.value,".$row->id.")' class='assign form-control'>";
@@ -174,7 +174,7 @@ class AssessmentController extends Controller
         }
 
 
-        return redirect(route('assessments.index'));
+        return redirect(route('assessments.index'))->with('success','Assessment created successfully!');
     }
 
     /**
