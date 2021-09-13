@@ -229,15 +229,11 @@
             <div class="layout-px-spacing">
 
                 <div class="page-header">
-                    <nav class="breadcrumb-one" aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0);">Dashboard</a></li>
-                            <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);">Analytics</a></li>
-                        </ol>
-                    </nav>
+                    @include("layouts.breadcrumb")
                 </div>
 
                 <div class="row layout-top-spacing">
+                    @include('layouts.message')
                     @yield('content')
                 </div>
             </div>
@@ -261,14 +257,14 @@
 
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
     {{-- <script src="assets/js/libs/jquery-3.1.1.min.js"></script> --}}
-
+    
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('bootstrap/js/popper.min.js') }}"></script>
     <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
-
+                            
     @yield('js')
 
     <!-- END GLOBAL MANDATORY SCRIPTS -->

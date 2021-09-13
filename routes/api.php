@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CityController; 
 use App\Http\Controllers\EnquireController; 
+use App\Http\Controllers\ReferralCodeController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -32,6 +33,7 @@ Route::prefix('admin')->group(function () {
     Route::get('getUniversityFromCountry/{country_id}',[UniversityController::class,'getUniversityFromCountry']);
     Route::get('getCourseFromUniversity/{university_id}',[CourseController::class,'getCourseFromUniversity']);
     // Route::get('getUniversityFromCountry/{country_id}',[UniversityController::class,'getUniversityFromCountry']);
+    Route::get('getReferralByCode/{code}/',[ReferralCodeController::class,'getReferralByCode']);
     Route::get('getStateById/{state_id}/',[StateController::class,'getStateById']);
     Route::get('getCityById/{state_id}/',[CityController::class,'getCityById']);
     Route::get('getState/{country_id}',[StateController::class,'getStateByCountry']);

@@ -69,7 +69,7 @@ class ApplicationController extends Controller
         $validated['status'] = 'Applied';
 
         Application::create($validated);
-        return redirect(route('Application.index'));
+        return redirect(route('Application.index'))->with('success','Application created successfully!');
     }
 
     /**
@@ -169,7 +169,7 @@ class ApplicationController extends Controller
         $application_list=Application::find($application);
         $application_list->status=$request->status;
         $application_list->save();
-        return redirect(route('Application.index'));
+        return redirect(route('Application.index'))->with('success','Application status change successfully!');;
     }
 
     /**

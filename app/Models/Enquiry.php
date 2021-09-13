@@ -27,6 +27,11 @@ class Enquiry extends Model
         "referance_source",
         "remarks",
         "postal_code",
+        "preferred_country",
+        "enquiry_id",
+        "reference_phone",
+        "reference_code",
+        "reference_name",
     ];
 
     protected static function booted()

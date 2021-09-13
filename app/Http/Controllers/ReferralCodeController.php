@@ -82,4 +82,9 @@ class ReferralCodeController extends Controller
     {
         //
     }
+
+    public function getReferralByCode($code)
+    {
+        return get_Referral_By_Code($code);
+    }
 }

@@ -115,10 +115,10 @@ Application
         <thead>
             <tr>
                 <th>University</th>
-                <th>Course</th>
-                <th>Status</th>
-                <th>Assign To</th>
-                <th width="200px">Action</th>
+                <th  width="200px">Course</th>
+                <th width="100px">Status</th>
+                <th  width="100px">Assign To</th>
+                <th width="300px">Action</th>
             </tr>
         </thead>
         <tbody>
