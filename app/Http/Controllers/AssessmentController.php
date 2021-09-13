@@ -43,7 +43,7 @@ class AssessmentController extends Controller
                     ->addColumn('assign_to', function($row){
                         if(empty($row->assign_id))
                         {
-                            $assign_to="Not-Assign yet";
+                            $assign_to="Not-Assigned yet";
                         }else{
                             $assign_to=$row->user->name;
                         }

@@ -120,18 +120,18 @@ class ApplicationController extends Controller
             array_push($status,'Finance');
             array_push($status,'Fees Payment');
             array_push($status,'Medical');
-            array_push($status,'Visa Lodgement On Line Application');
+            array_push($status,'Visa Lodgement Online Application');
             array_push($status,'Get Visa Stamping Or E-Visa');
         }
         elseif(strtolower($country)=="usa")
         {
             array_push($status,'Admission And I-20');
             array_push($status,'Visa Fees');
-            array_push($status,'Sevis Fees');
+            array_push($status,'Service Fees');
             array_push($status,'Interview Appointment');
             array_push($status,'DS 160');
             array_push($status,'Interview Preparation');
-            array_push($status,'Tution Fes Payment');
+            array_push($status,'Tuition Fees Payment');
         }
         elseif(strtolower($country)=="uk")
         {

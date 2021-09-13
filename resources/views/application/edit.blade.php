@@ -41,14 +41,14 @@ Edit Application
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="intact_month_id">Intact Month</label>
+                                    <label for="intact_month_id">Intake Month</label>
                                     <input type="intact_month" readonly value="{{ $intact->month }}" name="intact_month" id="intact_month" class="form-control" required>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="intact_year_id">Intact Year</label>
+                                    <label for="intact_year_id">Intake Year</label>
                                     <input type="intact_month" readonly value="2021" name="intact_month" class="form-control" required>
                                 </div>
                             </div>
