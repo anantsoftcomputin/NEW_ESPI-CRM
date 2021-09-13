@@ -33,6 +33,8 @@ Auth::routes();
 //     \UniSharp\LaravelFilemanager\Lfm::routes();
 // });
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('enquiry/resendotp/{id}', [EnquireController::class,'enquiryOtpSend'])->name('enquiry.resendotp');
     Route::post("verify_otp",[EnquireController::class,"verify_otp"])->name("verify_otp");

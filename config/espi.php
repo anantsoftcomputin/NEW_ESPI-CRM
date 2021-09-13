@@ -10,7 +10,7 @@ return [
     ],
     'enquires_detail'         => [
         // Personal information
-        'marital_status' =>  ['Unmarried', 'Married'],
+        'marital_status' =>  ['Unmarried', 'Married','Divorce'],
         'multi_term'       => true,
         'case_insensitive' => true,
         'use_wildcards'    => false,
