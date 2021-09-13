@@ -114,8 +114,8 @@ Enquiry Detail
                         <div class="row"  id="travel_detail_history">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="name">Name of the company</label>
-                                    <input type="text" name="travel_company[]" id="name" value="" class="form-control" required="">
+                                    <label for="name">Name of the country </label>
+                                    <input type="text" name="travel_contry[]" id="name" value="" class="form-control" required="">
                                 </div>
                             </div>
                             <div class="col-md-4">
