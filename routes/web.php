@@ -57,7 +57,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::resource('Course', CourseController::class);
     Route::get("courseDetail/edit/{course?}",[CourseController::class,'CourseDetail_edit']);
     Route::get('CourseDetail/{University?}',[CourseController::class,'CourseDetail'])->name("course.detail");
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home01');
 });
 
 Route::get('demo',function(){
