@@ -65,34 +65,34 @@ class AssessmentController extends Controller
                       </div>';
                       $btn .="</div>";
 
-                      if(Auth::user()->hasRole('Admin') || Auth::user()->hasRole('super-admin'))
-                      {
-                          $users=User::where("company_id",Auth::user()->company_id)->get();
-                      }
-                      if(isset($users))
-                      {
-                        $btn .="<div class='col-md-8'>";
-                        if(empty($row->assign_id))
-                        {
-                            $btn .="<select name='assign[]' onchange='assign_action(this.value,".$row->id.")' class='assign form-control'>";
-                            if(empty($row->assign_id))
-                            {
-                                $btn .="<option value=''>select assign</option>";
-                            }
-                            foreach($users as $user)
-                            {
-                                $btn .="<option value='$user->id'";
-                                if($user->id==$row->assign_id)
-                                {
-                                    $btn .="selected";
-                                }
-                                $btn .= '>' . $user->name . '</option>';
-                            }
-                        $btn .="</select>";
-                        }
+                    //   if(Auth::user()->hasRole('Admin') || Auth::user()->hasRole('super-admin'))
+                    //   {
+                    //       $users=User::where("company_id",Auth::user()->company_id)->get();
+                    //   }
+                    //   if(isset($users))
+                    //   {
+                    //     $btn .="<div class='col-md-8'>";
+                    //     if(empty($row->assign_id))
+                    //     {
+                    //         $btn .="<select name='assign[]' onchange='assign_action(this.value,".$row->id.")' class='assign form-control'>";
+                    //         if(empty($row->assign_id))
+                    //         {
+                    //             $btn .="<option value=''>select assign</option>";
+                    //         }
+                    //         foreach($users as $user)
+                    //         {
+                    //             $btn .="<option value='$user->id'";
+                    //             if($user->id==$row->assign_id)
+                    //             {
+                    //                 $btn .="selected";
+                    //             }
+                    //             $btn .= '>' . $user->name . '</option>';
+                    //         }
+                    //     $btn .="</select>";
+                    //     }
 
-                        $btn .="</div>";
-                      }
+                    //     $btn .="</div>";
+                    //   }
                       $btn .="</div>";
                       return $btn;
 

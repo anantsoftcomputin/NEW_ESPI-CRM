@@ -117,7 +117,8 @@ $(document).ready(function () {
     $( function() {
     $( ".disableFuturedate" ).datepicker({
       changeMonth: true,
-      changeYear: true
+      changeYear: true,
+      yearRange: '1950:'+"{{date('Y')}}",
     });
   } );
     var currentDate = new Date();  

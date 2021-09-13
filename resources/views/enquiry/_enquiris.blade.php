@@ -109,7 +109,7 @@
 <div class="col-md-6">
     <div class="form-group">
         <label for="dob" class="mandatory">DOB</label>
-        <input type="text" value="{{old('dob')}}" name="dob" class="disableFuturedate form-control" required>
+        <input type="date" value="{{old('dob')}}" name="dob" class="form-control" required>
     </div>
 </div>
 
