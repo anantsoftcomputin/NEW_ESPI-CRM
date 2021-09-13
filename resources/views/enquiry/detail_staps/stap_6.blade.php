@@ -55,7 +55,7 @@
     </div>
     <div class="col-md-6">
         <div class="form-group">
-            <label for="name">Marksheets (IELTS/TOFEL/PTE/GRE/GMAT/SAT)</label>
+            <label for="name">Marksheets (IELTS/TOEFL/PTE/GRE/GMAT/SAT)</label>
             <input type="file" name="12TH" class="form-control">
         </div>
     </div>
@@ -90,12 +90,4 @@
             <input type="file" name="other[]" class="form-control">
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="name">Add More</label>
-            <br>
-            <a href="#" rel="noopener noreferrer" class="btn btn-info" id="add_more_file">Add More</a>
-        </div>
-    </div>
-
 </div>

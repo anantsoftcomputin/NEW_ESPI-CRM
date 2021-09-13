@@ -24,7 +24,7 @@
             <select name="exam_type" class="form-control">
                     <option value="">Type of exam</option>
                     <option value="IELTS">IELTS</option>
-                    <option value="TOELF">TOELF</option>
+                    <option value="TOELF">TOEFL</option>
                     <option value="SAT">SAT</option>
                     <option value="GRE">GRE</option>
                     <option value="GMAT">GMAT</option>

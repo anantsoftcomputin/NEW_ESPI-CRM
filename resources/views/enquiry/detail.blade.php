@@ -70,85 +70,102 @@ Enquiry Detail
 </style>
 <script src="{{ asset('plugins/select2/select2.min.js') }}"></script>
 <script id="details-template" type="text/x-handlebars-template">
-    <div class="col-md-2">
-        <div class="form-group">
-            <label for="name">Name of the company</label>
-            <input type="text" name="work_company[]" id="name" value="" class="form-control" required="">
+    <div class="row" id="colam_@{{ id }}">
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="name">Name of the company</label>
+                <input type="text" name="work_company[]" id="name" value="" class="form-control" required="">
+            </div>
         </div>
-    </div>
-    <div class="col-md-3">
-        <div class="form-group">
-            <label for="name">From</label>
-            <input type="date" name="work_from[]" id="name" value="" class="form-control" required="">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="name">From</label>
+                <input type="date" name="work_from[]" id="name" value="" class="form-control" required="">
+            </div>
         </div>
-    </div>
-    <div class="col-md-3">
-        <div class="form-group">
-            <label for="name">To</label>
-            <input type="date" name="to_work_from[]" id="name" value="" class="form-control" required="">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="name">To</label>
+                <input type="date" name="to_work_from[]" id="name" value="" class="form-control" required="">
+            </div>
         </div>
-    </div>
-    <div class="col-md-3">
-        <div class="form-group">
-            <label for="name">Work Profile</label>
-            <input type="text" name="work_profile[]" id="name" value="" class="form-control" required="">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="name">Work Profile</label>
+                <input type="text" name="work_profile[]" id="name" value="" class="form-control" required="">
+            </div>
         </div>
-    </div>
-    <div class="col-md-1">
-        <div class="form-group">
-            <label for="name">Remove</label>
-            <a href='#' class='btn btn-danger' id='NAME'>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-            </a>
+        <div class="col-md-1">
+            <div class="form-group">
+                <label for="name">Remove</label>
+                <a href='#' class='btn btn-danger remove_exp' id='NAME' data-id="colam_@{{ id }}" onclick="delete_row('colam_@{{ id }}')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                </a>
+            </div>
         </div>
     </div>
 </script>
 <script id="details-template-travel" type="text/x-handlebars-template">
-    <div class="col-md-4">
-        <div class="form-group">
-            <label for="name">Name of the company</label>
-            <input type="text" name="travel_company[]" id="name" value="" class="form-control" required="">
+    <div class="row" id="colam_@{{ id }}">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="name">Name of the company</label>
+                <input type="text" name="travel_company[]" id="name" value="" class="form-control" required="">
+            </div>
         </div>
-    </div>
-    <div class="col-md-4">
-        <div class="form-group">
-            <label for="name">Visit Purpose</label>
-            <input type="text" name="travel_purpose[]" id="name" value="" class="form-control" required="">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="name">Visit Purpose</label>
+                <input type="text" name="travel_purpose[]" id="name" value="" class="form-control" required="">
+            </div>
         </div>
-    </div>
-    <div class="col-md-4">
-        <div class="form-group">
-            <label for="name">Duration Of Stay</label>
-            <input type="text" name="travel_stay[]" id="name" value="" class="form-control" required="">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="name">Duration Of Stay</label>
+                <input type="text" name="travel_stay[]" id="name" value="" class="form-control" required="">
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="form-group">
+                <label for="name">Remove</label>
+                <a href='#' class='btn btn-danger remove_exp' id='NAME' data-id="colam_@{{ id }}" onclick="delete_row('colam_@{{ id }}')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                </a>
+            </div>
         </div>
     </div>
 </script>
 <script>
     // SELECT2 PAGE JS
 
+    var cout=1;
 
-    var data = {
-        'items': [
-            {"id":"2", "comment": "xxxxxxxx"},
-            {"id":"3", "comment": "yyyyyyy"}
-        ]
-    };
     $("#add_more_expiriance").click(function(e){
         e.preventDefault();
+        var data = {
+            'id': cout
+        };
         var template = Handlebars.compile($("#details-template").html());
         console.log(template);
         var row = $("#experience_detail_history");
         row.append(template(data));
-        console.log(row);
+        cout=cout+1;
     });
 
+    function delete_row(type)
+    {
+        $("#"+type).remove();
+    }
+
     $("#add_more_history").click(function(e){
+        var data = {
+            'id': cout
+        };
         e.preventDefault();
         var template = Handlebars.compile($("#details-template-travel").html());
         console.log(template);
         var row = $("#travel_detail_history");
         row.append(template(data));
-        console.log(row);
     });
 
     function toggle_last_education(e)
