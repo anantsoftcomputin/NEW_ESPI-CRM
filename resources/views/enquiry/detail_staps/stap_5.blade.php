@@ -14,7 +14,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label for="name">Rejection If any</label>
-            <select class="form-control">
+            <select name="rejection" id="rejection_if_any" class="form-control">
                 <option selected disabled>Rejection If any</option>
                 <option value="yes">Yes</option>
                 <option value="no">no</option>

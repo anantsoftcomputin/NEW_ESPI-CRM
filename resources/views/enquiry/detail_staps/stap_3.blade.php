@@ -29,7 +29,7 @@
         </div>
     </div>
 </div>
-<a href="#" id="add_more_expiriance" class="btn btn-info" style="float: right;">Add More Expiriance</a>
+<a href="#" id="add_more_expiriance" class="btn btn-info" style="float: right;">Add More Experience</a>
 <h1>Travel History</h1>
 <div id="travel_detail_history">
     <div class="row">
