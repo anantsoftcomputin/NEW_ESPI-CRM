@@ -7,35 +7,47 @@
 <div class="col-md-6">
     <div class="form-group">
         <label for="email" class="mandatory">Email</label>
-        <input type="email" name="email" id="email" value="{{old('email')}}" class="form-control" required>
+        <input type="email" name="email" id="email" value="{{old('email')}}" class="@error('email') is-invalid @enderror form-control" required>
     </div>
+    @error('email')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
         <label for="email" class="mandatory">First Name</label>
-        <input type="text" name="first_name" id="first_name" value="{{old('first_name')}}" class="form-control" required>
+        <input type="text" name="first_name" id="first_name" value="{{old('first_name')}}" class="@error('first_name') is-invalid @enderror form-control" required>
+        @error('first_name')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
         <label for="email" class="mandatory">Last Name</label>
-        <input type="text" name="last_name" id="last_name" value="{{old('last_name')}}" class="form-control" required>
+        <input type="text" name="last_name" id="last_name" value="{{old('last_name')}}" class="@error('last_name') is-invalid @enderror form-control" required>
+        @error('last_name')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
     </div>
 </div>
 
 <div class="col-md-6">
     <div class="form-group">
         <label for="phone" class="mandatory">Phone</label>
-        <input type="number" min="1111111111" max="9999999999" maxlength="10" value="{{old('phone')}}" name="phone" id="phone" class="form-control" required>
+        <input type="number" min="1111111111" max="9999999999" maxlength="10" value="{{old('phone')}}" name="phone" id="phone" class="@error('phone') is-invalid @enderror form-control" required>
+        @error('phone')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
     </div>
 </div>
 
 <div class="col-md-6">
     <div class="form-group">
         <label for="education" class="mandatory">Current Education Status</label>
-        <select name="education" id="education" class="form-control" required>
+        <select name="education" id="education" class="@error('education') is-invalid @enderror form-control" required>
             <option value="">Current Education Status</option>
             <option @if(old('education') == "10th") selected @endif value="10th">10th</option>
             <option @if(old('education') == "diploma") selected @endif value="diploma">Diploma</option>
@@ -46,21 +58,27 @@
             <option @if(old('education') == "PHD/Doctorate") selected @endif value="PHD/Doctorate">PHD/Doctorate</option>
         </select>
     </div>
+    @error('education')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
 </div>
 
 <div class="col-md-12">
     <div class="form-group">
         <label for="address" class="mandatory">Address</label>
-        <textarea name="address" id="address" cols="0" rows="5" class="form-control" required>{{old('address')}}</textarea>
+        <textarea name="address" id="address" cols="0" rows="5" class="@error('address') is-invalid @enderror form-control" required>{{old('address')}}</textarea>
     </div>
+    @error('address')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
 </div>
 
 
 {{-- row 2  --}}
-    <div class="col-md-6">
+<div class="col-md-6">
     <div class="form-group">
         <label for="country" class="mandatory">Country</label>
-        <select name="country_id" id="country" class="form-control" required>
+        <select name="country_id" id="country" class="@error('country_id') is-invalid @enderror form-control" required>
             
             @forelse ( get_country() as $country)
                 <option @if($country->id==101) selected @endif @if(old("country_id") == $country->id) selected @endif value="{{ $country->id }}">{{ ucfirst($country->name) }}</option>
@@ -69,13 +87,16 @@
             @endforelse
         </select>
     </div>
+    @error('country_id')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
 </div>
 
 <div class="col-md-6">
     <div class="form-group">
         <label for="state" class="mandatory">State</label>
 
-        <select name="state_id" id="state" class="form-control" required>
+        <select name="state_id" id="state" class="@error('state_id') is-invalid @enderror form-control" required>
             <option value="{{old('state_id')}}">{{old("state_id")}}</option>
             @forelse ( get_state() as $state)
                 <option @if(old("state_id") == $state->id) selected @endif value="{{ $state->id }}">{{ ucfirst($state->name) }}</option>
@@ -91,7 +112,7 @@
 <div class="col-md-6">
     <div class="form-group">
         <label for="city" class="mandatory">City</label>
-        <select name="city_id" id="city" class="form-control" required>
+        <select name="city_id" id="city" class="@error('city_id') is-invalid @enderror form-control" required>
         <option value="{{old('city_id')}}">{{old('city_id')}}</option>
             @forelse ( get_city() as $city)
                 <option @if(old("city_id") == $city->id) selected @endif value="{{ $city->id }}">{{ ucfirst($city->name) }}</option>
@@ -100,13 +121,19 @@
             @endforelse
         </select>
     </div>
+    @error('city_id')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
 </div>
 
 <div class="col-md-6">
     <div class="form-group">
         <label for="pincode"  >Pincode</label>
-        <input type="number" min="111111" value="{{old('postal_code')}}" max="999999" name="postal_code" id="postal_code" class="form-control" required>
+        <input type="number" min="111111" value="{{old('postal_code')}}" max="999999" name="postal_code" id="postal_code" class="@error('postal_code') is-invalid @enderror form-control" required>
     </div>
+    @error('postal_code')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
 </div>
 
 
@@ -114,18 +141,24 @@
 <div class="col-md-6">
     <div class="form-group">
         <label for="dob" class="mandatory">DOB</label>
-        <input type="date" value="{{old('dob')}}" name="dob" class="form-control" required>
+        <input type="date" value="{{old('dob')}}" name="dob" class="form-control @error('dob') is-invalid @enderror" required>
     </div>
+    @error('dob')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
 </div>
 
 <div class="col-md-6">
     <div class="form-group">
         <label for="gender" class="mandatory">Gender</label>
-        <select name="gender" value="{{old('gender')}}" id="gender" class="form-control" required>
+        <select name="gender" value="{{old('gender')}}" id="gender" class="form-control @error('gender') is-invalid @enderror" required>
             <option value="female">Female</option>
             <option value="male">Male</option>
         </select>
     </div>
+    @error('gender')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
 </div>
 
 <div class="col-md-6">
@@ -134,7 +167,7 @@
     {{-- <input type="text"   value="" class="form-control tagging" required> --}}
     <select class="form-control tagging" name="preferred_country" id="preferred_country">
     @foreach (get_country(0) as $item)
-        <option value="{{ $item->id }}">{{ $item->name }}</option>
+        <option @if(old('preferred_country') == $item->id) selected @endif  value="{{ $item->id }}">{{ $item->name }}</option>
     @endforeach
     </select>
     </div>
@@ -143,13 +176,16 @@
 <div class="col-md-6">
     <div class="form-group">
         <label for="user" class="mandatory">Select Counsellor</label>
-        <select name="counsellor_id" value="{{old('user')}}" id="user" class="form-control" required>
+        <select name="counsellor_id"  id="user" class="@error('counsellor_id') is-invalid @enderror form-control" required>
             <option value="" selected>Select Counsellor</option>
             @foreach ($user as $item)
-            <option @if(old("counsellor_id") == $item->id) selected @endif value="{{ $item->id }}">{{ $item->name }}</option>
+            <option @if(old('counsellor_id') == $item->id) selected @endif value="{{ $item->id }}">{{ $item->name }}</option>
             @endforeach
         </select>
     </div>
+    @error('counsellor_id')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
 </div>
 
 <div class="col-md-6">
@@ -157,15 +193,15 @@
         <label for="country">Know About Us</label>
         <select name="reference_source" id="reference_source" class="form-control">
             <option value="" selected>Know About Us</option>
-			<option value="Facebook">Facebook</option>
-			<option value="Instagram">Instagram</option>
-			<option value="Newspaper">Newspaper</option>
-			<option value="Google">Google</option>
-			<option value="Hordings">Hordings</option>
-			<option value="Reference" selected="">Reference</option>
-			<option value="Seminar">Seminar</option>
-			<option value="Agent">Agent</option>
-			<option value="Classes">Classes</option>
+			<option @if(old('reference_source') == "Facebook") selected @endif value="Facebook">Facebook</option>
+			<option @if(old('reference_source') == "Instagram") selected @endif value="Instagram">Instagram</option>
+			<option @if(old('reference_source') == "Newspaper") selected @endif value="Newspaper">Newspaper</option>
+			<option @if(old('reference_source') == "Google") selected @endif value="Google">Google</option>
+			<option @if(old('reference_source') == "Hordings") selected @endif value="Hordings">Hordings</option>
+			<option @if(old('reference_source') == "Reference") selected @endif value="Reference" selected="">Reference</option>
+			<option @if(old('reference_source') == "Seminar") selected @endif value="Seminar">Seminar</option>
+			<option @if(old('reference_source') == "Agent") selected @endif value="Agent">Agent</option>
+			<option @if(old('reference_source') == "Classes") selected @endif value="Classes">Classes</option>
         </select>
     </div>
 </div>
