@@ -97,16 +97,17 @@ class EnquireController extends Controller
     {
         $validated = $request->validated();
         $validated['enquiry_id'] ="ESPI_".$this->generateUniqueCode();
+        $validated['name']=$request->first_name .' '.$request->last_name;
         $validated['dob']=date("Y-m-d",strtotime($request->dob));
         $validated['added_by_id'] = \Auth::user()->id;
-        $validated["referance_source"]=$request->referance_source;
+        $validated["reference_source"]=$request->reference_source;
         $validated["reference_name"]=$request->reference_name;
         $validated["reference_phone"]=$request->reference_phone;
         $validated["reference_code"]=$request->reference_code;
         $validated["remarks"]=$request->remarks;
         $validated["preferred_country"]=$request->preferred_country;
         $enq=Enquiry::create($validated);
-
+        
         if(isset($request->generalassessment))
         {
             $assessment=new assessment();
@@ -122,13 +123,13 @@ class EnquireController extends Controller
             $assessment->save();
         }
         
-        // $details = [
-        //         'title' => 'New Enquires from '.$request->name,
-        //         'url' => url('/login'),
-        //         'enq_id' => $enq->id
-        //     ];
-        // Mail::to($request->email)->send(new AddEnquiry($details));
-        return view('success',compact('enq'));
+        $details = [
+                'title' => 'New Enquires from '.$request->name,
+                'url' => url('/login'),
+                'enq_id' => $enq->id
+            ];
+        Mail::to($request->email)->send(new AddEnquiry($details));
+        return redirect()->route("Enquires.index")->with('success_msg',$enq->enquiry_id);
 
     }
 

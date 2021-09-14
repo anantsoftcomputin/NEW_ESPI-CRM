@@ -38,7 +38,8 @@ class AddEnquireRequest extends FormRequest
     {
         return [
             'email' => 'required|email|unique:enquiries,email',
-            'name' => 'required|string|max:50|min:3',
+            'first_name' => 'required|string|max:50|min:3',
+            'last_name' => 'required|string|max:50|min:3',
             'phone' =>'required|min:10|max:10|unique:enquiries,phone',
             'education' => 'required',
             // 'passport_number' => 'required|regex:/[a-zA-Z]{2}[0-9]{7}/|unique:enquiries,passport_number',

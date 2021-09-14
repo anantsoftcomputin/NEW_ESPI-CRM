@@ -12,15 +12,22 @@
     </div>
 </div>
 
-<div class="col-md-6">
+<div class="col-md-3">
     <div class="form-group">
-        <label for="name" class="mandatory">Name</label>
-        <input type="text" name="name" id="name" value="{{$enquiry->name}}" class="form-control" required>
+        <label for="email" class="mandatory">First Name</label>
+        <input type="text" name="first_name" id="first_name" value="{{$enquiry->first_name}}" class="form-control" required>
     </div>
 </div>
 
+<div class="col-md-3">
+    <div class="form-group">
+        <label for="email" class="mandatory">Last Name</label>
+        <input type="text" name="last_name" id="last_name" value="{{$enquiry->last_name}}" class="form-control" required>
+    </div>
+</div>
+
+
 <div class="col-md-6">
-    {{-- row 1  --}}
     <div class="form-group">
         <label for="phone" class="mandatory">Phone</label>
         <input type="number" min="1111111111" max="9999999999" maxlength="10" value="{{$enquiry->phone}}" name="phone" id="phone" class="form-control" required>
@@ -43,8 +50,8 @@
     </div>
 </div>
 
-{{-- row 2  --}}
-    <div class="col-md-6">
+
+<div class="col-md-6">
     <div class="form-group">
         <label for="country" class="mandatory">Country</label>
         <select name="country_id" id="country" class="form-control" required>
@@ -73,7 +80,6 @@
     </div>
 </div>
 
-    {{-- row 3  --}}
 <div class="col-md-6">
     <div class="form-group">
         <label for="city" class="mandatory">City</label>
@@ -146,17 +152,17 @@
 <div class="col-md-6">
     <div class="form-group">
         <label for="country">Know About Us</label>
-        <select name="referance_source" id="referance_source" class="form-control">
+        <select name="reference_source" id="reference_source" class="form-control">
             <option value="" selected>Know About Us</option>
-			<option @if($enquiry->referance_source == "Facebook") selected @endif value="Facebook">Facebook</option>
-			<option @if($enquiry->referance_source == "Instagram") selected @endif value="Instagram">Instagram</option>
-			<option @if($enquiry->referance_source == "Newspaper") selected @endif value="Newspaper">Newspaper</option>
-			<option @if($enquiry->referance_source == "Google") selected @endif value="Google">Google</option>
-			<option @if($enquiry->referance_source == "Hordings") selected @endif value="Hordings">Hordings</option>
-			<option @if($enquiry->referance_source == "Reference") selected @endif value="Reference" selected="">Reference</option>
-			<option @if($enquiry->referance_source == "Seminar") selected @endif value="Seminar">Seminar</option>
-			<option @if($enquiry->referance_source == "Agent") selected @endif value="Agent">Agent</option>
-			<option @if($enquiry->referance_source == "Classes") selected @endif value="Classes">Classes</option>
+			<option @if($enquiry->reference_source == "Facebook") selected @endif value="Facebook">Facebook</option>
+			<option @if($enquiry->reference_source == "Instagram") selected @endif value="Instagram">Instagram</option>
+			<option @if($enquiry->reference_source == "Newspaper") selected @endif value="Newspaper">Newspaper</option>
+			<option @if($enquiry->reference_source == "Google") selected @endif value="Google">Google</option>
+			<option @if($enquiry->reference_source == "Hordings") selected @endif value="Hordings">Hordings</option>
+			<option @if($enquiry->reference_source == "Reference") selected @endif value="Reference" selected="">Reference</option>
+			<option @if($enquiry->reference_source == "Seminar") selected @endif value="Seminar">Seminar</option>
+			<option @if($enquiry->reference_source == "Agent") selected @endif value="Agent">Agent</option>
+			<option @if($enquiry->reference_source == "Classes") selected @endif value="Classes">Classes</option>
         </select>
     </div>
 </div>

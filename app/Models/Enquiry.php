@@ -13,7 +13,8 @@ class Enquiry extends Model
     use HasFactory;
     
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
         'phone',
         'passport_number',
@@ -24,7 +25,7 @@ class Enquiry extends Model
         'state_id',
         'counsellor_id',
         'added_by_id',
-        "referance_source",
+        "reference_source",
         "remarks",
         "postal_code",
         "preferred_country",
@@ -32,6 +33,7 @@ class Enquiry extends Model
         "reference_phone",
         "reference_code",
         "reference_name",
+        "name",
     ];
 
     protected static function booted()
@@ -43,7 +45,7 @@ class Enquiry extends Model
     {
         $this->attributes['added_by_id'] = Auth::user()->id;
     }
-
+    
 
     public function City()
     {

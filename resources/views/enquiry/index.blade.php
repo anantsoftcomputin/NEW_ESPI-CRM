@@ -138,8 +138,18 @@ Enquires
 @section('content')
 <div class="col-xl-12 layout-top-spacing" id="cancel-row">
 
+@if ($success_msg = Session::get('success_msg'))
+<div class="col-md-12">
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">{{ __('enquire.well_done') }}</h4>
+        <p>{{ __('enquire.success_msg',['code' => $success_msg]) }}</p>
+        <hr>
+    </div>
+</div>
+@endif
+
     <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
-        <a  href="{{ route('Enquires.create') }}" class="btn btn-info" >Add</a>
+        <a  href="{{ route('Enquires.create') }}" class="btn btn-info" >Add New Enquiry</a>
         <br>
         
         <table class="table table-bordered data-table">

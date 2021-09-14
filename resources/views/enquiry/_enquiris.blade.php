@@ -2,25 +2,30 @@
 <div class="col-md-12" id="user_exist" style="color:red">
 
 </div>
+
+
 <div class="col-md-6">
-    {{-- row 1  --}}
     <div class="form-group">
         <label for="email" class="mandatory">Email</label>
         <input type="email" name="email" id="email" value="{{old('email')}}" class="form-control" required>
-        <!-- <a style="margin-top:5px" onclick="otp_generate()" id="generate_otp">Generate OTP</a>
-        <label class="error_msg" style='color:red'></label> -->
     </div>
 </div>
 
-<div class="col-md-6">
+<div class="col-md-3">
     <div class="form-group">
-        <label for="name" class="mandatory">Name</label>
-        <input type="text" name="name" id="name" value="{{old('name')}}" class="form-control" required>
+        <label for="email" class="mandatory">First Name</label>
+        <input type="text" name="first_name" id="first_name" value="{{old('first_name')}}" class="form-control" required>
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <label for="email" class="mandatory">Last Name</label>
+        <input type="text" name="last_name" id="last_name" value="{{old('last_name')}}" class="form-control" required>
     </div>
 </div>
 
 <div class="col-md-6">
-    {{-- row 1  --}}
     <div class="form-group">
         <label for="phone" class="mandatory">Phone</label>
         <input type="number" min="1111111111" max="9999999999" maxlength="10" value="{{old('phone')}}" name="phone" id="phone" class="form-control" required>
@@ -29,9 +34,9 @@
 
 <div class="col-md-6">
     <div class="form-group">
-        <label for="education">Current Education Status</label>
-        <select name="education" id="education" class="form-control">
-            <option value="" disabled>Current Education Status</option>
+        <label for="education" class="mandatory">Current Education Status</label>
+        <select name="education" id="education" class="form-control" required>
+            <option value="">Current Education Status</option>
             <option @if(old('education') == "10th") selected @endif value="10th">10th</option>
             <option @if(old('education') == "diploma") selected @endif value="diploma">Diploma</option>
             <option @if(old('education') == "12th") selected @endif value="12th">12th</option>
@@ -150,7 +155,7 @@
 <div class="col-md-6">
     <div class="form-group">
         <label for="country">Know About Us</label>
-        <select name="referance_source" id="referance_source" class="form-control">
+        <select name="reference_source" id="reference_source" class="form-control">
             <option value="" selected>Know About Us</option>
 			<option value="Facebook">Facebook</option>
 			<option value="Instagram">Instagram</option>

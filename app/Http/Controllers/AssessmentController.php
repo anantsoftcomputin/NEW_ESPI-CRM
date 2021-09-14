@@ -174,7 +174,7 @@ class AssessmentController extends Controller
         }
 
 
-        return redirect(route('assessments.index'))->with('success','Assessment created successfully!');
+        return redirect(route('assessments.index'))->with('success','Assessment');
     }
 
     /**

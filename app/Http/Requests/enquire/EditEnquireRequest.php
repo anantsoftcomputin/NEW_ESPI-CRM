@@ -38,7 +38,8 @@ class EditEnquireRequest extends FormRequest
     {
         return [
             'email' => 'required|email',
-            'name' => 'required|string|max:50|min:3',
+            'first_name' => 'required|string|max:50|min:3',
+            'last_name' => 'required|string|max:50|min:3',
             'phone' =>'required|min:10|max:10',
             'education' => 'required',
             // 'passport_number' => 'required|regex:/[a-zA-Z]{2}[0-9]{7}/|unique:enquiries,passport_number',
@@ -50,7 +51,6 @@ class EditEnquireRequest extends FormRequest
             'address' => 'required',
             'gender' => 'required|'.Rule::in(['male', 'female']),
             'counsellor_id' => 'required',
-
         ];
     }
 

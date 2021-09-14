@@ -193,14 +193,14 @@ $(document).ready(function(){
             }
         });
 
-    $("#ref_name_label").html("Referance Name");
+    $("#ref_name_label").html("Reference Name");
     $("#ref_phone_label").html("Reference Phone");
     $("#ref_code_label").html("Reference Code");
     $("#ref_name_div").hide();
     $("#ref_phone_div").hide();
     $("#ref_code_div").hide();
 
-    $("#referance_source").change(function(){
+    $("#reference_source").change(function(){
         $("#ref_name_div").hide();
         $("#ref_phone_div").hide();
         $("#ref_code_div").hide();

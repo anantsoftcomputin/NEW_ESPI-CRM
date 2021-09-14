@@ -2,10 +2,12 @@
 <div class="col-md-12">
     <div class="alert alert-success alert-block">
         <button type="button" class="close" data-dismiss="alert">×</button>	
-            <strong>{{ $message }}</strong>
+        <p>{{ __('enquire.message',['code' =>$message]) }}</p>
     </div>
 </div>
 @endif
+
+
 
 
 @if ($message = Session::get('error'))
