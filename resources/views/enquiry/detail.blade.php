@@ -308,7 +308,6 @@ Enquiry Detail
     });
 
     $("#refusal_add").click(function(e){
-        alert("asdsa");
         var data = {
             'id': cout
         };
