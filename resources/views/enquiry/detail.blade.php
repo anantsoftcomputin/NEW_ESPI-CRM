@@ -113,8 +113,8 @@ Enquiry Detail
     <div class="row" id="colam_@{{ id }}">
         <div class="col-md-3">
             <div class="form-group">
-                <label for="name">Name of the company</label>
-                <input type="text" name="travel_company[]" id="name" value="" class="form-control" required="">
+                <label for="name">Name of the country</label>
+                <input type="text" name="travel_country[]" id="name" value="" class="form-control" required="">
             </div>
         </div>
         <div class="col-md-4">
@@ -135,6 +135,34 @@ Enquiry Detail
                 <a href='#' class='btn btn-danger remove_exp' id='NAME' data-id="colam_@{{ id }}" onclick="delete_row('colam_@{{ id }}')">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="12" x2="16" y2="12"></line></svg>
                 </a>
+            </div>
+        </div>
+    </div>
+</script>
+<script id="details-template-refusal" type="text/x-handlebars-template">
+    <div class="row" id="colam_@{{ id }}">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="name">Refusal Country</label>
+                <input type="text" name="refusal_country[]" class="form-control">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="name">Visa Catagory</label>
+                <input type="text" name="refusal_catagory[]" class="form-control">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="name">Refusal Resion</label>
+                <input type="text" name="refusal_resion[]" class="form-control">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="name">Refusal Date</label>
+                <input type="date" name="refusal_date[]" class="form-control">
             </div>
         </div>
     </div>
@@ -277,6 +305,17 @@ Enquiry Detail
                     $('#ref_name').val("");
 				}
 			});
+    });
+
+    $("#refusal_add").click(function(e){
+        var data = {
+            'id': cout
+        };
+        e.preventDefault();
+        var template = Handlebars.compile($("#details-template-refusal").html());
+        console.log(template);
+        var row = $("#example-basic-p-4");
+        row.append(template(data));
     });
 
 </script>
