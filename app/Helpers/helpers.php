@@ -6,6 +6,13 @@ use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Models\Company;
 use App\Models\ReferralCode;
+use App\Models\User;
+
+if (! function_exists('get_user')) {
+    function get_user($id) {
+        return User::where("id",$id)->first();
+    }
+}
 
 if (! function_exists('get_Referral_By_Code')) {
     function get_Referral_By_Code($code) {

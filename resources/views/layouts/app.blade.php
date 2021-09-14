@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>CORK Admin Template - Analytics Dashboard</title>
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"/>
@@ -34,7 +35,8 @@
     <link href="plugins/apex/apexcharts.css" rel="stylesheet" type="text/css">
     <link href="assets/css/dashboard/dash_1.css" rel="stylesheet" type="text/css" class="dashboard-analytics" />
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
-
+    
+    
     @yield('css')
 
     @yield('js')

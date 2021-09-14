@@ -21,6 +21,16 @@
 
 <div class="col-md-3">
     <div class="form-group">
+        <label for="email" class="mandatory">Middle Name</label>
+        <input type="text" name="middle_name" id="middle_name" value="{{$enquiry->middle_name}}" class="@error('middle_name') is-invalid @enderror form-control" required>   
+    </div>
+    @error('middle_name')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
         <label for="email" class="mandatory">Last Name</label>
         <input type="text" name="last_name" id="last_name" value="{{$enquiry->last_name}}" class="form-control" required>
     </div>

@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/theme-checkbox-radio.css')}}">
 <div class="col-lg-6">
     <div class="form-group">
     {{ Form::label('name', 'Name', ['class' => 'form-control-label']) }}
@@ -34,10 +35,19 @@
     {{ Form::password('password_confirmation', ['class' => 'form-control']) }}
     </div>
 </div>
+
 <div class="col-md-12">
-    <div class="custom-control custom-checkbox">
-    {!! Form::hidden('status', 0) !!}
-    <input type="checkbox" name="status" value="1" {{ $user->status ? 'checked' : ''}} class="custom-control-input" id="status">
-    {{ Form::label('status', 'Status', ['class' => 'custom-control-label']) }}
+    <div class="n-chk">
+        {!! Form::hidden('status', 0) !!}
+        <label class="new-control new-checkbox checkbox-primary">
+        <input type="checkbox" {{ $user->status ? 'checked' : ''}} class="new-control-input" name="status" value="1">
+        <span class="new-control-indicator"></span>Status
+        </label>
+        
+        <label class="new-control new-checkbox checkbox-primary">
+        <input name="notification" type="checkbox" id="notification"  {{ $user->fcm_token ? 'checked' : ''}} class="new-control-input" onchange="initFirebaseMessagingRegistration()" >
+        <span class="new-control-indicator"></span>Allow Notification
+        </label>
     </div>
+    <input type="hidden" id="fcm_token" name="fcm_token" value="{{$user->fcm_token}}">
 </div>

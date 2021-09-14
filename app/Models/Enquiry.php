@@ -34,6 +34,7 @@ class Enquiry extends Model
         "reference_code",
         "reference_name",
         "name",
+        'middle_name',
     ];
 
     protected static function booted()

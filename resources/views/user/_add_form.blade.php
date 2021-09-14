@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/theme-checkbox-radio.css')}}">
 <div class="col-lg-6">
     <div class="form-group">
     {{ Form::label('name', 'Name', ['class' => 'form-control-label']) }}
@@ -40,8 +41,16 @@
 </div>
  
 <div class="col-md-12">
-    <div class="custom-control custom-checkbox">
-        <input type="checkbox" name="status" value="1" class="custom-control-input" id="status">
-        {{ Form::label('status', 'Status', ['class' => 'custom-control-label']) }}
+    <div class="n-chk">
+        <label class="new-control new-checkbox checkbox-primary">
+        <input type="checkbox" class="new-control-input" name="status" value="1">
+        <span class="new-control-indicator"></span>Status
+        </label>
+
+        <label class="new-control new-checkbox checkbox-primary">
+        <input type="checkbox" class="new-control-input" onchange="initFirebaseMessagingRegistration()" name="notification">
+        <span class="new-control-indicator"></span>Allow Notification
+        </label>
     </div>
+    <input type="hidden" id="fcm_token" name="fcm_token">
 </div>
