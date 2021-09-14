@@ -175,7 +175,7 @@ class EnquireController extends Controller
         $validated['company_id']=\Auth::user()->company_id;
         $validated['dob']=date("Y-m-d",strtotime($request->dob));
         $validated['added_by_id'] = \Auth::user()->id;
-        $validated["referance_source"]=$request->referance_source;
+        $validated["reference_source"]=$request->reference_source;
         $validated["reference_name"]=$request->reference_name;
         $validated["reference_phone"]=$request->reference_phone;
         $validated["reference_code"]=$request->reference_code;
