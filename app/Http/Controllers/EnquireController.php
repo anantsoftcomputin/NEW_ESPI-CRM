@@ -76,6 +76,7 @@ class EnquireController extends Controller
      */
     public function create()
     {
+       
         $user=User::role('Counsellor')->get();
 
         $university=University::all();
@@ -95,9 +96,10 @@ class EnquireController extends Controller
      */
     public function store(AddEnquireRequest $request)
     {
+        
         $validated = $request->validated();
         $validated['enquiry_id'] ="ESPI_".$this->generateUniqueCode();
-        $validated['name']=$request->first_name .' '.$request->last_name;
+        $validated['name']=$request->first_name .' '.$request->middle_name.' '.$request->last_name;
         $validated['dob']=date("Y-m-d",strtotime($request->dob));
         $validated['added_by_id'] = \Auth::user()->id;
         $validated["reference_source"]=$request->reference_source;
@@ -106,6 +108,7 @@ class EnquireController extends Controller
         $validated["reference_code"]=$request->reference_code;
         $validated["remarks"]=$request->remarks;
         $validated["preferred_country"]=$request->preferred_country;
+
         $enq=Enquiry::create($validated);
         
         if(isset($request->generalassessment))
@@ -123,12 +126,29 @@ class EnquireController extends Controller
             $assessment->save();
         }
         
+        $admin=get_user(1);
+        $counsellor=get_user($request->counsellor_id);
         $details = [
-                'title' => 'New Enquires from '.$request->name,
+                'title' => 'New Enquires from '.$request->first_name,
                 'url' => url('/login'),
                 'enq_id' => $enq->id
             ];
-        //Mail::to($request->email)->send(new AddEnquiry($details));
+        
+        if($admin)
+        {
+            Mail::to($admin->email)->send(new AddEnquiry($details));      
+        }
+        if($counsellor)
+        {
+            Mail::to($counsellor->email)->send(new AddEnquiry($details));      
+        }
+
+        if($counsellor->fcm_token)
+        {
+            //$this->sendNotification($enq);
+        }
+        
+        
         return redirect()->route("Enquires.index")->with('success_msg',$enq->enquiry_id);
 
     }
@@ -172,6 +192,7 @@ class EnquireController extends Controller
     public function update(Request $request,$enquiry)
     {
         $validated =request()->except(['_token','_method']);
+        $validated['name']=$request->first_name .' '.$request->middle_name.' '.$request->last_name;
         $validated['company_id']=\Auth::user()->company_id;
         $validated['dob']=date("Y-m-d",strtotime($request->dob));
         $validated['added_by_id'] = \Auth::user()->id;
@@ -257,5 +278,43 @@ class EnquireController extends Controller
             $code = random_int(10000000, 99999999);
         } while (Enquiry::where("enquiry_id", "=", $code)->first());
         return $code;
+    }
+
+    public function sendNotification($enquiry)
+    {
+        
+        $firebaseToken = User::whereNotNull('fcm_token')->where("id",$enquiry->counsellor_id)->pluck('fcm_token')->all();
+        
+        $admin=User::where("id","=",1)->first();
+
+        $SERVER_API_KEY = 'AAAAQ--KII4:APA91bHbcNhWF8qnsOkAiVnDCcSBv2d8YxzBavbRCWIpZIoU00RDldZM61Wn72ycqs_qTtBMNB5yhmpQ2BO8B9W-Mx2TC4WXqoe7Qnc8FziJSe9zgkmN2R_4CPHKMSce4N2WAUJ5Bo3X';
+  
+        $data = [
+            "registration_ids" => $firebaseToken,
+            "notification" => [
+                "title" =>"Enquiry",
+                "body" =>"New Enquiry added",  
+            ]
+        ];
+
+        $dataString = json_encode($data);
+    
+        $headers = [
+            'Authorization: key=' . $SERVER_API_KEY,
+            'Content-Type: application/json',
+        ];
+    
+        $ch = curl_init();
+      
+        curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+               
+        $response = curl_exec($ch);
+        ///return redirect()->route("Enquires.index")->with('success_msg',$enquiry->enquiry_id);
+        dd($response);
     }
 }

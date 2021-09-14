@@ -4,7 +4,7 @@
 </div>
 
 
-<div class="col-md-6">
+<div class="col-md-3">
     <div class="form-group">
         <label for="email" class="mandatory">Email</label>
         <input type="email" name="email" id="email" value="{{old('email')}}" class="@error('email') is-invalid @enderror form-control" required>
@@ -18,30 +18,40 @@
     <div class="form-group">
         <label for="email" class="mandatory">First Name</label>
         <input type="text" name="first_name" id="first_name" value="{{old('first_name')}}" class="@error('first_name') is-invalid @enderror form-control" required>
-        @error('first_name')
-        <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
     </div>
+    @error('first_name')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <label for="email" class="mandatory">Middle Name</label>
+        <input type="text" name="middle_name" id="middle_name" value="{{old('middle_name')}}" class="@error('middle_name') is-invalid @enderror form-control" required>   
+    </div>
+    @error('middle_name')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
         <label for="email" class="mandatory">Last Name</label>
-        <input type="text" name="last_name" id="last_name" value="{{old('last_name')}}" class="@error('last_name') is-invalid @enderror form-control" required>
-        @error('last_name')
-        <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
+        <input type="text" name="last_name" id="last_name" value="{{old('last_name')}}" class="@error('last_name') is-invalid @enderror form-control" required>   
     </div>
+    @error('last_name')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
 </div>
 
 <div class="col-md-6">
     <div class="form-group">
         <label for="phone" class="mandatory">Phone</label>
-        <input type="number" min="1111111111" max="9999999999" maxlength="10" value="{{old('phone')}}" name="phone" id="phone" class="@error('phone') is-invalid @enderror form-control" required>
-        @error('phone')
-        <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
+        <input type="number" min="1111111111" max="9999999999" maxlength="10" value="{{old('phone')}}" name="phone" id="phone" class="@error('phone') is-invalid @enderror form-control" required>    
     </div>
+    @error('phone')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
 </div>
 
 <div class="col-md-6">
@@ -223,7 +233,7 @@
 <div class="col-md-6" id="ref_phone_div">
     <div class="form-group">
         <label id="ref_phone_label">Reference Phone</label>
-        <input type="text" name="reference_phone" value="{{old('reference_phone')}}" id="ref_phone" class="form-control">
+        <input type="number" min="1111111111" max="9999999999" maxlength="10"  name="reference_phone" value="{{old('reference_phone')}}" id="ref_phone" class="form-control">
     </div>
 </div>
 

@@ -82,10 +82,11 @@ class UserController extends Controller
         $user->status=$request->status;
         $user->company_id=\Auth::user()->company_id;
         $user->added_by=\Auth::user()->id;
+        $user->fcm_token=$request->notification ? $request->fcm_token : '';
         $user->save();
         $user->assignRole($request->role);
         
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with("success","User");
     }
 
     /**
@@ -130,8 +131,10 @@ class UserController extends Controller
             $user->password=Hash::make($request->password);
         }
         $user->status=$request->status;
+        $user->fcm_token=$request->fcm_token;
         $user->company_id=\Auth::user()->company_id;
         $user->added_by=\Auth::user()->id;
+        $user->fcm_token=$request->notification ? $request->fcm_token : '';
         $user->save();
         $user->syncRoles($request->role);
         
@@ -147,5 +150,51 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function saveToken(Request $request)
+    {
+        $token=$request->token;
+        $array=["token"=>$token];
+        return json_encode($array);
+    }
+  
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function sendNotification(Request $request)
+    {
+        $firebaseToken = User::whereNotNull('fcm_token')->pluck('fcm_token')->all();
+          
+        $SERVER_API_KEY = 'XXXXXX';
+  
+        $data = [
+            "registration_ids" => $firebaseToken,
+            "notification" => [
+                "title" => $request->title,
+                "body" => $request->body,  
+            ]
+        ];
+        $dataString = json_encode($data);
+    
+        $headers = [
+            'Authorization: key=' . $SERVER_API_KEY,
+            'Content-Type: application/json',
+        ];
+    
+        $ch = curl_init();
+      
+        curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+               
+        $response = curl_exec($ch);
+  
+        dd($response);
     }
 }
