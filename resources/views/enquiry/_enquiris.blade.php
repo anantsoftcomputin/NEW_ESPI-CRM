@@ -117,7 +117,7 @@
             @forelse ( get_city() as $city)
                 <option @if(old("city_id") == $city->id) selected @endif value="{{ $city->id }}">{{ ucfirst($city->name) }}</option>
             @empty
-                <option value="#">No city Available </option>
+                <option value="">No city Available </option>
             @endforelse
         </select>
     </div>
