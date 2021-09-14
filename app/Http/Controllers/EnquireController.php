@@ -128,7 +128,7 @@ class EnquireController extends Controller
                 'url' => url('/login'),
                 'enq_id' => $enq->id
             ];
-        Mail::to($request->email)->send(new AddEnquiry($details));
+        //Mail::to($request->email)->send(new AddEnquiry($details));
         return redirect()->route("Enquires.index")->with('success_msg',$enq->enquiry_id);
 
     }
