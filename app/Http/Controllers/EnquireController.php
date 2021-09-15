@@ -134,10 +134,18 @@ class EnquireController extends Controller
                 'enq_id' => $enq->id
             ];
         
+        $adminFCMToken=array();
+        $counsellorFCMToken=array();
+        $NotificationBody="";
         if($admin)
         {
+            if($admin->fcm_token)
+            {
+                $adminFCMToken=[$admin->fcm_token];
+            }
             Mail::to($admin->email)->send(new AddEnquiry($details));      
         }
+
         if($counsellor)
         {
             Mail::to($counsellor->email)->send(new AddEnquiry($details));      
@@ -145,12 +153,21 @@ class EnquireController extends Controller
 
         if($counsellor->fcm_token)
         {
-            //$this->sendNotification($enq);
+            $counsellorFCMToken=[$counsellor->fcm_token];
+            $NotificationBody="New Enquiry Added By ".$counsellor->name;
+        }
+
+        $finalToken=array_merge($adminFCMToken,$counsellorFCMToken);
+
+        if($finalToken)
+        {
+            return $this->sendNotification($finalToken,array(
+                "title" => "New Enquiry Generate", 
+                "body" =>$NotificationBody,
+              ));
         }
         
-        
         return redirect()->route("Enquires.index")->with('success_msg',$enq->enquiry_id);
-
     }
 
     /**
@@ -280,21 +297,14 @@ class EnquireController extends Controller
         return $code;
     }
 
-    public function sendNotification($enquiry)
+    public function sendNotification($fcm_token,$message)
     {
-        
-        $firebaseToken = User::whereNotNull('fcm_token')->where("id",$enquiry->counsellor_id)->pluck('fcm_token')->all();
-        
-        $admin=User::where("id","=",1)->first();
-
+        //$firebaseToken = User::whereNotNull('fcm_token')->where("id",$enquiry->counsellor_id)->pluck('fcm_token')->all();
         $SERVER_API_KEY = 'AAAAQ--KII4:APA91bHbcNhWF8qnsOkAiVnDCcSBv2d8YxzBavbRCWIpZIoU00RDldZM61Wn72ycqs_qTtBMNB5yhmpQ2BO8B9W-Mx2TC4WXqoe7Qnc8FziJSe9zgkmN2R_4CPHKMSce4N2WAUJ5Bo3X';
   
         $data = [
-            "registration_ids" => $firebaseToken,
-            "notification" => [
-                "title" =>"Enquiry",
-                "body" =>"New Enquiry added",  
-            ]
+            "registration_ids" => $fcm_token, // for multiple device id
+            "data" => $message
         ];
 
         $dataString = json_encode($data);
@@ -314,7 +324,10 @@ class EnquireController extends Controller
         curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
                
         $response = curl_exec($ch);
-        ///return redirect()->route("Enquires.index")->with('success_msg',$enquiry->enquiry_id);
-        dd($response);
+      
+        curl_close($ch);
+        $response;
+        return redirect()->route("Enquires.index");
+
     }
 }

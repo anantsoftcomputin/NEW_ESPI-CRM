@@ -37,13 +37,9 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::post('/save-token', [UserController::class, 'saveToken'])->name('save-token');
-Route::post('/send-notification', [UserController::class, 'sendNotification'])->name('send.notification');
 
 Route::middleware('auth')->prefix('admin')->group(function () {
-   
-    Route::post('/save-token', [UserController::class, 'saveToken'])->name('save-token');
-    Route::post('/send-notification', [UserController::class, 'sendNotification'])->name('send.notification');
-
+      
     Route::get('enquiry/resendotp/{id}', [EnquireController::class,'enquiryOtpSend'])->name('enquiry.resendotp');
     Route::post("verify_otp",[EnquireController::class,"verify_otp"])->name("verify_otp");
     Route::get("enquiryOtpSend/{id?}",[EnquireController::class,'enquiryOtpSend']);
