@@ -136,7 +136,7 @@ class CourseController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function update(Editcourse $request,$course)
+    public function update(EditCourse $request,$course)
     {
         $validated = $request->validated();
         $validated['added_by']=\Auth::user()->id;
