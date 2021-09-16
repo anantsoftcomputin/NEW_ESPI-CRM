@@ -9,7 +9,7 @@ Add university
     <div class="row justify-content-center">
         <div class="col-md-12">
         <div class="card">
-                <div class="card-header">{{ __('Courses Uploaded Data Preview') }}</div>
+                <div class="card-header">{{ __('courses.upload_preview_msg') }}</div>
                 <div class="card-body">
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -21,12 +21,8 @@ Add university
                         </div>
                         @endif
                 <form class="form-horizontal" method="POST" action="{{ route('Course.import_save') }}">
-                    <div class="col-md-12 text-right">
-                        <div class="form-group">
-                            <button class="btn btn-primary" title="Import University">Import</button>
-                        </div>
-                    </div> 
-                    <div class="col-md-12 text-center">
+                    
+                    <div class="table-responsive col-md-12 text-center">
                     <table id="sample_table" class="table table-bordered">
                         {{ csrf_field() }}
                             <tr>
@@ -36,6 +32,7 @@ Add university
                                 <th>Course Level</th>
                                 <th>Course Requirement Title</th>
                                 <th>Course Requirement Type</th>
+                                <th>Action</th>
                             </tr>
                             <tbody id="tbl_posts_body">    
                                 @php
@@ -77,8 +74,12 @@ Add university
                                 @endforeach
                             </tbody>
                     </table>
-
                     </div>
+                    <div class="col-md-12 text-right">
+                        <div class="form-group">
+                            <button class="btn btn-primary" title="Import Courses">Save</button>
+                        </div>
+                    </div> 
                 </form>
                 </div>
             </div>

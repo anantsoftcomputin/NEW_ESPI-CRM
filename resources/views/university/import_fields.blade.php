@@ -9,7 +9,7 @@ Add university
     <div class="row justify-content-center">
         <div class="col-md-12">
         <div class="card">
-                <div class="card-header">{{ __('University Uploaded Data Preview') }}</div>
+                <div class="card-header">{{ __('university.upload_preview_msg') }}</div>
                 <div class="card-body">
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -21,12 +21,8 @@ Add university
                         </div>
                         @endif
                 <form class="form-horizontal" method="POST" action="{{ route('university_import_save') }}">
-                    <div class="col-md-12 text-right">
-                        <div class="form-group">
-                            <button class="btn btn-primary" title="Import University">Import</button>
-                        </div>
-                    </div> 
-                    <div class="col-md-12 text-center">
+                    
+                    <div class="col-md-12 text-center table-responsive">
                     <table id="sample_table" class="table table-bordered">
                         {{ csrf_field() }}
                             <tr>
@@ -69,8 +65,12 @@ Add university
                                 @endforeach
                             </tbody>
                     </table>
-
                     </div>
+                    <div class="col-md-12 text-right">
+                        <div class="form-group">
+                            <button class="btn btn-primary" title="Import University">Save</button>
+                        </div>
+                    </div> 
                 </form>
                 </div>
             </div>

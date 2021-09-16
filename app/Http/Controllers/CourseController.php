@@ -231,11 +231,16 @@ class CourseController extends Controller
 
     public function CourseImport()
     {
+       
+        
         return view("course.course_import");
     }
 
     public function CourseImportPreview(Request $request)
     {
+        $validated = $request->validate([
+            'file' => 'mimes:csv,xlsx,xls'
+        ]);
         $data = Excel::toArray(new CourseImport(), request()->file('file'));
         return view("course.import_fields",compact("data"));
     }

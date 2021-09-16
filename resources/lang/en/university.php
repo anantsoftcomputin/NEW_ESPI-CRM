@@ -21,5 +21,8 @@ return [
     'success_msg' => 'SuccessFully add new Inquire. Thanks For Submitting. please Save this :code for future enquiry.',
     'go_back' => 'Go Back',
     'sample_file'=>'Download Sample File',
+    'upload_preview_msg'=>'Imported University Preview',
+    'import_form_title'=>'Import Course',
+    'upload_btn'=>"Upload",
 
 ];

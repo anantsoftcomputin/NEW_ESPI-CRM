@@ -9,7 +9,7 @@ Add university
     <div class="row justify-content-center">
         <div class="col-md-12">
         <div class="card">
-                <div class="card-header">{{ __('Import University') }}</div>
+                <div class="card-header">{{ __('university.import_form_title') }}</div>
                 <div class="card-body">
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -34,7 +34,7 @@ Add university
                         <div class="row">
                             <div class="col-md-12 text-center">
 
-                                <input type="submit" class="btn btn-primary" value="{{ __('enquire.submit_btn') }}">
+                                <input type="submit" class="btn btn-primary" title="{{ __('university.upload_btn') }}" value="{{ __('university.upload_btn') }}">
                                 <a href="{{route('University.index')}}" class="btn btn-danger" >{{ __('enquire.cancel_btn_btn') }}</a>
                             </div>
                         </div>

@@ -146,19 +146,14 @@ class UniversityController extends Controller
 
     public function processImport() 
     {
-        // $import = new ImportUniversity;
-        // Excel::import($import,request()->file('file'));
-
+        $validated = $request->validate([
+            'file' => 'mimes:csv,xlsx,xls'
+        ]);
         $data = Excel::toArray(new ImportUniversity(), request()->file('file'));
         return view("university.import_fields",compact("data"));
-        foreach ($data[0] as $key => $value) {
-        $universityname[] = $value[0];
-        $description[] = $value[1];
-        }
-        return $description;
-
-        return view('university.index');
+       
     }
+    
     function university_import_save(Request $request)
     {
         $totuniversity=count($request->name);
