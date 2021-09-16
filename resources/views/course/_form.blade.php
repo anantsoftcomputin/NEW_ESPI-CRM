@@ -86,7 +86,7 @@
             </select>
         </td>
         <td>
-           <select class="form-control" name="status[]">
+           <select class="form-control" name="document_status[]">
                <option value="">select status</option>
                <option value="active">Active</option>
                <option value="de-active">De-Active</option>

@@ -19,7 +19,7 @@ return [
     'cancel_btn_btn' => 'Cancel',
     'well_done' => 'Well done',
     'success_msg' => 'SuccessFully add new Inquire. Thanks For Submitting. please Save this :code for future enquiry.',
-    'go_back' => 'Go Back'
-
+    'go_back' => 'Go Back',
+    'sample_file'=>'Download Sample File',
 
 ];

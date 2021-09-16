@@ -68,6 +68,8 @@ Course List
 <div class="col-md-12">
     <h1>Course</h1>
     <a href="{{ route('Course.create') }}?university=1" class="btn btn-info">Add</a>
+    <a href="{{ route('Course.import') }}?university=1" class="btn btn-info">Import</a>
+    <a href="{{ asset('sample/espi_courses_excel_sample.xlsx') }}" class="btn btn-info">{{ __('university.sample_file') }}</a>
     <table class="table table-bordered data-table">
         <thead>
             <tr>

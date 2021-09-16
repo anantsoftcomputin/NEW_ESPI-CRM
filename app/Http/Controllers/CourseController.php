@@ -10,6 +10,8 @@ use App\Models\CourseRecruitments;
 use Illuminate\Http\Request;
 use DataTables;
 use Illuminate\Support\Facades\Auth;
+use App\Imports\CourseImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CourseController extends Controller
 {
@@ -80,7 +82,7 @@ class CourseController extends Controller
                     "course_id"=>$course->id,
                     "documents"=>$addcourse->documents[$i],
                     "type"=>$addcourse->type[$i],
-                    "status"=>$addcourse->status[$i],
+                    "status"=>$addcourse->document_status[$i],
                     "company_id"=>Auth::user()->company_id,
                 ];
             }
@@ -136,7 +138,6 @@ class CourseController extends Controller
      */
     public function update(Editcourse $request,$course)
     {
-        //dd($course);
         $validated = $request->validated();
         $validated['added_by']=\Auth::user()->id;
         $validated['company_id']=\Auth::user()->company_id;
@@ -170,7 +171,7 @@ class CourseController extends Controller
                         "course_id"=>$course,
                         "documents"=>$request->documents[$i],
                         "type"=>$request->type[$i],
-                        "status"=>$request->status[$i],
+                        "status"=>$request->document_status[$i],
                         "company_id"=>Auth::user()->company_id,
                     ];
                 }
@@ -228,5 +229,71 @@ class CourseController extends Controller
         return view('course.edit',compact('university','data'));
     }
 
-    
+    public function CourseImport()
+    {
+        return view("course.course_import");
+    }
+
+    public function CourseImportPreview(Request $request)
+    {
+        $data = Excel::toArray(new CourseImport(), request()->file('file'));
+        return view("course.import_fields",compact("data"));
+    }
+
+    public function CourseImportSave(Request $request)
+    {
+        $totcourse=count($request->course_name);
+        for($i=0;$i<$totcourse;$i++)
+        {
+            $university = University::firstOrNew(array('name' => $request->university[$i]));
+            $university->address="";
+            $university->email="";
+            $university->status="active";
+            $university->added_by=\Auth::user()->id;
+            $university->country_id=101;
+            $university->company_id=\Auth::user()->company_id;
+            $university->save();
+
+            $course=Course::firstOrNew(array('name'=>$request->course_name[$i]));
+            $course->university_id=$university->id;
+            $course->course_level=$request->course_level[$i] ?? "";
+            $course->status="active";
+            $course->added_by=\Auth::user()->id;
+            $course->company_id=\Auth::user()->company_id;
+            $course->save();
+
+            if($request->course_requirement[$i])
+            {
+                $course_requirements=explode("###",$request->course_requirement[$i]);
+                $totrequirements=count($course_requirements);
+                $course_requirements_type=explode("###",$request->course_requirement_type[$i]);
+                for($j=0;$j<$totrequirements;$j++)
+                {
+                    $requirements_check=CourseRecruitments::where("documents",$course_requirements[$j])
+                    ->where("course_id",$course->id)
+                    ->first();
+                    if(empty($requirements_check)){
+                        $requirements_check=new CourseRecruitments();
+                    }
+                    $requirements_check->documents=$course_requirements[$j] ?? "";
+                    $type="jpg";
+                    if($course_requirements_type[$j])
+                    {
+                        if($course_requirements_type[$j]=="pdf" ||$course_requirements_type[$j]=="jpg" || $course_requirements_type[$j]=="doc")
+                        {
+                            $type=$course_requirements_type[$j];
+                        }
+                    }
+                    
+                    $requirements_check->type=trim(strtolower($type));
+                    $requirements_check->status="active";
+                    $requirements_check->course_id=$course->id;
+                    $requirements_check->company_id=\Auth::user()->company_id;
+                    $requirements_check->save();
+                }
+            }
+            
+        }
+            return redirect()->route("Course.index")->with("success","Courses");
+    }
 }

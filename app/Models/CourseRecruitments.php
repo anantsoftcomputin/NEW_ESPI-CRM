@@ -9,4 +9,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class CourseRecruitments extends Model
 {
     use HasFactory,SoftDeletes;
+
+    protected $fillable = [
+        'documents',
+        'type',
+        'status',
+        'course_id',
+        'company_id',
+        'created_at',
+        'updated_at'
+    ];
 }

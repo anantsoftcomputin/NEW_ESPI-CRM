@@ -63,6 +63,10 @@ University
 
     <a href="{{ route('University.create') }}" class="btn btn-info">Add</a>
 
+    <a href="{{ route('UniversityImport') }}" class="btn btn-info">Import</a>
+
+    <a href="{{ asset('sample/espi_university_excel_sample.xlsx') }}" class="btn btn-info">{{ __('university.sample_file') }}</a>
+
     <table class="table table-bordered data-table">
         <thead>
             <tr>
