@@ -28,6 +28,11 @@ Route::get('/get_sub_domain', function () {
     return getCurrentCompany();
 });
 
+Route::get('optimize', function () {
+    \Artisan::call('optimize');
+    echo "Cache is cleared";
+});
+
 Auth::routes();
 
 // Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function (){
