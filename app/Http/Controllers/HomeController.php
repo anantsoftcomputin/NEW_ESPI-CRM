@@ -15,6 +15,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function __construct()
+    {
+        $this->middleware("auth");
+    }
     public function index()
     {
         $university=University::all();
