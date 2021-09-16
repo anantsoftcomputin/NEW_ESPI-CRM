@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Course\Addcourse;
-use App\Http\Requests\Course\Editcourse;
+use App\Http\Requests\Course\EditCourse;
 use App\Models\Course;
 use App\Models\University;
 use App\Models\CourseRecruitments;
