@@ -307,8 +307,6 @@ class EnquireController extends Controller
             "notification" => [
                 "title" => "New Enquiry Generate",
                 "body" =>"Enquiry Added By ".\Auth::user()->name,
-                "icon" =>  "https://espicrm.com/logo.jpg",
-                "click_action" =>  "https://espicrm.com/"
             ],
         ];
 
