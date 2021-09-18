@@ -13,6 +13,7 @@ use App\Http\Controllers\UploadDocumentController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\FcmTokenController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,6 +51,8 @@ Route::post('/import_process', [UniversityController::class,"processImport"])->n
 Route::post("/university_import_save",[UniversityController::class,"university_import_save"])->name("university_import_save");
 
 Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::post('/send-notification', [FcmTokenController::class, 'sendNotification'])->name('send.notification');
+    Route::get("fcm_token",[FcmTokenController::class,"index"]);
     Route::get("UniversityImport",[UniversityController::class,"UniversityImport"])->name("UniversityImport");  
     Route::get('enquiry/resendotp/{id}', [EnquireController::class,'enquiryOtpSend'])->name('enquiry.resendotp');
     Route::post("verify_otp",[EnquireController::class,"verify_otp"])->name("verify_otp");

@@ -161,7 +161,7 @@ class EnquireController extends Controller
 
         if($finalToken)
         {
-            return $this->sendNotification($finalToken,array(
+            return $this->sendNotification($enq,$finalToken,array(
                 "title" => "New Enquiry Generate", 
                 "body" =>$NotificationBody,
               ));
@@ -297,14 +297,19 @@ class EnquireController extends Controller
         return $code;
     }
 
-    public function sendNotification($fcm_token,$message)
+    public function sendNotification($enq,$fcm_token,$message)
     {
         //$firebaseToken = User::whereNotNull('fcm_token')->where("id",$enquiry->counsellor_id)->pluck('fcm_token')->all();
         $SERVER_API_KEY = 'AAAAQ--KII4:APA91bHbcNhWF8qnsOkAiVnDCcSBv2d8YxzBavbRCWIpZIoU00RDldZM61Wn72ycqs_qTtBMNB5yhmpQ2BO8B9W-Mx2TC4WXqoe7Qnc8FziJSe9zgkmN2R_4CPHKMSce4N2WAUJ5Bo3X';
   
         $data = [
             "registration_ids" => $fcm_token, // for multiple device id
-            "data" => $message
+            "notification" => [
+                "title" => "New Enquiry Generate",
+                "body" =>"Enquiry Added By ".\Auth::user()->name,
+                "icon" =>  "https://espicrm.com/logo.jpg",
+                "click_action" =>  "https://espicrm.com/"
+            ],
         ];
 
         $dataString = json_encode($data);
@@ -327,7 +332,7 @@ class EnquireController extends Controller
       
         curl_close($ch);
         $response;
-        return redirect()->route("Enquires.index");
-
+    
+        return redirect()->route("Enquires.index")->with('success_msg',$enq->enquiry_id);
     }
 }

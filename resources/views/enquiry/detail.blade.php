@@ -20,27 +20,27 @@ Enquiry Detail
             </div>
             <div class="widget-content widget-content-area">
                 <div id="example-basic">
-                    <h3>Personal information</h3>
+                    <h3>Personal<br>information</h3>
                     <section>
                         @include('enquiry.detail_staps.stap_1')
                     </section>
-                    <h3>Education Summary</h3>
+                    <h3>Education<br>Summary</h3>
                     <section>
                         @include('enquiry.detail_staps.stap_2')
                     </section>
-                    <h3>Work Experience</h3>
+                    <h3>Work<br>Experience</h3>
                     <section>
                         @include('enquiry.detail_staps.stap_3')
                     </section>
-                    <h3>Online Exam Details</h3>
+                    <h3>Online<br>Exam Details</h3>
                     <section>
                         @include('enquiry.detail_staps.stap_4')
                     </section>
-                    <h3>Applying Details</h3>
+                    <h3>Applying<br>Details</h3>
                     <section>
                         @include('enquiry.detail_staps.stap_5')
                     </section>
-                    <h3>Upload Documents</h3>
+                    <h3>Upload<br>Documents</h3>
                     <section>
                         @include('enquiry.detail_staps.stap_6')
                     </section>
