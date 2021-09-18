@@ -8,9 +8,27 @@
     <div class="col-md-6">
         <div class="form-group">
             <label for="name">Passport</label>
-            <input type="file" name="Passport" class="form-control">
+            <input type="file" id="photo" name="Passport" class="form-control" accept="image/png, image/jpeg">
         </div>
     </div>
+
+    <div class="col-md-6">
+        <div id="parsed"></div>
+    </div>
+    <div class="col-md-6">
+        <div id="detected"></div>
+    </div>
+     
+        <div class="col-md-12">
+            <div class="progress">
+                <div class="gradient">
+                    <div class="progress-wrapper">
+                        <div class="progress-text"></div>
+                        <progress></progress>
+                    </div>
+                </div>
+            </div>
+        </div>
     <div class="col-md-6">
         <div class="form-group">
             <label for="name">10th Documents</label>

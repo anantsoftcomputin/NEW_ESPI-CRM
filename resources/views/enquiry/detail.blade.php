@@ -5,6 +5,7 @@ Enquiry Detail
 @endsection
 
 
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 @section('content')
 <div class="col-lg-12 layout-spacing">
     <form method="post" action="{{ route('EnquiryDetail.store',$id) }}" id="form-detail">
@@ -62,6 +63,9 @@ Enquiry Detail
 <link rel="stylesheet" type="text/css" href="{{ asset('plugins/select2/select2.min.css') }}">
 <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{{ asset('plugins/ocr/js/mrz-worker.bundle-min-wrapped.js')}}"></script>
+<script src="{{ asset('plugins/ocr/js/demo.bundle-min.js')}}"></script>
+
 <style>
 .refusal_hide
 {
@@ -71,6 +75,98 @@ Enquiry Detail
     display: block;
     border: 0px solid #ccc!important;
 }
+
+div.progress.visible {
+        visibility: visible;
+      }
+
+      div.progress {
+        visibility: hidden;
+        margin: 0;
+        padding: 0;
+        position: fixed;
+        top: 0;
+        background-color: white;
+        width: 100%;
+        height: 100%;
+      }
+
+      div.gradient {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        display: fixed;
+        top: 0;
+        left: 0;
+
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.32+100 */
+        background: -moz-radial-gradient(center, ellipse cover, rgba(0,0,0,0) 0%, rgba(0,0,0,0.25) 100%); /* FF3.6-15 */
+        background: -webkit-radial-gradient(center, ellipse cover, rgba(0,0,0,0) 0%,rgba(0,0,0,0.25) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: radial-gradient(ellipse at center, rgba(0,0,0,0) 0%,rgba(0,0,0,0.25) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#52000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      div.progress-wrapper {
+        font-size: 2em;
+        padding: 2em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 40%;
+        border: 2px solid black;
+        background: white;
+        box-shadow: 0.5em 0.5em 0.5em rgba(0,0,0,0.25);
+        border-radius: 0.2em;
+
+      }
+
+      progress {
+        width: 100%;
+        margin: 0.2em;
+      }
+
+      div.wrapper {
+        padding: 5px;
+      }
+
+      div.wrapper, div.wrapper > div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      #parsed .error {
+        padding: 0px 1em;
+        max-width: 60%;
+
+      }
+
+      div#detected{
+        margin-bottom: 1em;
+        flex-direction: column-reverse;
+      }
+
+      canvas {
+        max-width: 100%;
+        margin: 5px;
+      }
+
+      canvas[title=crop] {
+        max-width: 100%;
+        margin: 0px 5px;
+      }
+
+      @media screen and (orientation: landscape) {
+      }
+
+      @media screen and (orientation: portrait) {
+      }
 </style>
 <script src="{{ asset('plugins/select2/select2.min.js') }}"></script>
 <script id="details-template" type="text/x-handlebars-template">
@@ -168,8 +264,7 @@ Enquiry Detail
     </div>
 </script>
 <script>
-    // SELECT2 PAGE JS
-
+  
     var cout=1;
 
     $("#add_more_expiriance").click(function(e){

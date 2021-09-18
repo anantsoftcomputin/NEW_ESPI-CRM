@@ -32,4 +32,9 @@ class HomeController extends Controller
     {
         return view('coming_soon');
     }
+
+    public function ocr()
+    {
+        return view("ocr.index");
+    }
 }

@@ -12,7 +12,7 @@ use App\Http\Controllers\EnquiryDetailController;
 use App\Http\Controllers\UploadDocumentController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AssessmentController;
-
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,6 +32,8 @@ Route::get('optimize', function () {
     \Artisan::call('optimize');
     echo "Cache is cleared";
 });
+
+Route::get("ocr",[HomeController::class,"ocr"]);
 
 Auth::routes();
 
