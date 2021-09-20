@@ -1,8 +1,33 @@
 
+
+<div class="col-md-12 alert alert-warning">
+    <div class="form-group">
+        <label for="name">Upload Passport</label>
+        <input type="file" id="photo" name="passport_image" class="form-control" accept="image/png, image/jpeg">
+    </div>
+</div>
+
 <div class="col-md-12" id="user_exist" style="color:red">
 
 </div>
 
+<div class="col-md-6">
+    <div id="parsed"></div>
+</div>
+<div class="col-md-6">
+    <div id="detected"></div>
+</div>
+     
+<div class="col-md-12">
+    <div class="progress">
+        <div class="gradient">
+            <div class="progress-wrapper">
+                <div class="progress-text"></div>
+                    <progress></progress>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="col-md-3">
     <div class="form-group">
@@ -44,7 +69,17 @@
     @enderror
 </div>
 
-<div class="col-md-6">
+<div class="col-md-3">
+    <div class="form-group">
+        <label for="email" class="mandatory">Passport No</label>
+        <input type="text" name="passport_no" id="passport_no" value="{{old('passport_no')}}" class="@error('passport_no') is-invalid @enderror form-control" required>   
+    </div>
+    @error('passport_no')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+</div>
+
+<div class="col-md-3">
     <div class="form-group">
         <label for="phone" class="mandatory">Phone</label>
         <input type="number" min="1111111111" max="9999999999" maxlength="10" value="{{old('phone')}}" name="phone" id="phone" class="@error('phone') is-invalid @enderror form-control" required>    
@@ -151,7 +186,7 @@
 <div class="col-md-6">
     <div class="form-group">
         <label for="dob" class="mandatory">DOB</label>
-        <input type="date" value="{{old('dob')}}" name="dob" class="form-control @error('dob') is-invalid @enderror" required>
+        <input type="date" value="{{old('dob')}}" id="dob" name="dob" class="form-control @error('dob') is-invalid @enderror" required>
     </div>
     @error('dob')
     <div class="alert alert-danger">{{ $message }}</div>
@@ -162,6 +197,7 @@
     <div class="form-group">
         <label for="gender" class="mandatory">Gender</label>
         <select name="gender" value="{{old('gender')}}" id="gender" class="form-control @error('gender') is-invalid @enderror" required>
+            <option value="">Select Gender</option>
             <option value="female">Female</option>
             <option value="male">Male</option>
         </select>

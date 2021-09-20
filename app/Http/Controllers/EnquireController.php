@@ -76,7 +76,9 @@ class EnquireController extends Controller
      */
     public function create()
     {
-       
+        // $date="731101";
+        // echo $newdate=date('Y-m-d',strtotime($date));
+        // die;
         $user=User::role('Counsellor')->get();
 
         $university=University::all();
@@ -107,8 +109,24 @@ class EnquireController extends Controller
         $validated["reference_phone"]=$request->reference_phone;
         $validated["reference_code"]=$request->reference_code;
         $validated["remarks"]=$request->remarks;
+        $validated["passport_no"]=$request->passport_no;
         $validated["preferred_country"]=$request->preferred_country;
-
+        $validated["first_name"]=$request->first_name;
+        $validated["middle_name"]=$request->middle_name;
+        $validated["last_name"]=$request->last_name;
+       
+        if($request->passport_image)
+        {
+            $avatarPath = $request->file('passport_image');
+            $avatarName = time() . '.' . $avatarPath->getClientOriginalExtension();
+            $file = $request->file('passport_image');
+            // generate a new filename. getClientOriginalExtension() for the file extension
+            $filename = 'passport-photo-' . time() . '.' . $file->getClientOriginalExtension();
+            // save to storage/app/photos as the new $filename
+            $path = $file->storeAs('passport', $filename);
+            $validated['passport_image'] =$filename;
+        }
+        
         $enq=Enquiry::create($validated);
         
         if(isset($request->generalassessment))

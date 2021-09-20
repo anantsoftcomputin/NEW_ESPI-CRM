@@ -15,6 +15,7 @@
 
     <div id="compact_submenuSidebar" class="submenu-sidebar">
 
+    
         <div class="submenu" id="dashboard">
             <ul class="submenu-list" data-parent-element="#dashboard">
                 <li class="active">

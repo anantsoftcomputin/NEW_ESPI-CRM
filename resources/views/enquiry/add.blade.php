@@ -110,6 +110,111 @@ Add Enquiry
 
 <link rel="stylesheet" href="{{asset('plugins/datepicker/jquery-ui.css')}}">
 <script src="{{asset('plugins/datepicker/jquery-ui.js')}}"></script>
+<script src="{{ asset('plugins/ocr/js/mrz-worker.bundle-min-wrapped.js')}}"></script>
+<script src="{{ asset('plugins/ocr/js/demo.bundle-min.js')}}"></script>
+
+<style>
+.refusal_hide
+{
+    display: none;
+}
+.select2-search__field {
+    display: block;
+    border: 0px solid #ccc!important;
+}
+
+div.progress.visible {
+        visibility: visible;
+      }
+
+      div.progress {
+        visibility: hidden;
+        margin: 0;
+        padding: 0;
+        position: fixed;
+        top: 0;
+        background-color: white;
+        width: 100%;
+        height: 100%;
+      }
+
+      div.gradient {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        display: fixed;
+        top: 0;
+        left: 0;
+
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.32+100 */
+        background: -moz-radial-gradient(center, ellipse cover, rgba(0,0,0,0) 0%, rgba(0,0,0,0.25) 100%); /* FF3.6-15 */
+        background: -webkit-radial-gradient(center, ellipse cover, rgba(0,0,0,0) 0%,rgba(0,0,0,0.25) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: radial-gradient(ellipse at center, rgba(0,0,0,0) 0%,rgba(0,0,0,0.25) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#52000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      div.progress-wrapper {
+        font-size: 2em;
+        padding: 2em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 40%;
+        border: 2px solid black;
+        background: white;
+        box-shadow: 0.5em 0.5em 0.5em rgba(0,0,0,0.25);
+        border-radius: 0.2em;
+
+      }
+
+      progress {
+        width: 100%;
+        margin: 0.2em;
+      }
+
+      div.wrapper {
+        padding: 5px;
+      }
+
+      div.wrapper, div.wrapper > div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      #parsed .error {
+        padding: 0px 1em;
+        max-width: 60%;
+
+      }
+
+      div#detected{
+        margin-bottom: 1em;
+        flex-direction: column-reverse;
+      }
+
+      canvas {
+        max-width: 100%;
+        margin: 5px;
+      }
+
+      canvas[title=crop] {
+        max-width: 100%;
+        margin: 0px 5px;
+      }
+
+      @media screen and (orientation: landscape) {
+      }
+
+      @media screen and (orientation: portrait) {
+      }
+</style>
 <script>
 
 $(document).ready(function () {
@@ -390,7 +495,7 @@ $(document).ready(function(){
                 <div class="card-header">{{ __('enquire.heading') }}</div>
                 <div class="card-body">
                    
-                    <form method="POST" action="{{ route('Enquires.store') }}">
+                    <form method="POST" action="{{ route('Enquires.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             @include('enquiry._enquiris')

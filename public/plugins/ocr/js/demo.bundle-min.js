@@ -4116,7 +4116,44 @@
                                                  t = ['<div class="error">', o(e.error), "</div>", "<pre>", o(r), "</pre>"];
                                                 else if(e.parsed.valid)
                                                 {
-                                                    t = ["<div class='form-group'><label>Document Code</label><input name='documentCode' class='form-control' type='text' value='"+e.parsed.fields['documentCode']+"'></div><div class='form-group'><label>Issuing State</label><input name='issuingState' class='form-control' type='text' value='"+e.parsed.fields['firstName']+"'></div><div class='form-group'><label>First Name</label><input name='firstName' class='form-control' type='text' value='"+e.parsed.fields['firstName']+"'></div><div class='form-group'><label>Last Name</label><input name='lastName' class='form-control' type='text' value='"+e.parsed.fields['lastName']+"'></div><div class='form-group'><label>Document Number</label><input name='documentNumber' class='form-control' type='text' value='"+e.parsed.fields['documentNumber']+"'></div><div class='form-group'><label>Document Number Check Digit</label><input name='documentNumberCheckDigit' class='form-control' type='text' value='"+e.parsed.fields['documentNumberCheckDigit']+"'></div><div class='form-group'><label>Nationality</label><input name='nationality' class='form-control' type='text' value='"+e.parsed.fields['nationality']+"'></div><div class='form-group'><label>Birth Date</label><input name='birthDate' class='form-control' type='text' value='"+e.parsed.fields['birthDate']+"'></div><div class='form-group'><label>Birth Check Digit</label><input name='birthDateCheckDigit' class='form-control' type='text' value='"+e.parsed.fields['birthDateCheckDigit']+"'></div><div class='form-group'><label>Sex</label><input name='sex' class='form-control' type='text' value='"+e.parsed.fields['sex']+"'></div><div class='form-group'><label>Expiration Date</label><input name='expirationDate' class='form-control' type='text' value='"+e.parsed.fields['expirationDate']+"'></div><div class='form-group'><label>Document Code</label><input name='passportDetails' class='form-control' type='text' value='"+o(r)+"'></div>"];    
+                                                    var year=e.parsed.fields['birthDate'].substring(0,2);
+                                                    var currentYear=new Date().getFullYear();
+                                                    var month=e.parsed.fields['birthDate'].substring(2,4);
+                                                    var day=e.parsed.fields['birthDate'].substring(4,6);
+                                                  
+                                                    if(year<currentYear)
+                                                    {
+                                                        var newyear="19";
+                                                        newyear +=year;
+                                                    }
+                                                    if(year>currentYear)
+                                                    {
+                                                        var newyear="20";
+                                                        newyear +=year;
+                                                    }
+                                                    
+                                                    //alert(newyear);
+                                                    // console.log(e.parsed.fields['birthDate'].format("YYYY-MM-DD"));
+                                                    // tdrDate = DateTime.ParseExact(e.parsed.fields['birthDate'], "yyyyMMdd", null).ToString("yyyy-MM-dd");
+                                                    // console.log(tdrDate);
+                                                   var dob=newyear+"-"+month+"-"+day;
+                                                   $("#dob").val(dob);
+                                                  
+                                                    console.log(e.parsed.fields);
+                                                    $("#first_name").val(e.parsed.fields['firstName']);
+                                                    $("#last_name").val(e.parsed.fields['lastName']);
+                                                    $("#passport_no").val(e.parsed.fields['documentNumber']);
+                                                   
+                                                    $("#country option[value="+e.parsed.fields['nationality']+"]").attr("selected","selected");
+                                                    if(e.parsed.fields['sex']=='male')
+                                                    {
+                                                        $("#gender option[value=male]").attr("selected","selected");
+                                                    }
+                                                    if(e.parsed.fields['sex']=='female')
+                                                    {
+                                                        $("#gender option[value=female]").attr("selected","selected");
+                                                    }
+                                                    //t = ["<div class='form-group'><label>Document Code</label><input name='documentCode' class='form-control' type='text' value='"+e.parsed.fields['documentCode']+"'></div><div class='form-group'><label>Issuing State</label><input name='issuingState' class='form-control' type='text' value='"+e.parsed.fields['issuingState']+"'></div><div class='form-group'><label>First Name</label><input name='firstName' class='form-control' type='text' value='"+e.parsed.fields['firstName']+"'></div><div class='form-group'><label>Last Name</label><input name='lastName' class='form-control' type='text' value='"+e.parsed.fields['lastName']+"'></div><div class='form-group'><label>Document Number</label><input name='documentNumber' class='form-control' type='text' value='"+e.parsed.fields['documentNumber']+"'></div><div class='form-group'><label>Document Number Check Digit</label><input name='documentNumberCheckDigit' class='form-control' type='text' value='"+e.parsed.fields['documentNumberCheckDigit']+"'></div><div class='form-group'><label>Nationality</label><input name='nationality' class='form-control' type='text' value='"+e.parsed.fields['nationality']+"'></div><div class='form-group'><label>Birth Date</label><input name='birthDate' class='form-control' type='text' value='"+e.parsed.fields['birthDate']+"'></div><div class='form-group'><label>Birth Check Digit</label><input name='birthDateCheckDigit' class='form-control' type='text' value='"+e.parsed.fields['birthDateCheckDigit']+"'></div><div class='form-group'><label>Sex</label><input name='sex' class='form-control' type='text' value='"+e.parsed.fields['sex']+"'></div><div class='form-group'><label>Expiration Date</label><input name='expirationDate' class='form-control' type='text' value='"+e.parsed.fields['expirationDate']+"'></div><div class='form-group'><label>Document Code</label><input name='passportDetails' class='form-control' type='text' value='"+o(r)+"'></div>"];    
                                                 }                                                 
                                                 else {
                                                     if (e.parsed.details) {

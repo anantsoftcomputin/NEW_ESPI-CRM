@@ -65,7 +65,7 @@
             <input type="file" name="PhD" class="form-control">
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6" style="display:none">
         <div class="form-group">
             <label for="name">SOP</label>
             <input type="file" name="SOP" class="form-control">

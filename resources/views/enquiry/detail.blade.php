@@ -67,6 +67,11 @@ Enquiry Detail
 <script src="{{ asset('plugins/ocr/js/demo.bundle-min.js')}}"></script>
 
 <style>
+    hr {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    border-top: 1px solid #000;
+}
 .refusal_hide
 {
     display: none;
@@ -245,13 +250,13 @@ div.progress.visible {
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label for="name">Visa Catagory</label>
+                <label for="name">Visa Category</label>
                 <input type="text" name="refusal_catagory[]" class="form-control">
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label for="name">Refusal Resion</label>
+                <label for="name">Refusal Reason</label>
                 <input type="text" name="refusal_resion[]" class="form-control">
             </div>
         </div>
@@ -266,6 +271,130 @@ div.progress.visible {
 <script>
   
     var cout=1;
+    $("#exam_type").change(function(){
+        var examType=$(this).val();
+        var exam_status=$("#exam_status").val();
+        $(".exam_score").show();
+        $("#communication_skill_msg").hide();
+        $("#enable_skill_msg").hide();
+        $("#exam_listening_div").hide();
+        $("#exam_speaking_div").hide();
+        $("#exam_reading_div").hide();
+        $("#exam_writing_div").hide();
+        $("#exam_math_div").hide();
+        $("#exam_evidence_based_reading_writing_div").hide();
+        $("#exam_essay_div").hide();
+        $("#exam_verbal_reasoning_div").hide();
+        $("#exam_quantitative_reasoning_div").hide();
+        $("#exam_analytical_writing_div").hide();
+        $("#exam_integrated_reasoning_div").hide();
+        $("#exam_grammar_div").hide();
+        $("#exam_fluency_div").hide();
+        $("#exam_pronunciation_div").hide();
+        $("#exam_spelling_div").hide();
+        $("#exam_vocabulary_div").hide();
+        $("#exam_written_disclosure_div").hide();
+        $("#exam_literacy_div").hide();
+        $("#exam_conversation_div").hide();
+        $("#exam_comprehension_div").hide();
+        $("#exam_production_div").hide();
+
+        if(examType=="IELTS" && exam_status !="Planning")
+        {
+            $("#exam_listening_div").show();
+            $("#exam_speaking_div").show();
+            $("#exam_reading_div").show();
+            $("#exam_writing_div").show();
+        }
+
+        if(examType=="IELTS GENERAL" && exam_status !="Planning")
+        {
+            $("#exam_listening_div").show();
+            $("#exam_speaking_div").show();
+            $("#exam_reading_div").show();
+            $("#exam_writing_div").show();
+        }
+
+        if(examType=="SPOKEN ENGLISH" && exam_status !="Planning")
+        {
+            $("#exam_listening_div").show();
+            $("#exam_speaking_div").show();
+            $("#exam_reading_div").show();
+            $("#exam_writing_div").show();
+        }
+
+        if(examType=="UKVI" && exam_status !="Planning")
+        {
+            $("#exam_listening_div").show();
+            $("#exam_speaking_div").show();
+            $("#exam_reading_div").show();
+            $("#exam_writing_div").show();
+        }
+
+        if(examType=="TOEFL" && exam_status !="Planning")
+        {
+            $("#exam_listening_div").show();
+            $("#exam_speaking_div").show();
+            $("#exam_reading_div").show();
+            $("#exam_writing_div").show();
+        }
+
+        if(examType=="SAT" && exam_status !="Planning")
+        {
+            $("#exam_math_div").show();
+            $("#exam_evidence_based_reading_writing_div").show();
+            $("#exam_essay_div").show();
+        }
+
+        if(examType=="SAT" && exam_status !="Planning")
+        {
+            $("#exam_math_div").show();
+            $("#exam_evidence_based_reading_writing_div").show();
+            $("#exam_essay_div").show();
+        }
+
+        if(examType=="GRE" && exam_status !="Planning")
+        {
+            $("#exam_verbal_reasoning_div").show();
+            $("#exam_quantitative_reasoning_div").show();
+            $("#exam_analytical_writing_div").show();
+        }
+
+        if(examType=="GMAT" && exam_status !="Planning")
+        {
+            $("#exam_verbal_reasoning_div").show();
+            $("#exam_quantitative_reasoning_div").show();
+            $("#exam_analytical_writing_div").show();
+            $("#exam_integrated_reasoning_div").show();
+        }
+
+        if(examType=="PTE" && exam_status !="Planning")
+        {
+            $("#communication_skill_msg").show();
+            $("#enable_skill_msg").show();
+            $("#exam_listening_div").show();
+            $("#exam_speaking_div").show();
+            $("#exam_reading_div").show();
+            $("#exam_writing_div").show();
+
+            $("#exam_grammar_div").show();
+            $("#exam_fluency_div").show();
+            $("#exam_pronunciation_div").show();
+            $("#exam_spelling_div").show();
+            $("#exam_vocabulary_div").show();
+            $("#exam_written_disclosure_div").show();
+        }
+
+        if(examType=="DUOLINGO" && exam_status !="Planning")
+        {
+            $("#exam_literacy_div").show();
+            $("#exam_conversation_div").show();
+            $("#exam_analytical_writing_div").show();
+            $("#exam_comprehension_div").show();
+            $("#exam_production_div").show();
+        }
+
+    });
 
     $("#add_more_expiriance").click(function(e){
         e.preventDefault();
@@ -278,7 +407,7 @@ div.progress.visible {
         row.append(template(data));
         cout=cout+1;
     });
-
+    
     function delete_row(type)
     {
         $("#"+type).remove();
@@ -364,6 +493,7 @@ div.progress.visible {
         }
         else
         {
+            $(".exam_score").hide();
             $(".hiddan_data_data").show();
             $(".hiddan_data").hide();
         }
