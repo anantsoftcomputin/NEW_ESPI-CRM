@@ -34,18 +34,21 @@
         var table = $('.data-table').DataTable({
             processing: true,
             serverSide: true,
-            bFilter: false,
-            lengthChange: false,
+            bFilter:  true,
+                lengthChange: true,
             oLanguage: {
                     sEmptyTable: "No Assessments Received Yet"
                 },
             ajax: "{{ route('assessments.index') }}",
             columns: [
-                {data: 'university.name', name: 'university.name', orderable: false, searchable: false},
-                { data: 'course.name', name: 'course.name' , orderable: false, searchable: false},
-                { data: 'status', name: 'status' , orderable: false, searchable: false},
-                { data: 'assign_to', name: 'assign_to' , orderable: false, searchable: false},
-                {data: 'action', name: 'action', orderable: false, searchable: false},
+                { data: 'enquiry.enquiry_id', name: 'enquiry.enquiry_id',orderable:'false',searchable: false },
+                { data: 'enquiry.name', name: 'enquiry.name',orderable: false,searchable: false},
+                { data: 'university.country.name', name: 'university.country.name',orderable: false,searchable: false},
+                {data: 'university.name', name: 'university.name', orderable: false,searchable: false},
+                { data: 'course.name', name: 'course.name' , orderable: false,searchable: false},
+                { data: 'status', name: 'status' , orderable: true ,searchable: true},
+                { data: 'assign_to', name: 'assign_to' , orderable: false, searchable: true},
+                {data: 'action', name: 'action', orderable: false, searchable: true},
             ],
             initComplete: function () {
             this.api().columns().every(function () {
@@ -67,18 +70,21 @@
             $('#' + tableId).DataTable({
                 processing: true,
                 serverSide: true,
-                bFilter: false,
-                lengthChange: false,
+                bFilter:  true,
+                lengthChange: true,
                 oLanguage: {
                     sEmptyTable: "No Assessments Received Yet"
                 },
                 ajax: data.details_url,
                 columns: [
-                    { data: 'university.name', name: 'university.name',orderable:'false', searchable:'false' },
+                    { data: 'enquiry.enquiry_id', name: 'enquiry.enquiry_id',orderable:'false',searchable: true },
+                    { data: 'enquiry.name', name: 'enquiry.name',orderable:'false',searchable: true },
+                    { data: 'university.country.name', name: 'university.country.name',orderable: false,searchable: false},
+                    { data: 'university.name', name: 'university.name',orderable:'false', searchable: true },
                     { data: 'course.name', name: 'course.name' },
                     {data: 'status', name: 'status'},
                     {data: 'assign_to', name: 'assign_to'},
-                    { data: 'user.name', name: 'user.name',orderable:'false', searchable:'false' },
+                    { data: 'user.name', name: 'user.name',orderable:'false', searchable: true },
                 ]
             })
         }
@@ -114,6 +120,9 @@ Application
     <table class="table table-bordered data-table">
         <thead>
             <tr>
+                <th>Enquiry Id</th>
+                <th>Name</th>
+                <th>Country Name</th>
                 <th>University</th>
                 <th  width="200px">Course</th>
                 <th width="100px">Status</th>
