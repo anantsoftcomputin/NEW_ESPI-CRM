@@ -144,7 +144,7 @@ class UniversityController extends Controller
         return view("university.import_form");
     }
 
-    public function processImport() 
+    public function processImport(Request $request) 
     {
         $validated = $request->validate([
             'file' => 'mimes:csv,xlsx,xls'
@@ -156,11 +156,12 @@ class UniversityController extends Controller
     
     function university_import_save(Request $request)
     {
+       
         $totuniversity=count($request->name);
         for($i=0;$i<$totuniversity;$i++)
         {
             $country = Country::firstOrNew(array('name' => $request->country[$i]));
-
+        
             $university = University::firstOrNew(array('name' => $request->name[$i]));
             $university->description = $request->description[$i];
             $university->address=$request->address[$i];
@@ -168,6 +169,37 @@ class UniversityController extends Controller
             $university->email=$request->email[$i];
             $university->status="active";
             $university->country_id=$country->id;
+            $university->provision_state=$request->provision_state[$i];
+            $university->intake_year=$request->intake_year[$i];
+            $university->intake_month=$request->intake_month[$i];
+            $university->application_fees=$request->application_fees[$i];
+            $university->web=$request->web[$i];
+
+            $university->d_req_aca_per=$request->d_req_aca_per[$i];
+            $university->d_req_aca_gpa=$request->d_req_aca_gpa[$i];
+            $university->d_req_lan_per=$request->d_req_lan_per[$i];
+            $university->d_req_lan_gpa=$request->d_req_lan_gpa[$i];
+
+            $university->g_req_aca_per=$request->g_req_aca_per[$i];
+            $university->g_req_aca_gpa=$request->g_req_aca_gpa[$i];
+            $university->g_req_lan_per=$request->g_req_lan_per[$i];
+            $university->g_req_lan_gpa=$request->g_req_lan_gpa[$i];
+
+            $university->pg_req_aca_per=$request->pg_req_aca_per[$i];
+            $university->pg_req_aca_gpa=$request->pg_req_aca_gpa[$i];
+            $university->pg_req_lan_per=$request->pg_req_lan_per[$i];
+            $university->pg_req_lan_gpa=$request->pg_req_lan_gpa[$i];
+
+            $university->ten_req_aca_per=$request->ten_req_aca_per[$i];
+            $university->ten_req_aca_gpa=$request->ten_req_aca_gpa[$i];
+            $university->ten_req_lan_per=$request->ten_req_lan_per[$i];
+            $university->ten_req_lan_gpa=$request->ten_req_lan_gpa[$i];
+
+            $university->twelve_req_aca_per=$request->twelve_req_aca_per[$i];
+            $university->twelve_req_aca_gpa=$request->twelve_req_aca_gpa[$i];
+            $university->twelve_req_lan_per=$request->twelve_req_lan_per[$i];
+            $university->twelve_req_lan_gpa=$request->twelve_req_lan_gpa[$i];
+
             $university->company_id=\Auth::user()->company_id;
             $university->added_by=\Auth::user()->id;
             $university->save();

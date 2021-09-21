@@ -32,6 +32,12 @@ Add university
                                 <th>Course Level</th>
                                 <th>Course Requirement Title</th>
                                 <th>Course Requirement Type</th>
+                                <th>Specialization</th>
+                                <th>Duration</th>
+                                <th>Application Fees</th>
+                                <th>Course Link</th>
+                                <th>Intake Year</th>
+                                <th>Intake Month</th>
                                 <th>Action</th>
                             </tr>
                             <tbody id="tbl_posts_body">    
@@ -64,6 +70,12 @@ Add university
                                       
                                         </td>
                                         <td><input type='hidden' name='course_requirement_type[]' value='{{$value[4]}}'>{{$value[4]}}</td>                        
+                                        <td><input type='hidden' name='specialization[]' value='{{$value[5]}}'>{{$value[5]}}</td>
+                                        <td><input type='hidden' name='duration[]' value='{{$value[6]}}'>{{$value[6]}}</td>
+                                        <td><input type='hidden' name='application_fees[]' value='{{$value[7]}}'>{{$value[7]}}</td>
+                                        <td><input type='hidden' name='course_link[]' value='{{$value[8]}}'>{{$value[8]}}</td>
+                                        <td><input type='hidden' name='intake_year[]' value='{{$value[9]}}'>{{$value[9]}}</td>
+                                        <td><input type='hidden' name='intake_month[]' value='{{$value[10]}}'>{{$value[10]}}</td>
                                         <td>
                                             <a href="#" title='Delete' class="btn btn-danger delete-record" data-id="{{$i}}">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="12" x2="16" y2="12"></line></svg>

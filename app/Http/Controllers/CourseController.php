@@ -263,6 +263,12 @@ class CourseController extends Controller
             $course->university_id=$university->id;
             $course->course_level=$request->course_level[$i] ?? "";
             $course->status="active";
+            $course->specialization=$request->specialization[$i];
+            $course->duration=$request->duration[$i];
+            $course->application_fees=$request->application_fees[$i];
+            $course->course_link=$request->course_link[$i];
+            $course->intake_year=$request->intake_year[$i];
+            $course->intake_month=$request->intake_month[$i];
             $course->added_by=\Auth::user()->id;
             $course->company_id=\Auth::user()->company_id;
             $course->save();
