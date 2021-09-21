@@ -166,6 +166,10 @@ div.progress.visible {
         max-width: 100%;
         margin: 0px 5px;
       }
+      .hide_col
+      {
+        display: none;
+      }
 
       @media screen and (orientation: landscape) {
       }
@@ -268,10 +272,212 @@ div.progress.visible {
         </div>
     </div>
 </script>
+<script id="detail-mal-online-exam" type="text/x-handlebars-template">
+    <div class="col-md-12">
+        <hr>
+        <hr>
+    </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="name">Exam Status</label>
+                <select class="form-control" id="exam_status_@{{ id }}" name="exam_status" onchange="toggle_exam_status(this,@{{ id }})">
+                    <option value="">Select Exam Status</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Planning">Planning</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="name">Type of Exam</label>
+                <select name="exam_type" id="exam_type_@{{ id }}" class="form-control" onchange="change_exam_type(@{{ id }});">
+                        <option value="">Type of exam</option>
+                        <option value="IELTS">IELTS</option>
+                        <option value="TOEFL">TOEFL</option>
+                        <option value="SAT">SAT</option>
+                        <option value="GRE">GRE</option>
+                        <option value="GMAT">GMAT</option>
+                        <option value="PTE">PTE</option>
+                        <option value="UKVI">UKVI</option>
+                        <option value="IELTS GENERAL">IELTS GENERAL</option>
+                        <option value="DUOLINGO">DUOLINGO</option>
+                        <option value="SPOKEN ENGLISH">SPOKEN ENGLISH</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6"></div>
+        <div class="col-md-12" style="display:none" id="communication_skill_msg_@{{ id }}">
+            <div id="communication_skill_msg">
+                Communication Skills
+                <hr>
+            </div>
+        </div>
+        <div class="col-md-6 hide_col " id="exam_listening_div_@{{ id }}">
+            <div class="form-group">
+                <label for="name">Listening</label>
+                <input type="text" name="exam_listening" id="exam_listening" class="form-control">
+            </div>
+        </div>
+        <div class="col-md-6 hide_col " id="exam_speaking_div_@{{ id }}">
+            <div class="form-group">
+                <label for="name">Speaking</label>
+                <input type="text" name="exam_speaking" id="exam_speaking" class="form-control">
+            </div>
+        </div>
+
+        <div class="col-md-6 hide_col " id="exam_reading_div_@{{ id }}">
+            <div class="form-group">
+                <label for="name">Reading</label>
+                <input type="text" name="exam_reading" id="exam_reading" class="form-control">
+            </div>
+        </div>
+
+        <div class="col-md-6 hide_col " id="exam_writing_div_@{{ id }}">
+            <div class="form-group">
+                <label for="name">Writing</label>
+                <input type="text" name="exam_writing" id="exam_writing" class="form-control">
+            </div>
+        </div>
+
+        <div class="col-md-6 hide_col " id="exam_math_div_@{{ id }}">
+            <div class="form-group">
+                <label for="name">Math</label>
+                <input type="text" name="exam_math" id="exam_math" class="form-control">
+            </div>
+        </div>
+
+        <div class="col-md-6 hide_col " id="exam_evidence_based_reading_writing_div_@{{ id }}">
+            <div class="form-group">
+                <label for="name">Evidence-Based Reading and Writing</label>
+                <input type="text" name="exam_evidence_based_reading_writing" id="exam_evidence_based_reading_writing" class="form-control">
+            </div>
+        </div>
+
+        <div class="col-md-6 hide_col " id="exam_essay_div_@{{ id }}">
+            <div class="form-group">
+                <label for="name">Essay (optional)</label>
+                <input type="text" name="exam_essay" id="exam_essay" class="form-control">
+            </div>
+        </div>
+
+        <div class="col-md-6 hide_col " id="exam_verbal_reasoning_div_@{{ id }}">
+            <div class="form-group">
+                <label for="name">Verbal Reasoning</label>
+                <input type="text" name="exam_verbal_reasoning" id="exam_verbal_reasoning" class="form-control">
+            </div>
+        </div>
+
+        <div class="col-md-6 hide_col " id="exam_quantitative_reasoning_div_@{{ id }}">
+            <div class="form-group">
+                <label for="name">Quantitative Reasoning</label>
+                <input type="text" name="exam_quantitative_reasoning" id="exam_quantitative_reasoning" class="form-control">
+            </div>
+        </div>
+
+        <div class="col-md-6 hide_col " id="exam_analytical_writing_div_@{{ id }}">
+            <div class="form-group">
+                <label for="name">Analytical Writing</label>
+                <input type="text" name="exam_analytical_writing" id="exam_analytical_writing" class="form-control">
+            </div>
+        </div>
+
+        <div class="col-md-6 hide_col " id="exam_integrated_reasoning_div_@{{ id }}">
+            <div class="form-group">
+                <label for="name">Integrated Reasoning</label>
+                <input type="text" name="exam_integrated_reasoning" id="exam_integrated_reasoning" class="form-control">
+            </div>
+        </div>
+
+        <div class="col-md-12" style="display:none" id="enable_skill_msg_@{{ id }}">
+            Enabling Skills
+            <hr>
+        </div>
+
+        <div class="col-md-6 hide_col" id="exam_grammar_div_@{{ id }}">
+
+            <div class="form-group">
+                <label for="name">Grammar</label>
+                <input type="text" name="exam_grammar" id="exam_grammar" class="form-control">
+            </div>
+        </div>
+
+        <div class="col-md-6 hide_col" id="exam_fluency_div_@{{ id }}">
+            <div class="form-group">
+                <label for="name">Fluency</label>
+                <input type="text" name="exam_fluency" id="exam_fluency" class="form-control">
+            </div>
+        </div>
+
+        <div class="col-md-6 hide_col" id="exam_pronunciation_div_@{{ id }}">
+            <div class="form-group">
+                <label for="name">Pronunciation</label>
+                <input type="text" name="exam_pronunciation" id="exam_pronunciation" class="form-control">
+            </div>
+        </div>
+
+        <div class="col-md-6 hide_col" id="exam_spelling_div_@{{ id }}">
+            <div class="form-group">
+                <label for="name">Spelling</label>
+                <input type="text" name="exam_spelling" id="exam_spelling" class="form-control">
+            </div>
+        </div>
+
+        <div class="col-md-6 hide_col" id='exam_vocabulary_div_@{{ id }}'>
+            <div class="form-group">
+                <label for="name">Vocabulary</label>
+                <input type="text" name="exam_vocabulary" id="exam_vocabulary" class="form-control">
+            </div>
+        </div>
+
+        <div class="col-md-6 hide_col" id="exam_written_disclosure_div_@{{ id }}">
+            <div class="form-group">
+                <label for="name">Written Disclosure</label>
+                <input type="text" name="exam_written_disclosure" id="exam_written_disclosure" class="form-control">
+            </div>
+        </div>
+
+        <div class="col-md-6 hide_col" id="exam_literacy_div_@{{ id }}">
+            <div class="form-group">
+                <label for="name">Literacy</label>
+                <input type="text" name="exam_literacy" id="exam_literacy" class="form-control">
+            </div>
+        </div>
+
+        <div class="col-md-6 hide_col" id="exam_conversation_div_@{{ id }}">
+            <div class="form-group">
+                <label for="name">Conversation</label>
+                <input type="text" name="exam_conversation" id="exam_conversation" class="form-control">
+            </div>
+        </div>
+
+        <div class="col-md-6 hide_col" id="exam_comprehension_div_@{{ id }}">
+            <div class="form-group">
+                <label for="name">Comprehension</label>
+                <input type="text" name="exam_comprehension" id="exam_comprehension" class="form-control">
+            </div>
+        </div>
+
+        <div class="col-md-6 hide_col" id="exam_production_div_@{{ id }}">
+            <div class="form-group">
+                <label for="name">Production</label>
+                <input type="text" name="exam_production" id="exam_production" class="form-control">
+            </div>
+        </div>
+
+        <div class="hiddan_data_data_@{{ id }}" style="display:none;">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="name">Planning Date</label>
+                    <input type="date" name="planning_date" id="name" class="form-control" required="">
+                </div>
+            </div>
+        </div>
+</script>
 <script>
-  
+
     var cout=1;
-    $("#exam_type").change(function(){
+    $("#exam_type").change(function()
+    {
         var examType=$(this).val();
         var exam_status=$("#exam_status").val();
         $(".exam_score").show();
@@ -396,6 +602,145 @@ div.progress.visible {
 
     });
 
+    function change_exam_type(id)
+    {
+        var examType=$("#exam_type_"+id).val();
+        var exam_status=$("#exam_status_"+id).val();
+        $(".exam_score").show();
+        $("#communication_skill_msg_"+id).hide();
+        $("#enable_skill_msg_"+id).hide();
+        $("#exam_listening_div_"+id).hide();
+        $("#exam_speaking_div_"+id).hide();
+        $("#exam_reading_div_"+id).hide();
+        $("#exam_writing_div_"+id).hide();
+        $("#exam_math_div_"+id).hide();
+        $("#exam_evidence_based_reading_writing_div_"+id).hide();
+        $("#exam_essay_div_"+id).hide();
+        $("#exam_verbal_reasoning_div_"+id).hide();
+        $("#exam_quantitative_reasoning_div_"+id).hide();
+        $("#exam_analytical_writing_div_"+id).hide();
+        $("#exam_integrated_reasoning_div_"+id).hide();
+        $("#exam_grammar_div_"+id).hide();
+        $("#exam_fluency_div_"+id).hide();
+        $("#exam_pronunciation_div_"+id).hide();
+        $("#exam_spelling_div_"+id).hide();
+        $("#exam_vocabulary_div_"+id).hide();
+        $("#exam_written_disclosure_div_"+id).hide();
+        $("#exam_literacy_div_"+id).hide();
+        $("#exam_conversation_div_"+id).hide();
+        $("#exam_comprehension_div_"+id).hide();
+        $("#exam_production_div_"+id).hide();
+
+        if(examType=="IELTS" && exam_status !="Planning")
+        {
+            $("#exam_listening_div_"+id).show();
+            $("#exam_speaking_div_"+id).show();
+            $("#exam_reading_div_"+id).show();
+            $("#exam_writing_div_"+id).show();
+        }
+
+        if(examType=="IELTS GENERAL" && exam_status !="Planning")
+        {
+            $("#exam_listening_div_"+id).show();
+            $("#exam_speaking_div_"+id).show();
+            $("#exam_reading_div_"+id).show();
+            $("#exam_writing_div_"+id).show();
+        }
+
+        if(examType=="SPOKEN ENGLISH" && exam_status !="Planning")
+        {
+            $("#exam_listening_div_"+id).show();
+            $("#exam_speaking_div_"+id).show();
+            $("#exam_reading_div_"+id).show();
+            $("#exam_writing_div_"+id).show();
+        }
+
+        if(examType=="UKVI" && exam_status !="Planning")
+        {
+            $("#exam_listening_div_"+id).show();
+            $("#exam_speaking_div_"+id).show();
+            $("#exam_reading_div_"+id).show();
+            $("#exam_writing_div_"+id).show();
+        }
+
+        if(examType=="TOEFL" && exam_status !="Planning")
+        {
+            $("#exam_listening_div_"+id).show();
+            $("#exam_speaking_div_"+id).show();
+            $("#exam_reading_div_"+id).show();
+            $("#exam_writing_div_"+id).show();
+        }
+
+        if(examType=="SAT" && exam_status !="Planning")
+        {
+            $("#exam_math_div_"+id).show();
+            $("#exam_evidence_based_reading_writing_div_"+id).show();
+            $("#exam_essay_div_"+id).show();
+        }
+
+        if(examType=="SAT" && exam_status !="Planning")
+        {
+            $("#exam_math_div_"+id).show();
+            $("#exam_evidence_based_reading_writing_div_"+id).show();
+            $("#exam_essay_div_"+id).show();
+        }
+
+        if(examType=="GRE" && exam_status !="Planning")
+        {
+            $("#exam_verbal_reasoning_div_"+id).show();
+            $("#exam_quantitative_reasoning_div_"+id).show();
+            $("#exam_analytical_writing_div_"+id).show();
+        }
+
+        if(examType=="GMAT" && exam_status !="Planning")
+        {
+            $("#exam_verbal_reasoning_div_"+id).show();
+            $("#exam_quantitative_reasoning_div_"+id).show();
+            $("#exam_analytical_writing_div_"+id).show();
+            $("#exam_integrated_reasoning_div_"+id).show();
+        }
+
+        if(examType=="PTE" && exam_status !="Planning")
+        {
+            $("#communication_skill_msg_"+id).show();
+            $("#enable_skill_msg_"+id).show();
+            $("#exam_listening_div_"+id).show();
+            $("#exam_speaking_div_"+id).show();
+            $("#exam_reading_div_"+id).show();
+            $("#exam_writing_div__"+id).show();
+
+            $("#exam_grammar_div_"+id).show();
+            $("#exam_fluency_div_"+id).show();
+            $("#exam_pronunciation_div_"+id).show();
+            $("#exam_spelling_div_"+id).show();
+            $("#exam_vocabulary_div_"+id).show();
+            $("#exam_written_disclosure_div_"+id).show();
+        }
+
+        if(examType=="DUOLINGO" && exam_status !="Planning")
+        {
+            $("#exam_literacy_div_"+id).show();
+            $("#exam_conversation_div_"+id).show();
+            $("#exam_analytical_writing_div_"+id).show();
+            $("#exam_comprehension_div_"+id).show();
+            $("#exam_production_div_"+id).show();
+        }
+
+    }
+
+
+    $("#add_exam_online").click(function(e){
+        e.preventDefault();
+        var data = {
+            'id': cout
+        };
+        var template = Handlebars.compile($("#detail-mal-online-exam").html());
+        console.log(template);
+        var row = $(".exam_container");
+        row.append(template(data));
+        cout=cout+1;
+    });
+
     $("#add_more_expiriance").click(function(e){
         e.preventDefault();
         var data = {
@@ -407,7 +752,7 @@ div.progress.visible {
         row.append(template(data));
         cout=cout+1;
     });
-    
+
     function delete_row(type)
     {
         $("#"+type).remove();
@@ -422,6 +767,7 @@ div.progress.visible {
         console.log(template);
         var row = $("#travel_detail_history");
         row.append(template(data));
+        cout=cout+1;
     });
 
     function toggle_last_education(e)
@@ -483,19 +829,37 @@ div.progress.visible {
             $('form').submit();
         }
     });
-    function toggle_exam_status(val)
+    function toggle_exam_status(val,el='0')
     {
-        if($("#exam_status").val()=="Completed")
+        if(el==0)
         {
-            $(".hiddan_data").show();
-            $(".hiddan_data_data").hide();
+            if($("#exam_status").val()=="Completed")
+            {
+                $(".hiddan_data").show();
+                $(".hiddan_data_data").hide();
 
+            }
+            else
+            {
+                $(".exam_score").hide();
+                $(".hiddan_data_data").show();
+                $(".hiddan_data").hide();
+            }
         }
         else
         {
-            $(".exam_score").hide();
-            $(".hiddan_data_data").show();
-            $(".hiddan_data").hide();
+            if($("#exam_status_"+el).val()=="Completed")
+            {
+                $(".hiddan_data").show();
+                $(".hiddan_data_data_"+el).hide();
+
+            }
+            else
+            {
+                $(".exam_score").hide();
+                $(".hiddan_data_data_"+el).show();
+                $(".hiddan_data").hide();
+            }
         }
 
     }
