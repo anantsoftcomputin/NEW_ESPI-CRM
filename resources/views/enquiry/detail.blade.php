@@ -246,6 +246,9 @@ div.progress.visible {
 </script>
 <script id="details-template-refusal" type="text/x-handlebars-template">
     <div class="row" id="colam_@{{ id }}">
+        <div class="col-md-12">
+            <hr>
+        </div>
         <div class="col-md-6">
             <div class="form-group">
                 <label for="name">Refusal Country</label>
@@ -264,10 +267,18 @@ div.progress.visible {
                 <input type="text" name="refusal_resion[]" class="form-control">
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-5">
             <div class="form-group">
                 <label for="name">Refusal Date</label>
                 <input type="date" name="refusal_date[]" class="form-control">
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="form-group">
+                <label for="name">Remove</label>
+                <a class="btn btn-danger" onclick="refusal_remove(@{{ id }});">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                </a>
             </div>
         </div>
     </div>
@@ -476,6 +487,22 @@ div.progress.visible {
 <script>
 
     var cout=1;
+
+    function travel_detail_history(e){
+        $(".travel_detail_history").hide();
+        var status=e;
+        if(status=="Yes")
+        {
+            $(".travel_detail_history").show();
+        }
+        if(status=="No")
+        {
+            $(".travel_detail_history").hide();
+        }
+
+    }
+
+
     $("#exam_type").change(function()
     {
         var examType=$(this).val();
@@ -601,6 +628,11 @@ div.progress.visible {
         }
 
     });
+
+    function refusal_remove(id)
+    {
+        $("#colam_"+id).remove();
+    }
 
     function change_exam_type(id)
     {
@@ -903,8 +935,9 @@ div.progress.visible {
         e.preventDefault();
         var template = Handlebars.compile($("#details-template-refusal").html());
         console.log(template);
-        var row = $("#example-basic-p-4");
+        var row = $(".wallpappar");
         row.append(template(data));
+        cout=cout+1;
     });
 
 </script>
