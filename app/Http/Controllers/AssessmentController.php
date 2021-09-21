@@ -28,8 +28,6 @@ class AssessmentController extends Controller
 
     public function index(Request $request)
     {
-    
-    
         if ($request->ajax()) {
             $data = assessment::select('*')->where('status', '!=', 'approved')
             ->with('University','Course','User','Enquiry','University.Country');
