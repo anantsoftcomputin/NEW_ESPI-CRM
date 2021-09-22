@@ -11,10 +11,11 @@
       <th role="columnheader">Intake Year</th>
       <th role="columnheader">Intake Month</th>
       <th role="columnheader">University</th>
+      <th role="columnheader">Level</th>
       <th role="columnheader">Course</th>
       <th role="columnheader">Specialization</th>
       <th role="columnheader">Program Link</th>
-      <th role="columnheader">Level</th>
+      
       <th role="columnheader">Duration</th>
       <th role="columnheader">Campus</th>
       <th role="columnheader">Entry Req</th>
@@ -65,6 +66,9 @@
             </select>
       </td>
       <td role="cell">
+          <input type="text" name="level[]" class="form-control">
+      </td>
+      <td role="cell">
         <select name="course_id[]" class="form-control course">
                 <option value="" selected>Select Course</option>
                 @forelse ( $course as $city)
@@ -80,9 +84,7 @@
       <td role="cell">
           <input type="text" name="program_link[]" class="form-control">
       </td>
-      <td role="cell">
-          <input type="text" name="level[]" class="form-control">
-      </td>
+      
       <td role="cell">
           <input type="text" name="duration[]" class="form-control">
       </td>
@@ -167,6 +169,11 @@
                 @endforelse
             </select>
       </td>
+
+      <td role="cell">
+          <input type="text" id="level" name="level[]" class="form-control">
+      </td>
+
       <td role="cell">
         <select name="course_id[]" id="course_id" class="form-control add_course_id course">
                 <option value="" selected>Select Course</option>
@@ -183,9 +190,7 @@
       <td role="cell">
           <input type="text" id="program_link" name="program_link[]" class="form-control">
       </td>
-      <td role="cell">
-          <input type="text" id="level" name="level[]" class="form-control">
-      </td>
+     
       <td role="cell">
           <input type="text" id="duration" name="duration[]" class="form-control">
       </td>

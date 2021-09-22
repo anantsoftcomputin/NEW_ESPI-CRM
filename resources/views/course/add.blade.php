@@ -7,9 +7,9 @@ Add Course
 @section('content')
 <div class="col-md-12">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
         <div class="card">
-                <div class="card-header">{{ __('Add University') }}</div>
+                <div class="card-header">{{ __('Add Course') }}</div>
                 <div class="card-body">
                     @if ($errors->any())
                         <div class="alert alert-danger">

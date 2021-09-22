@@ -15,30 +15,71 @@ class IntactSeeder extends Seeder
     public function run()
     {
         //
-        Intact::create([
-            'month' => 'January-February',
-            'year' => '2021',
-        ]);
-
-        Intact::create([
-            'month' => 'April-May',
-            'year' => '2021',
-        ]);
-
-        Intact::create([
-            'month' => 'June-July',
-            'year' => '2021',
-        ]);
-
-        Intact::create([
-            'month' => 'August-September',
-            'year' => '2021',
-        ]);
-
-        Intact::create([
-            'month' => 'October-November',
-            'year' => '2021',
-        ]);
+        for($i=1;$i<10;$i++)
+        {
+            $year=202;
+            $year .=$i;
+            Intact::create([
+                'month' => 'January',
+                'year' => $year,
+            ]);
+    
+            Intact::create([
+                'month' => 'February',
+                'year' => $year,
+            ]);
+    
+            Intact::create([
+                'month' => 'March',
+                'year' => $year,
+            ]);
+    
+            Intact::create([
+                'month' => 'April',
+                'year' => $year,
+            ]);
+    
+            Intact::create([
+                'month' => 'May',
+                'year' => $year,
+            ]);
+    
+            Intact::create([
+                'month' => 'June',
+                'year' => $year,
+            ]);
+    
+            Intact::create([
+                'month' => 'July',
+                'year' => $year,
+            ]);
+    
+            Intact::create([
+                'month' => 'August',
+                'year' => $year,
+            ]);
+    
+            Intact::create([
+                'month' => 'September',
+                'year' => $year,
+            ]);
+    
+            Intact::create([
+                'month' => 'October',
+                'year' => $year,
+            ]);
+    
+            Intact::create([
+                'month' => 'November',
+                'year' => $year,
+            ]);
+    
+            Intact::create([
+                'month' => 'December',
+                'year' =>$year,
+            ]);
+        }
+        
 
 
 

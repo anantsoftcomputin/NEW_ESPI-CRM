@@ -2,7 +2,7 @@
 <div class="col-md-6">
 
     <div class="form-group">
-        <label for="name">Name</label>
+        <label for="name">University / College Name</label>
         <input type="text" name="name" id="name" value="{{$university->name ?? ''}}" class="form-control" required>
     </div>
 
@@ -59,9 +59,35 @@
             @forelse ( get_country() as $country)
                 <option @if($university->country_id==$country->id) selected @endif value="{{ $country->id }}">{{ ucfirst($country->name) }}</option>
             @empty
-                <option value="#">No Country Availabe </option>
+                <option value="#">No Country Available </option>
             @endforelse
         </select>
     </div>
 
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="country">Intake Year</label>
+        <select name="intake_year" class="form-control">
+            @forelse ($intakeYear as $item_intake_month)
+            <option @if($item_intake_month->id==$university->intake_year) selected @endif value="{{ $item_intake_month->id }}">{{ $item_intake_month->year }}</option>
+            @empty
+            <option value="01">jan</option>
+            @endforelse
+        </select>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="country">Intake Month</label>
+        <select name="intake_month" class="form-control">
+            @forelse ($intake as $item_intack)
+            <option @if($item_intack->id==$university->intake_month) selected @endif value="{{ $item_intack->id }}">{{ $item_intack->month }}</option>
+            @empty
+            <option value="01">jan</option>
+            @endforelse
+        </select>
+    </div>
 </div>

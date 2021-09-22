@@ -38,6 +38,32 @@ Add university
                                 <th>Course Link</th>
                                 <th>Intake Year</th>
                                 <th>Intake Month</th>
+
+                                <th>Diploma Req ACA %</th>
+                                <th>Diploma Req ACA GPA</th>
+                                <th>Diploma Req LAN %</th>
+                                <th>Diploma Req LAN GPA</th>
+
+                                <th>Graduate Req ACA %</th>
+                                <th>Graduate Req ACA GPA</th>
+                                <th>Graduate Req LAN %</th>
+                                <th>Graduate Req LAN GPA</th>
+
+                                <th>Post Graduate Req ACA %</th>
+                                <th>Post Graduate Req ACA GPA</th>
+                                <th>Post Graduate Req LAN %</th>
+                                <th>Post Graduate Req LAN GPA</th>
+
+                                <th>10 Req ACA %</th>
+                                <th>10 Req ACA GPA</th>
+                                <th>10 Req LAN %</th>
+                                <th>10 Req LAN GPA</th>
+
+                                <th>12 Req ACA %</th>
+                                <th>12 Req ACA GPA</th>
+                                <th>12 Req LAN %</th>
+                                <th>12 Req LAN GPA</th>
+                                
                                 <th>Action</th>
                             </tr>
                             <tbody id="tbl_posts_body">    
@@ -76,6 +102,31 @@ Add university
                                         <td><input type='hidden' name='course_link[]' value='{{$value[8]}}'>{{$value[8]}}</td>
                                         <td><input type='hidden' name='intake_year[]' value='{{$value[9]}}'>{{$value[9]}}</td>
                                         <td><input type='hidden' name='intake_month[]' value='{{$value[10]}}'>{{$value[10]}}</td>
+
+                                        <td><input type='hidden' name='d_req_aca_per[]' value='{{$value[11]}}'>{{$value[11]}}</td>                   
+                                        <td><input type='hidden' name='d_req_aca_gpa[]' value='{{$value[12]}}'>{{$value[12]}}</td>
+                                        <td><input type='hidden' name='d_req_lan_per[]' value='{{$value[13]}}'>{{$value[13]}}</td>
+                                        <td><input type='hidden' name='d_req_lan_gpa[]' value='{{$value[14]}}'>{{$value[14]}}</td>
+
+                                        <td><input type='hidden' name='g_req_aca_per[]' value='{{$value[15]}}'>{{$value[15]}}</td>                   
+                                        <td><input type='hidden' name='g_req_aca_gpa[]' value='{{$value[16]}}'>{{$value[16]}}</td>
+                                        <td><input type='hidden' name='g_req_lan_per[]' value='{{$value[17]}}'>{{$value[17]}}</td>                   
+                                        <td><input type='hidden' name='g_req_lan_gpa[]' value='{{$value[18]}}'>{{$value[18]}}</td>
+
+                                        <td><input type='hidden' name='pg_req_aca_per[]' value='{{$value[19]}}'>{{$value[19]}}</td>                   
+                                        <td><input type='hidden' name='pg_req_aca_gpa[]' value='{{$value[20]}}'>{{$value[20]}}</td>
+                                        <td><input type='hidden' name='pg_req_lan_per[]' value='{{$value[21]}}'>{{$value[21]}}</td>                   
+                                        <td><input type='hidden' name='pg_req_lan_gpa[]' value='{{$value[22]}}'>{{$value[22]}}</td>
+
+                                        <td><input type='hidden' name='ten_req_aca_per[]' value='{{$value[23]}}'>{{$value[23]}}</td>                   
+                                        <td><input type='hidden' name='ten_req_aca_gpa[]' value='{{$value[24]}}'>{{$value[24]}}</td>
+                                        <td><input type='hidden' name='ten_req_lan_per[]' value='{{$value[25]}}'>{{$value[25]}}</td>                   
+                                        <td><input type='hidden' name='ten_req_lan_gpa[]' value='{{$value[26]}}'>{{$value[26]}}</td>
+
+                                        <td><input type='hidden' name='twelve_req_aca_per[]' value='{{$value[27]}}'>{{$value[27]}}</td>                   
+                                        <td><input type='hidden' name='twelve_req_aca_gpa[]' value='{{$value[28]}}'>{{$value[28]}}</td>
+                                        <td><input type='hidden' name='twelve_req_lan_per[]' value='{{$value[29]}}'>{{$value[29]}}</td>                   
+                                        <td><input type='hidden' name='twelve_req_lan_gpa[]' value='{{$value[30]}}'>{{$value[30]}}</td>
                                         <td>
                                             <a href="#" title='Delete' class="btn btn-danger delete-record" data-id="{{$i}}">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="12" x2="16" y2="12"></line></svg>

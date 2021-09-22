@@ -40,31 +40,36 @@ Add university
                                 <th>Application Fees</th>
                                 <th>Website</th>
 
-                                <th>D-Req-ACA-%</th>
-                                <th>D-Req-ACA-GPA</th>
-                                <th>D-Req-LAN-%</th>
-                                <th>D-Req-LAN-GPA</th>
+                                <th>Diploma Req ACA %</th>
+                                <th>Diploma Req ACA GPA</th>
+                                <th>Diploma Req LAN %</th>
+                                <th>Diploma Req LAN GPA</th>
 
-                                <th>G-Req-ACA-%</th>
-                                <th>G-Req-ACA-GPA</th>
-                                <th>G-Req-LAN-%</th>
-                                <th>G-Req-LAN-GPA</th>
+                                <th>Graduate Req ACA %</th>
+                                <th>Graduate Req ACA GPA</th>
+                                <th>Graduate Req LAN %</th>
+                                <th>Graduate Req LAN GPA</th>
 
-                                <th>PG-Req-ACA-%</th>
-                                <th>PG-Req-ACA-GPA</th>
-                                <th>PG-Req-LAN-%</th>
-                                <th>PG-Req-LAN-GPA</th>
+                                <th>Post Graduate Req ACA %</th>
+                                <th>Post Graduate Req ACA GPA</th>
+                                <th>Post Graduate Req LAN %</th>
+                                <th>Post Graduate Req LAN GPA</th>
 
-                                <th>10-Req-ACA-%</th>
-                                <th>10-Req-ACA-GPA</th>
-                                <th>10-Req-LAN-%</th>
-                                <th>10-Req-LAN-GPA</th>
+                                <th>10 Req ACA %</th>
+                                <th>10 Req ACA GPA</th>
+                                <th>10 Req LAN %</th>
+                                <th>10 Req LAN GPA</th>
 
-                                <th>12-Req-ACA-%</th>
-                                <th>12-Req-ACA-GPA</th>
-                                <th>12-Req-LAN-%</th>
-                                <th>12-Req-LAN-GPA</th>
+                                <th>12 Req ACA %</th>
+                                <th>12 Req ACA GPA</th>
+                                <th>12 Req LAN %</th>
+                                <th>12 Req LAN GPA</th>
 
+                                <th>Campus Name</th>
+                                <th>Campus Country</th>
+                                <th>Campus Address</th>
+                                <th>Campus Fees</th>
+                                
                                 <th>Action</th>
                             </tr>
                             <tbody id="tbl_posts_body">    
@@ -119,6 +124,50 @@ Add university
                                         <td><input type='hidden' name='twelve_req_aca_gpa[]' value='{{$value[29]}}'>{{$value[29]}}</td>
                                         <td><input type='hidden' name='twelve_req_lan_per[]' value='{{$value[30]}}'>{{$value[30]}}</td>                   
                                         <td><input type='hidden' name='twelve_req_lan_gpa[]' value='{{$value[31]}}'>{{$value[31]}}</td>
+
+                                        <td><input type='hidden' name='campus_name[]' value='{{$value[32]}}'>
+                                        @php
+                                        $data=explode("###",$value[32]);
+                                        foreach($data as $d)
+                                        {
+                                            
+                                            echo $d." ,";
+                                        }
+                                        
+                                        @endphp
+                                      
+                                        </td>
+
+                                        <td><input type='hidden' name='campus_country[]' value='{{$value[33]}}'>
+                                        @php
+                                        $data=explode("###",$value[33]);
+                                        foreach($data as $d)
+                                        { 
+                                            echo $d." ,";
+                                        }
+                                        @endphp
+                                      
+                                        </td>
+
+                                        <td><input type='hidden' name='campus_address[]' value='{{$value[34]}}'>
+                                        @php
+                                        $data=explode("###",$value[34]);
+                                        foreach($data as $d)
+                                        { 
+                                            echo $d." ,";
+                                        }
+                                        @endphp
+                                        </td>
+
+                                        <td><input type='hidden' name='campus_fees[]' value='{{$value[35]}}'>
+                                        @php
+                                        $data=explode("###",$value[35]);
+                                        foreach($data as $d)
+                                        { 
+                                            echo $d." ,";
+                                        }
+                                        @endphp
+                                        </td>
 
                                         <td>
                                             <a href="#" title='Delete' class="btn btn-danger delete-record" data-id="{{$i}}">

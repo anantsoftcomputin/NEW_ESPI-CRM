@@ -31,6 +31,7 @@ class AddUniversity extends FormRequest
             'phone' => 'required',
             "web"=>"required",
             'status'=>'required',
+            
         ];
     }
 }
