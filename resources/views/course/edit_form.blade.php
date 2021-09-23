@@ -73,28 +73,28 @@ Course Special Requirement
 <div class="col-md-6">
     <div class="form-group">
         <label for="country">Diploma Requirement Academic %</label>
-        <input type="text" name="d_req_aca_per" value="{{$Course->d_req_aca_per ?? ''}}"  onkeypress="return isNumber(event)" id="d_req_aca_per" class="form-control" required>
+        <input type="text" name="d_req_aca_per" value="{{$Course->d_req_aca_per ?? ''}}"  onkeypress="return isNumber(event)" id="d_req_aca_per" class="form-control">
     </div>   
 </div>
 
 <div class="col-md-6">
     <div class="form-group">
         <label for="country">Diploma Requirement Academic GPA</label>
-        <input type="text" name="d_req_aca_gpa" value="{{$Course->d_req_aca_gpa ?? ''}}"  onkeypress="return isNumber(event)" id="d_req_aca_gpa" class="form-control" required>
+        <input type="text" name="d_req_aca_gpa" value="{{$Course->d_req_aca_gpa ?? ''}}"  onkeypress="return isNumber(event)" id="d_req_aca_gpa" class="form-control">
     </div>   
 </div>
 
 <div class="col-md-6">
     <div class="form-group">
         <label for="country">Diploma Requirement Language %</label>
-        <input type="text" name="d_req_lan_per" value="{{$Course->d_req_lan_per ?? ''}}"  onkeypress="return isNumber(event)" id="d_req_lan_per" class="form-control" required>
+        <input type="text" name="d_req_lan_per" value="{{$Course->d_req_lan_per ?? ''}}"  onkeypress="return isNumber(event)" id="d_req_lan_per" class="form-control">
     </div>   
 </div>
 
 <div class="col-md-6">
     <div class="form-group">
         <label for="country">Diploma Requirement Language GPA</label>
-        <input type="text" name="d_req_lan_gpa" value="{{$Course->d_req_lan_gpa ?? ''}}"  onkeypress="return isNumber(event)" id="d_req_lan_gpa" class="form-control" required>
+        <input type="text" name="d_req_lan_gpa" value="{{$Course->d_req_lan_gpa ?? ''}}"  onkeypress="return isNumber(event)" id="d_req_lan_gpa" class="form-control">
     </div>   
 </div>
 
@@ -102,112 +102,112 @@ Course Special Requirement
 <div class="col-md-6">
     <div class="form-group">
         <label for="country">Graduate Requirement Academic %</label>
-        <input type="text" name="g_req_aca_per" value="{{$Course->g_req_aca_per ?? ''}}"  onkeypress="return isNumber(event)" id="g_req_aca_per" class="form-control" required>
+        <input type="text" name="g_req_aca_per" value="{{$Course->g_req_aca_per ?? ''}}"  onkeypress="return isNumber(event)" id="g_req_aca_per" class="form-control">
     </div>   
 </div>
 
 <div class="col-md-6">
     <div class="form-group">
         <label for="country">Graduate Requirement Academic GPA</label>
-        <input type="text" name="g_req_aca_gpa" value="{{$Course->g_req_aca_gpa ?? ''}}"  onkeypress="return isNumber(event)" id="g_req_aca_gpa" class="form-control" required>
+        <input type="text" name="g_req_aca_gpa" value="{{$Course->g_req_aca_gpa ?? ''}}"  onkeypress="return isNumber(event)" id="g_req_aca_gpa" class="form-control">
     </div>   
 </div>
 
 <div class="col-md-6">
     <div class="form-group">
         <label for="country">Graduate Requirement Language %</label>
-        <input type="text" name="g_req_lan_per" value="{{$Course->g_req_lan_per ?? ''}}"  onkeypress="return isNumber(event)" id="g_req_lan_per" class="form-control" required>
+        <input type="text" name="g_req_lan_per" value="{{$Course->g_req_lan_per ?? ''}}"  onkeypress="return isNumber(event)" id="g_req_lan_per" class="form-control">
     </div>   
 </div>
 
 <div class="col-md-6">
     <div class="form-group">
         <label for="country">Graduate Requirement Language GPA</label>
-        <input type="text" name="g_req_lan_gpa" value="{{$Course->g_req_lan_gpa ?? ''}}"  onkeypress="return isNumber(event)" id="g_req_lan_gpa" class="form-control" required>
+        <input type="text" name="g_req_lan_gpa" value="{{$Course->g_req_lan_gpa ?? ''}}"  onkeypress="return isNumber(event)" id="g_req_lan_gpa" class="form-control">
     </div>   
 </div>
 
 <div class="col-md-6">
     <div class="form-group">
         <label for="country">Post Graduate Requirement Academic %</label>
-        <input type="text" name="pg_req_aca_per" value="{{$Course->pg_req_aca_per ?? ''}}"  onkeypress="return isNumber(event)" id="pg_req_aca_per" class="form-control" required>
+        <input type="text" name="pg_req_aca_per" value="{{$Course->pg_req_aca_per ?? ''}}"  onkeypress="return isNumber(event)" id="pg_req_aca_per" class="form-control">
     </div>   
 </div>
 
 <div class="col-md-6">
     <div class="form-group">
         <label for="country">Post Graduate Requirement Academic GPA</label>
-        <input type="text" name="pg_req_aca_gpa" value="{{$Course->pg_req_aca_gpa ?? ''}}"  onkeypress="return isNumber(event)" id="pg_req_aca_gpa" class="form-control" required>
+        <input type="text" name="pg_req_aca_gpa" value="{{$Course->pg_req_aca_gpa ?? ''}}"  onkeypress="return isNumber(event)" id="pg_req_aca_gpa" class="form-control">
     </div>   
 </div>
 
 <div class="col-md-6">
     <div class="form-group">
         <label for="country">Post Graduate Requirement Language %</label>
-        <input type="text" name="pg_req_lan_per" value="{{$Course->pg_req_lan_per ?? ''}}"  onkeypress="return isNumber(event)" id="pg_req_lan_per" class="form-control" required>
+        <input type="text" name="pg_req_lan_per" value="{{$Course->pg_req_lan_per ?? ''}}"  onkeypress="return isNumber(event)" id="pg_req_lan_per" class="form-control">
     </div>   
 </div>
 
 <div class="col-md-6">
     <div class="form-group">
         <label for="country">Post Graduate Requirement Language GPA</label>
-        <input type="text" name="pg_req_lan_gpa" value="{{$Course->pg_req_lan_gpa ?? ''}}"  onkeypress="return isNumber(event)" id="pg_req_lan_gpa" class="form-control" required>
+        <input type="text" name="pg_req_lan_gpa" value="{{$Course->pg_req_lan_gpa ?? ''}}"  onkeypress="return isNumber(event)" id="pg_req_lan_gpa" class="form-control">
     </div>   
 </div>
 
 <div class="col-md-6">
     <div class="form-group">
         <label for="country">10th Requirement Academic %</label>
-        <input type="text" name="ten_req_aca_per" value="{{$Course->ten_req_aca_per ?? ''}}"  onkeypress="return isNumber(event)" id="ten_req_aca_per" class="form-control" required>
+        <input type="text" name="ten_req_aca_per" value="{{$Course->ten_req_aca_per ?? ''}}"  onkeypress="return isNumber(event)" id="ten_req_aca_per" class="form-control">
     </div>   
 </div>
 
 <div class="col-md-6">
     <div class="form-group">
         <label for="country">10th Requirement Academic GPA</label>
-        <input type="text" name="ten_req_aca_gpa" value="{{$Course->ten_req_aca_gpa ?? ''}}"  onkeypress="return isNumber(event)" id="ten_req_aca_gpa" class="form-control" required>
+        <input type="text" name="ten_req_aca_gpa" value="{{$Course->ten_req_aca_gpa ?? ''}}"  onkeypress="return isNumber(event)" id="ten_req_aca_gpa" class="form-control">
     </div>   
 </div>
 
 <div class="col-md-6">
     <div class="form-group">
         <label for="country">10th Graduate Requirement Language %</label>
-        <input type="text" name="ten_req_lan_per" value="{{$Course->ten_req_lan_per ?? ''}}"  onkeypress="return isNumber(event)" id="ten_req_lan_per" class="form-control" required>
+        <input type="text" name="ten_req_lan_per" value="{{$Course->ten_req_lan_per ?? ''}}"  onkeypress="return isNumber(event)" id="ten_req_lan_per" class="form-control">
     </div>   
 </div>
 
 <div class="col-md-6">
     <div class="form-group">
         <label for="country">10th Requirement Language GPA</label>
-        <input type="text" name="ten_req_lan_gpa" value="{{$Course->ten_req_lan_gpa ?? ''}}"  onkeypress="return isNumber(event)" id="ten_req_lan_gpa" class="form-control" required>
+        <input type="text" name="ten_req_lan_gpa" value="{{$Course->ten_req_lan_gpa ?? ''}}"  onkeypress="return isNumber(event)" id="ten_req_lan_gpa" class="form-control">
     </div>   
 </div>
 
 <div class="col-md-6">
     <div class="form-group">
         <label for="country">12th Requirement Academic %</label>
-        <input type="text" name="twelve_req_aca_per" value="{{$Course->twelve_req_aca_per ?? ''}}"  onkeypress="return isNumber(event)" id="twelve_req_aca_per" class="form-control" required>
+        <input type="text" name="twelve_req_aca_per" value="{{$Course->twelve_req_aca_per ?? ''}}"  onkeypress="return isNumber(event)" id="twelve_req_aca_per" class="form-control">
     </div>   
 </div>
 
 <div class="col-md-6">
     <div class="form-group">
         <label for="country">12th Requirement Academic GPA</label>
-        <input type="text" name="twelve_req_aca_gpa" value="{{$Course->twelve_req_aca_gpa ?? ''}}"  onkeypress="return isNumber(event)" id="twelve_req_aca_gpa" class="form-control" required>
+        <input type="text" name="twelve_req_aca_gpa" value="{{$Course->twelve_req_aca_gpa ?? ''}}"  onkeypress="return isNumber(event)" id="twelve_req_aca_gpa" class="form-control">
     </div>   
 </div>
 
 <div class="col-md-6">
     <div class="form-group">
         <label for="country">12th Graduate Requirement Language %</label>
-        <input type="text" name="twelve_req_lan_per" value="{{$Course->twelve_req_lan_per ?? ''}}"  onkeypress="return isNumber(event)" id="twelve_req_lan_per" class="form-control" required>
+        <input type="text" name="twelve_req_lan_per" value="{{$Course->twelve_req_lan_per ?? ''}}"  onkeypress="return isNumber(event)" id="twelve_req_lan_per" class="form-control">
     </div>   
 </div>
 
 <div class="col-md-6">
     <div class="form-group">
         <label for="country">12th Requirement Language GPA</label>
-        <input type="text" name="twelve_req_lan_gpa" value="{{$Course->twelve_req_lan_gpa ?? ''}}"  onkeypress="return isNumber(event)" id="twelve_req_lan_gpa" class="form-control" required>
+        <input type="text" name="twelve_req_lan_gpa" value="{{$Course->twelve_req_lan_gpa ?? ''}}"  onkeypress="return isNumber(event)" id="twelve_req_lan_gpa" class="form-control">
     </div>   
 </div>
 
@@ -239,8 +239,8 @@ Course Special Requirement
                     <option value="">select document</option>
                     <option @if($course_recruitment->documents=='Photographs') selected @endif value="Photographs">Photographs</option>
                     <option @if($course_recruitment->documents=='Passport') selected @endif value="Passport">Passport</option>
-                    <option @if($course_recruitment->documents=='10th Documents') selected @endif value="10th">10th Documents</option>
-                    <option @if($course_recruitment->documents=='12th Documents') selected @endif value="12th">12th Documents</option>
+                    <option @if($course_recruitment->documents=='10th Documents') selected @endif value="10th Documents">10th Documents</option>
+                    <option @if($course_recruitment->documents=='12th Documents') selected @endif value="12th Documents">12th Documents</option>
                     <option @if($course_recruitment->documents=='Diploma Documents') selected @endif value="Diploma Documents">Diploma Documents</option>
                     <option @if($course_recruitment->documents=='Bachelor Documents') selected @endif value="Bachelor Documents">Bachelor Documents</option>
                     <option @if($course_recruitment->documents=='Master Documents') selected @endif value="Master Documents">Master Documents</option>
