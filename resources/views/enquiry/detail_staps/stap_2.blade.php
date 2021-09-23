@@ -14,6 +14,7 @@
         </div>
     </div>
 </div>
+
 <div class="row" style="display: none;">
     <div class="table-responsive">
         <table class="table table-bordered mb-4">
@@ -96,7 +97,6 @@
     </div>
 </div>
 
-
 {{-- ready code --}}
 
 <div class="education" id="master_detail" style="display: none;">
@@ -167,6 +167,7 @@
         </div>
     </div>
 </div>
+
 <div class="education" id="degree_detail" style="display: none;">
     <div class="text-center">
         <strong style="font-size: 35px;">Graduate Details</strong>
@@ -235,10 +236,12 @@
         </div>
     </div>
 </div>
+
 <div class="education" id="hsc_detail" style="display: none;">
     <div class="text-center">
         <strong style="font-size: 35px">12th Details</strong>
     </div>
+
     <div class="row">
         <div class="col md-6">
             <div class="form-group">
@@ -251,7 +254,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label>percentage</label>
+                <label>Percentage</label>
                 <input type="text" name="hsc_pass_percentage" class="form-control">
             </div>
             <div class="form-group">
@@ -262,7 +265,6 @@
                 <label>Backlogs</label>
                 <input type="text" name="hsc_backlog" class="form-control">
             </div>
-
         </div>
         <div class="col md-6">
             <div class="form-group">
@@ -281,12 +283,8 @@
 
         </div>
     </div>
-
-
-
-
-
 </div>
+
 <div class="education" id="diploma_detail" style="display: none;">
     <div class="text-center">
         <strong style="font-size: 35px">Diploma Details</strong>
@@ -325,13 +323,8 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
 </div>
+
 <div class="education" id="ssc_detail" style="display: none;">
     <div class="text-center">
         <strong style="font-size: 35px">10th Details</strong>

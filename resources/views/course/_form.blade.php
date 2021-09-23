@@ -11,7 +11,7 @@
 <div class="col-md-6">
     <div class="form-group">
         <label for="web">University</label>
-        <select name="university_id" id="" class="form-control">
+        <select name="university_id" id="" class="university form-control">
             <option value="#" selected disabled>Select University</option>
             @foreach ($university as $item)
                 <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -28,9 +28,14 @@
 
     <div class="form-group">
         <label for="course_level">Level</label>
-        <select name="course_level" id="course_level" class="form-control" required>
+        <select name="course_level" id="course_level" class="level form-control" required>
             <option value="#" selected disabled>Course Level</option>
             <option value="under-graduate">Under Graduate</option>
+            <option value="diploma">Diploma</option>
+            <option value="advance-diploma">Advance Diploma</option>
+            <option value="bachelor">Bachelor</option>
+            <option value="post-graduate-diploma">Post Graduate Diploma</option>
+            <option value="master">Master</option>
         </select>
     </div>
 

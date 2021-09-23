@@ -51,6 +51,7 @@ Route::post('/import_process', [UniversityController::class,"processImport"])->n
 Route::post("/university_import_save",[UniversityController::class,"university_import_save"])->name("university_import_save");
 
 Route::middleware('auth')->prefix('admin')->group(function () {
+    
     Route::post('/send-notification', [FcmTokenController::class, 'sendNotification'])->name('send.notification');
     Route::get("fcm_token",[FcmTokenController::class,"index"]);
     Route::get("university/import",[UniversityController::class,"UniversityImport"])->name("university/import");  

@@ -180,7 +180,7 @@ div.progress.visible {
 <script src="{{ asset('plugins/select2/select2.min.js') }}"></script>
 <script id="details-template" type="text/x-handlebars-template">
     <div class="row" id="colam_@{{ id }}">
-        <div class="col-md-2">
+        <div class="col-md-3">
             <div class="form-group">
                 <label for="name">Name of the company</label>
                 <input type="text" name="work_company[]" id="name" value="" class="form-control" required="">
@@ -198,7 +198,7 @@ div.progress.visible {
                 <input type="date" name="to_work_from[]" id="name" value="" class="form-control" required="">
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <div class="form-group">
                 <label for="name">Work Profile</label>
                 <input type="text" name="work_profile[]" id="name" value="" class="form-control" required="">
@@ -207,7 +207,7 @@ div.progress.visible {
         <div class="col-md-1">
             <div class="form-group">
                 <label for="name">Remove</label>
-                <a href='#' class='btn btn-danger remove_exp' id='NAME' data-id="colam_@{{ id }}" onclick="delete_row('colam_@{{ id }}')">
+                <a  class='btn btn-danger remove_exp' id='NAME' data-id="colam_@{{ id }}" onclick="delete_row('colam_@{{ id }}')">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="12" x2="16" y2="12"></line></svg>
                 </a>
             </div>
@@ -237,7 +237,7 @@ div.progress.visible {
         <div class="col-md-1">
             <div class="form-group">
                 <label for="name">Remove</label>
-                <a href='#' class='btn btn-danger remove_exp' id='NAME' data-id="colam_@{{ id }}" onclick="delete_row('colam_@{{ id }}')">
+                <a class='btn btn-danger remove_exp' id='NAME' data-id="colam_@{{ id }}" onclick="delete_row('colam_@{{ id }}')">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="12" x2="16" y2="12"></line></svg>
                 </a>
             </div>
@@ -488,6 +488,19 @@ div.progress.visible {
 
     var cout=1;
 
+    $("#experience_status").change(function(){
+        var status=$("#experience_status").val();
+        if(status=='Yes')
+        {
+            $("#experience_detail_history").show();
+            $("#add_more_expiriance").show();
+        }else{
+            $("#experience_detail_history").hide();
+            $("#add_more_expiriance").hide();
+        }
+        
+    });
+
     function travel_detail_history(e){
         $(".travel_detail_history").hide();
         var status=e;
@@ -538,6 +551,7 @@ div.progress.visible {
             $("#exam_speaking_div").show();
             $("#exam_reading_div").show();
             $("#exam_writing_div").show();
+            $("#overall_band_div").show();
         }
 
         if(examType=="IELTS GENERAL" && exam_status !="Planning")
@@ -546,6 +560,7 @@ div.progress.visible {
             $("#exam_speaking_div").show();
             $("#exam_reading_div").show();
             $("#exam_writing_div").show();
+            $("#overall_band_div").show();
         }
 
         if(examType=="SPOKEN ENGLISH" && exam_status !="Planning")
@@ -554,6 +569,7 @@ div.progress.visible {
             $("#exam_speaking_div").show();
             $("#exam_reading_div").show();
             $("#exam_writing_div").show();
+            $("#overall_band_div").show();
         }
 
         if(examType=="UKVI" && exam_status !="Planning")
@@ -562,6 +578,7 @@ div.progress.visible {
             $("#exam_speaking_div").show();
             $("#exam_reading_div").show();
             $("#exam_writing_div").show();
+            $("#overall_band_div").show();
         }
 
         if(examType=="TOEFL" && exam_status !="Planning")
@@ -570,6 +587,7 @@ div.progress.visible {
             $("#exam_speaking_div").show();
             $("#exam_reading_div").show();
             $("#exam_writing_div").show();
+            $("#overall_band_div").show();
         }
 
         if(examType=="SAT" && exam_status !="Planning")
@@ -577,6 +595,7 @@ div.progress.visible {
             $("#exam_math_div").show();
             $("#exam_evidence_based_reading_writing_div").show();
             $("#exam_essay_div").show();
+            $("#overall_band_div").show();
         }
 
         if(examType=="SAT" && exam_status !="Planning")
@@ -584,6 +603,7 @@ div.progress.visible {
             $("#exam_math_div").show();
             $("#exam_evidence_based_reading_writing_div").show();
             $("#exam_essay_div").show();
+            $("#overall_band_div").show();
         }
 
         if(examType=="GRE" && exam_status !="Planning")
@@ -591,6 +611,7 @@ div.progress.visible {
             $("#exam_verbal_reasoning_div").show();
             $("#exam_quantitative_reasoning_div").show();
             $("#exam_analytical_writing_div").show();
+            $("#overall_band_div").show();
         }
 
         if(examType=="GMAT" && exam_status !="Planning")
@@ -599,6 +620,7 @@ div.progress.visible {
             $("#exam_quantitative_reasoning_div").show();
             $("#exam_analytical_writing_div").show();
             $("#exam_integrated_reasoning_div").show();
+            $("#overall_band_div").show();
         }
 
         if(examType=="PTE" && exam_status !="Planning")
@@ -616,6 +638,7 @@ div.progress.visible {
             $("#exam_spelling_div").show();
             $("#exam_vocabulary_div").show();
             $("#exam_written_disclosure_div").show();
+            $("#overall_band_div").show();
         }
 
         if(examType=="DUOLINGO" && exam_status !="Planning")
@@ -625,6 +648,7 @@ div.progress.visible {
             $("#exam_analytical_writing_div").show();
             $("#exam_comprehension_div").show();
             $("#exam_production_div").show();
+            $("#overall_band_div").show();
         }
 
     });
@@ -669,6 +693,7 @@ div.progress.visible {
             $("#exam_speaking_div_"+id).show();
             $("#exam_reading_div_"+id).show();
             $("#exam_writing_div_"+id).show();
+            $("#overall_band_div"+id).show();
         }
 
         if(examType=="IELTS GENERAL" && exam_status !="Planning")
@@ -677,6 +702,7 @@ div.progress.visible {
             $("#exam_speaking_div_"+id).show();
             $("#exam_reading_div_"+id).show();
             $("#exam_writing_div_"+id).show();
+            $("#overall_band_div"+id).show();
         }
 
         if(examType=="SPOKEN ENGLISH" && exam_status !="Planning")
@@ -685,6 +711,7 @@ div.progress.visible {
             $("#exam_speaking_div_"+id).show();
             $("#exam_reading_div_"+id).show();
             $("#exam_writing_div_"+id).show();
+            $("#overall_band_div"+id).show();
         }
 
         if(examType=="UKVI" && exam_status !="Planning")
@@ -693,6 +720,7 @@ div.progress.visible {
             $("#exam_speaking_div_"+id).show();
             $("#exam_reading_div_"+id).show();
             $("#exam_writing_div_"+id).show();
+            $("#overall_band_div"+id).show();
         }
 
         if(examType=="TOEFL" && exam_status !="Planning")
@@ -701,6 +729,7 @@ div.progress.visible {
             $("#exam_speaking_div_"+id).show();
             $("#exam_reading_div_"+id).show();
             $("#exam_writing_div_"+id).show();
+            $("#overall_band_div"+id).show();
         }
 
         if(examType=="SAT" && exam_status !="Planning")
@@ -708,6 +737,7 @@ div.progress.visible {
             $("#exam_math_div_"+id).show();
             $("#exam_evidence_based_reading_writing_div_"+id).show();
             $("#exam_essay_div_"+id).show();
+            $("#overall_band_div"+id).show();
         }
 
         if(examType=="SAT" && exam_status !="Planning")
@@ -715,6 +745,7 @@ div.progress.visible {
             $("#exam_math_div_"+id).show();
             $("#exam_evidence_based_reading_writing_div_"+id).show();
             $("#exam_essay_div_"+id).show();
+            $("#overall_band_div"+id).show();
         }
 
         if(examType=="GRE" && exam_status !="Planning")
@@ -722,6 +753,7 @@ div.progress.visible {
             $("#exam_verbal_reasoning_div_"+id).show();
             $("#exam_quantitative_reasoning_div_"+id).show();
             $("#exam_analytical_writing_div_"+id).show();
+            $("#overall_band_div"+id).show();
         }
 
         if(examType=="GMAT" && exam_status !="Planning")
@@ -730,6 +762,7 @@ div.progress.visible {
             $("#exam_quantitative_reasoning_div_"+id).show();
             $("#exam_analytical_writing_div_"+id).show();
             $("#exam_integrated_reasoning_div_"+id).show();
+            $("#overall_band_div"+id).show();
         }
 
         if(examType=="PTE" && exam_status !="Planning")
@@ -747,6 +780,7 @@ div.progress.visible {
             $("#exam_spelling_div_"+id).show();
             $("#exam_vocabulary_div_"+id).show();
             $("#exam_written_disclosure_div_"+id).show();
+            $("#overall_band_div"+id).show();
         }
 
         if(examType=="DUOLINGO" && exam_status !="Planning")
@@ -756,6 +790,7 @@ div.progress.visible {
             $("#exam_analytical_writing_div_"+id).show();
             $("#exam_comprehension_div_"+id).show();
             $("#exam_production_div_"+id).show();
+            $("#overall_band_div"+id).show();
         }
 
     }

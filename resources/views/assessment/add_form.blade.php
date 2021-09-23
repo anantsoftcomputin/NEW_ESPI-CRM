@@ -31,7 +31,7 @@
     <tr id="rec-1" role="row">
     <td role="cell" class="text-center"><span class="sn">1</span>.</td>
       <td class="text-center" role="cell">
-        <select name="country_id[]"  class="form-control">
+            <select name="country_id[]" onchange="get_university(this)"  class="country form-control">
                 <option value="" selected>Select Country</option>
                 @forelse ( get_country() as $uni)
                     <option value="{{ $uni->id }}">{{ ucfirst($uni->name) }}</option>
@@ -56,7 +56,7 @@
         </select>
       </td>  
       <td role="cell">
-            <select name="university_id[]" onchange="get_course(this)" class="form-control university">
+            <select name="university_id[]" class="form-control university">
                 <option value="" selected>Select University</option>
                 @forelse ( $university as $uni)
                     <option value="{{ $uni->id }}">{{ ucfirst($uni->name) }}</option>
@@ -66,10 +66,16 @@
             </select>
       </td>
       <td role="cell">
-          <input type="text" name="level[]" class="form-control">
+          <select name="level[]" onchange="get_course(this)" class="level form-control">
+              <option value="">select level</option>
+                @foreach(get_level() as $key => $value)
+                <option value="{{$key}}">{{$value}}</option>
+                @endforeach
+        </select>
+         
       </td>
       <td role="cell">
-        <select name="course_id[]" class="form-control course">
+        <select name="course_id[]" onchange="get_course_details(this)" class="form-control course">
                 <option value="" selected>Select Course</option>
                 @forelse ( $course as $city)
                     <option value="{{ $city->id }}">{{ ucfirst($city->name) }}</option>
@@ -79,35 +85,35 @@
             </select>
       </td>
       <td role="cell">
-          <input type="text" name="specialization[]" class="form-control">
+          <input type="text" name="specialization[]" class="specialization form-control">
       </td>
       <td role="cell">
-          <input type="text" name="program_link[]" class="form-control">
+          <input type="text" name="program_link[]" class="program_link form-control">
       </td>
       
       <td role="cell">
-          <input type="text" name="duration[]" class="form-control">
+          <input type="text" name="duration[]" class="duration form-control">
       </td>
       <td role="cell">
-          <input type="text" name="campus[]" class="form-control">
+          <input type="text" name="campus[]" class="campus form-control">
       </td>
       <td role="cell">
-          <input type="text" name="entry_req[]" class="form-control">
+          <input type="text" name="entry_req[]" class="entry_req form-control">
       </td>
       <td role="cell">
-          <input type="text" name="app_fee[]" class="form-control">
+          <input type="text" name="app_fee[]" class="app_fee form-control">
       </td>
       <td role="cell">
-          <input type="text" name="app_deadline[]" class="form-control">
+          <input type="text" name="app_deadline[]" class="app_deadline form-control">
       </td>
       <td role="cell">
-          <input type="text" name="tution_fee[]" class="form-control">
+          <input type="text" name="tution_fee[]" class="tution_fee form-control">
       </td>
       <td role="cell">
-          <input type="text" name="scholarship[]" class="form-control">
+          <input type="text" name="scholarship[]" class="scholarship form-control">
       </td>
       <td role="cell">
-          <input type="text" name="remarks[]" class="form-control">
+          <input type="text" name="remarks[]" class="remarks form-control">
       </td>
       <td role="cell">
             <!-- <a class="btn btn-xs btn-danger delete-record" title="Delete" data-id="1">
@@ -135,7 +141,7 @@
       <tr role="rowgroup" id="">
        <td class="text-center" role="cell"><span class="sn"></span>.</td>
        <td role="cell">
-        <select id="country" name="country_id[]" class="form-control add_country">
+        <select id="country" name="country_id[]" class="form-control country add_country">
                 <option value="" selected>Select Country</option>
                 @forelse ( get_country() as $uni)
                     <option value="{{ $uni->id }}">{{ ucfirst($uni->name) }}</option>
@@ -160,7 +166,7 @@
         </select>
       </td>  
       <td role="cell">
-            <select name="university_id[]" onchange="get_course(this)" id="University" class="form-control university add_university">
+            <select name="university_id[]"  id="University" class="form-control university add_university">
                 <option value="" selected>Select University</option>
                 @forelse ( $university as $uni)
                     <option value="{{ $uni->id }}">{{ ucfirst($uni->name) }}</option>
@@ -299,10 +305,28 @@
 </style>
 
 <script>
-    
+    function get_course_details(ele)
+    {
+        var course=$(ele).closest('tr').find('.course').val();
+        let URL="{{ url('api/admin/getDetailsFromCourse/') }}/"+course;
+        $.ajax(URL,
+			{
+				dataType: 'json', // type of response data
+				success: function (data,status,xhr) {   // success callback function
+                    console.log(data);
+                    $(ele).closest('tr').find('.specialization').val(data.specialization);
+                    $(ele).closest('tr').find('.duration').val(data.duration);                    
+				},
+				error: function (jqXhr, textStatus, errorMessage) { // error callback
+					$('p').append('Error: ' + errorMessage);
+				}
+			});
+
+    }
     function get_course(ele) {
+        var level=$(ele).closest('tr').find('.level').val();
         var university=$(ele).closest('tr').find('.university').val();
-        let URL="{{ url('api/admin/getCourseFromUniversity/') }}/"+university;
+        let URL="{{ url('api/admin/getCourseFromLevel/') }}/"+level+'/'+university;
         $.ajax(URL,
 			{
 				dataType: 'json', // type of response data
@@ -327,6 +351,62 @@
 				}
 			});
     }
+
+    function get_university(ele) {
+        var country=$(ele).closest('tr').find('.country').val();
+        let URL="{{ url('api/admin/getUniversityFromCountry/') }}/"+country;
+        $.ajax(URL,
+			{
+				dataType: 'json', // type of response data
+				success: function (data,status,xhr) {   // success callback function
+                    console.log(data);
+                    $(ele).closest('tr').find('.university')
+                    .find('option')
+                    .remove()
+                    .end()
+                    .append('<option value="">select university</option>')
+                    .val('whatever');                
+                    $.each(data, function(key, value) {
+                        console.log(value);
+                        $(ele).closest('tr').find('.university')
+                            .append($("<option></option>")
+                                    .attr("value", value.id)
+                                    .text(value.name));
+                    });
+				},
+				error: function (jqXhr, textStatus, errorMessage) { // error callback
+					$('p').append('Error: ' + errorMessage);
+				}
+			});
+    }
+
+    // function get_course(ele) {
+    //     var university=$(ele).closest('tr').find('.university').val();
+    //     let URL="{{ url('api/admin/getCourseFromUniversity/') }}/"+university;
+    //     $.ajax(URL,
+	// 		{
+	// 			dataType: 'json', // type of response data
+	// 			success: function (data,status,xhr) {   // success callback function
+    //                 console.log(data);
+    //                 $(ele).closest('tr').find('.course')
+    //                 .find('option')
+    //                 .remove()
+    //                 .end()
+    //                 .append('<option value="">select course</option>')
+    //                 .val('whatever');                
+    //                 $.each(data, function(key, value) {
+    //                     console.log(value);
+    //                     $(ele).closest('tr').find('.course')
+    //                         .append($("<option></option>")
+    //                                 .attr("value", value.id)
+    //                                 .text(value.name));
+    //                 });
+	// 			},
+	// 			error: function (jqXhr, textStatus, errorMessage) { // error callback
+	// 				$('p').append('Error: ' + errorMessage);
+	// 			}
+	// 		});
+    // }
     jQuery(document).delegate('a.add-record', 'click', function(e) {
      e.preventDefault();    
      var content = jQuery('#sample_table tr'),

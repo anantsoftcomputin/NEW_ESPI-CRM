@@ -285,6 +285,13 @@ class CourseController extends Controller
         return Course::where('university_id',$uni)->get();
     }
 
+    public function getCourse(Request $request)
+    {
+        return Course::where('university_id',$request->university)
+        ->where('course_level',$request->level)
+        ->get();
+    } 
+
     public function CourseDetail_edit(Request $request)
     {
         $university=University::all();
@@ -396,5 +403,10 @@ class CourseController extends Controller
             
         }
             return redirect()->route("Course.index")->with("success","Courses");
+    }
+
+    public function getCourseDetails($course)
+    {
+        return Course::find($course);
     }
 }
