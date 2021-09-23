@@ -240,18 +240,18 @@ Course Special Requirement
        <td>
             <select class="form-control" name="documents[]">
                <option value="">select document</option>
-               <option value="photographs">Photographs</option>
-               <option value="passport">Passport</option>
-               <option value="10th">10th Documents</option>
-               <option value="12th">12th Documents</option>
-               <option value="diploma_document">Diploma Documents</option>
-               <option value="bachelor_document">Bachelor Documents</option>
-               <option value="master_document">Master Documents</option>
-               <option value="transcript_document">Transcript Document(University)</option>
-               <option value="work_experience_document">Work Experience Documents</option>
-               <option value="lor">LOR</option>
-               <option value="resume">Resume</option>
-               <option value="other">Other</option>
+               <option value="Photographs">Photographs</option>
+               <option value="Passport">Passport</option>
+               <option value="10th Documents">10th Documents</option>
+               <option value="12th Documents">12th Documents</option>
+               <option value="Diploma Documents">Diploma Documents</option>
+               <option value="Bachelor Documents">Bachelor Documents</option>
+               <option value="Master Documents">Master Documents</option>
+               <option value="Transcript Document(University)">Transcript Document(University)</option>
+               <option value="Work Experience Documents">Work Experience Documents</option>
+               <option value="LOR">LOR</option>
+               <option value="Resume">Resume</option>
+               <option value="Other">Other</option>
             </select>
        <td>
            <select class="form-control" name="type[]">

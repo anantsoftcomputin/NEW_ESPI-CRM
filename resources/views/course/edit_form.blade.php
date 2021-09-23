@@ -237,18 +237,18 @@ Course Special Requirement
             <td>
                 <select class="form-control" name="course_documents[]">
                     <option value="">select document</option>
-                    <option @if($course_recruitment->documents=='photographs') selected @endif value="photographs">Photographs</option>
-                    <option @if($course_recruitment->documents=='passport') selected @endif value="passport">Passport</option>
-                    <option @if($course_recruitment->documents=='10th') selected @endif value="10th">10th Documents</option>
-                    <option @if($course_recruitment->documents=='12th') selected @endif value="12th">12th Documents</option>
-                    <option @if($course_recruitment->documents=='diploma_document') selected @endif value="diploma_document">Diploma Documents</option>
-                    <option @if($course_recruitment->documents=='bachelor_document') selected @endif value="bachelor_document">Bachelor Documents</option>
-                    <option @if($course_recruitment->documents=='master_document') selected @endif value="master_document">Master Documents</option>
-                    <option @if($course_recruitment->documents=='transcript_document') selected @endif value="transcript_document">Transcript Document(University)</option>
-                    <option @if($course_recruitment->documents=='work_experience_document') selected @endif value="work_experience_document">Work Experience Documents</option>
-                    <option @if($course_recruitment->documents=='lor') selected @endif value="lor">LOR</option>
-                    <option @if($course_recruitment->documents=='resume') selected @endif value="resume">Resume</option>
-                    <option @if($course_recruitment->documents=='other') selected @endif value="other">Other</option>
+                    <option @if($course_recruitment->documents=='Photographs') selected @endif value="Photographs">Photographs</option>
+                    <option @if($course_recruitment->documents=='Passport') selected @endif value="Passport">Passport</option>
+                    <option @if($course_recruitment->documents=='10th Documents') selected @endif value="10th">10th Documents</option>
+                    <option @if($course_recruitment->documents=='12th Documents') selected @endif value="12th">12th Documents</option>
+                    <option @if($course_recruitment->documents=='Diploma Documents') selected @endif value="Diploma Documents">Diploma Documents</option>
+                    <option @if($course_recruitment->documents=='Bachelor Documents') selected @endif value="Bachelor Documents">Bachelor Documents</option>
+                    <option @if($course_recruitment->documents=='Master Documents') selected @endif value="Master Documents">Master Documents</option>
+                    <option @if($course_recruitment->documents=='Transcript Document(University)') selected @endif value="Transcript Document(University)">Transcript Document(University)</option>
+                    <option @if($course_recruitment->documents=='Work Experience Documents') selected @endif value="Work Experience Documents">Work Experience Documents</option>
+                    <option @if($course_recruitment->documents=='LOR') selected @endif value="LOR">LOR</option>
+                    <option @if($course_recruitment->documents=='Resume') selected @endif value="Resume">Resume</option>
+                    <option @if($course_recruitment->documents=='Other') selected @endif value="Other">Other</option>
                 </select>
                 
             <td>

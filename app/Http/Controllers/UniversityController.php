@@ -25,10 +25,10 @@ class UniversityController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('permission:view-university');
-        $this->middleware('permission:create-university', ['only' => ['create','store']]);
-        $this->middleware('permission:update-university', ['only' => ['edit','update']]);
-        $this->middleware('permission:destroy-university', ['only' => ['destroy']]);
+        //$this->middleware('permission:view-university');
+        //$this->middleware('permission:create-university', ['only' => ['create','store']]);
+        //$this->middleware('permission:update-university', ['only' => ['edit','update']]);
+        //$this->middleware('permission:destroy-university', ['only' => ['destroy']]);
     }
     public function index(Request $request)
     {
@@ -168,11 +168,11 @@ class UniversityController extends Controller
      */
     public function edit($id)
     {
-        $intake=Intact::select('month')->groupBy('month')->orderBy('id','asc')->get();
-        $intakeYear=Intact::select('year')->groupBy('year')->orderBy('id','asc')->get();
-
-       $university=University::find($id);
-       return view("university.edit",compact("university",'intake','intakeYear'));
+        $intake=Intact::select('month','id')->groupBy('month')->orderBy('id','asc')->get();
+        $intakeYear=Intact::select('year','id')->groupBy('year')->orderBy('id','asc')->get();
+        $university_campus=UniversityCampus::where("university_id",$id)->get();
+        $university=University::find($id);
+        return view("university.edit",compact("university",'intake','intakeYear','university_campus'));
     }
 
     /**
@@ -185,8 +185,97 @@ class UniversityController extends Controller
     public function update(EditUniversity $request,$university)
     {
         $validated = $request->validated();
-        $university=University::where("id",$university)->update($validated);
-        return redirect(route('University.index'));
+        $validated['description']=$request->description;
+        $validated['intake_year']=$request->intake_year;
+        $validated['intake_month']=$request->intake_month;
+        $validated['provision_state']=$request->provision_state;
+        $validated['application_fees']=$request->application_fees;
+
+        $validated['d_req_aca_per']=$request->d_req_aca_per;
+        $validated['d_req_aca_gpa']=$request->d_req_aca_gpa;
+        $validated['d_req_lan_per']=$request->d_req_lan_per;
+        $validated['d_req_lan_gpa']=$request->d_req_lan_gpa;
+
+        $validated['g_req_aca_per']=$request->g_req_aca_per;
+        $validated['g_req_aca_gpa']=$request->g_req_aca_gpa;
+        $validated['g_req_lan_per']=$request->g_req_lan_per;
+        $validated['g_req_lan_gpa']=$request->g_req_lan_gpa;
+
+        $validated['pg_req_aca_per']=$request->pg_req_aca_per;
+        $validated['pg_req_aca_gpa']=$request->pg_req_aca_gpa;
+        $validated['pg_req_lan_per']=$request->pg_req_lan_per;
+        $validated['pg_req_lan_gpa']=$request->pg_req_lan_gpa;
+
+        $validated['ten_req_aca_per']=$request->ten_req_aca_per;
+        $validated['ten_req_aca_gpa']=$request->ten_req_aca_gpa;
+        $validated['ten_req_lan_per']=$request->ten_req_lan_per;
+        $validated['ten_req_lan_gpa']=$request->ten_req_lan_gpa;
+
+        $validated['twelve_req_aca_per']=$request->twelve_req_aca_per;
+        $validated['twelve_req_aca_gpa']=$request->twelve_req_aca_gpa;
+        $validated['twelve_req_lan_per']=$request->twelve_req_lan_per;
+        $validated['twelve_req_lan_gpa']=$request->twelve_req_lan_gpa;
+        
+        if($request->news_letter)
+        {
+            $avatarPath = $request->file('news_letter');
+            $avatarName = time() . '.' . $avatarPath->getClientOriginalExtension();
+            $file = $request->file('news_letter');
+            // generate a new filename. getClientOriginalExtension() for the file extension
+            $filename = 'news-letter-' . time() . '.' . $file->getClientOriginalExtension();
+            // save to storage/app/photos as the new $filename
+            $path = $file->storeAs('news_letter', $filename);
+            $validated['news_letter'] =$filename;
+        }
+
+       
+        // Update University
+        $universitys=University::where("id",$university)->update($validated);
+
+        if(isset($request->university_campus_id))
+        {
+            //University Campus Details Update
+            $totCampus=count($request->university_campus_id);
+            for($i=0;$i<$totCampus;$i++)
+            {
+                if($request->university_campus_id[$i])
+                {
+                    $UniversityCampus=UniversityCampus::find($request->university_campus_id[$i]);
+                    $UniversityCampus->campus_name=$request->university_campus_name[$i];
+                    $UniversityCampus->campus_country=$request->university_campus_country[$i];
+                    $UniversityCampus->campus_address=$request->university_campus_address[$i];
+                    $UniversityCampus->university_id=$university;
+                    $UniversityCampus->save();
+                }
+            }
+        }
+        
+        if(isset($request->campus_name))
+        {
+            //University Campus New Insert
+
+            $totCampus=count($request->campus_name);
+            for($i=0;$i<$totCampus;$i++)
+            {
+                if($request->campus_name[$i])
+                {
+                    $data[]=[
+                        "university_id"=>$university,
+                        "campus_name"=>$request->campus_name[$i],
+                        "campus_country"=>$request->campus_country[$i],
+                        "campus_address"=>$request->campus_address[$i],
+                        "campus_fees"=>$request->campus_fees[$i],
+                        "company_id"=>Auth::user()->company_id,
+                    ];
+                }
+            }
+        }
+        
+        if(isset($data)){
+            UniversityCampus::insert($data);
+        }
+
+        return redirect(route('University.index'))->with("success","University");
     }
 
     /**
@@ -234,7 +323,6 @@ class UniversityController extends Controller
     
     function university_import_save(Request $request)
     {
-       
         $totuniversity=count($request->name);
         for($i=0;$i<$totuniversity;$i++)
         {
@@ -250,8 +338,8 @@ class UniversityController extends Controller
             $university->status="active";
             $university->country_id=$country->id;
             $university->provision_state=$request->provision_state[$i];
-            $university->intake_year=$request->intake_year->id;
-            $university->intake_month=$request->intake_month->id;
+            $university->intake_year=$intake_year->id;
+            $university->intake_month=$intake_month->id;
             $university->application_fees=$request->application_fees[$i];
             $university->web=$request->web[$i];
 
@@ -313,5 +401,10 @@ class UniversityController extends Controller
             }
         }
         return redirect(route('University.index'))->with("success","University");
+    }
+
+    function university_campus_delete($id)
+    {
+        return UniversityCampus::where("id",$id)->delete();
     }
 }

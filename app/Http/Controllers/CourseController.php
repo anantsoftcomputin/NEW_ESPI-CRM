@@ -7,6 +7,7 @@ use App\Http\Requests\Course\EditCourse;
 use App\Models\Course;
 use App\Models\University;
 use App\Models\CourseRecruitments;
+use App\Models\Intact;
 use Illuminate\Http\Request;
 use DataTables;
 use Illuminate\Support\Facades\Auth;
@@ -330,8 +331,8 @@ class CourseController extends Controller
             $course->duration=$request->duration[$i];
             $course->application_fees=$request->application_fees[$i];
             $course->course_link=$request->course_link[$i];
-            $course->intake_year=$request->intake_year->id;
-            $course->intake_month=$request->intake_month->id;
+            $course->intake_year=$intake_year->id;
+            $course->intake_month=$intake_month->id;
 
             $course->d_req_aca_per=$request->d_req_aca_per[$i];
             $course->d_req_aca_gpa=$request->d_req_aca_gpa[$i];

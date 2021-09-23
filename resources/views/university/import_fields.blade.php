@@ -33,7 +33,7 @@ Add university
                                 <th>Phone</th>
                                 <th>Email</th>
                                 <th>Country</th>
-                                <th>Campus</th>
+                               
                                 <th>Provision State</th>
                                 <th>Intake Year</th>
                                 <th>Intake Month</th>
@@ -92,42 +92,42 @@ Add university
                                         <td><input type='hidden' name='phone[]' value='{{$value[3]}}'>{{$value[3]}}</td>
                                         <td><input type='hidden' name='email[]' value='{{$value[4]}}'>{{$value[4]}}</td>                        
                                         <td><input type='hidden' name='country[]' value='{{$value[5]}}'>{{$value[5]}}</td>
-                                        <td><input type='hidden' name='campus[]' value='{{$value[6]}}'>{{$value[6]}}</td> 
-                                        <td><input type='hidden' name='provision_state[]' value='{{$value[7]}}'>{{$value[7]}}</td>
-                                        <td><input type='hidden' name='intake_year[]' value='{{$value[8]}}'>{{$value[8]}}</td>
-                                        <td><input type='hidden' name='intake_month[]' value='{{$value[9]}}'>{{$value[9]}}</td> 
+                                    
+                                        <td><input type='hidden' name='provision_state[]' value='{{$value[6]}}'>{{$value[6]}}</td>
+                                        <td><input type='hidden' name='intake_year[]' value='{{$value[7]}}'>{{$value[7]}}</td>
+                                        <td><input type='hidden' name='intake_month[]' value='{{$value[8]}}'>{{$value[8]}}</td> 
                                         
-                                        <td><input type='hidden' name='web[]' value='{{$value[10]}}'>{{$value[10]}}</td>  
-                                        <td><input type='hidden' name='application_fees[]' value='{{$value[11]}}'>{{$value[11]}}</td>                      
+                                        <td><input type='hidden' name='web[]' value='{{$value[9]}}'>{{$value[9]}}</td>  
+                                        <td><input type='hidden' name='application_fees[]' value='{{$value[10]}}'>{{$value[10]}}</td>                      
                                         
-                                        <td><input type='hidden' name='d_req_aca_per[]' value='{{$value[12]}}'>{{$value[12]}}</td>                   
-                                        <td><input type='hidden' name='d_req_aca_gpa[]' value='{{$value[13]}}'>{{$value[13]}}</td>
-                                        <td><input type='hidden' name='d_req_lan_per[]' value='{{$value[14]}}'>{{$value[14]}}</td>                   
-                                        <td><input type='hidden' name='d_req_lan_gpa[]' value='{{$value[15]}}'>{{$value[15]}}</td>
+                                        <td><input type='hidden' name='d_req_aca_per[]' value='{{$value[11]}}'>{{$value[11]}}</td>                   
+                                        <td><input type='hidden' name='d_req_aca_gpa[]' value='{{$value[12]}}'>{{$value[12]}}</td>
+                                        <td><input type='hidden' name='d_req_lan_per[]' value='{{$value[13]}}'>{{$value[13]}}</td>                   
+                                        <td><input type='hidden' name='d_req_lan_gpa[]' value='{{$value[14]}}'>{{$value[14]}}</td>
 
-                                        <td><input type='hidden' name='g_req_aca_per[]' value='{{$value[16]}}'>{{$value[16]}}</td>                   
-                                        <td><input type='hidden' name='g_req_aca_gpa[]' value='{{$value[17]}}'>{{$value[17]}}</td>
-                                        <td><input type='hidden' name='g_req_lan_per[]' value='{{$value[18]}}'>{{$value[18]}}</td>                   
-                                        <td><input type='hidden' name='g_req_lan_gpa[]' value='{{$value[19]}}'>{{$value[19]}}</td>
+                                        <td><input type='hidden' name='g_req_aca_per[]' value='{{$value[15]}}'>{{$value[15]}}</td>                   
+                                        <td><input type='hidden' name='g_req_aca_gpa[]' value='{{$value[16]}}'>{{$value[16]}}</td>
+                                        <td><input type='hidden' name='g_req_lan_per[]' value='{{$value[17]}}'>{{$value[17]}}</td>                   
+                                        <td><input type='hidden' name='g_req_lan_gpa[]' value='{{$value[18]}}'>{{$value[18]}}</td>
 
-                                        <td><input type='hidden' name='pg_req_aca_per[]' value='{{$value[20]}}'>{{$value[20]}}</td>                   
-                                        <td><input type='hidden' name='pg_req_aca_gpa[]' value='{{$value[21]}}'>{{$value[21]}}</td>
-                                        <td><input type='hidden' name='pg_req_lan_per[]' value='{{$value[22]}}'>{{$value[22]}}</td>                   
-                                        <td><input type='hidden' name='pg_req_lan_gpa[]' value='{{$value[23]}}'>{{$value[23]}}</td>
+                                        <td><input type='hidden' name='pg_req_aca_per[]' value='{{$value[19]}}'>{{$value[19]}}</td>                   
+                                        <td><input type='hidden' name='pg_req_aca_gpa[]' value='{{$value[20]}}'>{{$value[20]}}</td>
+                                        <td><input type='hidden' name='pg_req_lan_per[]' value='{{$value[21]}}'>{{$value[21]}}</td>                   
+                                        <td><input type='hidden' name='pg_req_lan_gpa[]' value='{{$value[22]}}'>{{$value[22]}}</td>
 
-                                        <td><input type='hidden' name='ten_req_aca_per[]' value='{{$value[24]}}'>{{$value[24]}}</td>                   
-                                        <td><input type='hidden' name='ten_req_aca_gpa[]' value='{{$value[25]}}'>{{$value[25]}}</td>
-                                        <td><input type='hidden' name='ten_req_lan_per[]' value='{{$value[26]}}'>{{$value[26]}}</td>                   
-                                        <td><input type='hidden' name='ten_req_lan_gpa[]' value='{{$value[27]}}'>{{$value[27]}}</td>
+                                        <td><input type='hidden' name='ten_req_aca_per[]' value='{{$value[23]}}'>{{$value[23]}}</td>                   
+                                        <td><input type='hidden' name='ten_req_aca_gpa[]' value='{{$value[24]}}'>{{$value[24]}}</td>
+                                        <td><input type='hidden' name='ten_req_lan_per[]' value='{{$value[25]}}'>{{$value[25]}}</td>                   
+                                        <td><input type='hidden' name='ten_req_lan_gpa[]' value='{{$value[26]}}'>{{$value[26]}}</td>
 
-                                        <td><input type='hidden' name='twelve_req_aca_per[]' value='{{$value[28]}}'>{{$value[28]}}</td>                   
-                                        <td><input type='hidden' name='twelve_req_aca_gpa[]' value='{{$value[29]}}'>{{$value[29]}}</td>
-                                        <td><input type='hidden' name='twelve_req_lan_per[]' value='{{$value[30]}}'>{{$value[30]}}</td>                   
-                                        <td><input type='hidden' name='twelve_req_lan_gpa[]' value='{{$value[31]}}'>{{$value[31]}}</td>
+                                        <td><input type='hidden' name='twelve_req_aca_per[]' value='{{$value[27]}}'>{{$value[27]}}</td>                   
+                                        <td><input type='hidden' name='twelve_req_aca_gpa[]' value='{{$value[28]}}'>{{$value[28]}}</td>
+                                        <td><input type='hidden' name='twelve_req_lan_per[]' value='{{$value[29]}}'>{{$value[29]}}</td>                   
+                                        <td><input type='hidden' name='twelve_req_lan_gpa[]' value='{{$value[30]}}'>{{$value[30]}}</td>
 
-                                        <td><input type='hidden' name='campus_name[]' value='{{$value[32]}}'>
+                                        <td><input type='hidden' name='campus_name[]' value='{{$value[31]}}'>
                                         @php
-                                        $data=explode("###",$value[32]);
+                                        $data=explode("###",$value[31]);
                                         foreach($data as $d)
                                         {
                                             
@@ -138,9 +138,9 @@ Add university
                                       
                                         </td>
 
-                                        <td><input type='hidden' name='campus_country[]' value='{{$value[33]}}'>
+                                        <td><input type='hidden' name='campus_country[]' value='{{$value[32]}}'>
                                         @php
-                                        $data=explode("###",$value[33]);
+                                        $data=explode("###",$value[32]);
                                         foreach($data as $d)
                                         { 
                                             echo $d." ,";
@@ -149,9 +149,9 @@ Add university
                                       
                                         </td>
 
-                                        <td><input type='hidden' name='campus_address[]' value='{{$value[34]}}'>
+                                        <td><input type='hidden' name='campus_address[]' value='{{$value[33]}}'>
                                         @php
-                                        $data=explode("###",$value[34]);
+                                        $data=explode("###",$value[33]);
                                         foreach($data as $d)
                                         { 
                                             echo $d." ,";
@@ -159,9 +159,9 @@ Add university
                                         @endphp
                                         </td>
 
-                                        <td><input type='hidden' name='campus_fees[]' value='{{$value[35]}}'>
+                                        <td><input type='hidden' name='campus_fees[]' value='{{$value[34]}}'>
                                         @php
-                                        $data=explode("###",$value[35]);
+                                        $data=explode("###",$value[34]);
                                         foreach($data as $d)
                                         { 
                                             echo $d." ,";

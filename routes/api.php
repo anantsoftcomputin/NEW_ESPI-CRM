@@ -32,7 +32,7 @@ Route::prefix('admin')->group(function () {
     Route::get('inquiry/{id?}',[ApplicationController::class,'detailFromEnq']);
     Route::get('getUniversityFromCountry/{country_id}',[UniversityController::class,'getUniversityFromCountry']);
     Route::get('getCourseFromUniversity/{university_id}',[CourseController::class,'getCourseFromUniversity']);
-    // Route::get('getUniversityFromCountry/{country_id}',[UniversityController::class,'getUniversityFromCountry']);
+    Route::get('university_campus/delete/{id}',[UniversityController::class,'university_campus_delete']);
     Route::get('getReferralByCode/{code}/',[ReferralCodeController::class,'getReferralByCode']);
     Route::get('getStateById/{state_id}/',[StateController::class,'getStateById']);
     Route::get('getCityById/{state_id}/',[CityController::class,'getCityById']);
