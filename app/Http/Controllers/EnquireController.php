@@ -98,7 +98,7 @@ class EnquireController extends Controller
      */
     public function store(AddEnquireRequest $request)
     {
-        
+
         $validated = $request->validated();
         $validated['enquiry_id'] ="ESPI_".$this->generateUniqueCode();
         $validated['name']=$request->first_name .' '.$request->middle_name.' '.$request->last_name;
@@ -114,7 +114,7 @@ class EnquireController extends Controller
         $validated["first_name"]=$request->first_name;
         $validated["middle_name"]=$request->middle_name;
         $validated["last_name"]=$request->last_name;
-       
+
         if($request->passport_image)
         {
             $avatarPath = $request->file('passport_image');
@@ -126,9 +126,9 @@ class EnquireController extends Controller
             $path = $file->storeAs('passport', $filename);
             $validated['passport_image'] =$filename;
         }
-        
+
         $enq=Enquiry::create($validated);
-        
+
         if(isset($request->generalassessment))
         {
             $assessment=new assessment();
@@ -143,7 +143,7 @@ class EnquireController extends Controller
             $assessment->status=$request->status;
             $assessment->save();
         }
-        
+
         $admin=get_user(1);
         $counsellor=get_user($request->counsellor_id);
         $details = [
@@ -151,7 +151,7 @@ class EnquireController extends Controller
                 'url' => url('/login'),
                 'enq_id' => $enq->id
             ];
-        
+
         $adminFCMToken=array();
         $counsellorFCMToken=array();
         $NotificationBody="";
@@ -161,12 +161,12 @@ class EnquireController extends Controller
             {
                 $adminFCMToken=[$admin->fcm_token];
             }
-            Mail::to($admin->email)->send(new AddEnquiry($details));      
+            Mail::to($admin->email)->send(new AddEnquiry($details));
         }
 
         if($counsellor)
         {
-            Mail::to($counsellor->email)->send(new AddEnquiry($details));      
+            Mail::to($counsellor->email)->send(new AddEnquiry($details));
         }
 
         if($counsellor->fcm_token)
@@ -180,11 +180,11 @@ class EnquireController extends Controller
         if($finalToken)
         {
             return $this->sendNotification($enq,$finalToken,array(
-                "title" => "New Enquiry Generate", 
+                "title" => "New Enquiry Generate",
                 "body" =>$NotificationBody,
               ));
         }
-        
+
         return redirect()->route("Enquires.index")->with('success_msg',$enq->enquiry_id);
     }
 
@@ -239,7 +239,7 @@ class EnquireController extends Controller
         $validated["preferred_country"]=$request->preferred_country;
         $enquiry=Enquiry::where("id",$enquiry)->update($validated);
         $enq=Enquiry::find($enquiry);
-       
+
         return view('success',compact('enq'));
     }
 
@@ -279,7 +279,7 @@ class EnquireController extends Controller
         $enquiry=Enquiry::find($id);
         $enquiry->otp=$otp;
         $enquiry->save();
-        
+
         $company=get_company_by_id($enquiry->company_id);
         $branch=$company->name ?? "";
         $details = [
@@ -288,7 +288,7 @@ class EnquireController extends Controller
                 'url' => url('/login'),
                 "Branch"=>$branch,
             ];
-            
+
         Mail::to($enquiry->email)->send(new EnquiryOtpMailsendWhenImport($details));
 
         return view("enquiry.verifyOtp",compact("otp","enquiry","branch"));
@@ -319,7 +319,7 @@ class EnquireController extends Controller
     {
         //$firebaseToken = User::whereNotNull('fcm_token')->where("id",$enquiry->counsellor_id)->pluck('fcm_token')->all();
         $SERVER_API_KEY = 'AAAAQ--KII4:APA91bHbcNhWF8qnsOkAiVnDCcSBv2d8YxzBavbRCWIpZIoU00RDldZM61Wn72ycqs_qTtBMNB5yhmpQ2BO8B9W-Mx2TC4WXqoe7Qnc8FziJSe9zgkmN2R_4CPHKMSce4N2WAUJ5Bo3X';
-  
+
         $data = [
             "registration_ids" => $fcm_token, // for multiple device id
             "notification" => [
@@ -329,26 +329,26 @@ class EnquireController extends Controller
         ];
 
         $dataString = json_encode($data);
-    
+
         $headers = [
             'Authorization: key=' . $SERVER_API_KEY,
             'Content-Type: application/json',
         ];
-    
+
         $ch = curl_init();
-      
+
         curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
-               
+
         $response = curl_exec($ch);
-      
+
         curl_close($ch);
         $response;
-    
+
         return redirect()->route("Enquires.index")->with('success_msg',$enq->enquiry_id);
     }
 }

@@ -43,6 +43,7 @@
             columns: [
                 {data: 'university.name', name: 'university.name', orderable: false, searchable: false},
                 { data: 'course.name', name: 'course.name' , orderable: false, searchable: false},
+                { data: 'enquiry.name', name: 'enquiry.name' , orderable: false, searchable: false},
                 { data: 'status', name: 'status' , orderable: false, searchable: false},
                 { data: 'assign_to', name: 'assign_to' , orderable: false, searchable: false},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
@@ -62,7 +63,7 @@
 
             // Add event listener for opening and closing details
 
-        
+
         function initTable(tableId, data) {
             $('#' + tableId).DataTable({
                 processing: true,
@@ -116,6 +117,7 @@ Application
             <tr>
                 <th>University</th>
                 <th  width="200px">Course</th>
+                <th width="100px">Name</th>
                 <th width="100px">Status</th>
                 <th  width="100px">Assign To</th>
                 <th width="300px">Action</th>

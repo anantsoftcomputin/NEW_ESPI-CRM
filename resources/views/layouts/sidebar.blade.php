@@ -4,7 +4,7 @@
         <ul class="navbar-nav theme-brand flex-row">
             <li class="nav-item theme-logo">
                 <a href="{{url('home')}}">
-                    <img src="{{ asset('logo.jpg') }}" class="navbar-logo" alt="logo">
+                    <img src="{{ asset('logo.svg') }}" class="navbar-logo" alt="logo">
                 </a>
             </li>
         </ul>
@@ -15,7 +15,7 @@
 
     <div id="compact_submenuSidebar" class="submenu-sidebar">
 
-    
+
         <div class="submenu" id="dashboard">
             <ul class="submenu-list" data-parent-element="#dashboard">
                 <li class="active">
