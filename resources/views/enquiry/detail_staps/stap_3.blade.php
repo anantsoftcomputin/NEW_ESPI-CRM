@@ -1,7 +1,23 @@
-<h1>Work Experience</h1>
-<div id="experience_detail_history">
+
+
+<h3>Work Experience</h3>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label>Work Experience</label>
+            <select class="form-control" id="experience_status" name="experience_status">
+                <option>select work experience</option>
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="experience_detail_history" style="display:none">
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
             <div class="form-group">
                 <label for="name">Name of the company</label>
                 <input type="text" name="work_company[]" id="name" value="" class="form-control" required="">
@@ -19,7 +35,7 @@
                 <input type="date" name="to_work_from[]" id="name" value="" class="form-control" required="">
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <div class="form-group">
                 <label for="name">Work Profile</label>
                 <input type="text" name="work_profile[]" id="name" value="" class="form-control" required="">
@@ -29,9 +45,11 @@
         </div>
     </div>
 </div>
-<div class="col-md-12">
-<a href="#" id="add_more_expiriance" class="btn btn-info" style="float: right;">Add More Experience</a>
+
+<div class="col-md-12" >
+<a id="add_more_expiriance" class="btn btn-info" style="float: right;display:none">Add More Experience</a>
 </div>
+
 <br><br><br>
 <div class="row">
     <div class="col-md-12">
@@ -46,7 +64,7 @@
     </div>
 </div>
 <div id="travel_detail_history" class="travel_detail_history" style="display:none">
-    <h1>Travel History</h1>
+    <h3>Travel History</h3>
     <div class="row">
         <div class="col-md-3">
             <div class="form-group">
@@ -72,6 +90,6 @@
 </div>
 <div class="row travel_detail_history" style="display: none;">
     <div class="col-md-12">
-        <a href="#" id="add_more_history" class="btn btn-info" style="float: right;">Add More Travel</a>
+        <a id="add_more_history" class="btn btn-info" style="float: right;">Add More Travel</a>
     </div>
 </div>

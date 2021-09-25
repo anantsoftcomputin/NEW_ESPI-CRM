@@ -22,7 +22,7 @@ return [
     'go_back' => 'Go Back',
     'sample_file'=>'Download Sample File',
     'upload_preview_msg'=>'Imported University Preview',
-    'import_form_title'=>'Import Course',
+    'import_form_title'=>'Import University',
     'upload_btn'=>"Upload",
 
 ];

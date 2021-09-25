@@ -20,7 +20,34 @@ class University extends Model
         'city_id',
         'country_id',
         'state_id',
-        'added_by'
+        'added_by',
+        'campus',
+        'provision_state',
+        'intake_year',
+        'intake_month',
+        'application_fees',
+        'web',
+        'news_letter',
+        'd_req_aca_per',
+        'd_req_aca_gpa',
+        'd_req_lan_per',
+        'd_req_lan_gpa',
+        'g_req_aca_per',
+        'g_req_aca_gpa',
+        'g_req_lan_per',
+        'g_req_lan_gpa',
+        'pg_req_aca_per',
+        'pg_req_aca_gpa',
+        'pg_req_lan_per',
+        'pg_req_lan_gpa',
+        'ten_req_aca_per',
+        'ten_req_aca_gpa',
+        'ten_req_lan_per',
+        'ten_req_lan_gpa',
+        'twelve_req_aca_per',
+        'twelve_req_aca_gpa',
+        'twelve_req_lan_per',
+        'twelve_req_lan_gpa',
     ];
 
     public function setImageAttribute($value)
@@ -44,4 +71,5 @@ class University extends Model
     {
         return $this->belongsTo(Country::class);
     }
+
 }

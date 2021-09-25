@@ -134,8 +134,11 @@ div.progress.visible {
         position: fixed;
         top: 0;
         background-color: white;
-        width: 100%;
-        height: 100%;
+        width: 50%;
+        height: 50%;
+        z-index: 999999;
+        margin-left:10%;
+        margin-top:10%;
       }
 
       div.gradient {
@@ -169,12 +172,13 @@ div.progress.visible {
         background: white;
         box-shadow: 0.5em 0.5em 0.5em rgba(0,0,0,0.25);
         border-radius: 0.2em;
-
+        z-index: 999999;
       }
 
       progress {
         width: 100%;
         margin: 0.2em;
+        z-index: 999999;
       }
 
       div.wrapper {

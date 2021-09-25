@@ -29,7 +29,8 @@ class AssessmentController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = assessment::select('*')->where('status', '!=', 'approved')->with('University','Course','User','Enquiry');
+            $data = assessment::select('*')->where('status', '!=', 'approved')
+            ->with('University','Course','User','Enquiry','University.Country');
             if(Auth::user()->hasRole('Counsellor'))
             {
                 $data->where('assign_id',Auth::user()->id);
@@ -50,6 +51,7 @@ class AssessmentController extends Controller
                         return $assign_to;
 
                     })
+        
                     ->addColumn('action', function($row){
                         $btn ="<div class='row'>
                         <div class='col-md-4'>";

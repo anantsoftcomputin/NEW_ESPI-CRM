@@ -70,6 +70,20 @@ if (! function_exists('get_country')) {
     }
 }
 
+if (! function_exists('get_level')) {
+    function get_level() {
+       return $level[]=[
+            'under-graduate'=>'Under Graduate',
+            'diploma'=>'Diploma',
+            'advance-diploma'=>'Advance Diploma',
+            'bachelor'=>'Bachelor',
+            'post-graduate-diploma'=>'Post Graduate Diploma',
+            'master'=>'Master',
+        ];
+       
+    }
+}
+
 if (! function_exists('getCurrentCompany')) {
     function getCurrentCompany() {
         $request = new Request();

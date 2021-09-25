@@ -51,9 +51,10 @@ Route::post('/import_process', [UniversityController::class,"processImport"])->n
 Route::post("/university_import_save",[UniversityController::class,"university_import_save"])->name("university_import_save");
 
 Route::middleware('auth')->prefix('admin')->group(function () {
+    
     Route::post('/send-notification', [FcmTokenController::class, 'sendNotification'])->name('send.notification');
     Route::get("fcm_token",[FcmTokenController::class,"index"]);
-    Route::get("UniversityImport",[UniversityController::class,"UniversityImport"])->name("UniversityImport");  
+    Route::get("university/import",[UniversityController::class,"UniversityImport"])->name("university/import");  
     Route::get('enquiry/resendotp/{id}', [EnquireController::class,'enquiryOtpSend'])->name('enquiry.resendotp');
     Route::post("verify_otp",[EnquireController::class,"verify_otp"])->name("verify_otp");
     Route::get("enquiryOtpSend/{id?}",[EnquireController::class,'enquiryOtpSend']);
@@ -76,7 +77,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::resource('Course', CourseController::class);
     Route::get("courseDetail/edit/{course?}",[CourseController::class,'CourseDetail_edit']);
     Route::get('CourseDetail/{University?}',[CourseController::class,'CourseDetail'])->name("course.detail");
-    Route::get('CourseImport/{University?}',[CourseController::class,'CourseImport'])->name("Course.import");
+    Route::get('course/import/{University?}',[CourseController::class,'CourseImport'])->name("Course.import");
     Route::post('CourseImportPreview/{University?}',[CourseController::class,'CourseImportPreview'])->name("Course.import_preview");
     Route::post('CourseImportSave/{University?}',[CourseController::class,'CourseImportSave'])->name("Course.import_save");
 

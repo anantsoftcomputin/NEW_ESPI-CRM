@@ -7,6 +7,7 @@ use App\Http\Requests\Course\EditCourse;
 use App\Models\Course;
 use App\Models\University;
 use App\Models\CourseRecruitments;
+use App\Models\Intact;
 use Illuminate\Http\Request;
 use DataTables;
 use Illuminate\Support\Facades\Auth;
@@ -71,8 +72,36 @@ class CourseController extends Controller
         $validated = $addcourse->validated();
         $validated['added_by']=\Auth::user()->id;
         $validated['company_id']=\Auth::user()->company_id;
-        $course=Course::create($validated);
+        $validated['duration']=$addcourse->duration;
+        $validated['application_fees']=$addcourse->application_fees;
+        $validated['course_link']=$addcourse->course_link;
 
+        $validated['d_req_aca_per']=$addcourse->d_req_aca_per;
+        $validated['d_req_aca_gpa']=$addcourse->d_req_aca_gpa;
+        $validated['d_req_lan_per']=$addcourse->d_req_lan_per;
+        $validated['d_req_lan_gpa']=$addcourse->d_req_lan_gpa;
+
+        $validated['g_req_aca_per']=$addcourse->g_req_aca_per;
+        $validated['g_req_aca_gpa']=$addcourse->g_req_aca_gpa;
+        $validated['g_req_lan_per']=$addcourse->g_req_lan_per;
+        $validated['g_req_lan_gpa']=$addcourse->g_req_lan_gpa;
+
+        $validated['pg_req_aca_per']=$addcourse->pg_req_aca_per;
+        $validated['pg_req_aca_gpa']=$addcourse->pg_req_aca_gpa;
+        $validated['pg_req_lan_per']=$addcourse->pg_req_lan_per;
+        $validated['pg_req_lan_gpa']=$addcourse->pg_req_lan_gpa;
+
+        $validated['ten_req_aca_per']=$addcourse->ten_req_aca_per;
+        $validated['ten_req_aca_gpa']=$addcourse->ten_req_aca_gpa;
+        $validated['ten_req_lan_per']=$addcourse->ten_req_lan_per;
+        $validated['ten_req_lan_gpa']=$addcourse->ten_req_lan_gpa;
+
+        $validated['twelve_req_aca_per']=$addcourse->twelve_req_aca_per;
+        $validated['twelve_req_aca_gpa']=$addcourse->twelve_req_aca_gpa;
+        $validated['twelve_req_lan_per']=$addcourse->twelve_req_lan_per;
+        $validated['twelve_req_lan_gpa']=$addcourse->twelve_req_lan_gpa;
+
+        $course=Course::create($validated);
         $totdocuments=count($addcourse->documents);
         for($i=0;$i<$totdocuments;$i++)
         {
@@ -92,7 +121,7 @@ class CourseController extends Controller
             CourseRecruitments::insert($data);
         }
 
-        return redirect(route('Course.index'));
+        return redirect(route('Course.index'))->with("success",'Course');
     }
 
     /**
@@ -138,15 +167,47 @@ class CourseController extends Controller
      */
     public function update(EditCourse $request,$course)
     {
+       
         $validated = $request->validated();
         $validated['added_by']=\Auth::user()->id;
+
+        $validated['duration']=$request->duration;
+        $validated['application_fees']=$request->application_fees;
+        $validated['course_link']=$request->course_link;
+
+        $validated['d_req_aca_per']=$request->d_req_aca_per;
+        $validated['d_req_aca_gpa']=$request->d_req_aca_gpa;
+        $validated['d_req_lan_per']=$request->d_req_lan_per;
+        $validated['d_req_lan_gpa']=$request->d_req_lan_gpa;
+
+        $validated['g_req_aca_per']=$request->g_req_aca_per;
+        $validated['g_req_aca_gpa']=$request->g_req_aca_gpa;
+        $validated['g_req_lan_per']=$request->g_req_lan_per;
+        $validated['g_req_lan_gpa']=$request->g_req_lan_gpa;
+
+        $validated['pg_req_aca_per']=$request->pg_req_aca_per;
+        $validated['pg_req_aca_gpa']=$request->pg_req_aca_gpa;
+        $validated['pg_req_lan_per']=$request->pg_req_lan_per;
+        $validated['pg_req_lan_gpa']=$request->pg_req_lan_gpa;
+
+        $validated['ten_req_aca_per']=$request->ten_req_aca_per;
+        $validated['ten_req_aca_gpa']=$request->ten_req_aca_gpa;
+        $validated['ten_req_lan_per']=$request->ten_req_lan_per;
+        $validated['ten_req_lan_gpa']=$request->ten_req_lan_gpa;
+
+        $validated['twelve_req_aca_per']=$request->twelve_req_aca_per;
+        $validated['twelve_req_aca_gpa']=$request->twelve_req_aca_gpa;
+        $validated['twelve_req_lan_per']=$request->twelve_req_lan_per;
+        $validated['twelve_req_lan_gpa']=$request->twelve_req_lan_gpa;
+
         $validated['company_id']=\Auth::user()->company_id;
         $courses=Course::where("id",$course)->update($validated);
         
         if(isset($request->course_recruitment_id))
         {
-            $totdocuments=count($request->course_recruitment_id);
-            for($i=0;$i<$totdocuments;$i++)
+            //Course Requirements Update
+            $totDocuments=count($request->course_recruitment_id);
+            for($i=0;$i<$totDocuments;$i++)
             {
                 if($request->course_recruitment_id[$i])
                 {
@@ -162,8 +223,10 @@ class CourseController extends Controller
         
         if(isset($request->documents))
         {
-            $totdocuments=count($request->documents);
-            for($i=0;$i<$totdocuments;$i++)
+            //Course Requirements New Insert
+
+            $totDocuments=count($request->documents);
+            for($i=0;$i<$totDocuments;$i++)
             {
                 if($request->documents[$i])
                 {
@@ -222,6 +285,13 @@ class CourseController extends Controller
         return Course::where('university_id',$uni)->get();
     }
 
+    public function getCourse(Request $request)
+    {
+        return Course::where('university_id',$request->university)
+        ->where('course_level',$request->level)
+        ->get();
+    } 
+
     public function CourseDetail_edit(Request $request)
     {
         $university=University::all();
@@ -231,8 +301,6 @@ class CourseController extends Controller
 
     public function CourseImport()
     {
-       
-        
         return view("course.course_import");
     }
 
@@ -250,6 +318,9 @@ class CourseController extends Controller
         $totcourse=count($request->course_name);
         for($i=0;$i<$totcourse;$i++)
         {
+            $intake_year = Intact::firstOrNew(array('year' => $request->intake_year[$i]));
+            $intake_month = Intact::firstOrNew(array('month' => $request->intake_month[$i]));
+
             $university = University::firstOrNew(array('name' => $request->university[$i]));
             $university->address="";
             $university->email="";
@@ -263,6 +334,38 @@ class CourseController extends Controller
             $course->university_id=$university->id;
             $course->course_level=$request->course_level[$i] ?? "";
             $course->status="active";
+            $course->specialization=$request->specialization[$i];
+            $course->duration=$request->duration[$i];
+            $course->application_fees=$request->application_fees[$i];
+            $course->course_link=$request->course_link[$i];
+            $course->intake_year=$intake_year->id;
+            $course->intake_month=$intake_month->id;
+
+            $course->d_req_aca_per=$request->d_req_aca_per[$i];
+            $course->d_req_aca_gpa=$request->d_req_aca_gpa[$i];
+            $course->d_req_lan_per=$request->d_req_lan_per[$i];
+            $course->d_req_lan_gpa=$request->d_req_lan_gpa[$i];
+
+            $course->g_req_aca_per=$request->g_req_aca_per[$i];
+            $course->g_req_aca_gpa=$request->g_req_aca_gpa[$i];
+            $course->g_req_lan_per=$request->g_req_lan_per[$i];
+            $course->g_req_lan_gpa=$request->g_req_lan_gpa[$i];
+
+            $course->pg_req_aca_per=$request->pg_req_aca_per[$i];
+            $course->pg_req_aca_gpa=$request->pg_req_aca_gpa[$i];
+            $course->pg_req_lan_per=$request->pg_req_lan_per[$i];
+            $course->pg_req_lan_gpa=$request->pg_req_lan_gpa[$i];
+
+            $course->ten_req_aca_per=$request->ten_req_aca_per[$i];
+            $course->ten_req_aca_gpa=$request->ten_req_aca_gpa[$i];
+            $course->ten_req_lan_per=$request->ten_req_lan_per[$i];
+            $course->ten_req_lan_gpa=$request->ten_req_lan_gpa[$i];
+
+            $course->twelve_req_aca_per=$request->twelve_req_aca_per[$i];
+            $course->twelve_req_aca_gpa=$request->twelve_req_aca_gpa[$i];
+            $course->twelve_req_lan_per=$request->twelve_req_lan_per[$i];
+            $course->twelve_req_lan_gpa=$request->twelve_req_lan_gpa[$i];
+
             $course->added_by=\Auth::user()->id;
             $course->company_id=\Auth::user()->company_id;
             $course->save();
@@ -300,5 +403,10 @@ class CourseController extends Controller
             
         }
             return redirect()->route("Course.index")->with("success","Courses");
+    }
+
+    public function getCourseDetails($course)
+    {
+        return Course::find($course);
     }
 }

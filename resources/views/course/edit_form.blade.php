@@ -45,6 +45,172 @@
     </div>
 </div>
 
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="course_duration">Course Duration</label>
+        <input type="text" name="duration" value="{{$Course->duration ?? ''}}" id="duration" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="status">Course Link</label>
+        <input type="text" name="course_link" value="{{$Course->course_link ?? ''}}" id="course_link" class="form-control">
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="course_duration">Application Fees</label>
+        <input type="text" name="application_fees" value="{{$Course->application_fees ?? ''}}" id="application_fees" class="form-control">
+    </div>
+</div>
+
+<div class="col-md-12">
+<hr>
+<h5>
+Course Special Requirement
+<hr>
+</div>
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="country">Diploma Requirement Academic %</label>
+        <input type="text" name="d_req_aca_per" value="{{$Course->d_req_aca_per ?? ''}}"  onkeypress="return isNumber(event)" id="d_req_aca_per" class="form-control">
+    </div>   
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="country">Diploma Requirement Academic GPA</label>
+        <input type="text" name="d_req_aca_gpa" value="{{$Course->d_req_aca_gpa ?? ''}}"  onkeypress="return isNumber(event)" id="d_req_aca_gpa" class="form-control">
+    </div>   
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="country">Diploma Requirement Language %</label>
+        <input type="text" name="d_req_lan_per" value="{{$Course->d_req_lan_per ?? ''}}"  onkeypress="return isNumber(event)" id="d_req_lan_per" class="form-control">
+    </div>   
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="country">Diploma Requirement Language GPA</label>
+        <input type="text" name="d_req_lan_gpa" value="{{$Course->d_req_lan_gpa ?? ''}}"  onkeypress="return isNumber(event)" id="d_req_lan_gpa" class="form-control">
+    </div>   
+</div>
+
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="country">Graduate Requirement Academic %</label>
+        <input type="text" name="g_req_aca_per" value="{{$Course->g_req_aca_per ?? ''}}"  onkeypress="return isNumber(event)" id="g_req_aca_per" class="form-control">
+    </div>   
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="country">Graduate Requirement Academic GPA</label>
+        <input type="text" name="g_req_aca_gpa" value="{{$Course->g_req_aca_gpa ?? ''}}"  onkeypress="return isNumber(event)" id="g_req_aca_gpa" class="form-control">
+    </div>   
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="country">Graduate Requirement Language %</label>
+        <input type="text" name="g_req_lan_per" value="{{$Course->g_req_lan_per ?? ''}}"  onkeypress="return isNumber(event)" id="g_req_lan_per" class="form-control">
+    </div>   
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="country">Graduate Requirement Language GPA</label>
+        <input type="text" name="g_req_lan_gpa" value="{{$Course->g_req_lan_gpa ?? ''}}"  onkeypress="return isNumber(event)" id="g_req_lan_gpa" class="form-control">
+    </div>   
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="country">Post Graduate Requirement Academic %</label>
+        <input type="text" name="pg_req_aca_per" value="{{$Course->pg_req_aca_per ?? ''}}"  onkeypress="return isNumber(event)" id="pg_req_aca_per" class="form-control">
+    </div>   
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="country">Post Graduate Requirement Academic GPA</label>
+        <input type="text" name="pg_req_aca_gpa" value="{{$Course->pg_req_aca_gpa ?? ''}}"  onkeypress="return isNumber(event)" id="pg_req_aca_gpa" class="form-control">
+    </div>   
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="country">Post Graduate Requirement Language %</label>
+        <input type="text" name="pg_req_lan_per" value="{{$Course->pg_req_lan_per ?? ''}}"  onkeypress="return isNumber(event)" id="pg_req_lan_per" class="form-control">
+    </div>   
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="country">Post Graduate Requirement Language GPA</label>
+        <input type="text" name="pg_req_lan_gpa" value="{{$Course->pg_req_lan_gpa ?? ''}}"  onkeypress="return isNumber(event)" id="pg_req_lan_gpa" class="form-control">
+    </div>   
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="country">10th Requirement Academic %</label>
+        <input type="text" name="ten_req_aca_per" value="{{$Course->ten_req_aca_per ?? ''}}"  onkeypress="return isNumber(event)" id="ten_req_aca_per" class="form-control">
+    </div>   
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="country">10th Requirement Academic GPA</label>
+        <input type="text" name="ten_req_aca_gpa" value="{{$Course->ten_req_aca_gpa ?? ''}}"  onkeypress="return isNumber(event)" id="ten_req_aca_gpa" class="form-control">
+    </div>   
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="country">10th Graduate Requirement Language %</label>
+        <input type="text" name="ten_req_lan_per" value="{{$Course->ten_req_lan_per ?? ''}}"  onkeypress="return isNumber(event)" id="ten_req_lan_per" class="form-control">
+    </div>   
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="country">10th Requirement Language GPA</label>
+        <input type="text" name="ten_req_lan_gpa" value="{{$Course->ten_req_lan_gpa ?? ''}}"  onkeypress="return isNumber(event)" id="ten_req_lan_gpa" class="form-control">
+    </div>   
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="country">12th Requirement Academic %</label>
+        <input type="text" name="twelve_req_aca_per" value="{{$Course->twelve_req_aca_per ?? ''}}"  onkeypress="return isNumber(event)" id="twelve_req_aca_per" class="form-control">
+    </div>   
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="country">12th Requirement Academic GPA</label>
+        <input type="text" name="twelve_req_aca_gpa" value="{{$Course->twelve_req_aca_gpa ?? ''}}"  onkeypress="return isNumber(event)" id="twelve_req_aca_gpa" class="form-control">
+    </div>   
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="country">12th Graduate Requirement Language %</label>
+        <input type="text" name="twelve_req_lan_per" value="{{$Course->twelve_req_lan_per ?? ''}}"  onkeypress="return isNumber(event)" id="twelve_req_lan_per" class="form-control">
+    </div>   
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="country">12th Requirement Language GPA</label>
+        <input type="text" name="twelve_req_lan_gpa" value="{{$Course->twelve_req_lan_gpa ?? ''}}"  onkeypress="return isNumber(event)" id="twelve_req_lan_gpa" class="form-control">
+    </div>   
+</div>
+
 <div class="col-md-12">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
@@ -68,7 +234,23 @@
         @endphp
         <tr id="rec-{{$srno}}">
             <td><input type="hidden" id="cr_{{$srno}}" data-id="cr_{{$course_recruitment->id}}" name="course_recruitment_id[]" value="{{$course_recruitment->id}}"><span class="sn">{{$srno}}</span>.</td>
-            <td><input type="text" name="course_documents[]" class="form-control" value="{{$course_recruitment->documents}}"></td>
+            <td>
+                <select class="form-control" name="course_documents[]">
+                    <option value="">select document</option>
+                    <option @if($course_recruitment->documents=='Photographs') selected @endif value="Photographs">Photographs</option>
+                    <option @if($course_recruitment->documents=='Passport') selected @endif value="Passport">Passport</option>
+                    <option @if($course_recruitment->documents=='10th Documents') selected @endif value="10th Documents">10th Documents</option>
+                    <option @if($course_recruitment->documents=='12th Documents') selected @endif value="12th Documents">12th Documents</option>
+                    <option @if($course_recruitment->documents=='Diploma Documents') selected @endif value="Diploma Documents">Diploma Documents</option>
+                    <option @if($course_recruitment->documents=='Bachelor Documents') selected @endif value="Bachelor Documents">Bachelor Documents</option>
+                    <option @if($course_recruitment->documents=='Master Documents') selected @endif value="Master Documents">Master Documents</option>
+                    <option @if($course_recruitment->documents=='Transcript Document(University)') selected @endif value="Transcript Document(University)">Transcript Document(University)</option>
+                    <option @if($course_recruitment->documents=='Work Experience Documents') selected @endif value="Work Experience Documents">Work Experience Documents</option>
+                    <option @if($course_recruitment->documents=='LOR') selected @endif value="LOR">LOR</option>
+                    <option @if($course_recruitment->documents=='Resume') selected @endif value="Resume">Resume</option>
+                    <option @if($course_recruitment->documents=='Other') selected @endif value="Other">Other</option>
+                </select>
+                
             <td>
                 <select class="form-control" name="course_type[]">
                     <option value="">select type</option>
@@ -106,7 +288,23 @@
     <table id="sample_table">
       <tr id="">
        <td><span class="sn"></span>.</td>
-       <td><input type="text" name="documents[]" class="form-control"></div></td>
+       <td>
+            <select class="form-control" name="documents[]">
+               <option value="">select document</option>
+               <option value="photographs">Photographs</option>
+               <option value="passport">Passport</option>
+               <option value="10th">10th Documents</option>
+               <option value="12th">12th Documents</option>
+               <option value="diploma_document">Diploma Documents</option>
+               <option value="bachelor_document">Bachelor Documents</option>
+               <option value="master_document">Master Documents</option>
+               <option value="transcript_document">Transcript Document(University)</option>
+               <option value="work_experience_document">Work Experience Documents</option>
+               <option value="lor">LOR</option>
+               <option value="resume">Resume</option>
+               <option value="other">Other</option>
+            </select>
+        </td>
        <td>
            <select class="form-control" name="type[]">
                <option value="">select type</option>
