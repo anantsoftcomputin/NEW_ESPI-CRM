@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <title>{{ config('app.name'); }} | @yield('title')</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/logo.svg') }}"/>
+    <link rel="icon" type="image/x-icon" href="{{ asset('logo.svg') }}"/>
     <link href="{{ asset('assets/css/loader.css') }}" rel="stylesheet" type="text/css" />
     <script src="{{ asset('assets/js/loader.js') }}"></script>
 
