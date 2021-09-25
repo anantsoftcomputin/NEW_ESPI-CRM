@@ -41,14 +41,6 @@
                 },
             ajax: "{{ route('assessments.index') }}",
             columns: [
-<<<<<<< HEAD
-                {data: 'university.name', name: 'university.name', orderable: false, searchable: false},
-                { data: 'course.name', name: 'course.name' , orderable: false, searchable: false},
-                { data: 'enquiry.name', name: 'enquiry.name' , orderable: false, searchable: false},
-                { data: 'status', name: 'status' , orderable: false, searchable: false},
-                { data: 'assign_to', name: 'assign_to' , orderable: false, searchable: false},
-                {data: 'action', name: 'action', orderable: false, searchable: false},
-=======
                 { data: 'enquiry.enquiry_id', name: 'enquiry.enquiry_id',orderable:'false',searchable: false },
                 { data: 'enquiry.name', name: 'enquiry.name',orderable: false,searchable: false},
                 { data: 'university.country.name', name: 'university.country.name',orderable: false,searchable: false},
@@ -57,7 +49,6 @@
                 { data: 'status', name: 'status' , orderable: true ,searchable: true},
                 { data: 'assign_to', name: 'assign_to' , orderable: false, searchable: true},
                 {data: 'action', name: 'action', orderable: false, searchable: true},
->>>>>>> 217396e7253c35424881268e83ad74377af26894
             ],
             initComplete: function () {
             this.api().columns().every(function () {
@@ -137,7 +128,6 @@ Application
                 <th width="100px">Name</th>
                 <th width="100px">Status</th>
                 <th  width="100px">Assign To</th>
-                <th width="300px">Action</th>
             </tr>
         </thead>
         <tbody>
