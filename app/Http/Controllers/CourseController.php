@@ -76,30 +76,10 @@ class CourseController extends Controller
         $validated['application_fees']=$addcourse->application_fees;
         $validated['course_link']=$addcourse->course_link;
 
-        $validated['d_req_aca_per']=$addcourse->d_req_aca_per;
-        $validated['d_req_aca_gpa']=$addcourse->d_req_aca_gpa;
-        $validated['d_req_lan_per']=$addcourse->d_req_lan_per;
-        $validated['d_req_lan_gpa']=$addcourse->d_req_lan_gpa;
-
-        $validated['g_req_aca_per']=$addcourse->g_req_aca_per;
-        $validated['g_req_aca_gpa']=$addcourse->g_req_aca_gpa;
-        $validated['g_req_lan_per']=$addcourse->g_req_lan_per;
-        $validated['g_req_lan_gpa']=$addcourse->g_req_lan_gpa;
-
-        $validated['pg_req_aca_per']=$addcourse->pg_req_aca_per;
-        $validated['pg_req_aca_gpa']=$addcourse->pg_req_aca_gpa;
-        $validated['pg_req_lan_per']=$addcourse->pg_req_lan_per;
-        $validated['pg_req_lan_gpa']=$addcourse->pg_req_lan_gpa;
-
-        $validated['ten_req_aca_per']=$addcourse->ten_req_aca_per;
-        $validated['ten_req_aca_gpa']=$addcourse->ten_req_aca_gpa;
-        $validated['ten_req_lan_per']=$addcourse->ten_req_lan_per;
-        $validated['ten_req_lan_gpa']=$addcourse->ten_req_lan_gpa;
-
-        $validated['twelve_req_aca_per']=$addcourse->twelve_req_aca_per;
-        $validated['twelve_req_aca_gpa']=$addcourse->twelve_req_aca_gpa;
-        $validated['twelve_req_lan_per']=$addcourse->twelve_req_lan_per;
-        $validated['twelve_req_lan_gpa']=$addcourse->twelve_req_lan_gpa;
+        $validated['ten_req']=$addcourse->ten_req;
+        $validated['twelve_req']=$addcourse->twelve_req;
+        $validated['bachelor_req']=$addcourse->bachelor_req;
+        $validated['master_req']=$addcourse->master_req;
 
         $course=Course::create($validated);
         $totdocuments=count($addcourse->documents);
@@ -120,6 +100,7 @@ class CourseController extends Controller
         if(isset($data)){
             CourseRecruitments::insert($data);
         }
+
 
         return redirect(route('Course.index'))->with("success",'Course');
     }
@@ -154,7 +135,7 @@ class CourseController extends Controller
         }
         else
         {
-            
+
         }
     }
 
@@ -167,7 +148,7 @@ class CourseController extends Controller
      */
     public function update(EditCourse $request,$course)
     {
-       
+
         $validated = $request->validated();
         $validated['added_by']=\Auth::user()->id;
 
@@ -175,34 +156,15 @@ class CourseController extends Controller
         $validated['application_fees']=$request->application_fees;
         $validated['course_link']=$request->course_link;
 
-        $validated['d_req_aca_per']=$request->d_req_aca_per;
-        $validated['d_req_aca_gpa']=$request->d_req_aca_gpa;
-        $validated['d_req_lan_per']=$request->d_req_lan_per;
-        $validated['d_req_lan_gpa']=$request->d_req_lan_gpa;
-
-        $validated['g_req_aca_per']=$request->g_req_aca_per;
-        $validated['g_req_aca_gpa']=$request->g_req_aca_gpa;
-        $validated['g_req_lan_per']=$request->g_req_lan_per;
-        $validated['g_req_lan_gpa']=$request->g_req_lan_gpa;
-
-        $validated['pg_req_aca_per']=$request->pg_req_aca_per;
-        $validated['pg_req_aca_gpa']=$request->pg_req_aca_gpa;
-        $validated['pg_req_lan_per']=$request->pg_req_lan_per;
-        $validated['pg_req_lan_gpa']=$request->pg_req_lan_gpa;
-
-        $validated['ten_req_aca_per']=$request->ten_req_aca_per;
-        $validated['ten_req_aca_gpa']=$request->ten_req_aca_gpa;
-        $validated['ten_req_lan_per']=$request->ten_req_lan_per;
-        $validated['ten_req_lan_gpa']=$request->ten_req_lan_gpa;
-
-        $validated['twelve_req_aca_per']=$request->twelve_req_aca_per;
-        $validated['twelve_req_aca_gpa']=$request->twelve_req_aca_gpa;
-        $validated['twelve_req_lan_per']=$request->twelve_req_lan_per;
-        $validated['twelve_req_lan_gpa']=$request->twelve_req_lan_gpa;
+        $validated['ten_req']=$request->ten_req;
+        $validated['twelve_req']=$request->twelve_req;
+        $validated['bachelor_req']=$request->bachelor_req;
+        $validated['master_req']=$request->master_req;
 
         $validated['company_id']=\Auth::user()->company_id;
+
         $courses=Course::where("id",$course)->update($validated);
-        
+
         if(isset($request->course_recruitment_id))
         {
             //Course Requirements Update
@@ -220,7 +182,7 @@ class CourseController extends Controller
                 }
             }
         }
-        
+
         if(isset($request->documents))
         {
             //Course Requirements New Insert
@@ -240,7 +202,7 @@ class CourseController extends Controller
                 }
             }
         }
-        
+
         if(isset($data)){
             CourseRecruitments::insert($data);
         }
@@ -261,21 +223,21 @@ class CourseController extends Controller
 
     public function CourseDetail($uni,Request $request)
     {
-       
+
         if ($request->ajax()) {
             $data = Course::select('*')->where('university_id',$uni)->with('University');
-            
+
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
                            $btn = ' <a href="'.route('Course.edit',$row->id).'" class="edit btn btn-primary btn-sm" data-row="'.route('Course.edit',$row->id).'">Edit</a>';
-                           
+
                             return $btn;
                     })
                     ->rawColumns(['action'])
                     ->make(true);
         }
-       
+
         return view('course.index',compact('uni'));
         // return view('course.index');
     }
@@ -290,7 +252,7 @@ class CourseController extends Controller
         return Course::where('university_id',$request->university)
         ->where('course_level',$request->level)
         ->get();
-    } 
+    }
 
     public function CourseDetail_edit(Request $request)
     {
@@ -392,7 +354,7 @@ class CourseController extends Controller
                             $type=$course_requirements_type[$j];
                         }
                     }
-                    
+
                     $requirements_check->type=trim(strtolower($type));
                     $requirements_check->status="active";
                     $requirements_check->course_id=$course->id;
@@ -400,7 +362,7 @@ class CourseController extends Controller
                     $requirements_check->save();
                 }
             }
-            
+
         }
             return redirect()->route("Course.index")->with("success","Courses");
     }

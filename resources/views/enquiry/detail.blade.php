@@ -295,6 +295,7 @@ div.progress.visible {
                     <option value="">Select Exam Status</option>
                     <option value="Completed">Completed</option>
                     <option value="Planning">Planning</option>
+                    <option value="NotPlanned">Still Not Planned</option>
                 </select>
             </div>
         </div>
@@ -498,7 +499,7 @@ div.progress.visible {
             $("#experience_detail_history").hide();
             $("#add_more_expiriance").hide();
         }
-        
+
     });
 
     function travel_detail_history(e){

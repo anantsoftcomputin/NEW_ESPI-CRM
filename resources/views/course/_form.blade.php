@@ -73,145 +73,34 @@
 Course Special Requirement
 <hr>
 </div>
+
+
 <div class="col-md-6">
     <div class="form-group">
-        <label for="country">Diploma Requirement Academic %</label>
-        <input type="text" name="d_req_aca_per" onkeypress="return isNumber(event)" id="d_req_aca_per" class="form-control" required>
-    </div>   
+        <label for="ten_req">10th Academic %</label>
+        <input type="text" name="ten_req" value="" onkeypress="return isNumber(event)" id="ten_req" class="form-control">
+    </div>
 </div>
 
 <div class="col-md-6">
     <div class="form-group">
-        <label for="country">Diploma Requirement Academic GPA</label>
-        <input type="text" name="d_req_aca_gpa" onkeypress="return isNumber(event)" id="d_req_aca_gpa" class="form-control" required>
-    </div>   
+        <label for="twelve_req">12th Academic %</label>
+        <input type="text" name="twelve_req" value="" onkeypress="return isNumber(event)" id="twelve_req" class="form-control">
+    </div>
 </div>
 
 <div class="col-md-6">
     <div class="form-group">
-        <label for="country">Diploma Requirement Language %</label>
-        <input type="text" name="d_req_lan_per" onkeypress="return isNumber(event)" id="d_req_lan_per" class="form-control" required>
-    </div>   
+        <label for="bachelor_req">Bachelor %</label>
+        <input type="text" name="bachelor_req" value="" onkeypress="return isNumber(event)" id="bachelor_req" class="form-control">
+    </div>
 </div>
 
 <div class="col-md-6">
     <div class="form-group">
-        <label for="country">Diploma Requirement Language GPA</label>
-        <input type="text" name="d_req_lan_gpa" onkeypress="return isNumber(event)" id="d_req_lan_gpa" class="form-control" required>
-    </div>   
-</div>
-
-
-<div class="col-md-6">
-    <div class="form-group">
-        <label for="country">Graduate Requirement Academic %</label>
-        <input type="text" name="g_req_aca_per" onkeypress="return isNumber(event)" id="g_req_aca_per" class="form-control" required>
-    </div>   
-</div>
-
-<div class="col-md-6">
-    <div class="form-group">
-        <label for="country">Graduate Requirement Academic GPA</label>
-        <input type="text" name="g_req_aca_gpa" onkeypress="return isNumber(event)" id="g_req_aca_gpa" class="form-control" required>
-    </div>   
-</div>
-
-<div class="col-md-6">
-    <div class="form-group">
-        <label for="country">Graduate Requirement Language %</label>
-        <input type="text" name="g_req_lan_per" onkeypress="return isNumber(event)" id="g_req_lan_per" class="form-control" required>
-    </div>   
-</div>
-
-<div class="col-md-6">
-    <div class="form-group">
-        <label for="country">Graduate Requirement Language GPA</label>
-        <input type="text" name="g_req_lan_gpa" onkeypress="return isNumber(event)" id="g_req_lan_gpa" class="form-control" required>
-    </div>   
-</div>
-
-<div class="col-md-6">
-    <div class="form-group">
-        <label for="country">Post Graduate Requirement Academic %</label>
-        <input type="text" name="pg_req_aca_per" onkeypress="return isNumber(event)" id="pg_req_aca_per" class="form-control" required>
-    </div>   
-</div>
-
-<div class="col-md-6">
-    <div class="form-group">
-        <label for="country">Post Graduate Requirement Academic GPA</label>
-        <input type="text" name="pg_req_aca_gpa" onkeypress="return isNumber(event)" id="pg_req_aca_gpa" class="form-control" required>
-    </div>   
-</div>
-
-<div class="col-md-6">
-    <div class="form-group">
-        <label for="country">Post Graduate Requirement Language %</label>
-        <input type="text" name="pg_req_lan_per" onkeypress="return isNumber(event)" id="pg_req_lan_per" class="form-control" required>
-    </div>   
-</div>
-
-<div class="col-md-6">
-    <div class="form-group">
-        <label for="country">Post Graduate Requirement Language GPA</label>
-        <input type="text" name="pg_req_lan_gpa" onkeypress="return isNumber(event)" id="pg_req_lan_gpa" class="form-control" required>
-    </div>   
-</div>
-
-<div class="col-md-6">
-    <div class="form-group">
-        <label for="country">10th Requirement Academic %</label>
-        <input type="text" name="ten_req_aca_per" onkeypress="return isNumber(event)" id="ten_req_aca_per" class="form-control" required>
-    </div>   
-</div>
-
-<div class="col-md-6">
-    <div class="form-group">
-        <label for="country">10th Requirement Academic GPA</label>
-        <input type="text" name="ten_req_aca_gpa" onkeypress="return isNumber(event)" id="ten_req_aca_gpa" class="form-control" required>
-    </div>   
-</div>
-
-<div class="col-md-6">
-    <div class="form-group">
-        <label for="country">10th Graduate Requirement Language %</label>
-        <input type="text" name="ten_req_lan_per" onkeypress="return isNumber(event)" id="ten_req_lan_per" class="form-control" required>
-    </div>   
-</div>
-
-<div class="col-md-6">
-    <div class="form-group">
-        <label for="country">10th Requirement Language GPA</label>
-        <input type="text" name="ten_req_lan_gpa" onkeypress="return isNumber(event)" id="ten_req_lan_gpa" class="form-control" required>
-    </div>   
-</div>
-
-<div class="col-md-6">
-    <div class="form-group">
-        <label for="country">12th Requirement Academic %</label>
-        <input type="text" name="twelve_req_aca_per" onkeypress="return isNumber(event)" id="twelve_req_aca_per" class="form-control" required>
-    </div>   
-</div>
-
-<div class="col-md-6">
-    <div class="form-group">
-        <label for="country">12th Requirement Academic GPA</label>
-        <input type="text" name="twelve_req_aca_gpa" onkeypress="return isNumber(event)" id="twelve_req_aca_gpa" class="form-control" required>
-    </div>   
-</div>
-
-<div class="col-md-6">
-    <div class="form-group">
-        <label for="country">12th Graduate Requirement Language %</label>
-        <input type="text" name="twelve_req_lan_per" onkeypress="return isNumber(event)" id="twelve_req_lan_per" class="form-control" required>
-    </div>   
-</div>
-
-<div class="col-md-6">
-    <div class="form-group">
-        <label for="country">12th Requirement Language GPA</label>
-        <input type="text" name="twelve_req_lan_gpa" onkeypress="return isNumber(event)" id="twelve_req_lan_gpa" class="form-control" required>
-    </div>   
+        <label for="master_req">Master %</label>
+        <input type="text" name="master_req" value="" onkeypress="return isNumber(event)" id="master_req" class="form-control">
+    </div>
 </div>
 
 <div class="col-md-12">
@@ -228,7 +117,7 @@ Course Special Requirement
           </tr>
         </thead>
         <tbody id="tbl_posts_body">
-      
+
         </tbody>
         <tfoot>
             <td colspan="5"><div class="well clearfix text-right">
@@ -236,8 +125,8 @@ Course Special Requirement
  </div></td>
         </tfoot>
       </table>
-    </div> 
-  
+    </div>
+
   <div style="display:none;">
     <table id="sample_table">
       <tr id="">
@@ -283,13 +172,13 @@ Course Special Requirement
      </tr>
    </table>
  </div>
- 
+
 <script>
     jQuery(document).delegate('a.add-record', 'click', function(e) {
-     e.preventDefault();    
+     e.preventDefault();
      var content = jQuery('#sample_table tr'),
      size = jQuery('#tbl_posts >tbody >tr').length + 1,
-     element = null,    
+     element = null,
      element = content.clone();
      element.attr('id', 'rec-'+size);
      element.find('.delete-record').attr('data-id', size);
@@ -298,7 +187,7 @@ Course Special Requirement
    });
 
    jQuery(document).delegate('a.delete-record', 'click', function(e) {
-     e.preventDefault();    
+     e.preventDefault();
      var didConfirm = confirm("Are you sure You want to delete");
      if (didConfirm == true) {
       var id = jQuery(this).attr('data-id');
@@ -310,13 +199,13 @@ Course Special Requirement
             {
                 dataType: 'json', // type of response data
 				success: function (data,status,xhr) {
-                    
+
                 }
             }
          );
       }
       jQuery('#rec-' + id).remove();
-      
+
     //regnerate index number on table
     $('#tbl_posts_body tr').each(function(index) {
       //alert(index);

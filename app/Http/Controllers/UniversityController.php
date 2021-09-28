@@ -60,9 +60,9 @@ class UniversityController extends Controller
     public function create()
     {
         $intake=Intact::select('month','id')->groupBy('month')->orderBy('id','asc')->get();
-       
+
         $intakeYear=Intact::select('year','id')->groupBy('year')->orderBy('id','asc')->get();
-        
+
         return view("university.add",compact("intake","intakeYear"));
     }
 
@@ -73,58 +73,35 @@ class UniversityController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(AddUniversity $AddUniversity)
-    {  
+    {
         $validated = $AddUniversity->validated();
-        
+
         $validated['added_by']=\Auth::user()->id;
-        
+
         $validated['intake_year']=$AddUniversity->intake_year;
         $validated['intake_month']=$AddUniversity->intake_month;
         $validated['provision_state']=$AddUniversity->provision_state;
         $validated['application_fees']=$AddUniversity->application_fees;
+        $validated['ten_req']=$AddUniversity->ten_req;
+        $validated['twelve_req']=$AddUniversity->twelve_req;
+        $validated['bachelor_req']=$AddUniversity->bachelor_req;
+        $validated['master_req']=$AddUniversity->master_req;
 
-        $validated['d_req_aca_per']=$AddUniversity->d_req_aca_per;
-        $validated['d_req_aca_gpa']=$AddUniversity->d_req_aca_gpa;
-        $validated['d_req_lan_per']=$AddUniversity->d_req_lan_per;
-        $validated['d_req_lan_gpa']=$AddUniversity->d_req_lan_gpa;
-
-        $validated['g_req_aca_per']=$AddUniversity->g_req_aca_per;
-        $validated['g_req_aca_gpa']=$AddUniversity->g_req_aca_gpa;
-        $validated['g_req_lan_per']=$AddUniversity->g_req_lan_per;
-        $validated['g_req_lan_gpa']=$AddUniversity->g_req_lan_gpa;
-
-        $validated['pg_req_aca_per']=$AddUniversity->pg_req_aca_per;
-        $validated['pg_req_aca_gpa']=$AddUniversity->pg_req_aca_gpa;
-        $validated['pg_req_lan_per']=$AddUniversity->pg_req_lan_per;
-        $validated['pg_req_lan_gpa']=$AddUniversity->pg_req_lan_gpa;
-
-        $validated['ten_req_aca_per']=$AddUniversity->ten_req_aca_per;
-        $validated['ten_req_aca_gpa']=$AddUniversity->ten_req_aca_gpa;
-        $validated['ten_req_lan_per']=$AddUniversity->ten_req_lan_per;
-        $validated['ten_req_lan_gpa']=$AddUniversity->ten_req_lan_gpa;
-
-        $validated['twelve_req_aca_per']=$AddUniversity->twelve_req_aca_per;
-        $validated['twelve_req_aca_gpa']=$AddUniversity->twelve_req_aca_gpa;
-        $validated['twelve_req_lan_per']=$AddUniversity->twelve_req_lan_per;
-        $validated['twelve_req_lan_gpa']=$AddUniversity->twelve_req_lan_gpa;
-        
         if($AddUniversity->news_letter)
         {
             $avatarPath = $AddUniversity->file('news_letter');
             $avatarName = time() . '.' . $avatarPath->getClientOriginalExtension();
             $file = $AddUniversity->file('news_letter');
-            // generate a new filename. getClientOriginalExtension() for the file extension
             $filename = 'news-letter-' . time() . '.' . $file->getClientOriginalExtension();
-            // save to storage/app/photos as the new $filename
             $path = $file->storeAs('news_letter', $filename);
             $validated['news_letter'] =$filename;
         }
-        
+
 
         $university=University::create($validated);
-        
+
         //university campus saving
-        
+
         if(isset($AddUniversity->campus_name))
         {
             $totCampus=count($AddUniversity->campus_name);
@@ -144,7 +121,7 @@ class UniversityController extends Controller
                 UniversityCampus::insert($data);
             }
         }
-        
+
         //UniversityCampus
         return redirect(route('University.index'))->with('success','University');;
     }
@@ -191,31 +168,11 @@ class UniversityController extends Controller
         $validated['provision_state']=$request->provision_state;
         $validated['application_fees']=$request->application_fees;
 
-        $validated['d_req_aca_per']=$request->d_req_aca_per;
-        $validated['d_req_aca_gpa']=$request->d_req_aca_gpa;
-        $validated['d_req_lan_per']=$request->d_req_lan_per;
-        $validated['d_req_lan_gpa']=$request->d_req_lan_gpa;
+        $validated['ten_req']=$request->ten_req;
+        $validated['twelve_req']=$request->twelve_req;
+        $validated['bachelor_req']=$request->bachelor_req;
+        $validated['master_req']=$request->master_req;
 
-        $validated['g_req_aca_per']=$request->g_req_aca_per;
-        $validated['g_req_aca_gpa']=$request->g_req_aca_gpa;
-        $validated['g_req_lan_per']=$request->g_req_lan_per;
-        $validated['g_req_lan_gpa']=$request->g_req_lan_gpa;
-
-        $validated['pg_req_aca_per']=$request->pg_req_aca_per;
-        $validated['pg_req_aca_gpa']=$request->pg_req_aca_gpa;
-        $validated['pg_req_lan_per']=$request->pg_req_lan_per;
-        $validated['pg_req_lan_gpa']=$request->pg_req_lan_gpa;
-
-        $validated['ten_req_aca_per']=$request->ten_req_aca_per;
-        $validated['ten_req_aca_gpa']=$request->ten_req_aca_gpa;
-        $validated['ten_req_lan_per']=$request->ten_req_lan_per;
-        $validated['ten_req_lan_gpa']=$request->ten_req_lan_gpa;
-
-        $validated['twelve_req_aca_per']=$request->twelve_req_aca_per;
-        $validated['twelve_req_aca_gpa']=$request->twelve_req_aca_gpa;
-        $validated['twelve_req_lan_per']=$request->twelve_req_lan_per;
-        $validated['twelve_req_lan_gpa']=$request->twelve_req_lan_gpa;
-        
         if($request->news_letter)
         {
             $avatarPath = $request->file('news_letter');
@@ -228,7 +185,7 @@ class UniversityController extends Controller
             $validated['news_letter'] =$filename;
         }
 
-       
+
         // Update University
         $universitys=University::where("id",$university)->update($validated);
 
@@ -249,7 +206,7 @@ class UniversityController extends Controller
                 }
             }
         }
-        
+
         if(isset($request->campus_name))
         {
             //University Campus New Insert
@@ -270,7 +227,7 @@ class UniversityController extends Controller
                 }
             }
         }
-        
+
         if(isset($data)){
             UniversityCampus::insert($data);
         }
@@ -311,16 +268,16 @@ class UniversityController extends Controller
         return view("university.import_form");
     }
 
-    public function processImport(Request $request) 
+    public function processImport(Request $request)
     {
         $validated = $request->validate([
             'file' => 'mimes:csv,xlsx,xls'
         ]);
         $data = Excel::toArray(new ImportUniversity(), request()->file('file'));
         return view("university.import_fields",compact("data"));
-       
+
     }
-    
+
     function university_import_save(Request $request)
     {
         $totuniversity=count($request->name);
@@ -329,7 +286,7 @@ class UniversityController extends Controller
             $country = Country::firstOrNew(array('name' => $request->country[$i]));
             $intake_year = Intact::firstOrNew(array('year' => $request->intake_year[$i]));
             $intake_month = Intact::firstOrNew(array('month' => $request->intake_month[$i]));
-        
+
             $university = University::firstOrNew(array('name' => $request->name[$i]));
             $university->description = $request->description[$i];
             $university->address=$request->address[$i];
@@ -394,7 +351,7 @@ class UniversityController extends Controller
                     $campus_check->campus_country=$country->id ?? "";
                     $campus_check->campus_fees=$campus_fees[$j] ?? "";
                     $campus_check->campus_address=$campus_address[$j] ?? "";
-    
+
                     $campus_check->company_id=\Auth::user()->company_id;
                     $campus_check->save();
                 }

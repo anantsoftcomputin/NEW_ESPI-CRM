@@ -18,7 +18,7 @@
     <div class="col-md-6">
         <div id="detected"></div>
     </div>
-     
+
         <div class="col-md-12">
             <div class="progress">
                 <div class="gradient">
@@ -105,7 +105,7 @@
     <div class="col-md-6" id="other">
         <div class="form-group">
             <label for="name">Other ( Multiple ) </label>
-            <input type="file" name="other[]" class="form-control">
+            <input type="file" name="other[]" class="form-control" multiple="multiple">
         </div>
     </div>
 </div>

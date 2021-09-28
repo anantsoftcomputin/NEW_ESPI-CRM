@@ -6,6 +6,7 @@
                 <option value="">Select Exam Status</option>
                 <option value="Completed">Completed</option>
                 <option value="Planning">Planning</option>
+                <option value="NotPlanning">Still Not Planning</option>
             </select>
             {{-- <select class="form-control" name="last_education" onchange="toggle_last_education(this)">
                <option value="">Select Last Educatuion</option>
@@ -118,13 +119,13 @@
             <input type="text" name="exam_integrated_reasoning" id="exam_integrated_reasoning" class="form-control">
         </div>
     </div>
-    
+
     <div class="col-md-12" style="display:none" id="enable_skill_msg">
         Enabling Skills
         <hr>
     </div>
     <div class="col-md-6 " id="exam_grammar_div">
-        
+
         <div class="form-group">
             <label for="name">Grammar</label>
             <input type="text" name="exam_grammar" id="exam_grammar" class="form-control">

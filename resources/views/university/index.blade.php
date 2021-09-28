@@ -43,7 +43,6 @@ University
             ajax: "{{ route('University.index') }}",
             columns: [
                 {data: 'name', name: 'name'},
-                {data: 'phone', name: 'phone'},
                 {data: 'email', name: 'email'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
@@ -71,7 +70,6 @@ University
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Phone</th>
                 <th>Email</th>
                 <th width="100px">Action</th>
             </tr>
