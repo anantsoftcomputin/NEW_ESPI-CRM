@@ -32,6 +32,11 @@ class Application extends Model
         return $this->hasOne(University::class,'id','university_id');
     }
 
+    public function Enquiry()
+    {
+        return $this->belongsTo(Enquiry::class,'enquiry_id');
+    }
+
     public function Course()
     {
         return $this->hasOne(Course::class,'id','course_id');

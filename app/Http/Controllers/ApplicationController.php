@@ -29,7 +29,7 @@ class ApplicationController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Application::select('*')->with('University','Course');
+            $data = Application::select('*')->with('University','Course','Enquiry');
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
