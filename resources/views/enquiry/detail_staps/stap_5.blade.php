@@ -40,7 +40,7 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label for="name">Refusal Resion</label>
+                <label for="name">Refusal Reason</label>
                 <input type="text" name="refusal_resion" class="form-control">
             </div>
         </div>
