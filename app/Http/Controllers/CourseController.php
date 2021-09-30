@@ -272,6 +272,7 @@ class CourseController extends Controller
             'file' => 'mimes:csv,xlsx,xls'
         ]);
         $data = Excel::toArray(new CourseImport(), request()->file('file'));
+        // dd($data);
         return view("course.import_fields",compact("data"));
     }
 
@@ -303,30 +304,10 @@ class CourseController extends Controller
             $course->intake_year=$intake_year->id;
             $course->intake_month=$intake_month->id;
 
-            $course->d_req_aca_per=$request->d_req_aca_per[$i];
-            $course->d_req_aca_gpa=$request->d_req_aca_gpa[$i];
-            $course->d_req_lan_per=$request->d_req_lan_per[$i];
-            $course->d_req_lan_gpa=$request->d_req_lan_gpa[$i];
-
-            $course->g_req_aca_per=$request->g_req_aca_per[$i];
-            $course->g_req_aca_gpa=$request->g_req_aca_gpa[$i];
-            $course->g_req_lan_per=$request->g_req_lan_per[$i];
-            $course->g_req_lan_gpa=$request->g_req_lan_gpa[$i];
-
-            $course->pg_req_aca_per=$request->pg_req_aca_per[$i];
-            $course->pg_req_aca_gpa=$request->pg_req_aca_gpa[$i];
-            $course->pg_req_lan_per=$request->pg_req_lan_per[$i];
-            $course->pg_req_lan_gpa=$request->pg_req_lan_gpa[$i];
-
-            $course->ten_req_aca_per=$request->ten_req_aca_per[$i];
-            $course->ten_req_aca_gpa=$request->ten_req_aca_gpa[$i];
-            $course->ten_req_lan_per=$request->ten_req_lan_per[$i];
-            $course->ten_req_lan_gpa=$request->ten_req_lan_gpa[$i];
-
-            $course->twelve_req_aca_per=$request->twelve_req_aca_per[$i];
-            $course->twelve_req_aca_gpa=$request->twelve_req_aca_gpa[$i];
-            $course->twelve_req_lan_per=$request->twelve_req_lan_per[$i];
-            $course->twelve_req_lan_gpa=$request->twelve_req_lan_gpa[$i];
+            $course->ten_req=$request->ten_req[$i];
+            $course->twelve_req=$request->twelve_req[$i];
+            $course->bachelor_req=$request->bachelor_req[$i];
+            $course->master_req=$request->master_req[$i];
 
             $course->added_by=\Auth::user()->id;
             $course->company_id=\Auth::user()->company_id;

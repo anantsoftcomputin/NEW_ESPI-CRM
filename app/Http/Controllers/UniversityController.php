@@ -300,60 +300,44 @@ class UniversityController extends Controller
             $university->application_fees=$request->application_fees[$i];
             $university->web=$request->web[$i];
 
-            $university->d_req_aca_per=$request->d_req_aca_per[$i];
-            $university->d_req_aca_gpa=$request->d_req_aca_gpa[$i];
-            $university->d_req_lan_per=$request->d_req_lan_per[$i];
-            $university->d_req_lan_gpa=$request->d_req_lan_gpa[$i];
+            $university->ten_req=$request->ten_req[$i];
+            $university->twelve_req=$request->twelve_req[$i];
+            $university->bachelor_req=$request->bachelor_req[$i];
+            $university->master_req=$request->master_req[$i];
 
-            $university->g_req_aca_per=$request->g_req_aca_per[$i];
-            $university->g_req_aca_gpa=$request->g_req_aca_gpa[$i];
-            $university->g_req_lan_per=$request->g_req_lan_per[$i];
-            $university->g_req_lan_gpa=$request->g_req_lan_gpa[$i];
-
-            $university->pg_req_aca_per=$request->pg_req_aca_per[$i];
-            $university->pg_req_aca_gpa=$request->pg_req_aca_gpa[$i];
-            $university->pg_req_lan_per=$request->pg_req_lan_per[$i];
-            $university->pg_req_lan_gpa=$request->pg_req_lan_gpa[$i];
-
-            $university->ten_req_aca_per=$request->ten_req_aca_per[$i];
-            $university->ten_req_aca_gpa=$request->ten_req_aca_gpa[$i];
-            $university->ten_req_lan_per=$request->ten_req_lan_per[$i];
-            $university->ten_req_lan_gpa=$request->ten_req_lan_gpa[$i];
-
-            $university->twelve_req_aca_per=$request->twelve_req_aca_per[$i];
-            $university->twelve_req_aca_gpa=$request->twelve_req_aca_gpa[$i];
-            $university->twelve_req_lan_per=$request->twelve_req_lan_per[$i];
-            $university->twelve_req_lan_gpa=$request->twelve_req_lan_gpa[$i];
 
             $university->company_id=\Auth::user()->company_id;
             $university->added_by=\Auth::user()->id;
             $university->save();
 
-            if($request->campus_name[$i])
+            if(isset($request->campus_name[$i]))
             {
-                $campus_name=explode("###",$request->campus_name[$i]);
-                $totCampus=count($campus_name);
-                $campus_country=explode("###",$request->campus_country[$i]);
-                $campus_address=explode("###",$request->campus_address[$i]);
-                $campus_fees=explode("###",$request->campus_fees[$i]);
-                for($j=0;$j<$totCampus;$j++)
+                if($request->campus_name[$i])
                 {
-                    $campus_check=UniversityCampus::where("campus_name",$campus_name[$j])
-                    ->where("university_id",$university->id)
-                    ->first();
-                    if(empty($requirements_check)){
-                        $campus_check=new UniversityCampus();
+                    $campus_name=explode("###",$request->campus_name[$i]);
+                    $totCampus=count($campus_name);
+                    $campus_country=explode("###",$request->campus_country[$i]);
+                    $campus_address=explode("###",$request->campus_address[$i]);
+                    $campus_fees=explode("###",$request->campus_fees[$i]);
+                    for($j=0;$j<$totCampus;$j++)
+                    {
+                        $campus_check=UniversityCampus::where("campus_name",$campus_name[$j])
+                        ->where("university_id",$university->id)
+                        ->first();
+                        if(empty($requirements_check)){
+                            $campus_check=new UniversityCampus();
+                        }
+                        $campus_check->university_id=$university->id;
+                        $country=Country::firstOrNew(array('name'=>trim($campus_country[$i])));
+    
+                        $campus_check->campus_name=$campus_name[$j] ?? "";
+                        $campus_check->campus_country=$country->id ?? "";
+                        $campus_check->campus_fees=$campus_fees[$j] ?? "";
+                        $campus_check->campus_address=$campus_address[$j] ?? "";
+    
+                        $campus_check->company_id=\Auth::user()->company_id;
+                        $campus_check->save();
                     }
-                    $campus_check->university_id=$university->id;
-                    $country=Country::firstOrNew(array('name'=>trim($campus_country[$i])));
-
-                    $campus_check->campus_name=$campus_name[$j] ?? "";
-                    $campus_check->campus_country=$country->id ?? "";
-                    $campus_check->campus_fees=$campus_fees[$j] ?? "";
-                    $campus_check->campus_address=$campus_address[$j] ?? "";
-
-                    $campus_check->company_id=\Auth::user()->company_id;
-                    $campus_check->save();
                 }
             }
         }

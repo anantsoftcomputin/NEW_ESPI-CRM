@@ -43,13 +43,16 @@ class UserController extends Controller
                         return $status;
                     })
                     ->addColumn('action', function($row){
-                           $btn = '<a href="'.route('users.edit',$row->id).'" title="Edit" class="edit btn btn-primary btn-sm">Edit</a>';
+                        $btn = '<a href="'.route('users.edit',$row->id).'" title="Edit" class="edit btn btn-primary btn-sm">Edit</a>';
+                        if($row->hasRole('super-admin'))
+                        {
+                            $btn="";
+                        }
                             return $btn;
                     })
-                    
                     ->rawColumns(['action'])
                     ->make(true);
-        
+
         }
         return view('user.index');
     }
@@ -85,7 +88,7 @@ class UserController extends Controller
         $user->fcm_token=$request->notification ? $request->fcm_token : '';
         $user->save();
         $user->assignRole($request->role);
-        
+
         return redirect()->route('users.index')->with("success","User");
     }
 
@@ -110,7 +113,7 @@ class UserController extends Controller
     {
         $title = "User Details";
         $roles = Role::pluck('name', 'id');
-        
+
         return view('user.edit', compact('user','title', 'roles'));
     }
 
@@ -137,7 +140,7 @@ class UserController extends Controller
         $user->fcm_token=$request->notification ? $request->fcm_token : '';
         $user->save();
         $user->syncRoles($request->role);
-        
+
         return redirect()->route('users.index');
     }
 
@@ -158,7 +161,7 @@ class UserController extends Controller
         $array=["token"=>$token];
         return json_encode($array);
     }
-  
+
     /**
      * Write code on Method
      *
@@ -167,34 +170,34 @@ class UserController extends Controller
     public function sendNotification(Request $request)
     {
         $firebaseToken = User::whereNotNull('fcm_token')->pluck('fcm_token')->all();
-          
+
         $SERVER_API_KEY = 'XXXXXX';
-  
+
         $data = [
             "registration_ids" => $firebaseToken,
             "notification" => [
                 "title" => $request->title,
-                "body" => $request->body,  
+                "body" => $request->body,
             ]
         ];
         $dataString = json_encode($data);
-    
+
         $headers = [
             'Authorization: key=' . $SERVER_API_KEY,
             'Content-Type: application/json',
         ];
-    
+
         $ch = curl_init();
-      
+
         curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
-               
+
         $response = curl_exec($ch);
-  
+
         dd($response);
     }
 }
