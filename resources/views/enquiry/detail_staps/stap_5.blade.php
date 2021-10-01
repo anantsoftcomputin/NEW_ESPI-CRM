@@ -18,7 +18,7 @@
                 <select name="rejection" id="rejection_if_any" class="form-control">
                     <option selected disabled>Rejection If any</option>
                     <option value="yes">Yes</option>
-                    <option value="no">no</option>
+                    <option value="no">No</option>
                 </select>
             </div>
         </div>
