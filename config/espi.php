@@ -9,12 +9,11 @@ return [
         'starts_with'      => false,
     ],
     'enquires_detail'         => [
-        // Personal information
-        'marital_status' =>  ['Unmarried', 'Married','Divorce','Gay'],
+        'marital_status' =>  ['Single','Married','Divorced','Separated','Widowed','Unknown'],
         'multi_term'       => true,
         'case_insensitive' => true,
         'use_wildcards'    => false,
         'starts_with'      => false,
+        'country_interested' => ['Canada','USA','UK','Australia','New Zealand','Europe','Finland','Netherland','Poland'],
     ],
-
 ];

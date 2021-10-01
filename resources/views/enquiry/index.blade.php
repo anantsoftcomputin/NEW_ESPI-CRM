@@ -51,7 +51,7 @@
         var table = $('.data-table').DataTable({
             processing: true,
             serverSide: true,
-            bFilter: false,
+            bFilter: true,
             lengthChange: false,
             ajax: "{{ route('Enquires.index') }}",
             columns: [
@@ -69,16 +69,16 @@
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
             initComplete: function () {
-            this.api().columns().every(function () {
-                var column = this;
-                var input = document.createElement("input");
-                $(input).appendTo($(column.footer()).empty())
-                .on('change', function () {
-                    var val = $.fn.dataTable.util.escapeRegex($(this).val());
-                    column.search(val ? val : '', true, false).draw();
+                this.api().columns().every(function () {
+                    var column = this;
+                    var input = document.createElement("input");
+                    $(input).appendTo($(column.footer()).empty())
+                    .on('change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                        column.search(val ? val : '', true, false).draw();
+                    });
                 });
-            });
-        }
+            }
         });
 
             // Add event listener for opening and closing details
@@ -151,7 +151,7 @@ Enquires
     <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
         <a  href="{{ route('Enquires.create') }}" class="btn btn-info" >Add New Enquiry</a>
         <br>
-        
+
         <table class="table table-bordered data-table">
             <thead>
                 <tr>

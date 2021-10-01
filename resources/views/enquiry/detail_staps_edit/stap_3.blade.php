@@ -51,7 +51,7 @@
 </div>
 
 <br><br><br>
-<h3>Travel History </h3>
+<h3>Travel</h3>
 <div class="row">
     <div class="col-md-12">
         <div class="form-group">
@@ -65,6 +65,7 @@
     </div>
 </div>
 <div id="travel_detail_history" class="travel_detail_history" style="display:none">
+    <h3>Travel History</h3>
     <div class="row">
         <div class="col-md-3">
             <div class="form-group">

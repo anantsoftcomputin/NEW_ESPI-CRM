@@ -243,9 +243,11 @@ $(document).ready(function(){
 			{
 				dataType: 'json', // type of response data
 				success: function (data,status,xhr) {   // success callback function
-                    console.log(data);
+                    $('#state')
+                            .append($("<option></option>")
+                                    .attr("value", '0')
+                                    .text("Select State"));
                     $.each(data, function(key, value) {
-                        console.log(value);
                         $('#state')
                             .append($("<option></option>")
                                     .attr("value", value.id)
@@ -261,12 +263,12 @@ $(document).ready(function(){
     var state_id="{{old('state_id')}}";
     if(state_id)
     {
+        alert("df");
         let URL="{{ url('api/admin/getStateById/') }}/"+state_id;
         $.ajax(URL,
 			{
 				dataType: 'json', // type of response data
 				success: function (data,status,xhr) {
-                    console.log(data);
                     $('#state').html("<option value="+data.id+" selected>"+data.name+"</option>");
 				},
 				error: function (jqXhr, textStatus, errorMessage) { // error callback
@@ -283,7 +285,6 @@ $(document).ready(function(){
 			{
 				dataType: 'json', // type of response data
 				success: function (data,status,xhr) {
-                    console.log(data);
                     $('#city').html("<option value="+data.id+" selected>"+data.name+"</option>");
 				},
 				error: function (jqXhr, textStatus, errorMessage) { // error callback
@@ -367,7 +368,6 @@ $(document).ready(function(){
 			{
 				dataType: 'json', // type of response data
 				success: function (data,status,xhr) {
-                    console.log(data);
                     $('#ref_phone').val(data.reference_phone);
                     $('#ref_name').val(data.reference_name);
 				},
@@ -402,16 +402,17 @@ $(document).ready(function(){
     }
 
     $("#country").change(function(){
-        $('#state option[value!="0"]').remove();
+
+        // $('#state option[value!="0"]').remove();
         $(this).val();
         let URL="{{ url('api/admin/getState/') }}/"+$(this).val();
         $.ajax(URL,
 			{
 				dataType: 'json', // type of response data
 				success: function (data,status,xhr) {   // success callback function
-                    console.log(data);
+
+                    $('#state').append($("<option></option>").attr("value", "#").attr("disable", true).text("Select State"));
                     $.each(data, function(key, value) {
-                        console.log(value);
                         $('#state')
                             .append($("<option></option>")
                                     .attr("value", value.id)
@@ -432,9 +433,7 @@ $(document).ready(function(){
 			{
 				dataType: 'json', // type of response data
 				success: function (data,status,xhr) {   // success callback function
-                    console.log(data);
                     $.each(data, function(key, value) {
-                        console.log(value);
                         $('#city')
                             .append($("<option></option>")
                                     .attr("value", value.id)
@@ -462,7 +461,7 @@ $(document).ready(function(){
                     dataType: 'json',
                     method:"get", // type of response data
                     success: function (data,status,xhr) {   // success callback function
-                        console.log(data);
+
                     },
                     error: function (jqXhr, textStatus, errorMessage) { // error callback
                         $('p').append('Error: ' + errorMessage);
@@ -498,7 +497,7 @@ $(document).ready(function(){
         <div class="card">
                 <div class="card-header">{{ __('enquire.heading') }}</div>
                 <div class="card-body">
-                   
+
                     <form method="POST" action="{{ route('Enquires.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
