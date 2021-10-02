@@ -31,7 +31,7 @@ Route::get('/get_sub_domain', function () {
 
 Route::get('optimize', function () {
     \Artisan::call('optimize');
-    echo "Cache is cleared";
+    return redirect('home');
 });
 
 Route::get("ocr",[HomeController::class,"ocr"]);
@@ -83,6 +83,10 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::post('CourseImportSave/{University?}',[CourseController::class,'CourseImportSave'])->name("Course.import_save");
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home01');
+});
+
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 
 Route::get('demo',function(){

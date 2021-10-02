@@ -1,10 +1,48 @@
 <div class="row">
     <div class="col-md-6">
-        <div class="form-group">
-            <label for="name">Photographs</label>
-            <input type="file" name="photographs" class="form-control">
-        </div>
+      <h2 class="mt-4">Standalone Image Button</h2>
+      <div class="input-group">
+        <span class="input-group-btn">
+          <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary text-white">
+            <i class="fa fa-picture-o"></i> Choose
+          </a>
+        </span>
+        <input id="thumbnail" class="form-control" type="text" name="filepath">
+      </div>
+      <div id="holder" style="margin-top:15px;max-height:100px;"></div>
     </div>
+    <div class="col-md-6">
+      <h2 class="mt-4">Standalone Image Button</h2>
+      <div class="input-group">
+        <span class="input-group-btn">
+          <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary text-white">
+            <i class="fa fa-picture-o"></i> Choose
+          </a>
+        </span>
+        <input id="thumbnail" class="form-control" type="text" name="filepath">
+      </div>
+      <div id="holder" style="margin-top:15px;max-height:100px;"></div>
+      <h2 class="mt-4">Standalone File Button</h2>
+      <div class="input-group">
+        <span class="input-group-btn">
+          <a id="lfm2" data-input="thumbnail2" data-preview="holder2" class="btn btn-primary text-white">
+            <i class="fa fa-picture-o"></i> Choose
+          </a>
+        </span>
+        <input id="thumbnail2" class="form-control" type="text" name="filepath">
+      </div>
+      <div id="holder2" style="margin-top:15px;max-height:100px;"></div>
+    </div>
+    <div class="col-md-6">
+        <div class="input-group mb-4">
+            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+            <div class="input-group-append">
+              <button type="button" class="btn btn-outline-info">Upload</button>
+            </div>
+          </div>
+    </div>
+</div>
+<div class="row">
     <div class="col-md-6">
         <div class="form-group">
             <label for="name">Passport</label>
@@ -19,16 +57,6 @@
         <div id="detected"></div>
     </div>
 
-        <div class="col-md-12">
-            <div class="progress">
-                <div class="gradient">
-                    <div class="progress-wrapper">
-                        <div class="progress-text"></div>
-                        <progress></progress>
-                    </div>
-                </div>
-            </div>
-        </div>
     <div class="col-md-6">
         <div class="form-group">
             <label for="name">10th Documents</label>

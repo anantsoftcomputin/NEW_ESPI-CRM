@@ -7,50 +7,50 @@ Enquiry Detail
 
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 @section('content')
-<div class="col-lg-12 layout-spacing">
-    <form method="post" action="{{ route('EnquiryDetail.store',$id) }}" id="form-detail">
-        @csrf
-        <div class="statbox widget box box-shadow">
-            <div class="widget-header">
-                <div class="row">
-                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                        <h4>Default</h4>
+    <div class="col-lg-12 layout-spacing">
+        <form method="post" action="{{ route('EnquiryDetail.store',$id) }}" id="form-detail">
+            @csrf
+            <div class="statbox widget box box-shadow">
+                <div class="widget-header">
+                    <div class="row">
+                        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                            <h4>Default</h4>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="widget-content widget-content-area">
-                <div id="example-basic">
-                    <h3>Personal<br>information</h3>
-                    <section>
-                        @include('enquiry.detail_staps.stap_1')
-                    </section>
-                    <h3>Education<br>Summary</h3>
-                    <section>
-                        @include('enquiry.detail_staps.stap_2')
-                    </section>
-                    <h3>Work<br>Experience</h3>
-                    <section>
-                        @include('enquiry.detail_staps.stap_3')
-                    </section>
-                    <h3>Online<br>Exam Details</h3>
-                    <section>
-                        @include('enquiry.detail_staps.stap_4')
-                    </section>
-                    <h3>Applying<br>Details</h3>
-                    <section>
-                        @include('enquiry.detail_staps.stap_5')
-                    </section>
-                    <h3>Upload<br>Documents</h3>
-                    <section>
-                        @include('enquiry.detail_staps.stap_6')
-                    </section>
+                <div class="widget-content widget-content-area">
+                    <div id="example-basic">
+                        <h3>Personal<br>information</h3>
+                        <section>
+                            @include('enquiry.detail_staps.stap_1')
+                        </section>
+                        <h3>Education<br>Summary</h3>
+                        <section>
+                            @include('enquiry.detail_staps.stap_2')
+                        </section>
+                        <h3>Work<br>Experience</h3>
+                        <section>
+                            @include('enquiry.detail_staps.stap_3')
+                        </section>
+                        <h3>Online<br>Exam Details</h3>
+                        <section>
+                            @include('enquiry.detail_staps.stap_4')
+                        </section>
+                        <h3>Applying<br>Details</h3>
+                        <section>
+                            @include('enquiry.detail_staps.stap_5')
+                        </section>
+                        <h3>Upload<br>Documents</h3>
+                        <section>
+                            @include('enquiry.detail_staps.stap_6')
+                        </section>
+                    </div>
+
+
                 </div>
-
-
             </div>
-        </div>
-    </form>
-</div>
+        </form>
+    </div>
 
 @endsection
 
@@ -58,14 +58,14 @@ Enquiry Detail
 
 @section('js')
 <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jquery-step/jquery.steps.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('plugins/file-upload/file-upload-with-preview.min.css"') }}">
 <script src="{{ asset('plugins/jquery-step/jquery.steps.min.js') }}"></script>
 <script src="{{ asset('plugins/jquery-step/custom-jquery.steps.js') }}"></script>
 <link rel="stylesheet" type="text/css" href="{{ asset('plugins/select2/select2.min.css') }}">
 <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="{{ asset('plugins/ocr/js/mrz-worker.bundle-min-wrapped.js')}}"></script>
-<script src="{{ asset('plugins/ocr/js/demo.bundle-min.js')}}"></script>
-
+<script src="{{ asset('assets/js/scrollspyNav.js') }}"></script>
+<script src="{{ asset('plugins/file-upload/file-upload-with-preview.min.js') }}"></script>
 <style>
     hr {
     margin-top: 12px;
@@ -486,6 +486,132 @@ div.progress.visible {
         </div>
 </script>
 <script>
+    var route_prefix = "/filemanager";
+</script>
+<script>
+    (function( $ ){
+
+  $.fn.filemanager = function(type, options) {
+    type = type || 'file';
+
+    this.on('click', function(e) {
+      var route_prefix = (options && options.prefix) ? options.prefix : '/filemanager';
+      var target_input = $('#' + $(this).data('input'));
+      var target_preview = $('#' + $(this).data('preview'));
+      window.open(route_prefix + '?type=' + type, 'FileManager', 'width=900,height=600');
+      window.SetUrl = function (items) {
+        var file_path = items.map(function (item) {
+          return item.url;
+        }).join(',');
+
+        // set the value of the desired input to image url
+        target_input.val('').val(file_path).trigger('change');
+
+        // clear previous preview
+        target_preview.html('');
+
+        // set or change the preview image src
+        items.forEach(function (item) {
+          target_preview.append(
+            $('<img>').css('height', '5rem').attr('src', item.thumb_url)
+          );
+        });
+
+        // trigger change event
+        target_preview.trigger('change');
+      };
+      return false;
+    });
+  }
+
+})(jQuery);
+
+  </script>
+<script>
+    $('#lfm').filemanager('image', {prefix: route_prefix});
+</script>
+<script>
+    var lfm = function(id, type, options) {
+      let button = document.getElementById(id);
+
+      button.addEventListener('click', function () {
+        var route_prefix = (options && options.prefix) ? options.prefix : '/filemanager';
+        var target_input = document.getElementById(button.getAttribute('data-input'));
+        var target_preview = document.getElementById(button.getAttribute('data-preview'));
+
+        window.open(route_prefix + '?type=' + options.type || 'file', 'FileManager', 'width=900,height=600');
+        window.SetUrl = function (items) {
+          var file_path = items.map(function (item) {
+            return item.url;
+          }).join(',');
+
+          // set the value of the desired input to image url
+          target_input.value = file_path;
+          target_input.dispatchEvent(new Event('change'));
+
+          // clear previous preview
+          target_preview.innerHtml = '';
+
+          // set or change the preview image src
+          items.forEach(function (item) {
+            let img = document.createElement('img')
+            img.setAttribute('style', 'height: 5rem')
+            img.setAttribute('src', item.thumb_url)
+            target_preview.appendChild(img);
+          });
+
+          // trigger change event
+          target_preview.dispatchEvent(new Event('change'));
+        };
+      });
+    };
+
+    lfm('lfm2', 'file', {prefix: route_prefix});
+  </script>
+<script>
+    $(document).ready(function(){
+
+      // Define function to open filemanager window
+      var lfm = function(options, cb) {
+        var route_prefix = (options && options.prefix) ? options.prefix : '/filemanager';
+        window.open(route_prefix + '?type=' + options.type || 'file', 'FileManager', 'width=900,height=600');
+        window.SetUrl = cb;
+      };
+
+      // Define LFM summernote button
+      var LFMButton = function(context) {
+        var ui = $.summernote.ui;
+        var button = ui.button({
+          contents: '<i class="note-icon-picture"></i> ',
+          tooltip: 'Insert image with filemanager',
+          click: function() {
+
+            lfm({type: 'image', prefix: '/filemanager'}, function(lfmItems, path) {
+              lfmItems.forEach(function (lfmItem) {
+                context.invoke('insertImage', lfmItem.url);
+              });
+            });
+
+          }
+        });
+        return button.render();
+      };
+
+      // Initialize summernote with LFM button in the popover button group
+      // Please note that you can add this button to any other button group you'd like
+      $('#summernote-editor').summernote({
+        toolbar: [
+          ['popovers', ['lfm']],
+        ],
+        buttons: {
+          lfm: LFMButton
+        }
+      })
+    });
+  </script>
+
+<script>
+
 
     var cout=1;
 
@@ -975,6 +1101,11 @@ div.progress.visible {
         row.append(template(data));
         cout=cout+1;
     });
+
+    var secondUpload = new FileUploadWithPreview('mySecondImage');
+
+
+    $('#lfm').filemanager('image', {prefix: route_prefix});
 
 </script>
 @endsection
