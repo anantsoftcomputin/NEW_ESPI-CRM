@@ -3,13 +3,13 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="name">Occupation of Father</label>
-                <input type="text" name="name" id="name" value="" class="form-control" required="">
+                <input type="text" name="father_occupation" id="name" value="" class="form-control" required="">
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <label for="name">Annual Income</label>
-                <input type="text" name="name" id="name" value="" class="form-control" required="">
+                <input type="text" name="annual_income" id="name" value="" class="form-control" required="">
             </div>
         </div>
         <div class="col-md-6">
@@ -36,7 +36,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="name">Visa Category</label>
-                    <input type="text" name="refusal_country" class="form-control">
+                    <input type="text" name="refusal_category" class="form-control">
                 </div>
             </div>
             <div class="col-md-6">

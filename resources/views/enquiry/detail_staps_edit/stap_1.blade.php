@@ -22,11 +22,17 @@
     </div>
     <div class="col-md-6">
         <div class="form-group">
-            <label for="name">Country Interested</label>
+            <label for="name">Country Interested </label>
             {{-- <input type="text" name="country_intrusted" id="name" value="" class="form-control tagging" required> --}}
             <select class="form-control tagging" multiple="multiple" name="country_intrusted[]">
-                @foreach (get_country(0) as $item)
-                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                @foreach (config('espi.enquires_detail.country_interested') as $item)
+                <option value="{{ $item }}"
+                @isset($last->country_intrusted)
+                    @if (in_array($item, $last->country_intrusted))
+                    selected
+                    @endif
+                @endisset
+                >{{ $item }}</option>
                 @endforeach
             </select>
         </div>
@@ -34,19 +40,19 @@
     <div class="col-md-6">
         <div class="form-group">
             <label for="name">Reference Code</label>
-            <input type="text" name="reference_code" id="ref_code" value="{{ $enquiry->reference_code }}" class="form-control" required="">
+            <input type="text" name="reference_code" id="ref_code" value="{{ $last->reference_code }}" class="form-control" required="">
         </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">
             <label for="name">Reference Name</label>
-            <input type="text" name="reference_name" id="name" value="{{ $enquiry->reference_name }}" class="form-control" required>
+            <input type="text" name="reference_name" id="name" value="{{ $last->reference_name }}" class="form-control" required>
         </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">
             <label for="name">Reference Phone</label>
-            <input type="number" name="reference_phone" id="name" value="{{ $enquiry->reference_phone }}" class="form-control" required="">
+            <input type="number" name="reference_phone" id="name" value="{{ $last->reference_phone }}" class="form-control" required="">
         </div>
     </div>
 </div>

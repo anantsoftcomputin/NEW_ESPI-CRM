@@ -8,7 +8,7 @@ Enquiry Detail
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 @section('content')
 <div class="col-lg-12 layout-spacing">
-    <form method="post" action="{{ route('EnquiryDetail.store',$id) }}" id="form-detail">
+    <form method="post" action="{{ route('EnquiryDetail.update',$id) }}" id="form-detail">
         @csrf
         <div class="statbox widget box box-shadow">
             <div class="widget-header">
@@ -26,23 +26,23 @@ Enquiry Detail
                     </section>
                     <h3>Education<br>Summary</h3>
                     <section>
-                        @include('enquiry.detail_staps.stap_2')
+                        @include('enquiry.detail_staps_edit.stap_2')
                     </section>
                     <h3>Work<br>Experience</h3>
                     <section>
-                        @include('enquiry.detail_staps.stap_3')
+                        @include('enquiry.detail_staps_edit.stap_3')
                     </section>
                     <h3>Online<br>Exam Details</h3>
                     <section>
-                        @include('enquiry.detail_staps.stap_4')
+                        @include('enquiry.detail_staps_edit.stap_4')
                     </section>
                     <h3>Applying<br>Details</h3>
                     <section>
-                        @include('enquiry.detail_staps.stap_5')
+                        @include('enquiry.detail_staps_edit.stap_5')
                     </section>
                     <h3>Upload<br>Documents</h3>
                     <section>
-                        @include('enquiry.detail_staps.stap_6')
+                        @include('enquiry.detail_staps_edit.stap_6')
                     </section>
                 </div>
 

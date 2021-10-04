@@ -1,12 +1,12 @@
 <div class="row">
     <div class="col-md-12">
         <div class="form-group">
-            <label for="name">Exam Status</label>
+            <label for="name">Exam Status {{ $last->exam_status }}</label>
             <select class="form-control" id="exam_status" name="exam_status" onchange="toggle_exam_status(this)">
                 <option value="">Select Exam Status</option>
-                <option value="Completed">Completed</option>
-                <option value="Planning">Planning</option>
-                <option value="NotPlanning">Still Not Planning</option>
+                <option @if($last->exam_status == "Completed") selected @endif value="Completed">Completed</option>
+                <option @if($last->exam_status == "Planning") selected @endif value="Planning">Planning</option>
+                <option @if($last->exam_status == "NotPlanning") selected @endif value="NotPlanning">Still Not Planning</option>
             </select>
             {{-- <select class="form-control" name="last_education" onchange="toggle_last_education(this)">
                <option value="">Select Last Educatuion</option>

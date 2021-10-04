@@ -1,92 +1,73 @@
 <div class="row">
     <div class="col-md-6">
-      <h2 class="mt-4">Standalone Image Button</h2>
-      <div class="input-group">
-        <span class="input-group-btn">
-          <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary text-white">
-            <i class="fa fa-picture-o"></i> Choose
-          </a>
-        </span>
-        <input id="thumbnail" class="form-control" type="text" name="filepath">
-      </div>
-      <div id="holder" style="margin-top:15px;max-height:100px;"></div>
-    </div>
-    <div class="col-md-6">
-      <h2 class="mt-4">Standalone Image Button</h2>
-      <div class="input-group">
-        <span class="input-group-btn">
-          <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary text-white">
-            <i class="fa fa-picture-o"></i> Choose
-          </a>
-        </span>
-        <input id="thumbnail" class="form-control" type="text" name="filepath">
-      </div>
-      <div id="holder" style="margin-top:15px;max-height:100px;"></div>
-      <h2 class="mt-4">Standalone File Button</h2>
-      <div class="input-group">
-        <span class="input-group-btn">
-          <a id="lfm2" data-input="thumbnail2" data-preview="holder2" class="btn btn-primary text-white">
-            <i class="fa fa-picture-o"></i> Choose
-          </a>
-        </span>
-        <input id="thumbnail2" class="form-control" type="text" name="filepath">
-      </div>
-      <div id="holder2" style="margin-top:15px;max-height:100px;"></div>
+        <div class="input-group mb-4">
+            <input type="text" id="thumbnail" class="form-control" aria-label="Text" placeholder="Select Passport" name="passport_file" readonly>
+            <div class="input-group-append">
+                <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary text-white lfm">
+                   Choose Passport
+                </a>
+            </div>
+          </div>
+        <div id="holder" style="margin-top:15px;max-height:100px;"></div>
     </div>
     <div class="col-md-6">
         <div class="input-group mb-4">
-            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+            <input type="text" id="thumbnail1" class="form-control" aria-label="Text input with segmented dropdown button" placeholder="Select 10th Documents"  name="10th_file" readonly>
             <div class="input-group-append">
-              <button type="button" class="btn btn-outline-info">Upload</button>
+                <a id="lfm1" data-input="thumbnail1" data-preview="holder1" class="btn btn-primary text-white lfm">
+                   Choose 10th Markseet
+                </a>
             </div>
           </div>
+        <div id="holder1" style="margin-top:15px;max-height:100px;"></div>
     </div>
 </div>
 <div class="row">
     <div class="col-md-6">
-        <div class="form-group">
-            <label for="name">Passport</label>
-            <input type="file" id="photo" name="Passport" class="form-control" accept="image/png, image/jpeg">
-        </div>
-    </div>
-
-    <div class="col-md-6">
-        <div id="parsed"></div>
-    </div>
-    <div class="col-md-6">
-        <div id="detected"></div>
-    </div>
-
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="name">10th Documents</label>
-            <input type="file" name="10TH" class="form-control">
-        </div>
+        <div class="input-group mb-4">
+            <input type="text" id="thumbnail_diploma" class="form-control" aria-label="Text" placeholder="Diploma Documents" name="passport" readonly>
+            <div class="input-group-append">
+                <a id="diploma_file" data-input="thumbnail_diploma" data-preview="holder_diploma" class="btn btn-primary text-white lfm">
+                    Diploma Documents
+                </a>
+            </div>
+          </div>
+        <div id="holder_diploma" style="margin-top:15px;max-height:100px;"></div>
     </div>
     <div class="col-md-6">
-        <div class="form-group">
-            <label for="name">12th Documents</label>
-            <input type="file" name="12TH" class="form-control">
-        </div>
+        <div class="input-group mb-4">
+            <input type="text" id="thumbnail_bachelor" class="form-control" aria-label="Text" placeholder="Diploma Documents" name="bachelor_file" readonly>
+            <div class="input-group-append">
+                <a id="bachelor_file" data-input="thumbnail_bachelor" data-preview="holder_bachelor" class="btn btn-primary text-white">
+                    Bachelor Degree Documents
+                </a>
+            </div>
+          </div>
+        <div id="holder_bachelor" style="margin-top:15px;max-height:100px;"></div>
     </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="name">Diploma Documents</label>
-            <input type="file" name="Diploma" class="form-control">
-        </div>
-    </div>
-    <div class="col-md-6">
+    {{-- <div class="col-md-6">
         <div class="form-group">
             <label for="name">Bachelor Degree Documents</label>
             <input type="file" name="Bachelor" class="form-control">
         </div>
-    </div>
+    </div> --}}
     <div class="col-md-6">
+        <div class="input-group mb-4">
+            <input type="text" id="thumbnail_master" class="form-control" aria-label="Text" placeholder="Master Documents" name="master_file" readonly>
+            <div class="input-group-append">
+                <a id="master_file" data-input="thumbnail_master" data-preview="holder_master" class="btn btn-primary text-white">
+                    Master Degree Documents
+                </a>
+            </div>
+          </div>
+        <div id="holder_master" style="margin-top:15px;max-height:100px;"></div>
+    </div>
+    {{-- <div class="col-md-6">
         <div class="form-group">
             <label for="name">Master Degree Documents</label>
             <input type="file" name="Master" class="form-control">
         </div>
-    </div>
+    </div> --}}
     <div class="col-md-6" style="display: none;">
         <div class="form-group">
             <label for="name">PhD / Doctorate Degree Documents</label>

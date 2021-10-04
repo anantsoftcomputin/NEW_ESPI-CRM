@@ -4,11 +4,11 @@
             <label for="name">Select Last Educatuion</label>
             <select class="form-control" name="last_education" onchange="toggle_last_education(this.value)">
                <option value="#">Select Last Educatuion</option>
-               <option value="10th">10th</option>
-               <option value="diploma">Diploma</option>
-               <option value="12th">12th</option>
-               <option value="graduate">Graduate</option>
-               <option value="master">Master</option>
+               <option @if($last->last_education == "10th") selected @endif value="10th">10th</option>
+               <option @if($last->last_education == "diploma") selected @endif value="diploma">Diploma</option>
+               <option @if($last->last_education == "12th") selected @endif value="12th">12th</option>
+               <option @if($last->last_education == "graduate") selected @endif value="graduate">Graduate</option>
+               <option @if($last->last_education == "master") selected @endif value="master">Master</option>
 
            </select>
         </div>
@@ -237,7 +237,7 @@
     </div>
 </div>
 
-<div class="education" id="hsc_detail" style="display: none;">
+<div class="education" id="hsc_detail" style="display: @if($last->last_education == "hsc_detail") block @else none @endif;">
     <div class="text-center">
         <strong style="font-size: 35px">12th Details</strong>
     </div>
@@ -285,7 +285,7 @@
     </div>
 </div>
 
-<div class="education" id="diploma_detail" style="display: none;">
+<div class="education" id="diploma_detail" style="display: @if($last->last_education == "diploma_detail") block @else none @endif;">
     <div class="text-center">
         <strong style="font-size: 35px">Diploma Details</strong>
     </div>
@@ -293,39 +293,39 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label>Year of Starting</label>
-                <input type="text" name="diploma_starting" class="form-control">
+                <input type="text" name="diploma_starting" class="form-control" value="{{ $last->diploma_starting }}">
             </div>
             <div class="form-group">
                 <label>Percentage</label>
-                <input type="text" name="diploma_pass_percentage" class="form-control">
+                <input type="text" name="diploma_pass_percentage" class="form-control" value="{{ $last->diploma_pass_percentage }}">
             </div>
             <div class="form-group">
                 <label>Name of Institute</label>
-                <input type="text" name="diploma_institute" class="form-control">
+                <input type="text" name="diploma_institute" class="form-control" value="{{ $last->diploma_institute }}">
             </div>
             <div class="form-group">
                 <label>Backlogs</label>
-                <input type="text" name="diploma_backlog" class="form-control">
+                <input type="text" name="diploma_backlog" class="form-control" value="{{ $last->diploma_backlog }}">
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <label>Year of passing</label>
-                <input type="text" name="diploma_passing" class="form-control">
+                <input type="text" name="diploma_passing" class="form-control" value="{{ $last->diploma_passing }}">
             </div>
             <div class="form-group">
                 <label>Medium of Education</label>
-                <input type="text" name="diploma_education" class="form-control">
+                <input type="text" name="diploma_education" class="form-control" value="{{ $last->diploma_education }}">
             </div>
             <div class="form-group">
                 <label>Name of Course</label>
-                <input type="text" name="diploma_course" class="form-control">
+                <input type="text" name="diploma_course" class="form-control" value="{{ $last->diploma_course }}">
             </div>
         </div>
     </div>
 </div>
 
-<div class="education" id="ssc_detail" style="display: none;">
+<div class="education" id="ssc_detail" style="display: @if($last->last_education == "10th") block @else none @endif;">
     <div class="text-center">
         <strong style="font-size: 35px">10th Details</strong>
     </div>
@@ -333,30 +333,30 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label>Year of passing</label>
-                <input type="text" name="ssc_passing" class="form-control">
+                <input type="text" name="ssc_passing" class="form-control" value="{{ $last->ssc_passing }}">
             </div>
             <div class="form-group">
                 <label>percentage</label>
-                <input type="text" name="ssc_pass_percentage" class="form-control">
+                <input type="text" name="ssc_pass_percentage" class="form-control" value="{{ $last->ssc_pass_percentage }}">
             </div>
             <div class="form-group">
                 <label>Name of Institute/School</label>
-                <input type="text" name="ssc_institute" class="form-control">
+                <input type="text" name="ssc_institute" class="form-control" value="{{ $last->ssc_institute }}">
             </div>
 
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <label>Medium of Education</label>
-                <input type="text" name="ssc_education" class="form-control">
+                <input type="text" name="ssc_education" class="form-control" value="{{ $last->ssc_education }}">
             </div>
             <div class="form-group">
                 <label>Board</label>
-                <input type="text" name="ssc_board" class="form-control">
+                <input type="text" name="ssc_board" class="form-control" value="{{ $last->ssc_education }}">
             </div>
             <div class="form-group">
                 <label>Backlogs</label>
-                <input type="text" name="ssc_backlog" class="form-control">
+                <input type="text" name="ssc_backlog" class="form-control" value="{{ $last->ssc_backlog }}">
             </div>
         </div>
     </div>

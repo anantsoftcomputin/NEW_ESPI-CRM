@@ -17,7 +17,7 @@ class EnquiryDetailController extends Controller
     public function store($id,Request $request)
     {
         $EnquiryDetail=new EnquiryDetail();
-        $EnquiryDetail->enquiry_id =$id;
+        $EnquiryDetail->enquiry_id=$id;
         $data = $request->all();
         $EnquiryDetail->data = json_encode($data);
         $EnquiryDetail->save();
@@ -32,11 +32,16 @@ class EnquiryDetailController extends Controller
         return view('enquiry.editdetail',compact('id','enquiry','enquirydetail','last'));
     }
 
-    public function Update($id)
+    public function Update($id,Request $request)
     {
-        $enquirydetail=EnquiryDetail::find($id);
-        $enquiry=Enquiry::find($enquirydetail->enquiry_id);
-        $last=json_decode($EnquiryDetail->data);
-        return view('enquiry.detail',compact('id','enquiry','enquirydetail','last'));
+        $EnquiryDetail=EnquiryDetail::find($id);
+        $data = $request->all();
+        $EnquiryDetail->data = json_encode($data);
+        $EnquiryDetail->save();
+        return redirect(route('Enquires.index'));
+        // $enquirydetail=EnquiryDetail::find($id);
+        // $enquiry=Enquiry::find($enquirydetail->enquiry_id);
+        // $last=json_decode($EnquiryDetail->data);
+        // return view('enquiry.detail',compact('id','enquiry','enquirydetail','last'));
     }
 }

@@ -529,6 +529,9 @@ div.progress.visible {
   </script>
 <script>
     $('#lfm').filemanager('image', {prefix: route_prefix});
+    $('#lfm1').filemanager('image', {prefix: route_prefix});
+    $('#diploma_file').filemanager('image', {prefix: route_prefix});
+    $('#master_file').filemanager('image', {prefix: route_prefix});
 </script>
 <script>
     var lfm = function(id, type, options) {
@@ -1104,8 +1107,6 @@ div.progress.visible {
 
     var secondUpload = new FileUploadWithPreview('mySecondImage');
 
-
-    $('#lfm').filemanager('image', {prefix: route_prefix});
 
 </script>
 @endsection
