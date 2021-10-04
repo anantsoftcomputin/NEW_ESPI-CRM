@@ -532,6 +532,12 @@ div.progress.visible {
     $('#lfm1').filemanager('image', {prefix: route_prefix});
     $('#diploma_file').filemanager('image', {prefix: route_prefix});
     $('#master_file').filemanager('image', {prefix: route_prefix});
+    $('#bachelor_file').filemanager('image', {prefix: route_prefix});
+    $('#phd_file').filemanager('image', {prefix: route_prefix});
+    $('#transcript_file').filemanager('image', {prefix: route_prefix});
+    $('#experience_file').filemanager('image', {prefix: route_prefix});
+    $('#lor_file').filemanager('image', {prefix: route_prefix});
+
 </script>
 <script>
     var lfm = function(id, type, options) {
