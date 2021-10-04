@@ -197,7 +197,7 @@
         </div>
 
         <div class="hiddan_data_data" style="display:none;">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="form-group">
                     <label for="name">Planning Date</label>
                     <input type="date" name="planning_date" id="name" class="form-control" required="">

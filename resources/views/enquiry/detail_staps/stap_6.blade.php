@@ -166,10 +166,4 @@
         <div id="holder_other" style="margin-top:15px;max-height:100px;"></div>
     </div>
 
-    {{-- <div class="col-md-6" id="other">
-        <div class="form-group">
-            <label for="name">Other ( Multiple ) </label>
-            <input type="file" name="other[]" class="form-control" multiple="multiple">
-        </div>
-    </div> --}}
 </div>
