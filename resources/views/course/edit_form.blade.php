@@ -99,6 +99,34 @@ Course Special Requirement
     </div>
 </div>
 
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="ists_req">ISTS</label>
+        <input type="text" name="ists_req" value="{{$Course->ists_req}}" onkeypress="return isNumber(event)" id="ists_req" class="form-control">
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="toefl_req">TOEFL</label>
+        <input type="text" name="toefl_req" value="{{$Course->toefl_req}}" onkeypress="return isNumber(event)" id="toefl_req" class="form-control">
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="pte_req">PTE</label>
+        <input type="text" name="pte_req" value="{{$Course->pte_req}}" onkeypress="return isNumber(event)" id="pte_req" class="form-control">
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="duolingo_req">DUOLINGO</label>
+        <input type="text" name="duolingo_req" value="{{$Course->duolingo_req}}" onkeypress="return isNumber(event)" id="duolingo_req" class="form-control">
+    </div>
+</div>
+
 <div class="col-md-12">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 

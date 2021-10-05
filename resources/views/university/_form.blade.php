@@ -1,4 +1,4 @@
-<div class="col-md-12">
+div<div class="col-md-12">
 
     <div class="form-group">
         <label for="name">University / College Name</label>
@@ -107,6 +107,35 @@ University General Requirement
     <div class="form-group">
         <label for="master_req">Master %</label>
         <input type="text" name="master_req" value="{{$university->master_req ?? ''}}" onkeypress="return isNumber(event)" id="master_req" class="form-control">
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="ists_req">ISTS</label>
+        <input type="text" name="ists_req" value="{{$university->ists_req ?? ''}}" onkeypress="return isNumber(event)" id="ists_req" class="form-control">
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="toefl_req">TOEFL</label>
+        <input type="text" name="toefl_req" value="{{$university->toefl_req ?? ''}}" onkeypress="return isNumber(event)" id="toefl_req" class="form-control">
+    </div>
+</div>
+
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="pte_req">PTE</label>
+        <input type="text" name="pte_req" value="{{$university->pte_req ?? ''}}" onkeypress="return isNumber(event)" id="pte_req" class="form-control">
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="duolingo_req">DUOLINGO</label>
+        <input type="text" name="duolingo_req" value="{{$university->duolingo_req ?? ''}}" onkeypress="return isNumber(event)" id="duolingo_req" class="form-control">
     </div>
 </div>
 

@@ -22,6 +22,10 @@ class Course extends Model
         'twelve_req',
         'bachelor_req',
         'master_req',
+        'ists_req',
+        'toefl_req',
+        'duolingo_req',
+        'pte_req',
     ];
 
     public function University()

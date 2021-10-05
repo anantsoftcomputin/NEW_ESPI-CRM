@@ -24,7 +24,7 @@ class CourseController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Course::orderBy("id","desc")->select('*')->with('University');
+            $data = Course::orderBy("id","desc")->select('*')->with('University')->orderBy('id', 'DESC');
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
@@ -80,6 +80,11 @@ class CourseController extends Controller
         $validated['twelve_req']=$addcourse->twelve_req;
         $validated['bachelor_req']=$addcourse->bachelor_req;
         $validated['master_req']=$addcourse->master_req;
+
+        $validated['ists_req']=$addcourse->ists_req;
+        $validated['toefl_req']=$addcourse->toefl_req;
+        $validated['duolingo_req']=$addcourse->duolingo_req;
+        $validated['pte_req']=$addcourse->pte_req;
 
         $course=Course::create($validated);
         $totdocuments=count($addcourse->documents);
@@ -160,6 +165,11 @@ class CourseController extends Controller
         $validated['twelve_req']=$request->twelve_req;
         $validated['bachelor_req']=$request->bachelor_req;
         $validated['master_req']=$request->master_req;
+
+        $validated['ists_req']=$request->ists_req;
+        $validated['toefl_req']=$request->toefl_req;
+        $validated['duolingo_req']=$request->duolingo_req;
+        $validated['pte_req']=$request->pte_req;
 
         $validated['company_id']=\Auth::user()->company_id;
 

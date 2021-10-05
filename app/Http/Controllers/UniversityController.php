@@ -33,7 +33,7 @@ class UniversityController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = University::select('*')->with('Course');
+            $data = University::select('*')->with('Course')->orderBy('id', 'DESC');
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
@@ -86,6 +86,10 @@ class UniversityController extends Controller
         $validated['twelve_req']=$AddUniversity->twelve_req;
         $validated['bachelor_req']=$AddUniversity->bachelor_req;
         $validated['master_req']=$AddUniversity->master_req;
+        $validated['ists_req']=$AddUniversity->ists_req;
+        $validated['toefl_req']=$AddUniversity->toefl_req;
+        $validated['duolingo_req']=$AddUniversity->duolingo_req;
+        $validated['pte_req']=$AddUniversity->pte_req;
 
         if($AddUniversity->news_letter)
         {
@@ -172,6 +176,11 @@ class UniversityController extends Controller
         $validated['twelve_req']=$request->twelve_req;
         $validated['bachelor_req']=$request->bachelor_req;
         $validated['master_req']=$request->master_req;
+
+        $validated['ists_req']=$request->ists_req;
+        $validated['toefl_req']=$request->toefl_req;
+        $validated['duolingo_req']=$request->duolingo_req;
+        $validated['pte_req']=$request->pte_req;
 
         if($request->news_letter)
         {
@@ -329,12 +338,12 @@ class UniversityController extends Controller
                         }
                         $campus_check->university_id=$university->id;
                         $country=Country::firstOrNew(array('name'=>trim($campus_country[$i])));
-    
+
                         $campus_check->campus_name=$campus_name[$j] ?? "";
                         $campus_check->campus_country=$country->id ?? "";
                         $campus_check->campus_fees=$campus_fees[$j] ?? "";
                         $campus_check->campus_address=$campus_address[$j] ?? "";
-    
+
                         $campus_check->company_id=\Auth::user()->company_id;
                         $campus_check->save();
                     }

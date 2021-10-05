@@ -29,7 +29,10 @@ class AddUniversity extends FormRequest
             'country_id' => 'required',
             "web"=>"required",
             'status'=>'required',
-
+            'ists_req' => 'required',
+            'toefl_req' => 'required',
+            'duolingo_req' => 'required',
+            'pte_req' => 'required'
         ];
     }
 }
