@@ -58,6 +58,7 @@ Enquiry Detail
 
 @section('js')
 <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jquery-step/jquery.steps.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('plugins/file-upload/file-upload-with-preview.min.css"') }}">
 <script src="{{ asset('plugins/jquery-step/jquery.steps.min.js') }}"></script>
 <script src="{{ asset('plugins/jquery-step/custom-jquery.steps.js') }}"></script>
 <link rel="stylesheet" type="text/css" href="{{ asset('plugins/select2/select2.min.css') }}">
@@ -485,6 +486,99 @@ div.progress.visible {
             </div>
         </div>
 </script>
+<script>
+    var route_prefix = "/filemanager";
+</script>
+<script>
+    (function( $ ){
+
+  $.fn.filemanager = function(type, options) {
+    type = type || 'file';
+
+    this.on('click', function(e) {
+      var route_prefix = (options && options.prefix) ? options.prefix : '/filemanager';
+      var target_input = $('#' + $(this).data('input'));
+      var target_preview = $('#' + $(this).data('preview'));
+      window.open(route_prefix + '?type=' + type, 'FileManager', 'width=900,height=600');
+      window.SetUrl = function (items) {
+        var file_path = items.map(function (item) {
+          return item.url;
+        }).join(',');
+
+        // set the value of the desired input to image url
+        target_input.val('').val(file_path).trigger('change');
+
+        // clear previous preview
+        target_preview.html('');
+
+        // set or change the preview image src
+        items.forEach(function (item) {
+          target_preview.append(
+            $('<img>').css('height', '5rem').attr('src', item.thumb_url)
+          );
+        });
+
+        // trigger change event
+        target_preview.trigger('change');
+      };
+      return false;
+    });
+  }
+
+})(jQuery);
+
+  </script>
+  <script>
+    $('#lfm').filemanager('image', {prefix: route_prefix});
+    $('#lfm1').filemanager('image', {prefix: route_prefix});
+    $('#diploma_file').filemanager('image', {prefix: route_prefix});
+    $('#master_file').filemanager('image', {prefix: route_prefix});
+    $('#bachelor_file').filemanager('image', {prefix: route_prefix});
+    $('#phd_file').filemanager('image', {prefix: route_prefix});
+    $('#transcript_file').filemanager('image', {prefix: route_prefix});
+    $('#experience_file').filemanager('image', {prefix: route_prefix});
+    $('#resume_file').filemanager('image', {prefix: route_prefix});
+    $('#lor_file').filemanager('image', {prefix: route_prefix});
+
+</script>
+<script>
+    var lfm = function(id, type, options) {
+      let button = document.getElementById(id);
+
+      button.addEventListener('click', function () {
+        var route_prefix = (options && options.prefix) ? options.prefix : '/filemanager';
+        var target_input = document.getElementById(button.getAttribute('data-input'));
+        var target_preview = document.getElementById(button.getAttribute('data-preview'));
+
+        window.open(route_prefix + '?type=' + options.type || 'file', 'FileManager', 'width=900,height=600');
+        window.SetUrl = function (items) {
+          var file_path = items.map(function (item) {
+            return item.url;
+          }).join(',');
+
+          // set the value of the desired input to image url
+          target_input.value = "Storage/";
+          target_input.dispatchEvent(new Event('change'));
+
+          // clear previous preview
+          target_preview.innerHtml = '';
+
+          // set or change the preview image src
+          items.forEach(function (item) {
+            let img = document.createElement('img')
+            img.setAttribute('style', 'height: 5rem')
+            img.setAttribute('src', item.thumb_url)
+            target_preview.appendChild(img);
+          });
+
+          // trigger change event
+          target_preview.dispatchEvent(new Event('change'));
+        };
+      });
+    };
+
+    lfm('lfm2', 'file', {prefix: route_prefix});
+  </script>
 <script>
 
     var cout=1;
@@ -975,6 +1069,119 @@ div.progress.visible {
         row.append(template(data));
         cout=cout+1;
     });
+
+    edit_node();
+
+    function edit_node()
+    {
+        let exam_status="{{ $last->exam_status }}";
+        let examType="{{ $last->exam_type }}";
+        if(examType=="IELTS" && exam_status !="Planning")
+        {
+            $("#exam_listening_div").show();
+            $("#exam_speaking_div").show();
+            $("#exam_reading_div").show();
+            $("#exam_writing_div").show();
+            $("#overall_band_div").show();
+        }
+
+        if(examType=="IELTS GENERAL" && exam_status !="Planning")
+        {
+            $("#exam_listening_div").show();
+            $("#exam_speaking_div").show();
+            $("#exam_reading_div").show();
+            $("#exam_writing_div").show();
+            $("#overall_band_div").show();
+        }
+
+        if(examType=="SPOKEN ENGLISH" && exam_status !="Planning")
+        {
+            $("#exam_listening_div").show();
+            $("#exam_speaking_div").show();
+            $("#exam_reading_div").show();
+            $("#exam_writing_div").show();
+            $("#overall_band_div").show();
+        }
+
+        if(examType=="UKVI" && exam_status !="Planning")
+        {
+            $("#exam_listening_div").show();
+            $("#exam_speaking_div").show();
+            $("#exam_reading_div").show();
+            $("#exam_writing_div").show();
+            $("#overall_band_div").show();
+        }
+
+        if(examType=="TOEFL" && exam_status !="Planning")
+        {
+            $("#exam_listening_div").show();
+            $("#exam_speaking_div").show();
+            $("#exam_reading_div").show();
+            $("#exam_writing_div").show();
+            $("#overall_band_div").show();
+        }
+
+        if(examType=="SAT" && exam_status !="Planning")
+        {
+            $("#exam_math_div").show();
+            $("#exam_evidence_based_reading_writing_div").show();
+            $("#exam_essay_div").show();
+            $("#overall_band_div").show();
+        }
+
+        if(examType=="SAT" && exam_status !="Planning")
+        {
+            $("#exam_math_div").show();
+            $("#exam_evidence_based_reading_writing_div").show();
+            $("#exam_essay_div").show();
+            $("#overall_band_div").show();
+        }
+
+        if(examType=="GRE" && exam_status !="Planning")
+        {
+            $("#exam_verbal_reasoning_div").show();
+            $("#exam_quantitative_reasoning_div").show();
+            $("#exam_analytical_writing_div").show();
+            $("#overall_band_div").show();
+        }
+
+        if(examType=="GMAT" && exam_status !="Planning")
+        {
+            $("#exam_verbal_reasoning_div").show();
+            $("#exam_quantitative_reasoning_div").show();
+            $("#exam_analytical_writing_div").show();
+            $("#exam_integrated_reasoning_div").show();
+            $("#overall_band_div").show();
+        }
+
+        if(examType=="PTE" && exam_status !="Planning")
+        {
+            $("#communication_skill_msg").show();
+            $("#enable_skill_msg").show();
+            $("#exam_listening_div").show();
+            $("#exam_speaking_div").show();
+            $("#exam_reading_div").show();
+            $("#exam_writing_div_").show();
+
+            $("#exam_grammar_div").show();
+            $("#exam_fluency_div").show();
+            $("#exam_pronunciation_div").show();
+            $("#exam_spelling_div").show();
+            $("#exam_vocabulary_div").show();
+            $("#exam_written_disclosure_div").show();
+            $("#overall_band_div").show();
+        }
+
+        if(examType=="DUOLINGO" && exam_status !="Planning")
+        {
+            $("#exam_literacy_div").show();
+            $("#exam_conversation_div").show();
+            $("#exam_analytical_writing_div").show();
+            $("#exam_comprehension_div").show();
+            $("#exam_production_div").show();
+            $("#overall_band_div").show();
+        }
+    }
 
 </script>
 @endsection

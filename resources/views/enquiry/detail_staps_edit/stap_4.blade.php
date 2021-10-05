@@ -13,9 +13,9 @@
 
         <div class="col-md-6">
             <div class="form-group">
-                <label for="name">Type of Exam</label>
+                <label for="name">Type of Exam - {{ $last->exam_type }}</label>
                 <select name="exam_type" id="exam_type" class="form-control">
-                        <option value="">Type of exam</option>
+                        <option value="">Type of exam </option>
                         <option @if($last->exam_type == "IELTS") selected @endif value="IELTS">IELTS</option>
                         <option @if($last->exam_type == "TOEFL") selected @endif value="TOEFL">TOEFL</option>
                         <option @if($last->exam_type == "SAT") selected @endif value="SAT">SAT</option>

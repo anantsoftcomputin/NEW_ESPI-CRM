@@ -12,7 +12,7 @@
     </div>
     <div class="col-md-6">
         <div class="input-group mb-4">
-            <input type="text" id="thumbnail1" class="form-control" aria-label="Text input with segmented dropdown button" placeholder="Select 10th Documents"  name="10th_file" readonly>
+            <input type="text" id="thumbnail1" class="form-control" aria-label="Text input with segmented dropdown button" placeholder="Select 10th Documents"  name="ten_file" readonly>
             <div class="input-group-append">
                 <a id="lfm1" data-input="thumbnail1" data-preview="holder1" class="btn btn-primary text-white lfm">
                    Choose 10th Markseet
@@ -25,7 +25,7 @@
 <div class="row">
     <div class="col-md-6">
         <div class="input-group mb-4">
-            <input type="text" id="thumbnail_diploma" class="form-control" aria-label="Text" placeholder="Diploma Documents" name="passport" readonly>
+            <input type="text" id="thumbnail_diploma" class="form-control" aria-label="Text" placeholder="Diploma Documents" name="diploma_file" readonly>
             <div class="input-group-append">
                 <a id="diploma_file" data-input="thumbnail_diploma" data-preview="holder_diploma" class="btn btn-primary text-white lfm">
                     Diploma Documents

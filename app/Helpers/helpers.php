@@ -80,7 +80,7 @@ if (! function_exists('get_level')) {
             'post-graduate-diploma'=>'Post Graduate Diploma',
             'master'=>'Master',
         ];
-       
+
     }
 }
 
@@ -103,5 +103,21 @@ if (! function_exists('InputControl')) {
         // </div>`;
     }
 
-    
+
+}
+
+if (! function_exists('document_file')) {
+    function document_file($path)
+    {
+        return public_path($path);
+        $url = Storage::url($path);
+        return $url;
+        if (file_exists($p['path'])) {
+            return "Exists";
+            return '/images/photos/account/' . $this->account_id .'.png';
+        } else {
+            return "Not Exists".$path;
+            return '/images/photos/account/default.png';
+        }
+    }
 }

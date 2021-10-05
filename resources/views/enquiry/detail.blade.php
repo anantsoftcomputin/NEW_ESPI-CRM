@@ -66,6 +66,7 @@ Enquiry Detail
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="{{ asset('assets/js/scrollspyNav.js') }}"></script>
 <script src="{{ asset('plugins/file-upload/file-upload-with-preview.min.js') }}"></script>
+
 <style>
     hr {
     margin-top: 12px;
@@ -536,6 +537,7 @@ div.progress.visible {
     $('#phd_file').filemanager('image', {prefix: route_prefix});
     $('#transcript_file').filemanager('image', {prefix: route_prefix});
     $('#experience_file').filemanager('image', {prefix: route_prefix});
+    $('#resume_file').filemanager('image', {prefix: route_prefix});
     $('#lor_file').filemanager('image', {prefix: route_prefix});
 
 </script>
@@ -555,7 +557,7 @@ div.progress.visible {
           }).join(',');
 
           // set the value of the desired input to image url
-          target_input.value = file_path;
+          target_input.value = "Storage/";
           target_input.dispatchEvent(new Event('change'));
 
           // clear previous preview
