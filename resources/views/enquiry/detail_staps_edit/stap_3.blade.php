@@ -15,7 +15,7 @@
     </div>
 </div>
 
-<div id="experience_detail_history" style="display:@if ($last->experience_status=="Yes") block @endif;">
+<div id="experience_detail_history" style="display:@if ($last->experience_status=="Yes") block @else none @endif;">
     @for ($i=0; $i<count($last->work_company); $i++)
         <div class="row">
             <div class="col-md-3">
@@ -66,32 +66,32 @@
         </div>
     </div>
 </div>
-<div id="travel_detail_history" class="travel_detail_history" style="display:@if ($last->travel_history_status=="Yes") block @endif">
+<div id="travel_detail_history" class="travel_detail_history" style="display:@if ($last->travel_history_status=="Yes") block @else none @endif;">
     <h3>Travel History</h3>
-    @for ($i=0; $i<count($last->travel_contry); $i++)
-        <div class="row">
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="name">Name of the country </label>
-                    <input type="text" name="travel_contry[]" id="name" value="{{ $last->travel_contry[$i] }}" class="form-control" required="">
+        @for ($i=0; $i<count($last->travel_contry); $i++)
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="name">Name of the country </label>
+                        <input type="text" name="travel_contry[]" id="name" value="{{ $last->travel_contry[$i] }}" class="form-control" required="">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="name">Visit Purpose</label>
+                        <input type="text" name="travel_purpose[]" id="name" value="{{ $last->travel_purpose[$i] }}" class="form-control" required="">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="name">Duration Of Stay</label>
+                        <input type="text" name="travel_stay[]" id="name" value="{{ $last->travel_stay[$i] }}" class="form-control" required="">
+                    </div>
+                </div>
+                <div class="col-md-1">
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label for="name">Visit Purpose</label>
-                    <input type="text" name="travel_purpose[]" id="name" value="{{ $last->travel_purpose[$i] }}" class="form-control" required="">
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label for="name">Duration Of Stay</label>
-                    <input type="text" name="travel_stay[]" id="name" value="{{ $last->travel_stay[$i] }}" class="form-control" required="">
-                </div>
-            </div>
-            <div class="col-md-1">
-            </div>
-        </div>
-    @endfor
+        @endfor
 </div>
 <div class="row travel_detail_history" style="display: none;">
     <div class="col-md-12">
