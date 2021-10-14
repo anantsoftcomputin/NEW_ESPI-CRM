@@ -59,8 +59,8 @@ Add Assessment
                                     <th>Country</th>
                                     <th>University</th>
                                     <th>Course</th>
-                                    <th>Intact Month</th>
-                                    <th>Intact Year</th>
+                                    <th>Intake Month</th>
+                                    <th>Intake Year</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                             </thead>

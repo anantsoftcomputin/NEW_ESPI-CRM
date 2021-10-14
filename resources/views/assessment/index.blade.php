@@ -47,7 +47,6 @@
                 {data: 'university.name', name: 'university.name', orderable: false,searchable: false},
                 { data: 'course.name', name: 'course.name' , orderable: false,searchable: false},
                 { data: 'status', name: 'status' , orderable: true ,searchable: true},
-                { data: 'assign_to', name: 'assign_to' , orderable: false, searchable: true},
                 {data: 'action', name: 'action', orderable: false, searchable: true},
             ],
             initComplete: function () {
@@ -83,7 +82,6 @@
                     { data: 'university.name', name: 'university.name',orderable:'false', searchable: true },
                     { data: 'course.name', name: 'course.name' },
                     {data: 'status', name: 'status'},
-                    {data: 'assign_to', name: 'assign_to'},
                     { data: 'user.name', name: 'user.name',orderable:'false', searchable: true },
                 ]
             })
@@ -121,13 +119,13 @@ Application
         <thead>
             <tr>
                 <th>Enquiry Id</th>
-                <th>Name</th>
+                <th>Student Name</th>
                 <th>Country Name</th>
                 <th>University</th>
                 <th  width="200px">Course</th>
-                <th width="100px">Name</th>
                 <th width="100px">Status</th>
-                <th  width="100px">Assign To</th>
+                <th width="100px">Status</th>
+
             </tr>
         </thead>
         <tbody>

@@ -64,7 +64,7 @@
     <div class="form-group">
         <label for="selectlevel">Select Level</label>
         <select name="level[]" onchange="get_course(this)" class="level form-control" id="selectlevel">
-            <option value="">select level</option>
+            <option value="">Select Level</option>
             @foreach (get_level() as $key => $value)
                 <option value="{{ $key }}">{{ $value }}</option>
             @endforeach
@@ -98,7 +98,7 @@
 </div>
 <div class="col-md-4">
     <div class="form-group">
-        <label for="selectentry_req">Entry Requiremenet</label>
+        <label for="selectentry_req">Entry Requirement</label>
         <input type="text" name="entry_req[]" class="entry_req form-control" id="selectentry_req">
     </div>
 </div>
