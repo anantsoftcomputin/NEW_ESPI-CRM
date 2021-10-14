@@ -105,7 +105,7 @@
 <div class="col-md-4">
     <div class="form-group">
         <label for="selectapp_fee">Application Fee</label>
-        <input type="text" name="app_fee[]" class="app_fee form-control" id="selectapp_fee">
+        <input type="number" name="app_fee[]" class="app_fee form-control" id="selectapp_fee">
     </div>
 </div>
 <div class="col-md-4">

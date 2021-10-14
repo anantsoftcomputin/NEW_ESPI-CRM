@@ -108,10 +108,11 @@ Add Assessment
                         </table>
 
                         {{-- <a href="" class="btn btn-info align-self-center">Add More </a> --}}
-
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                            Add More
-                          </button>
+                        <div class="col-md-12 text-center">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                Add More
+                            </button>
+                        </div>
 
                           @include('assessment.AddModel')
 
