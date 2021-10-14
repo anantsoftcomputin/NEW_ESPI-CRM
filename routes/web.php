@@ -38,7 +38,7 @@ Route::get("ocr",[HomeController::class,"ocr"]);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 
 Route::post('/save-token', [UserController::class, 'saveToken'])->name('save-token');
 
@@ -69,6 +69,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::resource('permissions',PermissionController::class);
     Route::get('assessments/{id}/{status}/change_status', [AssessmentController::class,'status_change'])->name('assessment.status');
     Route::get('AssessmentController/Add/{Enquiry}', [AssessmentController::class,'create'])->name('Assessment.Add');
+    Route::get('AssessmentController/Remove/{Enquiry}', [AssessmentController::class,'destroy'])->name('Assessment.Remove');
+    Route::get('ApplyApplication/{Assessment}', [ApplicationController::class,'ApplyApplication'])->name('Assessment.Apply');
     Route::resource("assessments",AssessmentController::class);
     Route::resource('Enquires', EnquireController::class);
     Route::resource('Application', ApplicationController::class);
@@ -82,7 +84,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::post('CourseImportPreview/{University?}',[CourseController::class,'CourseImportPreview'])->name("Course.import_preview");
     Route::post('CourseImportSave/{University?}',[CourseController::class,'CourseImportSave'])->name("Course.import_save");
 
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home01');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
@@ -90,7 +92,7 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
 });
 
 Route::get('demo',function(){
-    return view('demo');
+    return view('search');
 });
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'front_end']);

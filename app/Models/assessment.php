@@ -48,4 +48,15 @@ class assessment extends Model
     {
         return $this->hasOne(Enquiry::class,'id','enquiry_id');
     }
+
+    public function IntactMonth()
+    {
+        return $this->hasOne(Intact::class,'id','intact_month_id');
+    }
+
+    public function IntactYear()
+    {
+        return $this->hasOne(Intact::class,'id','intact_year_id');
+    }
+
 }

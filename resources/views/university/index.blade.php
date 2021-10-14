@@ -57,7 +57,6 @@ University
 
 @section('content')
 <div class="col-md-12">
-
     <h1>University</h1>
 
     <a href="{{ route('University.create') }}" class="btn btn-info">Add</a>

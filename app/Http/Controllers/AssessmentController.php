@@ -51,7 +51,7 @@ class AssessmentController extends Controller
                         return $assign_to;
 
                     })
-        
+
                     ->addColumn('action', function($row){
                         $btn ="<div class='row'>
                         <div class='col-md-4'>";
@@ -118,7 +118,8 @@ class AssessmentController extends Controller
         $university=University::all();
         $course=Course::all();
         $intake=Intact::all();
-        return view('assessment.add',compact('enquiry','university','course','intake'));
+        $assessment=assessment::where('enquiry_id',$enquiry)->where('status','process')->get();
+        return view('assessment.add',compact('enquiry','university','course','intake','assessment'));
     }
 
     /**
@@ -161,7 +162,7 @@ class AssessmentController extends Controller
                 }
 
             }
-            assessment::insert($data);
+            $assessment=assessment::insert($data);
             // $validated = $AddAssessment->validated();
             // $validated['added_by_id'] = \Auth::user()->id;
             // $validated['type']="default";
@@ -174,9 +175,7 @@ class AssessmentController extends Controller
                 $Application=Application::create($validated);
             }
         }
-
-
-        return redirect(route('assessments.index'))->with('success','Assessment');
+        return redirect(route('Assessment.Add',$AddAssessment->enquiry_id))->with('success','Assessment');
     }
 
     /**
@@ -219,9 +218,12 @@ class AssessmentController extends Controller
      * @param  \App\Models\assessment  $assessment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(assessment $assessment)
+    public function destroy($assessment)
     {
-        //
+        $assessment=assessment::find($assessment);
+        $assessment->status="Remove";
+        $assessment->save();
+        return redirect(route('Assessment.Add',$assessment->enquiry_id));
     }
 
     public function status_change(Request $request)

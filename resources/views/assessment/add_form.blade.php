@@ -15,7 +15,6 @@
       <th role="columnheader">Course</th>
       <th role="columnheader">Specialization</th>
       <th role="columnheader">Program Link</th>
-      
       <th role="columnheader">Duration</th>
       <th role="columnheader">Campus</th>
       <th role="columnheader">Entry Req</th>
@@ -46,7 +45,7 @@
             <option value="02">2022</option>
         </select>
       </td>
-      <td role="cell"> 
+      <td role="cell">
         <select name="intact_month_id[]" class="form-control">
             @forelse ($intake as $item_intack)
             <option value="{{ $item_intack->id }}">{{ $item_intack->month }}</option>
@@ -54,7 +53,7 @@
             <option value="01">jan</option>
             @endforelse
         </select>
-      </td>  
+      </td>
       <td role="cell">
             <select name="university_id[]" class="form-control university">
                 <option value="" selected>Select University</option>
@@ -72,7 +71,7 @@
                 <option value="{{$key}}">{{$value}}</option>
                 @endforeach
         </select>
-         
+
       </td>
       <td role="cell">
         <select name="course_id[]" onchange="get_course_details(this)" class="form-control course">
@@ -90,7 +89,7 @@
       <td role="cell">
           <input type="text" name="program_link[]" class="program_link form-control">
       </td>
-      
+
       <td role="cell">
           <input type="text" name="duration[]" class="duration form-control">
       </td>
@@ -156,7 +155,7 @@
             <option value="02">2022</option>
         </select>
       </td>
-      <td role="cell"> 
+      <td role="cell">
         <select name="intact_month_id[]" id="intact_month_id" class="form-control add_intact_month_id">
             @forelse ($intake as $item_intack)
             <option value="{{ $item_intack->id }}">{{ $item_intack->month }}</option>
@@ -164,7 +163,7 @@
             <option value="01">jan</option>
             @endforelse
         </select>
-      </td>  
+      </td>
       <td role="cell">
             <select name="university_id[]"  id="University" class="form-control university add_university">
                 <option value="" selected>Select University</option>
@@ -196,7 +195,7 @@
       <td role="cell">
           <input type="text" id="program_link" name="program_link[]" class="form-control">
       </td>
-     
+
       <td role="cell">
           <input type="text" id="duration" name="duration[]" class="form-control">
       </td>
@@ -226,7 +225,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg><span class="icon-name"></span>
             </a>
       </td>
-      
+
      </tr>
    </table>
  </div>
@@ -254,11 +253,11 @@
     tr {
       margin: 0 0 1rem 0;
     }
-      
+
     tr:nth-child(odd) {
       background: #ccc;
     }
-    
+
 		td {
 			/* Behave  like a "row" */
 			border: none;
@@ -315,7 +314,7 @@
 				success: function (data,status,xhr) {   // success callback function
                     console.log(data);
                     $(ele).closest('tr').find('.specialization').val(data.specialization);
-                    $(ele).closest('tr').find('.duration').val(data.duration);                    
+                    $(ele).closest('tr').find('.duration').val(data.duration);
 				},
 				error: function (jqXhr, textStatus, errorMessage) { // error callback
 					$('p').append('Error: ' + errorMessage);
@@ -337,7 +336,7 @@
                     .remove()
                     .end()
                     .append('<option value="">select course</option>')
-                    .val('whatever');                
+                    .val('whatever');
                     $.each(data, function(key, value) {
                         console.log(value);
                         $(ele).closest('tr').find('.course')
@@ -365,7 +364,7 @@
                     .remove()
                     .end()
                     .append('<option value="">select university</option>')
-                    .val('whatever');                
+                    .val('whatever');
                     $.each(data, function(key, value) {
                         console.log(value);
                         $(ele).closest('tr').find('.university')
@@ -393,7 +392,7 @@
     //                 .remove()
     //                 .end()
     //                 .append('<option value="">select course</option>')
-    //                 .val('whatever');                
+    //                 .val('whatever');
     //                 $.each(data, function(key, value) {
     //                     console.log(value);
     //                     $(ele).closest('tr').find('.course')
@@ -408,10 +407,10 @@
 	// 		});
     // }
     jQuery(document).delegate('a.add-record', 'click', function(e) {
-     e.preventDefault();    
+     e.preventDefault();
      var content = jQuery('#sample_table tr'),
      size = jQuery('#tbl_posts >tbody >tr').length + 1,
-     element = null,    
+     element = null,
      element = content.clone();
      element.attr('id', 'rec-'+size);
      element.find('.delete-record').attr('data-id', size);
@@ -420,13 +419,13 @@
    });
 
    jQuery(document).delegate('a.delete-record', 'click', function(e) {
-     e.preventDefault();    
+     e.preventDefault();
      var didConfirm = confirm("Are you sure You want to delete");
      if (didConfirm == true) {
       var id = jQuery(this).attr('data-id');
       var targetDiv = jQuery(this).attr('targetDiv');
       jQuery('#rec-' + id).remove();
-      
+
     //regnerate index number on table
     $('#tbl_posts_body tr').each(function(index) {
       //alert(index);

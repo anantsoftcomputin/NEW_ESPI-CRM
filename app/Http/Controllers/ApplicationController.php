@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Application\AddApplication;
 use App\Models\Application;
+use App\Models\assessment;
 use App\Models\Course;
 use App\Models\Enquiry;
 use App\Models\Intact;
@@ -204,5 +205,17 @@ class ApplicationController extends Controller
             $code = random_int(10000000, 99999999);
         } while (Application::where("application_id", "=", $code)->first());
         return $code;
+    }
+
+    public function ApplyApplication($Ass)
+    {
+        $assessment=assessment::find($Ass);
+        $assessment->status="apply";
+        $assessment->save();
+
+        $Ass=assessment::find($Ass)->toArray();
+        $Ass['application_id']=$this->generateUniqueCode();
+        $Application=Application::create($Ass);
+        return redirect(route('Application.index'))->with('success','Application');
     }
 }
