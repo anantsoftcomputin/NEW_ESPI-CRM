@@ -41,13 +41,13 @@
                 },
             ajax: "{{ route('assessments.index') }}",
             columns: [
-                { data: 'enquiry.enquiry_id', name: 'enquiry.enquiry_id',orderable:'false',searchable: false },
-                { data: 'enquiry.name', name: 'enquiry.name',orderable: false,searchable: false},
-                { data: 'university.country.name', name: 'university.country.name',orderable: false,searchable: false},
-                {data: 'university.name', name: 'university.name', orderable: false,searchable: false},
-                { data: 'course.name', name: 'course.name' , orderable: false,searchable: false},
-                { data: 'status', name: 'status' , orderable: true ,searchable: true},
-                {data: 'action', name: 'action', orderable: false, searchable: true},
+                { data: 'enquiry.enquiry_id', name: 'Enquiry.enquiry_id',orderable:'false',searchable: false },
+                { data: 'enquiry.name', name: 'Enquiry.name',orderable: true,searchable: false},
+                { data: 'enquiry.phone', name: 'university.country.name',orderable: false,searchable: false},
+                { data: 'enquiry.email', name: 'university.name', orderable: false,searchable: false},
+                { data: 'course.name', name: 'Course.name' , orderable: false,searchable: false},
+                { data: 'status', name: 'status' , orderable: true ,searchable: false},
+                { data: 'action', name: 'action', orderable: false, searchable: true},
             ],
             initComplete: function () {
             this.api().columns().every(function () {
@@ -78,7 +78,7 @@
                 columns: [
                     { data: 'enquiry.enquiry_id', name: 'enquiry.enquiry_id',orderable:'false',searchable: true },
                     { data: 'enquiry.name', name: 'enquiry.name',orderable:'false',searchable: true },
-                    { data: 'university.country.name', name: 'university.country.name',orderable: false,searchable: false},
+                    { data: 'enquiry.email', name: 'enquiry.email',orderable: false,searchable: false},
                     { data: 'university.name', name: 'university.name',orderable:'false', searchable: true },
                     { data: 'course.name', name: 'course.name' },
                     {data: 'status', name: 'status'},
@@ -120,11 +120,11 @@ Application
             <tr>
                 <th>Enquiry Id</th>
                 <th>Student Name</th>
-                <th>Country Name</th>
-                <th>University</th>
-                <th  width="200px">Course</th>
-                <th width="100px">Status</th>
-                <th width="100px">Status</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th width="200px">Course</th>
+                <th width="200px">Join Date</th>
+                <th width="100px">Action</th>
 
             </tr>
         </thead>

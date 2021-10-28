@@ -30,6 +30,7 @@ class AssessmentController extends Controller
     {
         if ($request->ajax()) {
             $data = assessment::select('*')->where('status', '!=', 'approved')
+            ->groupBy('enquiry_id')
             ->with('University','Course','User','Enquiry','University.Country');
             if(Auth::user()->hasRole('Counsellor'))
             {
@@ -49,7 +50,6 @@ class AssessmentController extends Controller
                             $assign_to=$row->user->name;
                         }
                         return $assign_to;
-
                     })
 
                     ->addColumn('action', function($row){
@@ -66,6 +66,8 @@ class AssessmentController extends Controller
                         </div>
                       </div>';
                       $btn .="</div>";
+
+                      $btn="<a href='".route('Assessment.Add',$row) ."' class='btn btn-info'>Show</a>";
 
                     //   if(Auth::user()->hasRole('Admin') || Auth::user()->hasRole('super-admin'))
                     //   {
@@ -118,7 +120,7 @@ class AssessmentController extends Controller
         $university=University::all();
         $course=Course::all();
         $intake=Intact::all();
-        $assessment=assessment::where('enquiry_id',$enquiry)->where('status','process')->get();
+        $assessment=assessment::where('enquiry_id',$enquiry)->where('status','process')->with('AddedBy')->get();
         return view('assessment.add',compact('enquiry','university','course','intake','assessment'));
     }
 
@@ -158,6 +160,7 @@ class AssessmentController extends Controller
                         'type'=>"default",
                         'location'=>"default",
                         'status'=>"process",
+                        'created_at'=>\Carbon\Carbon::now()->toDateTimeString()
                     ];
                 }
 

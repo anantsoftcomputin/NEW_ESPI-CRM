@@ -1,21 +1,3 @@
-<div class="col-md-12 alert alert-warning">
-    <div class="form-group">
-        <label for="name">Upload Passport</label>
-        <input type="file" id="photo" name="passport_image" class="form-control" accept="image/png, image/jpeg">
-    </div>
-</div>
-
-<div class="col-md-12" id="user_exist" style="color:red">
-
-</div>
-
-<div class="col-md-6">
-    <div id="parsed"></div>
-</div>
-<div class="col-md-6">
-    <div id="detected"></div>
-</div>
-
 <div class="col-md-12">
     <div class="progress">
         <div class="gradient">

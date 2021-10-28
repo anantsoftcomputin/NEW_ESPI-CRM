@@ -263,7 +263,6 @@ $(document).ready(function(){
     var state_id="{{old('state_id')}}";
     if(state_id)
     {
-        alert("df");
         let URL="{{ url('api/admin/getStateById/') }}/"+state_id;
         $.ajax(URL,
 			{

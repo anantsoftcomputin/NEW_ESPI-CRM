@@ -71,6 +71,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('AssessmentController/Add/{Enquiry}', [AssessmentController::class,'create'])->name('Assessment.Add');
     Route::get('AssessmentController/Remove/{Enquiry}', [AssessmentController::class,'destroy'])->name('Assessment.Remove');
     Route::get('ApplyApplication/{Assessment}', [ApplicationController::class,'ApplyApplication'])->name('Assessment.Apply');
+    Route::post('ApplyApplication/{Assessment}', [ApplicationController::class,'ApplyApplication'])->name('Assessment.ApplySubmit');
     Route::resource("assessments",AssessmentController::class);
     Route::resource('Enquires', EnquireController::class);
     Route::resource('Application', ApplicationController::class);

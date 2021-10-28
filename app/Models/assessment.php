@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Scopes\CompanyScope;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 class assessment extends Model
 {
     use HasFactory;
@@ -21,6 +23,8 @@ class assessment extends Model
         'type',
         'location',
         'status',
+        'created_at',
+        'updated_at'
     ];
 
     protected static function booted()
@@ -57,6 +61,11 @@ class assessment extends Model
     public function IntactYear()
     {
         return $this->hasOne(Intact::class,'id','intact_year_id');
+    }
+
+    public function AddedBy()
+    {
+        return $this->belongsTo(User::class,'added_by_id');
     }
 
 }

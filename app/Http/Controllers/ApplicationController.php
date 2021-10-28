@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Application\AddApplication;
+use App\Mail\ReConformMailToStudent;
 use App\Models\Application;
 use App\Models\assessment;
 use App\Models\Course;
@@ -11,6 +12,7 @@ use App\Models\Intact;
 use App\Models\University;
 use Illuminate\Http\Request;
 use DataTables;
+use Illuminate\Support\Facades\Mail;
 
 class ApplicationController extends Controller
 {
@@ -207,15 +209,20 @@ class ApplicationController extends Controller
         return $code;
     }
 
-    public function ApplyApplication($Ass)
+    public function ApplyApplication($Ass,Request $request)
     {
-        $assessment=assessment::find($Ass);
-        $assessment->status="apply";
-        $assessment->save();
-
-        $Ass=assessment::find($Ass)->toArray();
-        $Ass['application_id']=$this->generateUniqueCode();
-        $Application=Application::create($Ass);
-        return redirect(route('Application.index'))->with('success','Application');
+        if($request->isMethod('post'))
+        {
+            $assessment=assessment::find($Ass);
+            $assessment->status="apply";
+            $assessment->save();
+            Mail::to($assessment->Enquiry->email)->send(new ReConformMailToStudent($assessment->Enquiry));
+            $Ass=assessment::find($Ass)->toArray();
+            $Ass['application_id']=$this->generateUniqueCode();
+            $Application=Application::create($Ass);
+            return redirect(route('Application.index'))->with('success','Application');
+        }
+        $Ass=assessment::find($Ass);
+        return view('application.confirm',compact('Ass'));
     }
 }

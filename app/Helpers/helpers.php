@@ -121,3 +121,16 @@ if (! function_exists('document_file')) {
         }
     }
 }
+
+if (! function_exists('bootstrap_input_6')) {
+    function bootstrap_input_6($name,$label,$value)
+    {
+        return '
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label for="labale'.$name.'" class="form-label">'.Str::ucfirst($label).'</label>
+                <input type="email" class="form-control" id="labale'.$name.'" name="'.$name.'" placeholder="name@example.com" value="'.$value.'">
+            </div>
+        </div>';
+    }
+}
