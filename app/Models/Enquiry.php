@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class Enquiry extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         'first_name',
         'last_name',
@@ -48,7 +48,7 @@ class Enquiry extends Model
     {
         $this->attributes['added_by_id'] = Auth::user()->id;
     }
-    
+
 
     public function City()
     {
@@ -63,6 +63,11 @@ class Enquiry extends Model
     public function Country()
     {
         return $this->hasOne(Country::class,'id','country_id');
+    }
+
+    public function Counsellor()
+    {
+        return $this->belongsTo(User::class,'counsellor_id');
     }
 
 }

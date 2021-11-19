@@ -35,7 +35,8 @@ class EnquireController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Enquiry::orderBy("updated_at","desc")->select('*')->with('City','State','Country');
+
+            $data = Enquiry::orderBy("updated_at","desc")->select('*')->with('City','State','Country','Counsellor');
 
             if(\Auth::user()->roles->pluck('name')=="Counsellor")
             {
@@ -149,8 +150,9 @@ class EnquireController extends Controller
         $counsellor=get_user($request->counsellor_id);
         $details = [
                 'title' => 'New Enquires from '.$request->first_name,
-                'url' => url('/login'),
-                'enq_id' => $enq->id
+                'url' => url('/admin/Enquires'),
+                'enq_id' => $enq->id,
+                'enquiry_detail' => $enq
             ];
 
         $adminFCMToken=array();

@@ -14,6 +14,19 @@
 </div>
 <div class="col-md-4">
     <div class="form-group">
+        <label for="selectUniversity_pop">Select University</label>
+        <select name="university_id[]" class="form-control university" id="selectUniversity_pop" disabled onchange="get_course(this)">
+            <option value="" selected>Select University</option>
+            @forelse ( $university as $uni)
+                <option value="{{ $uni->id }}">{{ ucfirst($uni->name) }}</option>
+            @empty
+                <option value="#">No University Avalible </option>
+            @endforelse
+        </select>
+    </div>
+</div>
+<div class="col-md-4">
+    <div class="form-group">
         <label for="selectyear">Select Year</label>
         <select name="intact_year_id[]" class="form-control" id="selectyear">
             <option value="01">2021</option>
@@ -33,19 +46,7 @@
         </select>
     </div>
 </div>
-<div class="col-md-4">
-    <div class="form-group">
-        <label for="selectUniversity">Select University</label>
-        <select name="university_id[]" class="form-control university" id="selectUniversity">
-            <option value="" selected>Select University</option>
-            @forelse ( $university as $uni)
-                <option value="{{ $uni->id }}">{{ ucfirst($uni->name) }}</option>
-            @empty
-                <option value="#">No University Avalible </option>
-            @endforelse
-        </select>
-    </div>
-</div>
+
 
 <div class="col-md-4">
     <div class="form-group">
@@ -134,7 +135,7 @@
 </div>
 <script>
     function get_course_details(ele) {
-        var course = $(ele).closest('tr').find('.course').val();
+        var course = $(ele).val();
         let URL = "{{ url('api/admin/getDetailsFromCourse/') }}/" + course;
         $.ajax(URL, {
             dataType: 'json', // type of response data
@@ -151,8 +152,8 @@
     }
 
     function get_course(ele) {
-        var level = $(ele).closest('tr').find('.level').val();
-        var university = $(ele).closest('tr').find('.university').val();
+        var level = $("#selectlevel").val();
+        var university = $("#selectUniversity_pop").val();
         let URL = "{{ url('api/admin/getCourseFromLevel/') }}/" + level + '/' + university;
         $.ajax(URL, {
             dataType: 'json', // type of response data
@@ -179,32 +180,41 @@
     }
 
     function get_university(ele) {
-        var country = $(ele).closest('tr').find('.country').val();
+        var country = $(ele).val();
         let URL = "{{ url('api/admin/getUniversityFromCountry/') }}/" + country;
         $.ajax(URL, {
             dataType: 'json', // type of response data
             success: function(data, status, xhr) { // success callback function
-                console.log(data);
-                $(ele).closest('tr').find('.university')
-                    .find('option')
-                    .remove()
-                    .end()
-                    .append('<option value="">select university</option>')
-                    .val('whatever');
+                $("#selectUniversity_pop").removeAttr("disabled");
+
+                $("#selectUniversity_pop")
+                    .empty()
+                    .append('<option value="">Select University</option>');
+
+
                 $.each(data, function(key, value) {
                     console.log(value);
-                    $(ele).closest('tr').find('.university')
+                    $("#selectUniversity_pop")
                         .append($("<option></option>")
                             .attr("value", value.id)
                             .text(value.name));
                 });
+
+                if (data.length == 0)
+                    {
+                        $('#selectUniversity_pop').prop('disabled', true);
+
+                        $("#selectUniversity_pop").empty()
+                            .append($("<option></option>")
+                            .attr("value", '')
+                            .text("No University Avalable"));
+                    }
             },
             error: function(jqXhr, textStatus, errorMessage) { // error callback
                 $('p').append('Error: ' + errorMessage);
             }
         });
     }
-
 
     jQuery(document).delegate('a.add-record', 'click', function(e) {
         e.preventDefault();

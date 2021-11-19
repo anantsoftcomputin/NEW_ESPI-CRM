@@ -65,7 +65,9 @@
                 {data: 'name', name: 'name'},
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
+                {data: 'counsellor.name', name: 'counsellor.name' ,orderable: false, searchable: false},
                 {data: 'city.name', name: 'city.name' ,orderable: false, searchable: false},
+                {data: 'country.name', name: 'Country.name',orderable: false, searchable: false},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
             initComplete: function () {
@@ -118,6 +120,7 @@
                     { data: 'application_id', name: 'application_id' },
                     { data: 'university.name', name: 'university.name' },
                     { data: 'course.name', name: 'course.name' },
+
                     { data: 'status', name: 'status' },
                     {data: 'action', name: 'action', orderable: false, searchable: false},
 
@@ -131,7 +134,7 @@
 @endsection
 
 @section('title')
-Enquires
+Enquires index
 @endsection
 
 
@@ -159,7 +162,9 @@ Enquires
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
+                    <th>Counsellor</th>
                     <th>City</th>
+                    <th>Country</th>
                     <th width="100px">Action</th>
                 </tr>
             </thead>
