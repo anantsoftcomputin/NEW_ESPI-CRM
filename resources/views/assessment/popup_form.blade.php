@@ -27,6 +27,32 @@
 </div>
 <div class="col-md-4">
     <div class="form-group">
+        <label for="selectlevel">Select Level</label>
+        <select name="level[]" onchange="get_course(this)" class="level form-control" id="selectlevel">
+            <option value="">Select Level</option>
+            @foreach (get_level() as $key => $value)
+                <option value="{{ $key }}">{{ $value }}</option>
+            @endforeach
+        </select>
+    </div>
+</div>
+
+
+<div class="col-md-4">
+    <div class="form-group">
+        <label for="selectcourse_pop">Select Course</label>
+        <select name="course_id[]" onchange="get_course_details(this)" class="form-control course" id="selectcourse_pop" disabled>
+            <option value="" selected>Select Course</option>
+            @forelse ( $course as $city)
+                <option value="{{ $city->id }}">{{ ucfirst($city->name) }}</option>
+            @empty
+                <option value="#">No Course Available </option>
+            @endforelse
+        </select>
+    </div>
+</div>
+<div class="col-md-4">
+    <div class="form-group">
         <label for="selectyear">Select Year</label>
         <select name="intact_year_id[]" class="form-control" id="selectyear">
             <option value="01">2021</option>
@@ -48,30 +74,7 @@
 </div>
 
 
-<div class="col-md-4">
-    <div class="form-group">
-        <label for="selectcourse">Select Course</label>
-        <select name="course_id[]" onchange="get_course_details(this)" class="form-control course" id="selectcourse">
-            <option value="" selected>Select Course</option>
-            @forelse ( $course as $city)
-                <option value="{{ $city->id }}">{{ ucfirst($city->name) }}</option>
-            @empty
-                <option value="#">No Course Available </option>
-            @endforelse
-        </select>
-    </div>
-</div>
-<div class="col-md-4">
-    <div class="form-group">
-        <label for="selectlevel">Select Level</label>
-        <select name="level[]" onchange="get_course(this)" class="level form-control" id="selectlevel">
-            <option value="">Select Level</option>
-            @foreach (get_level() as $key => $value)
-                <option value="{{ $key }}">{{ $value }}</option>
-            @endforeach
-        </select>
-    </div>
-</div>
+
 <div class="col-md-4">
     <div class="form-group">
         <label for="selectspecialization">Specialization</label>
@@ -80,51 +83,15 @@
 </div>
 <div class="col-md-4">
     <div class="form-group">
-        <label for="selectprogram_link">Program Link</label>
-        <input type="text" name="program_link[]" class="program_link form-control" id="selectprogram_link">
-    </div>
-
-</div>
-<div class="col-md-4">
-    <div class="form-group">
-        <label for="selectduration"> Duration</label>
+        <label for="selectduration">Duration</label>
         <input type="text" name="duration[]" class="duration form-control" id="selectduration">
     </div>
 </div>
-<div class="col-md-4">
-    <div class="form-group">
-        <label for="selectcampus">Campus</label>
-        <input type="text" name="campus[]" class="campus form-control" id="selectcampus">
-    </div>
-</div>
-<div class="col-md-4">
-    <div class="form-group">
-        <label for="selectentry_req">Entry Requirement</label>
-        <input type="text" name="entry_req[]" class="entry_req form-control" id="selectentry_req">
-    </div>
-</div>
+
 <div class="col-md-4">
     <div class="form-group">
         <label for="selectapp_fee">Application Fee</label>
         <input type="number" name="app_fee[]" class="app_fee form-control" id="selectapp_fee">
-    </div>
-</div>
-<div class="col-md-4">
-    <div class="form-group">
-        <label for="app_deadline">Application Deadline</label>
-        <input type="text" name="app_deadline[]" class="app_deadline form-control" id="app_deadline">
-    </div>
-</div>
-<div class="col-md-4">
-    <div class="form-group">
-        <label for="tution_fee">Tution Fee</label>
-        <input type="text" name="tution_fee[]" class="tution_fee form-control" id="tution_fee">
-    </div>
-</div>
-<div class="col-md-4">
-    <div class="form-group">
-        <label for="scholarship">Scholarship</label>
-        <input type="text" name="scholarship[]" class="scholarship form-control" id="scholarship">
     </div>
 </div>
 <div class="col-md-12">
@@ -140,9 +107,9 @@
         $.ajax(URL, {
             dataType: 'json', // type of response data
             success: function(data, status, xhr) { // success callback function
-                console.log(data);
-                $(ele).closest('tr').find('.specialization').val(data.specialization);
-                $(ele).closest('tr').find('.duration').val(data.duration);
+                $('.specialization').val(data.specialization);
+                $('.duration').val(data.duration);
+                $('.app_fee').val(data.application_fees);
             },
             error: function(jqXhr, textStatus, errorMessage) { // error callback
                 $('p').append('Error: ' + errorMessage);
@@ -158,20 +125,28 @@
         $.ajax(URL, {
             dataType: 'json', // type of response data
             success: function(data, status, xhr) { // success callback function
-                console.log(data);
-                $(ele).closest('tr').find('.course')
-                    .find('option')
-                    .remove()
-                    .end()
-                    .append('<option value="">select course</option>')
-                    .val('whatever');
+                $("#selectcourse_pop").removeAttr("disabled");
+
+                $("#selectcourse_pop")
+                    .empty()
+                    .append('<option value="">Select Course</option>');
+
+
                 $.each(data, function(key, value) {
-                    console.log(value);
-                    $(ele).closest('tr').find('.course')
+                    $("#selectcourse_pop")
                         .append($("<option></option>")
                             .attr("value", value.id)
                             .text(value.name));
                 });
+
+                if (data.length == 0)
+                {
+                    $('#selectcourse_pop').prop('disabled', true);
+                    $("#selectcourse_pop").empty()
+                        .append($("<option></option>")
+                        .attr("value", '')
+                        .text("No Course Avalable"));
+                }
             },
             error: function(jqXhr, textStatus, errorMessage) { // error callback
                 $('p').append('Error: ' + errorMessage);

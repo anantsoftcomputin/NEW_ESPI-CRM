@@ -26,6 +26,7 @@ class Course extends Model
         'toefl_req',
         'duolingo_req',
         'pte_req',
+        'specialization',
     ];
 
     public function University()

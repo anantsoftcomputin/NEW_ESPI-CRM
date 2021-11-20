@@ -48,6 +48,10 @@
 
 <div class="col-md-6">
     <div class="form-group">
+        <label for="course_specialization">Course Specialization</label>
+        <input type="text" name="specialization" value="{{$Course->specialization ?? ''}}" id="specialization" class="form-control">
+    </div>
+    <div class="form-group">
         <label for="course_duration">Course Duration</label>
         <input type="text" name="duration" value="{{$Course->duration ?? ''}}" id="duration" class="form-control">
     </div>

@@ -169,6 +169,9 @@ class CourseController extends Controller
         $validated['ists_req']=$request->ists_req;
         $validated['toefl_req']=$request->toefl_req;
         $validated['duolingo_req']=$request->duolingo_req;
+
+        $validated['specialization']=$request->specialization;
+
         $validated['pte_req']=$request->pte_req;
 
         $validated['company_id']=\Auth::user()->company_id;
