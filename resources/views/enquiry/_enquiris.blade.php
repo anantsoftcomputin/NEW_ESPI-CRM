@@ -9,6 +9,12 @@
     </div>
 </div>
 
+{{-- @if ($errors->any())
+     @foreach ($errors->all() as $error)
+         <div>{{$error}}</div>
+     @endforeach
+ @endif --}}
+
 <div class="col-md-3">
     <div class="form-group">
         <label for="email" class="mandatory">Email</label>
@@ -56,10 +62,10 @@
 <div class="col-md-3">
     <div class="form-group">
         <label for="email" class="mandatory">Passport No</label>
-        <input type="text" name="passport_no" id="passport_no" value="{{ old('passport_no') }}"
-            class="@error('passport_no') is-invalid @enderror form-control" required>
+        <input type="text" name="passport_number" id="passport_number" value="{{ old('passport_number') }}"
+            class="@error('passport_number') is-invalid @enderror form-control" required>
     </div>
-    @error('passport_no')
+    @error('passport_number')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
 </div>

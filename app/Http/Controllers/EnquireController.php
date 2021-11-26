@@ -299,8 +299,7 @@ class EnquireController extends Controller
 
     function verify_otp(Request $request)
     {
-        $enquiry=Enquiry::where("otp","=",$request->otp)
-        ->where("id",$request->id)->first();
+        $enquiry=Enquiry::where("otp","=",$request->otp)->where("id",$request->id)->first();
         if($enquiry)
         {
             return redirect()->route('Enquires.edit',$enquiry->id);

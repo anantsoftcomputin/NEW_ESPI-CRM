@@ -86,6 +86,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::post('CourseImportSave/{University?}',[CourseController::class,'CourseImportSave'])->name("Course.import_save");
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    Route::get('detail/{Enquire}',[EnquiryDetailController::class,'detail'])->name('detail.nav');
 });
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {

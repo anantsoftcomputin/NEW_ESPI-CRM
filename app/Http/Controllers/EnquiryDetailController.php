@@ -44,4 +44,9 @@ class EnquiryDetailController extends Controller
         // $last=json_decode($EnquiryDetail->data);
         // return view('enquiry.detail',compact('id','enquiry','enquirydetail','last'));
     }
+
+    public function detail($id)
+    {
+        return view('enquiry.detail_ui.index');
+    }
 }
