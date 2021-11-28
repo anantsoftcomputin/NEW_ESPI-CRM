@@ -70,4 +70,19 @@ class Enquiry extends Model
         return $this->belongsTo(User::class,'counsellor_id');
     }
 
+    public function Details()
+    {
+        return $this->hasOne(EnquiryDetail::class);
+    }
+
+    public function Application()
+    {
+        return $this->hasMany(Application::class);
+    }
+
+    public function Assessment()
+    {
+        return $this->hasMany(assessment::class);
+    }
+
 }

@@ -47,6 +47,9 @@ class EnquiryDetailController extends Controller
 
     public function detail($id)
     {
-        return view('enquiry.detail_ui.index');
+        $enquiry=Enquiry::with('Details','Application','Assessment')->where('id',$id)->first();
+        $enquiry->Details->data=json_decode($enquiry->Details->data);
+        // dd($enquiry);
+        return view('enquiry.detail_ui.index',compact('enquiry'));
     }
 }

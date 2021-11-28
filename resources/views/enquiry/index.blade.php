@@ -62,7 +62,7 @@
                 "data":           null,
                 "defaultContent": ''
                 },
-                {data: 'name', name: 'name'},
+                {data: 'enq', name: 'name'},
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
                 {data: 'counsellor.name', name: 'counsellor.name' ,orderable: false, searchable: false},

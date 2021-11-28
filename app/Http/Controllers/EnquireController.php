@@ -46,7 +46,18 @@ class EnquireController extends Controller
                     ->addColumn('details_url', function($user) {
                         return url('api/admin/inquiry/'.$user->id);
                     })
+
                     ->addIndexColumn()
+                    ->addColumn('enq', function($row){
+                        if($data=$this->existdetail($row->id))
+                           {
+                            return '<a href="'.route('detail.nav',$row->id).'" style="color:blue;" >'.$row->name.'</a>';
+                           }
+                           else
+                           {
+                            return $row->name;
+                           }
+                    })
                     ->addColumn('action', function($row){
                            $btn = "";
                            if($data=$this->existdetail($row->id))
@@ -60,7 +71,7 @@ class EnquireController extends Controller
                            }
                            return $btn;
                     })
-                    ->rawColumns(['action'])
+                    ->rawColumns(['action','enq'])
                     ->make(true);
         }
         return view('enquiry.index');
