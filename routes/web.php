@@ -12,6 +12,7 @@ use App\Http\Controllers\EnquiryDetailController;
 use App\Http\Controllers\UploadDocumentController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AssessmentController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FcmTokenController;
 /*
@@ -28,11 +29,16 @@ use App\Http\Controllers\FcmTokenController;
 Route::get('/get_sub_domain', function () {
     return getCurrentCompany();
 });
+Route::get('/chate', function () {
+    return view('chate');
+});
 
 Route::get('optimize', function () {
     \Artisan::call('optimize');
     return redirect('home');
 });
+
+
 
 Route::get("ocr",[HomeController::class,"ocr"]);
 
@@ -58,6 +64,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::post("uploaddocument/save",[UploadDocumentController::class,"store"])->name("uploaddocument.store");
     Route::get("uploaddocument/{assessment?}",[UploadDocumentController::class,'assessment_upload']);
 
+
+    Route::post("Comment/{Enquiry}",[CommentController::class,'store'])->name('Comment.store');
     Route::resource("users",UserController::class);
     Route::resource("roles",RoleController::class);
 

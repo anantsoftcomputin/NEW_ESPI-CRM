@@ -85,4 +85,18 @@ class Enquiry extends Model
         return $this->hasMany(assessment::class);
     }
 
+    public function Comments()
+    {
+        return $this->Comment()->whereNull('parent_id');
+    }
+
+
+    public function Comment()
+    {
+        return $this->hasMany(Comment::class);
+        //return $this->hasMany(Comment::class)->whereNull('parent_id');
+    }
+
+
+
 }
