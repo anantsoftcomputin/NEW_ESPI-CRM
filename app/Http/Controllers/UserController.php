@@ -20,10 +20,10 @@ class UserController extends Controller
 
     public function __construct()
     {
-        $this->middleware('permission:view-user');
-        $this->middleware('permission:create-user', ['only' => ['create','store']]);
-        $this->middleware('permission:update-user', ['only' => ['edit','update']]);
-        $this->middleware('permission:destroy-user', ['only' => ['destroy']]);
+        // $this->middleware('permission:view-user');
+        // $this->middleware('permission:create-user', ['only' => ['create','store']]);
+        // $this->middleware('permission:update-user', ['only' => ['edit','update']]);
+        // $this->middleware('permission:destroy-user', ['only' => ['destroy']]);
     }
 
     public function index(Request $request)
@@ -157,6 +157,9 @@ class UserController extends Controller
 
     public function saveToken(Request $request)
     {
+        $user=\Auth::user();
+        $user->fcm_token=$request->token;
+        $user->save();
         $token=$request->token;
         $array=["token"=>$token];
         return json_encode($array);

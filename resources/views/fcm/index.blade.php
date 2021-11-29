@@ -17,7 +17,7 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('send.notification') }}" method="POST">
+                    <form action="{{ route('send.notification',\Auth::user()->id) }}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label>Title</label>
@@ -39,13 +39,13 @@
 <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase.js"></script>
 <script>
     var firebaseConfig = {
-        apiKey: "AIzaSyAqL3O7-cgoFMxtuknhZRWC-jC3oGfHc9I",
-        authDomain: "espi-crm.firebaseapp.com",
-        projectId: "espi-crm",
-        storageBucket: "espi-crm.appspot.com",
-        messagingSenderId: "291781615758",
-        appId: "1:291781615758:web:f8ae5478fbfe9983f969df",
-        measurementId: "G-T0YPSL5YYH"
+        apiKey: "AIzaSyCmSQbELc2UuE_4iwgNb5iHif3boG8t-Xo",
+        authDomain: "web-push-9c175.firebaseapp.com",
+        projectId: "web-push-9c175",
+        storageBucket: "web-push-9c175.appspot.com",
+        messagingSenderId: "811423554307",
+        appId: "1:811423554307:web:3f391f543ae47b01a16736",
+        measurementId: "G-FWV2HTNCL4"
     };
 
     firebase.initializeApp(firebaseConfig);
@@ -74,6 +74,7 @@
                     },
                     dataType: 'JSON',
                     success: function (response) {
+                        console.log(token);
                         alert('Token saved successfully.');
                     },
                     error: function (err) {
