@@ -1,11 +1,18 @@
 <div class="p-2">
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>Enquires!</strong> Add New Enquire by jasmin shukla. - 1hr Ago
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    @forelse ($enquiry->Activity as $item)
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ $item->string }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @empty
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            Empty
+        </div>
+    @endforelse
+
+    {{-- <div class="alert alert-warning alert-dismissible fade show" role="alert">
         <strong>Enquires!</strong> Add New Enquire by jasmin shukla. - 50min Ago
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -34,7 +41,7 @@
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-    </div>
+    </div> --}}
 
 
 </div>

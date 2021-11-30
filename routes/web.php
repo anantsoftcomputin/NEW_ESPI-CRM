@@ -95,10 +95,11 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    Route::get('detail/{Enquire}',[EnquiryDetailController::class,'detail'])->name('detail.nav');
+    Route::get('detail/{Enquire}/{Active?}',[EnquiryDetailController::class,'detail'])->name('detail.nav');
 });
 
-Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function ()
+{
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 

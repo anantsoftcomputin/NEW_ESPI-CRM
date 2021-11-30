@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Assessment\AddAssessment;
+use App\Models\Activity;
 use App\Models\Application;
 use Illuminate\Support\Facades\Auth;
 use App\Models\assessment;
@@ -132,6 +133,8 @@ class AssessmentController extends Controller
      */
     public function store(AddAssessment $AddAssessment)
     {
+        dd($AddAssessment);
+        Activity::create(['string'=>"Add Assessment"]);
         if(isset($AddAssessment->country_id))
         {
             $totassesment=count($AddAssessment->country_id);
@@ -165,6 +168,7 @@ class AssessmentController extends Controller
             // $validated['type']="default";
             // $validated['location']="default";
             // assessment::create($validated);
+
 
             if($this->AutoAddApplication==true)
             {

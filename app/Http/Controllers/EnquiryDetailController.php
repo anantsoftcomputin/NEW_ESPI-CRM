@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Enquiry;
+use App\Models\Activity;
 use App\Models\EnquiryDetail;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,7 @@ class EnquiryDetailController extends Controller
 
     public function store($id,Request $request)
     {
+        $Activity=Activity::create(['string'=>"Add Enquires Detail",'enquiry_id'=>$id]);
         $EnquiryDetail=new EnquiryDetail();
         $EnquiryDetail->enquiry_id=$id;
         $data = $request->all();
@@ -35,6 +37,7 @@ class EnquiryDetailController extends Controller
     public function Update($id,Request $request)
     {
         $EnquiryDetail=EnquiryDetail::find($id);
+        $Activity=Activity::create(['string'=>"Update Enquires Detail",'enquiry_id'=>$EnquiryDetail->enquiry_id]);
         $data = $request->all();
         $EnquiryDetail->data = json_encode($data);
         $EnquiryDetail->save();

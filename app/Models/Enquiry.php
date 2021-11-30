@@ -93,7 +93,11 @@ class Enquiry extends Model
     public function Comment()
     {
         return $this->hasMany(Comment::class);
-        //return $this->hasMany(Comment::class)->whereNull('parent_id');
+    }
+
+    public function Activity()
+    {
+        return $this->hasMany(Activity::class);
     }
 
 
