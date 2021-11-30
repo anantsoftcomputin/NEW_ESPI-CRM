@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\enquire\AddEnquireRequest;
 use App\Http\Requests\enquire\EditEnquireRequest;
 use Mail;
+use App\Events\PushNotification;
+use Event;
+use Illuminate\Support\Facades\Log;
 use DataTables;
 use App\Models\EnquiryDetail;
 use App\Mail\AddEnquiry;
@@ -99,6 +102,7 @@ class EnquireController extends Controller
         $intake=Intact::all();
         $page="Enquiry";
         $title="Add New Enquiry";
+
         //$user=User::where('company_id','1')->whereNotIn('id',[\Auth::user()->id])->get();
         return view('enquiry.add',compact('user','university','course','intake','page','title'));
     }
@@ -128,75 +132,47 @@ class EnquireController extends Controller
         $validated["middle_name"]=$request->middle_name;
         $validated["last_name"]=$request->last_name;
 
-        if($request->passport_image)
-        {
-            $avatarPath = $request->file('passport_image');
-            $avatarName = time() . '.' . $avatarPath->getClientOriginalExtension();
-            $file = $request->file('passport_image');
-            // generate a new filename. getClientOriginalExtension() for the file extension
-            $filename = 'passport-photo-' . time() . '.' . $file->getClientOriginalExtension();
-            // save to storage/app/photos as the new $filename
-            $path = $file->storeAs('passport', $filename);
-            $validated['passport_image'] =$filename;
-        }
-
-        $enq=Enquiry::create($validated);
-
-        if(isset($request->generalassessment))
-        {
-            $assessment=new assessment();
-            $assessment->enquiry_id=$enq->id;
-            $assessment->university_id=$request->university_id;
-            $assessment->course_id=$request->course_id;
-            $assessment->intact_year_id=$request->intact_year_id;
-            $assessment->intact_month_id=$request->intact_month_id;
-            $assessment->added_by_id=\Auth::user()->id;
-            $assessment->company_id=\Auth::user()->company_id;
-            $assessment->assign_id=$request->counsellor_id;
-            $assessment->status=$request->status;
-            $assessment->save();
-        }
-
+        //$enq=Enquiry::create($validated);
+        $enq=Enquiry::find(23);
         $admin=get_user(1);
+
         $counsellor=get_user($request->counsellor_id);
         $details = [
-                'title' => 'New Enquires from '.$request->first_name,
-                'url' => url('/admin/Enquires'),
-                'enq_id' => $enq->id,
-                'enquiry_detail' => $enq
+            'title' => 'New Enquires from '.$request->first_name,
+            'url' => url('/admin/Enquires'),
+            'enq_id' => $enq->id,
+            'enquiry_detail' => $enq
             ];
 
-        $adminFCMToken=array();
-        $counsellorFCMToken=array();
         $NotificationBody="";
         if($admin)
         {
             if($admin->fcm_token)
             {
+                Log::error("Send push to admin ");
                 $adminFCMToken=[$admin->fcm_token];
             }
+
+            Log::error("Send Mail to admin");
             Mail::to($admin->email)->send(new AddEnquiry($details));
         }
 
         if($counsellor)
         {
+            Log::error("Send Mail to counsellor");
             Mail::to($counsellor->email)->send(new AddEnquiry($details));
         }
 
         if($counsellor->fcm_token)
         {
-            $counsellorFCMToken=[$counsellor->fcm_token];
-            $NotificationBody="New Enquiry Added By ".$counsellor->name;
+            $NotificationBody="New Enquiry Added By ".\Auth::user()->name;
+            Event::dispatch(new PushNotification($counsellor->id,'Assign New Enquiry',$NotificationBody));
         }
 
-        $finalToken=array_merge($adminFCMToken,$counsellorFCMToken);
-
-        if($finalToken)
+        if($admin->fcm_token)
         {
-            return $this->sendNotification($enq,$finalToken,array(
-                "title" => "New Enquiry Generate",
-                "body" =>$NotificationBody,
-              ));
+            $NotificationBody="New Enquiry Added By ".\Auth::user()->name;
+            Event::dispatch(new PushNotification($admin->id,'New Enquiry Generate',$NotificationBody));
         }
 
         return redirect()->route("Enquires.index")->with('success_msg',$enq->enquiry_id);
@@ -330,37 +306,38 @@ class EnquireController extends Controller
 
     public function sendNotification($enq,$fcm_token,$message)
     {
+        Event::dispatch(new PushNotification(\Auth::user()->id,$message,"This is body"));
         //$firebaseToken = User::whereNotNull('fcm_token')->where("id",$enquiry->counsellor_id)->pluck('fcm_token')->all();
-        $SERVER_API_KEY = 'AAAAQ--KII4:APA91bHbcNhWF8qnsOkAiVnDCcSBv2d8YxzBavbRCWIpZIoU00RDldZM61Wn72ycqs_qTtBMNB5yhmpQ2BO8B9W-Mx2TC4WXqoe7Qnc8FziJSe9zgkmN2R_4CPHKMSce4N2WAUJ5Bo3X';
+        // $SERVER_API_KEY = 'AAAAQ--KII4:APA91bHbcNhWF8qnsOkAiVnDCcSBv2d8YxzBavbRCWIpZIoU00RDldZM61Wn72ycqs_qTtBMNB5yhmpQ2BO8B9W-Mx2TC4WXqoe7Qnc8FziJSe9zgkmN2R_4CPHKMSce4N2WAUJ5Bo3X';
 
-        $data = [
-            "registration_ids" => $fcm_token, // for multiple device id
-            "notification" => [
-                "title" => "New Enquiry Generate",
-                "body" =>"Enquiry Added By ".\Auth::user()->name,
-            ],
-        ];
+        // $data = [
+        //     "registration_ids" => $fcm_token, // for multiple device id
+        //     "notification" => [
+        //         "title" => "New Enquiry Generate",
+        //         "body" =>"Enquiry Added By ".\Auth::user()->name,
+        //     ],
+        // ];
 
-        $dataString = json_encode($data);
+        // $dataString = json_encode($data);
 
-        $headers = [
-            'Authorization: key=' . $SERVER_API_KEY,
-            'Content-Type: application/json',
-        ];
+        // $headers = [
+        //     'Authorization: key=' . $SERVER_API_KEY,
+        //     'Content-Type: application/json',
+        // ];
 
-        $ch = curl_init();
+        // $ch = curl_init();
 
-        curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+        // curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+        // curl_setopt($ch, CURLOPT_POST, true);
+        // curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
 
-        $response = curl_exec($ch);
+        // $response = curl_exec($ch);
 
-        curl_close($ch);
-        $response;
+        // curl_close($ch);
+        // $response;
 
         return redirect()->route("Enquires.index")->with('success_msg',$enq->enquiry_id);
     }

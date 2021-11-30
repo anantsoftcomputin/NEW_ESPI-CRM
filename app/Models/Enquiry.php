@@ -17,7 +17,6 @@ class Enquiry extends Model
         'last_name',
         'email',
         'phone',
-        'passport_number',
         'dob',
         'address',
         'city_id',

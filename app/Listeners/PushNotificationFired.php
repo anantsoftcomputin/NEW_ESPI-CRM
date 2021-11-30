@@ -29,11 +29,9 @@ class PushNotificationFired
      */
     public function handle(PushNotification $event)
     {
-        Log::error("call Lisnar ");
+        Log::error("Fire Notification ");
 
         $firebaseToken = User::where('id',$event->userId)->whereNotNull('fcm_token')->pluck('fcm_token')->all();
-        Log::error(json_encode($firebaseToken));
-
 
         $SERVER_API_KEY = 'AAAAvOyc2wM:APA91bGzF17Qg5F4d-e30-sMDxVeaW2UsQnXwXWmvQw79guuuZ-e5Af_p5QsMO4uaoyB26ERa4xDFrvof8adi0CoJns6GMCZlO5Sj-jXf8Yc7hf_BKld-i2kWlySnUxnnmC5O4usoJMa';
 
@@ -61,11 +59,7 @@ class PushNotificationFired
         curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
 
         $response = curl_exec($ch);
-        // $user = User::find($event->userId)->toArray();
 
-        // Mail::send('eventMail', $user, function($message) use ($user) {
-        //     $message->to($user['email']);
-        //     $message->subject('Event Testing');
-        // });
+        Log::error("Lisnar data".json_encode($response));
     }
 }
