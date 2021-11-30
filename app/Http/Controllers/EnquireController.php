@@ -132,8 +132,8 @@ class EnquireController extends Controller
         $validated["middle_name"]=$request->middle_name;
         $validated["last_name"]=$request->last_name;
 
-        //$enq=Enquiry::create($validated);
-        $enq=Enquiry::find(23);
+        $enq=Enquiry::create($validated);
+        //$enq=Enquiry::find(23);
         $admin=get_user(1);
 
         $counsellor=get_user($request->counsellor_id);
