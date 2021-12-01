@@ -14,6 +14,6 @@ return [
         'case_insensitive' => true,
         'use_wildcards'    => false,
         'starts_with'      => false,
-        'country_interested' => ['Canada','USA','UK','Australia','New Zealand','Europe','Finland','Netherland','Poland'],
+        'country_interested' => ['Canada','USA','UK','Australia','New Zealand','Europe','Finland','Netherland','Poland','Germany','France','Switzerland'],
     ],
 ];
