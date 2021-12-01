@@ -212,8 +212,9 @@
         <label for="name">Preferred Country</label>
         {{-- <input type="text"   value="" class="form-control tagging" required> --}}
         <select class="form-control tagging" name="preferred_country" id="preferred_country">
-            @foreach (get_country(0) as $item)
-                <option @if (old('preferred_country') == $item->id) selected @endif value="{{ $item->id }}">{{ $item->name }}</option>
+            @foreach (config('espi.enquires_detail.country_interested') as $item)
+            <option value="{{ $item }}">{{ $item }}</option>
+
             @endforeach
         </select>
     </div>
