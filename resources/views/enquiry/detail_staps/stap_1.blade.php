@@ -11,7 +11,7 @@
 
         </div>
     </div>
-    <div class="col-md-6">
+    {{-- <div class="col-md-6">
         <div class="form-group">
             <label for="name">Passport</label>
             <Select class="form-control" name="passport" required>
@@ -19,7 +19,7 @@
                 <option value="no">no</option>
             </Select>
         </div>
-    </div>
+    </div> --}}
     <div class="col-md-6">
         <div class="form-group">
             <label for="name">Country Interested</label>

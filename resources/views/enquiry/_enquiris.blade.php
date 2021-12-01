@@ -213,8 +213,7 @@
         {{-- <input type="text"   value="" class="form-control tagging" required> --}}
         <select class="form-control tagging" name="preferred_country" id="preferred_country">
             @foreach (config('espi.enquires_detail.country_interested') as $item)
-            <option value="{{ $item }}">{{ $item }}</option>
-
+                <option value="{{ $item }}">{{ $item }}</option>
             @endforeach
         </select>
     </div>

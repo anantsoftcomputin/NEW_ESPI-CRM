@@ -1,15 +1,5 @@
 <div class="row exam_container">
-        <div class="col-md-12">
-            <div class="form-group">
-                <label for="name">Exam Status</label>
-                <select class="form-control" id="exam_status" name="exam_status" onchange="toggle_exam_status(this)">
-                    <option value="">Select Exam Status</option>
-                    <option @if($last->exam_status == "Completed") selected @endif value="Completed">Completed</option>
-                    <option @if($last->exam_status == "Planning") selected @endif value="Planning">Planning</option>
-                    <option @if($last->exam_status == "NotPlanning") selected @endif value="NotPlanning">Still Not Planning</option>
-                </select>
-            </div>
-        </div>
+
 
         <div class="col-md-6">
             <div class="form-group">
@@ -30,7 +20,17 @@
             </div>
         </div>
 
-        <div class="col-md-6"></div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="name">Exam Status</label>
+                <select class="form-control" id="exam_status" name="exam_status" onchange="toggle_exam_status(this)">
+                    <option value="">Select Exam Status</option>
+                    <option @if($last->exam_status == "Completed") selected @endif value="Completed">Completed</option>
+                    <option @if($last->exam_status == "Planning") selected @endif value="Planning">Planning</option>
+                    <option @if($last->exam_status == "NotPlanning") selected @endif value="NotPlanning">Still Not Planning</option>
+                </select>
+            </div>
+        </div>
 
         <div class="col-md-12" style="display:@if($last->exam_type=='PTE') block @else none @endif;" id="communication_skill_msg">
             <div id="communication_skill_msg">
@@ -197,7 +197,7 @@
         </div>
 
         <div class="hiddan_data_data" style="display:none;">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="form-group">
                     <label for="name">Planning Date</label>
                     <input type="date" name="planning_date" id="name" class="form-control" required="" value="{{ $last->planning_date }}">

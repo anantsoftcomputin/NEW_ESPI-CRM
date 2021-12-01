@@ -1,5 +1,24 @@
 <div class="row exam_container">
-        <div class="col-md-12">
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="name">Type of Exam</label>
+            <select name="exam_type" id="exam_type" class="form-control">
+                    <option value="">Type of exam</option>
+                    <option value="IELTS">IELTS</option>
+                    <option value="TOEFL">TOEFL</option>
+                    <option value="SAT">SAT</option>
+                    <option value="GRE">GRE</option>
+                    <option value="GMAT">GMAT</option>
+                    <option value="PTE">PTE</option>
+                    <option value="UKVI">UKVI</option>
+                    <option value="IELTS GENERAL">IELTS GENERAL</option>
+                    <option value="DUOLINGO">DUOLINGO</option>
+                    <option value="SPOKEN ENGLISH">SPOKEN ENGLISH</option>
+            </select>
+        </div>
+    </div>
+        <div class="col-md-6">
             <div class="form-group">
                 <label for="name">Exam Status</label>
                 <select class="form-control" id="exam_status" name="exam_status" onchange="toggle_exam_status(this)">
@@ -11,24 +30,7 @@
             </div>
         </div>
 
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="name">Type of Exam</label>
-                <select name="exam_type" id="exam_type" class="form-control">
-                        <option value="">Type of exam</option>
-                        <option value="IELTS">IELTS</option>
-                        <option value="TOEFL">TOEFL</option>
-                        <option value="SAT">SAT</option>
-                        <option value="GRE">GRE</option>
-                        <option value="GMAT">GMAT</option>
-                        <option value="PTE">PTE</option>
-                        <option value="UKVI">UKVI</option>
-                        <option value="IELTS GENERAL">IELTS GENERAL</option>
-                        <option value="DUOLINGO">DUOLINGO</option>
-                        <option value="SPOKEN ENGLISH">SPOKEN ENGLISH</option>
-                </select>
-            </div>
-        </div>
+
 
         <div class="col-md-6"></div>
 
