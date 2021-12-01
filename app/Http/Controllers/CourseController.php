@@ -288,75 +288,7 @@ class CourseController extends Controller
         $data = Excel::import(new CourseImport(), request()->file('file'));
 
         dd($data);
-        foreach($data as $import)
-        {
 
-                // $intake_year = Intact::firstOrNew(array('year' => $request->intake_year[$i]));
-                // $intake_month = Intact::firstOrNew(array('month' => $request->intake_month[$i]));
-
-                // $university = University::firstOrNew(array('name' => $request->university[$i]));
-                // $university->address="";
-                // $university->email="";
-                // $university->status="active";
-                // $university->added_by=\Auth::user()->id;
-                // $university->country_id=101;
-                // $university->company_id=\Auth::user()->company_id;
-                // $university->save();
-
-                // $course=Course::firstOrNew(array('name'=>$request->course_name[$i]));
-                // $course->university_id=$university->id;
-                // $course->course_level=$request->course_level[$i] ?? "";
-                // $course->status="active";
-                // $course->specialization=$request->specialization[$i];
-                // $course->duration=$request->duration[$i];
-                // $course->application_fees=$request->application_fees[$i];
-                // $course->course_link=$request->course_link[$i];
-                // $course->intake_year=$intake_year->id;
-                // $course->intake_month=$intake_month->id;
-
-                // $course->ten_req=$request->ten_req[$i];
-                // $course->twelve_req=$request->twelve_req[$i];
-                // $course->bachelor_req=$request->bachelor_req[$i];
-                // $course->master_req=$request->master_req[$i];
-
-                // $course->added_by=\Auth::user()->id;
-                // $course->company_id=\Auth::user()->company_id;
-                // $course->save();
-
-                // if($request->course_requirement[$i])
-                // {
-                //     $course_requirements=explode("###",$request->course_requirement[$i]);
-                //     $totrequirements=count($course_requirements);
-                //     $course_requirements_type=explode("###",$request->course_requirement_type[$i]);
-                //     for($j=0;$j<$totrequirements;$j++)
-                //     {
-                //         $requirements_check=CourseRecruitments::where("documents",$course_requirements[$j])
-                //         ->where("course_id",$course->id)
-                //         ->first();
-                //         if(empty($requirements_check)){
-                //             $requirements_check=new CourseRecruitments();
-                //         }
-                //         $requirements_check->documents=$course_requirements[$j] ?? "";
-                //         $type="jpg";
-                //         if($course_requirements_type[$j])
-                //         {
-                //             if($course_requirements_type[$j]=="pdf" ||$course_requirements_type[$j]=="jpg" || $course_requirements_type[$j]=="doc")
-                //             {
-                //                 $type=$course_requirements_type[$j];
-                //             }
-                //         }
-
-                //         $requirements_check->type=trim(strtolower($type));
-                //         $requirements_check->status="active";
-                //         $requirements_check->course_id=$course->id;
-                //         $requirements_check->company_id=\Auth::user()->company_id;
-                //         $requirements_check->save();
-                //     }
-                // }
-
-        }
-        dd($import);
-        // dd($data);
         //return view("course.import_fields",compact("data"));
     }
 
