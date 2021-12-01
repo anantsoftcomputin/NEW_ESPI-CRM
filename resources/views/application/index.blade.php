@@ -43,10 +43,10 @@
             columns: [
                 {data: 'application_id', name: 'application_id'},
                 {data: 'enquiry.name', name: 'enquiry.name', orderable: false, searchable: false},
-                {data: 'enquiry.email', name: 'enquiry.email', orderable: false, searchable: false},
                 {data: 'university.name', name: 'university.name', orderable: false, searchable: false},
                 { data: 'course.name', name: 'course.name' , orderable: false, searchable: false},
                 {data: 'status', name: 'status'},
+                {data: 'date', name: 'status'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
             initComplete: function () {
@@ -121,11 +121,12 @@ Application
         <thead>
             <tr>
                 <th>Application Ref #</th>
-                <th>Student Name</th>
+
                 <th>Student Email</th>
                 <th>University</th>
                 <th>Course</th>
                 <th>Status</th>
+                <th>Date</th>
                 <th width="100px">Action</th>
             </tr>
         </thead>

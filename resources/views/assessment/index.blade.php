@@ -46,7 +46,7 @@
                 { data: 'enquiry.phone', name: 'university.country.name',orderable: false,searchable: false},
                 { data: 'enquiry.email', name: 'university.name', orderable: false,searchable: false},
                 { data: 'course.name', name: 'Course.name' , orderable: false,searchable: false},
-                { data: 'status', name: 'status' , orderable: true ,searchable: false},
+                { data: 'date', name: 'status' , orderable: true ,searchable: false},
                 { data: 'action', name: 'action', orderable: false, searchable: true},
             ],
             initComplete: function () {
@@ -81,7 +81,7 @@
                     { data: 'enquiry.email', name: 'enquiry.email',orderable: false,searchable: false},
                     { data: 'university.name', name: 'university.name',orderable:'false', searchable: true },
                     { data: 'course.name', name: 'course.name' },
-                    {data: 'status', name: 'status'},
+                    {data: 'date', name: 'status'},
                     { data: 'user.name', name: 'user.name',orderable:'false', searchable: true },
                 ]
             })
@@ -123,7 +123,7 @@ Application
                 <th>Phone</th>
                 <th>Email</th>
                 <th width="200px">Course</th>
-                <th width="200px">Join Date</th>
+                <th width="200px">Date</th>
                 <th width="100px">Action</th>
 
             </tr>

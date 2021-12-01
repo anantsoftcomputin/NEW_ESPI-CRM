@@ -39,6 +39,9 @@ class ApplicationController extends Controller
                            $btn = '<a href="'.route('Application.edit',$row->id).'" class="edit btn btn-primary btn-sm">Change Status</a>';
                             return $btn;
                     })
+                    ->addColumn('date', function($model) {
+                        return $model->created_at->diffForHumans();
+                    })
                     ->rawColumns(['action'])
                     ->make(true);
         }
@@ -70,6 +73,8 @@ class ApplicationController extends Controller
         $validated['application_id'] ="ESPI_".$this->generateUniqueCode();
         $validated['added_by_id'] = \Auth::user()->id;
         $validated['status'] = 'Applied';
+
+
 
         Application::create($validated);
         return redirect(route('Application.index'))->with('success','Application created successfully!');
@@ -172,6 +177,7 @@ class ApplicationController extends Controller
         $application_list=Application::find($application);
         $application_list->status=$request->status;
         $application_list->save();
+        EnqActivity("Update Status Application",$application_list->enquiry_id);
         return redirect(route('Application.index'))->with('success','Application status change successfully!');;
     }
 
@@ -220,6 +226,7 @@ class ApplicationController extends Controller
             $Ass=assessment::find($Ass)->toArray();
             $Ass['application_id']=$this->generateUniqueCode();
             $Application=Application::create($Ass);
+            EnqActivity("Apply Application",$Application->enquiry_id);
             return redirect(route('Application.index'))->with('success','Application');
         }
         $Ass=assessment::find($Ass);

@@ -51,6 +51,9 @@ class EnquireController extends Controller
                     })
 
                     ->addIndexColumn()
+                    ->addColumn('date', function($model) {
+                        return $model->created_at->diffForHumans();
+                    })
                     ->addColumn('enq', function($row){
                         if($data=$this->existdetail($row->id))
                            {

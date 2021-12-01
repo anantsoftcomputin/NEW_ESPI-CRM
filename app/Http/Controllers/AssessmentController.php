@@ -43,6 +43,9 @@ class AssessmentController extends Controller
                     ->addColumn('status', function($row){
                             return ucfirst($row->status);
                     })
+                    ->addColumn('date', function($model) {
+                        return $model->created_at->diffForHumans();
+                    })
                     ->addColumn('assign_to', function($row){
                         if(empty($row->assign_id))
                         {
@@ -68,7 +71,7 @@ class AssessmentController extends Controller
                       </div>';
                       $btn .="</div>";
 
-                      $btn="<a href='".route('Assessment.Add',$row) ."' class='btn btn-info'>Show</a>";
+                      $btn="<a href='".route('Assessment.Add',$row->enquiry_id) ."' class='btn btn-info'>Show</a>";
 
                     //   if(Auth::user()->hasRole('Admin') || Auth::user()->hasRole('super-admin'))
                     //   {
@@ -133,8 +136,7 @@ class AssessmentController extends Controller
      */
     public function store(AddAssessment $AddAssessment)
     {
-        dd($AddAssessment);
-        Activity::create(['string'=>"Add Assessment"]);
+
         if(isset($AddAssessment->country_id))
         {
             $totassesment=count($AddAssessment->country_id);
@@ -142,6 +144,7 @@ class AssessmentController extends Controller
             {
                 if($AddAssessment->country_id[$i])
                 {
+
                     $data[]=[
                         'university_id' =>$AddAssessment->university_id[$i],
                         'course_id' => $AddAssessment->course_id[$i],
@@ -153,7 +156,7 @@ class AssessmentController extends Controller
                         'level'=>$AddAssessment->level[$i],
                         'duration'=>$AddAssessment->duration[$i],
                         'app_fee'=>$AddAssessment->app_fee[$i],
-                        'remarks'=>$AddAssessment->remarks[$i],
+                        'remarks'=>$AddAssessment->remarks,
                         'type'=>"default",
                         'location'=>"default",
                         'status'=>"process",
@@ -163,12 +166,7 @@ class AssessmentController extends Controller
 
             }
             $assessment=assessment::insert($data);
-            // $validated = $AddAssessment->validated();
-            // $validated['added_by_id'] = \Auth::user()->id;
-            // $validated['type']="default";
-            // $validated['location']="default";
-            // assessment::create($validated);
-
+                EnqActivity("Add New Assessment",$data[0]['enquiry_id']);
 
             if($this->AutoAddApplication==true)
             {
@@ -224,6 +222,7 @@ class AssessmentController extends Controller
         $assessment=assessment::find($assessment);
         $assessment->status="Remove";
         $assessment->save();
+        EnqActivity("Remove Assessment ",$assessment->enquiry_id);
         return redirect(route('Assessment.Add',$assessment->enquiry_id));
     }
 

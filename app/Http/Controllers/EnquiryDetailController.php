@@ -42,10 +42,6 @@ class EnquiryDetailController extends Controller
         $EnquiryDetail->data = json_encode($data);
         $EnquiryDetail->save();
         return redirect(route('Enquires.index'));
-        // $enquirydetail=EnquiryDetail::find($id);
-        // $enquiry=Enquiry::find($enquirydetail->enquiry_id);
-        // $last=json_decode($EnquiryDetail->data);
-        // return view('enquiry.detail',compact('id','enquiry','enquirydetail','last'));
     }
 
     public function detail($id)

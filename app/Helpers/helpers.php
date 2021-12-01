@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Activity;
 use App\Models\City;
 use App\Models\State;
 use App\Models\Country;
@@ -7,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Company;
 use App\Models\ReferralCode;
 use App\Models\User;
+use PhpParser\Node\Stmt\Return_;
 
 if (! function_exists('get_user')) {
     function get_user($id) {
@@ -133,4 +135,12 @@ if (! function_exists('bootstrap_input_6')) {
             </div>
         </div>';
     }
+}
+
+if(! function_exists('EnqActivity'))
+{
+function EnqActivity($mgs,$EnqId)
+{
+    return Activity::create(['string'=>$mgs,'enquiry_id' => $EnqId]);
+}
 }
