@@ -10,7 +10,7 @@
 
 <div class="col-md-12">
     <div class="form-group">
-        <label for="description">Description</label>
+        <label for="description">Remark</label>
         <textarea name="description" id="description" class="form-control" required>{{$university->description}}</textarea>
     </div>
 </div>

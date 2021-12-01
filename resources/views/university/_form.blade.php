@@ -9,7 +9,7 @@
 
 <div class="col-md-12">
     <div class="form-group">
-        <label for="description">Description</label>
+        <label for="description">Remark</label>
         <textarea name="description" id="description" cols="0" rows="5" class="form-control" required>{{old('description')}}</textarea>
     </div>
 </div>
