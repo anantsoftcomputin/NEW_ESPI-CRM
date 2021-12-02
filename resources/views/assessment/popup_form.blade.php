@@ -67,7 +67,7 @@
             @forelse ($intake as $item_intack)
                 <option value="{{ $item_intack->id }}">{{ $item_intack->month }}</option>
             @empty
-                <option value="01">jan</option>
+                <option value="01">Jan</option>
             @endforelse
         </select>
     </div>

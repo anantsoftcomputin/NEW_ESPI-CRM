@@ -14,7 +14,7 @@ Enquiry Detail
                 <div class="widget-header">
                     <div class="row">
                         <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                            <h4>Default</h4>
+                                <h4>Detail > {{ Str::lower($enquiry->name) }} | <span class="badge badge-primary">#{{ Str::lower($enquiry->enquiry_id) }}</span></h4>
                         </div>
                     </div>
                 </div>

@@ -129,7 +129,7 @@ class EnquireController extends Controller
         $validated["reference_phone"]=$request->reference_phone;
         $validated["reference_code"]=$request->reference_code;
         $validated["remarks"]=$request->remarks;
-        $validated["passport_no"]=$request->passport_no;
+        $validated["passport_no"]=$request->passport_number;
         $validated["preferred_country"]=$request->preferred_country;
         $validated["first_name"]=$request->first_name;
         $validated["middle_name"]=$request->middle_name;

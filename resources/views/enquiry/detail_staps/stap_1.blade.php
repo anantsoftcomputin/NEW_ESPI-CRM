@@ -1,13 +1,19 @@
 <div class="row">
-    <div class="col-md-6">
+    {{-- <div class="col-md-6">
         <div class="form-group">
             <label for="name" class="mandatory">Maritial Status</label>
             <Select class="form-control" name="marital_status" required>
                 @foreach (config('espi.enquires_detail.marital_status') as $item)
                     <option value="{{ $item }}">{{ $item }}</option>
                 @endforeach
-                {{-- <option value="married">married</option> --}}
             </Select>
+
+        </div>
+    </div> --}}
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="name">Passport Number</label>
+            <input type="text" class="form-control" value="{{ $enquiry->passport_no }}">
 
         </div>
     </div>
@@ -26,7 +32,7 @@
             {{-- <input type="text" name="country_intrusted" id="name" value="" class="form-control tagging" required> --}}
             <select class="form-control tagging" multiple="multiple" name="country_intrusted[]">
                 @foreach (config('espi.enquires_detail.country_interested') as $item)
-                <option value="{{ $item }}">{{ $item }}</option>
+                    <option value="{{ $item }}" @if ($enquiry->preferred_country == $item) selected @endif>{{ $item }}</option>
 
                 @endforeach
             </select>
