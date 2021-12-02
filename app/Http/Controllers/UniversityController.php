@@ -33,7 +33,7 @@ class UniversityController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = University::select('*')->with('Course')->orderBy('id', 'DESC');
+            $data = University::select('*')->with('Course','Country')->orderBy('id', 'DESC');
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){

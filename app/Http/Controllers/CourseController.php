@@ -25,7 +25,7 @@ class CourseController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Course::orderBy("id","desc")->select('*')->with('University')->orderBy('id', 'DESC');
+            $data = Course::orderBy("id","desc")->select('*')->with('University','University.Country')->orderBy('id', 'DESC');
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
@@ -292,9 +292,10 @@ class CourseController extends Controller
 
         //$data = Excel::import(new CourseImport(), request()->file('file'));
 
-        dd("imported");
+//        dd("imported");
 
         //return view("course.import_fields",compact("data"));
+        return redirect()->route("Course.index")->with("success","Courses");
     }
 
     public function CourseImportSave(Request $request)

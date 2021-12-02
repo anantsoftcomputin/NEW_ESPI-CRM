@@ -44,6 +44,7 @@ University
             columns: [
                 {data: 'name', name: 'name'},
                 {data: 'email', name: 'email'},
+                {data: 'country.name', name: 'Country.name'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
         });
@@ -70,6 +71,7 @@ University
             <tr>
                 <th>Name</th>
                 <th>Email</th>
+                <th>country</th>
                 <th width="100px">Action</th>
             </tr>
         </thead>

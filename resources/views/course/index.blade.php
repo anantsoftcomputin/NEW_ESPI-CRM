@@ -48,8 +48,9 @@
             ajax: url,
             columns: [
                 {data: 'name', name: 'name'},
+                {data: 'university.name', name: 'University.name', orderable: false, searchable: false},
                 {data: 'course_level', name: 'course_level'},
-                {data: 'image', name: 'image'},
+                {data: 'university.country.name', name: 'country'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
         });
@@ -74,8 +75,9 @@ Course List
         <thead>
             <tr>
                 <th>Name</th>
+                <th>University</th>
                 <th>Course Level</th>
-                <th>Image</th>
+                <th>Country</th>
                 <th width="100px">Action</th>
             </tr>
         </thead>
