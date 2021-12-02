@@ -45,6 +45,7 @@
         <select name="status" id="status" class="form-control" required>
             <option value="#" selected disabled>Status</option>
             <option value="active">Active</option>
+            <option value="de-active">De-Active</option>
         </select>
     </div>
 </div>
