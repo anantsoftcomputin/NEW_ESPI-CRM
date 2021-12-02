@@ -1,9 +1,9 @@
 <div class="row">
     <div class="col-md-12">
         <div class="form-group">
-            <label for="name">Select Last Educatuion</label>
+            <label for="name">Select Last Education</label>
             <select class="form-control" name="last_education" onchange="toggle_last_education(this.value)">
-               <option value="#">Select Last Educatuion</option>
+               <option value="#">Select Last Education</option>
                <option value="10th">10th</option>
                <option value="diploma">Diploma</option>
                <option value="12th">12th</option>
