@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use DataTables;
 use Illuminate\Support\Facades\Auth;
 use App\Imports\CourseImport;
+use App\Imports\UsersImport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class CourseController extends Controller
@@ -285,9 +286,13 @@ class CourseController extends Controller
             'file' => 'mimes:csv,xlsx,xls'
         ]);
 
-        $data = Excel::import(new CourseImport(), request()->file('file'));
+        Excel::import(new UsersImport,request()->file('file'));
 
-        dd($data);
+        //$data=(new CourseImport)->import(request()->file('file'), 'local', \Maatwebsite\Excel\Excel::XLSX);
+
+        //$data = Excel::import(new CourseImport(), request()->file('file'));
+
+        dd("imported");
 
         //return view("course.import_fields",compact("data"));
     }
