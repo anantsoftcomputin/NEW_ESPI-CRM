@@ -125,7 +125,8 @@ class AssessmentController extends Controller
         $course=Course::all();
         $intake=Intact::groupBy('month')->orderBy('id', 'asc')->get();
         $assessment=assessment::where('enquiry_id',$enquiry)->with('AddedBy')->get();
-        return view('assessment.add',compact('enquiry','university','course','intake','assessment'));
+        $enquiry_detail=Enquiry::find($enquiry);
+        return view('assessment.add',compact('enquiry','university','course','intake','assessment','enquiry_detail'));
     }
 
     /**

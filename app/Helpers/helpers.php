@@ -59,6 +59,7 @@ if (! function_exists('get_state')) {
 }
 
 
+
 if (! function_exists('get_country')) {
     function get_country($allowed="1") {
         if($allowed=='0')
@@ -67,7 +68,7 @@ if (! function_exists('get_country')) {
         }
         else
         {
-            return Country::whereIn('id',['101','13'])->get();
+            return Country::whereIn('id',['101','13','230'])->get();
         }
     }
 }

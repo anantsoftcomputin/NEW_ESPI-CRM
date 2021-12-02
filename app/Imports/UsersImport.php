@@ -9,9 +9,10 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithUpsertColumns;
 use Maatwebsite\Excel\Concerns\WithUpserts;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
+use Maatwebsite\Excel\Concerns\WithBatchInserts;
 
 
-class UsersImport implements ToModel,WithHeadingRow,WithUpserts,WithUpsertColumns,WithChunkReading
+class UsersImport implements ToModel,WithHeadingRow,WithUpserts,WithUpsertColumns,WithChunkReading,WithBatchInserts
 {
     public function uniqueBy()
     {
@@ -43,4 +44,10 @@ class UsersImport implements ToModel,WithHeadingRow,WithUpserts,WithUpsertColumn
     {
         return 10;
     }
+
+    public function batchSize(): int
+    {
+        return 10;
+    }
+
 }
