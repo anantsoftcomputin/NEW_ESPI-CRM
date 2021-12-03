@@ -13,6 +13,7 @@ use App\Http\Controllers\UploadDocumentController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FcmTokenController;
 /*
@@ -69,7 +70,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::resource("users",UserController::class);
     Route::resource("roles",RoleController::class);
 
-    Route::get("EnquiryDetail/add/{id?}",[EnquiryDetailController::class,'Add'])->name('EnquiryDetail.add');
+    Route::get("EnquiryDetail/add/{id}/{step?}",[EnquiryDetailController::class,'Add'])->name('EnquiryDetail.add');
     Route::post("EnquiryDetail/store/{id?}",[EnquiryDetailController::class,'store'])->name('EnquiryDetail.store');
 
     Route::get("EnquiryDetail/show/{id?}",[EnquiryDetailController::class,'Show'])->name('EnquiryDetail.Show');
@@ -96,12 +97,14 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     Route::get('detail/{Enquire}/{Active?}',[EnquiryDetailController::class,'detail'])->name('detail.nav');
+
+    Route::post('document/store', [DocumentController::class,'store'])->name('document.store');
 });
 
-Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function ()
-{
-    \UniSharp\LaravelFilemanager\Lfm::routes();
-});
+// Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function ()
+// {
+//     \UniSharp\LaravelFilemanager\Lfm::routes();
+// });
 
 Route::get('demo',function(){
     return view('search');

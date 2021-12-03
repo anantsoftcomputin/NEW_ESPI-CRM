@@ -18,6 +18,15 @@ Enquiry Detail
                         </div>
                     </div>
                 </div>
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="widget-content widget-content-area">
                     <div id="example-basic">
                         <h3>Personal<br>information</h3>
@@ -52,13 +61,24 @@ Enquiry Detail
         </form>
     </div>
 
+
+
 @endsection
+
+@yield('child_model')
+
 
 
 
 @section('js')
-<link rel="stylesheet" type="text/css" href="{{ asset('plugins/jquery-step/jquery.steps.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('plugins/file-upload/file-upload-with-preview.min.css"') }}">
+<script>
+    @if($step==6)
+        $("#example-basic-t-5").click();
+    @endif
+</script>
+    @yield('child_js')
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jquery-step/jquery.steps.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/file-upload/file-upload-with-preview.min.css') }}">
 <script src="{{ asset('plugins/jquery-step/jquery.steps.min.js') }}"></script>
 <script src="{{ asset('plugins/jquery-step/custom-jquery.steps.js') }}"></script>
 <link rel="stylesheet" type="text/css" href="{{ asset('plugins/select2/select2.min.css') }}">

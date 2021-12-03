@@ -4,10 +4,6 @@
         <table class="table table-bordered mb-4">
             <tbody>
                 <tr>
-                    <th> Marital Status </th>
-                    <td>{{ $enquiry->Details->data->marital_status }}</td>
-                </tr>
-                <tr>
                     <th>Email</th>
                     <td>{{ $enquiry->email }}</td>
                 </tr>

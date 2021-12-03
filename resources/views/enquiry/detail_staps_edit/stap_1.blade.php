@@ -4,7 +4,7 @@
             <label for="name" class="mandatory">Maritial Status </label>
             <Select class="form-control" name="marital_status" required>
                 @foreach (config('espi.enquires_detail.marital_status') as $item)
-                    <option value="{{ $item }}" @if($item==$last->marital_status) selected @endif>{{ $item }}</option>
+                    <option value="{{ $item }}">{{ $item }}</option>
                 @endforeach
                 {{-- <option value="married">married</option> --}}
             </Select>

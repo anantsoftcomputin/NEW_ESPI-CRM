@@ -95,6 +95,11 @@ class Enquiry extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function Documents()
+    {
+        return $this->hasMany(Document::class);
+    }
+
     public function Activity()
     {
         return $this->hasMany(Activity::class);

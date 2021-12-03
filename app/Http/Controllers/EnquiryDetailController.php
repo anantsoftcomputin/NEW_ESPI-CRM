@@ -9,10 +9,10 @@ use Illuminate\Http\Request;
 
 class EnquiryDetailController extends Controller
 {
-    public function add($id)
+    public function add($id,$step=1)
     {
         $enquiry=Enquiry::find($id);
-        return view('enquiry.detail',compact('id','enquiry'));
+        return view('enquiry.detail',compact('id','enquiry','step'));
     }
 
     public function store($id,Request $request)

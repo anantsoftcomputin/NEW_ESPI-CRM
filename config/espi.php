@@ -15,5 +15,17 @@ return [
         'use_wildcards'    => false,
         'starts_with'      => false,
         'country_interested' => ['Canada','USA','UK','Australia','New Zealand','Europe','Finland','Netherland','Poland','Germany','France','Switzerland'],
+        'document_list' => [
+            '10th' => '10th Result',
+            '12th' => '12th Result',
+            'diploma' => 'Diploma Result',
+            'bachelor_degree' => 'Bachelor Degree',
+            'master' => 'Master Degree',
+            'transcript' => 'Transcript Documents',
+            'work_experience' => 'Work Experience Documents',
+            'Resume' => 'Resume Documents',
+            'lor' => 'LOR Documents',
+            'other' => 'Other Documents',
+            ]
     ],
 ];
