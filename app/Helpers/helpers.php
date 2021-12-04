@@ -68,7 +68,7 @@ if (! function_exists('get_country')) {
         }
         else
         {
-            return Country::whereIn('id',['101','13','230'])->get();
+            return Country::whereIn('id',['101','13','230','82','75','38','212'])->get();
         }
     }
 }

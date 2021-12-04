@@ -103,9 +103,29 @@ Course Special Requirement
         <input type="text" name="master_req" value="" onkeypress="return isNumber(event)" id="master_req" class="form-control">
     </div>
 </div>
+
 <div class="col-md-6">
     <div class="form-group">
-        <label for="ists_req">ISTS</label>
+        <label for="master_req">SAT</label>
+        <input type="text"  class="form-control">
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="master_req">GRE</label>
+        <input type="text" class="form-control">
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="master_req">GMAT</label>
+        <input type="text" class="form-control">
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="ists_req">IELTS</label>
         <input type="text" name="ists_req" onkeypress="return isNumber(event)" id="ists_req" class="form-control">
     </div>
 </div>

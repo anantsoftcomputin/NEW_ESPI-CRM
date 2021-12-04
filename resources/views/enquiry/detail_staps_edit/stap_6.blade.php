@@ -6,6 +6,7 @@
             <h4 class="card-text">{{ $item->name }} </h4>
             <h6 class="rating-count"><span class="badge outline-badge-primary"> {{ $item->status }} </span></h6>
             <h6 class="rating-count"><a href='{{ asset($item->file_name) }}' target="_blank" class='btn btn-info'>Show</a></h6>
+            <h6 class="rating-count"><a href='{{ route('document.delete',['Document' => $item->id , 'mode' => 'edit' ]) }}' class='btn btn-danger'>Remove</a></h6>
         </div>
     </div>
 </div>
@@ -19,7 +20,7 @@
 
 @section('child_model')
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <form action="{{ route('document.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('document.store',['mode'=>'edit']) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="modal-dialog" role="document">
                 <div class="modal-content">

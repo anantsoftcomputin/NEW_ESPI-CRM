@@ -26,12 +26,13 @@ class EnquiryDetailController extends Controller
         return redirect(route('Enquires.index'));
     }
 
-    public function Show($id)
+    public function Show($id,$step=1)
     {
-        $enquirydetail=EnquiryDetail::find($id);
-        $enquiry=Enquiry::find($enquirydetail->enquiry_id);
+        $enquiry=Enquiry::find($id);
+        $enquirydetail=EnquiryDetail::where('enquiry_id',$enquiry->id)->first();
+        //$enquiry=Enquiry::find($enquirydetail->enquiry_id);
         $last=json_decode($enquirydetail->data);
-        return view('enquiry.editdetail',compact('id','enquiry','enquirydetail','last'));
+        return view('enquiry.editdetail',compact('id','enquiry','enquirydetail','last','step'));
     }
 
     public function Update($id,Request $request)

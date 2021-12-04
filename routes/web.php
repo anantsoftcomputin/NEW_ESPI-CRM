@@ -12,6 +12,7 @@ use App\Http\Controllers\EnquiryDetailController;
 use App\Http\Controllers\UploadDocumentController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AssessmentController;
+use App\Http\Controllers\AssetController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\HomeController;
@@ -73,7 +74,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get("EnquiryDetail/add/{id}/{step?}",[EnquiryDetailController::class,'Add'])->name('EnquiryDetail.add');
     Route::post("EnquiryDetail/store/{id?}",[EnquiryDetailController::class,'store'])->name('EnquiryDetail.store');
 
-    Route::get("EnquiryDetail/show/{id?}",[EnquiryDetailController::class,'Show'])->name('EnquiryDetail.Show');
+    Route::get("EnquiryDetail/show/{id}/{step?}",[EnquiryDetailController::class,'Show'])->name('EnquiryDetail.Show');
     Route::post("EnquiryDetail/update/{id?}",[EnquiryDetailController::class,'update'])->name('EnquiryDetail.update');
     Route::resource('permissions',PermissionController::class);
     Route::get('assessments/{id}/{status}/change_status', [AssessmentController::class,'status_change'])->name('assessment.status');
@@ -98,7 +99,10 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
     Route::get('detail/{Enquire}/{Active?}',[EnquiryDetailController::class,'detail'])->name('detail.nav');
 
-    Route::post('document/store', [DocumentController::class,'store'])->name('document.store');
+    Route::post('document/store/{mode?}', [DocumentController::class,'store'])->name('document.store');
+    Route::get('document/delete/{Document}/{mode?}', [DocumentController::class,'remove'])->name('document.delete');
+
+    Route::resource('/Asset', AssetController::class);
 });
 
 // Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function ()
@@ -110,6 +114,6 @@ Route::get('demo',function(){
     return view('search');
 });
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'front_end']);
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 

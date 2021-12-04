@@ -109,11 +109,29 @@ University General Requirement
         <input type="text" name="master_req" value="{{$university->master_req ?? ''}}" onkeypress="return isNumber(event)" id="master_req" class="form-control">
     </div>
 </div>
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="master_req">SAT</label>
+        <input type="text" class="form-control">
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="master_req">GRE</label>
+        <input type="text" class="form-control">
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="master_req">GMAT</label>
+        <input type="text" class="form-control">
+    </div>
+</div>
 
 <div class="col-md-6">
     <div class="form-group">
-        <label for="ists_req">ISTS</label>
-        <input type="text" name="ists_req" value="{{$university->ists_req ?? ''}}" onkeypress="return isNumber(event)" id="ists_req" class="form-control">
+        <label for="ists_req">IELTS</label>
+        <input type="text" name="ists_req" id="ists_req" class="form-control">
     </div>
 </div>
 
@@ -139,7 +157,7 @@ University General Requirement
     </div>
 </div>
 
-<div class="col-md-12">
+<div class="col-md-6">
     <div class="form-group">
         <label for="country">News Letter (PDF)</label>
         <input type="file" name="news_letter" id="news_letter" class="form-control">

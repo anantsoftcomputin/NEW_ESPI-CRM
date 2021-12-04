@@ -44,8 +44,6 @@
         </select>
     </div>
 </div>
-smhri
-
 
 <div class="col-md-6">
     <div class="form-group">
@@ -56,16 +54,17 @@ smhri
         <label for="course_duration">Course Duration</label>
         <input type="text" name="duration" value="{{$Course->duration ?? ''}}" id="duration" class="form-control">
     </div>
-    <div class="form-group">
-        <label for="status">Course Link</label>
-        <input type="text" name="course_link" value="{{$Course->course_link ?? ''}}" id="course_link" class="form-control">
-    </div>
+
 </div>
 
 <div class="col-md-6">
     <div class="form-group">
         <label for="course_duration">Application Fees</label>
         <input type="text" name="application_fees" value="{{$Course->application_fees ?? ''}}" id="application_fees" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="status">Course Link</label>
+        <input type="text" name="course_link" value="{{$Course->course_link ?? ''}}" id="course_link" class="form-control">
     </div>
 </div>
 
@@ -106,7 +105,26 @@ Course Special Requirement
 
 <div class="col-md-6">
     <div class="form-group">
-        <label for="ists_req">ISTS</label>
+        <label for="master_req">SAT</label>
+        <input type="text" class="form-control">
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="master_req">GRE</label>
+        <input type="text" class="form-control">
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="master_req">GMAT</label>
+        <input type="text" class="form-control">
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="ists_req">IELTS</label>
         <input type="text" name="ists_req" value="{{$Course->ists_req}}" onkeypress="return isNumber(event)" id="ists_req" class="form-control">
     </div>
 </div>

@@ -20,7 +20,6 @@ class CreateAssetsTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('file_name');
-            $table->enum('type',['pdf','doc','jpg'])->default('pdf');
             $table->unsignedBigInteger('added_by');
             $table->foreign('added_by')->references('id')->on('users');
             $table->softDeletes();

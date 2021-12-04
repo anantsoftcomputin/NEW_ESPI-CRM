@@ -68,7 +68,7 @@ class EnquireController extends Controller
                            $btn = "";
                            if($data=$this->existdetail($row->id))
                            {
-                            $btn .='<a href="'.route('EnquiryDetail.Show',$data->id).'" class="assessment btn btn-success btn-sm mb-2">Show Detail Enquiry</a> ';
+                            $btn .='<a href="'.route('EnquiryDetail.Show',$row->id).'" class="assessment btn btn-success btn-sm mb-2">Show Detail Enquiry</a> ';
                             $btn .='<a href="'.route('Assessment.Add',$row->id).'" class="assessment btn btn-warning btn-sm">Add Assessment</a>';
                            }
                            else

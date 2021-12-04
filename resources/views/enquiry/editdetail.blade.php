@@ -1187,4 +1187,38 @@ div.progress.visible {
     }
 
 </script>
+
+<script>
+    // wizard = $("#example-basic").steps({
+    //     headerTag: "h3",
+    //     bodyTag: "section",
+    //     transitionEffect: "slideLeft",
+    //     autoFocus: true,
+    //     cssClass: 'pill wizard',
+    //     labels: {
+    //         next: $('#next').html(),
+    //         previous : $('#previous').html()
+
+    //     },
+    // });
+
+    $.fn.steps.setStep = function (step)
+    {
+        var currentIndex = $(this).steps('getCurrentIndex');
+            for(var i = 0; i < Math.abs(step - currentIndex); i++){
+                if(step > currentIndex) {
+                    $(this).steps('next');
+                }
+                else{
+                    $(this).steps('previous');
+                }
+            }
+    };
+
+    @isset($step)
+        $( document ).ready(function() {
+            $("#example-basic").steps("setStep", {{ $step }});
+        });
+    @endisset
+</script>
 @endsection

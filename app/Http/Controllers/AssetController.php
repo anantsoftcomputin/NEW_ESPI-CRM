@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Asset;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 
 class AssetController extends Controller
 {
@@ -14,7 +15,8 @@ class AssetController extends Controller
      */
     public function index()
     {
-        //
+        $asset=Asset::paginate(5);
+        return view('Asset.index',compact('asset'));
     }
 
     /**
@@ -35,7 +37,29 @@ class AssetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|max:255',
+            'description' => 'required|min:10',
+            'file' => 'required|mimes:pdf,doc',
+        ]);
+
+        $document=New Asset();
+        $document->company_id=\Auth::user()->company_id;
+        $document->added_by=\Auth::user()->id;
+        $document->description=$request->description;
+        $document->name=$request->title;
+        $path = $request->file('file')->store(
+            'documents', 'public'
+        );
+        $document->file_name="storage/".$path;
+        $document->save();
+
+        \Session::flash('info','Document Added Successfully.');
+
+
+
+        return redirect(route('Asset.index'));
+
     }
 
     /**
@@ -78,8 +102,11 @@ class AssetController extends Controller
      * @param  \App\Models\Asset  $asset
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Asset $asset)
+    public function destroy($id)
     {
-        //
+        $asset=Asset::find($id);
+        $asset->delete();
+        \Session::flash('warning','Document Deleted Successfully.');
+        return redirect(route('Asset.index'));
     }
 }
