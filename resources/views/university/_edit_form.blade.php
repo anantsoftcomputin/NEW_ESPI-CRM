@@ -50,6 +50,7 @@
         <select name="status" id="status" class="form-control" required>
             <option value="#" >Status</option>
             <option value="active" @if($university->status=="active") selected @endif>Active</option>
+            <option value="de-active" @if($university->status=="de-active") selected @endif>De-Active</option>
         </select>
     </div>
 </div>
