@@ -105,10 +105,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::resource('/Asset', AssetController::class);
 });
 
-// Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function ()
-// {
-//     \UniSharp\LaravelFilemanager\Lfm::routes();
-// });
+
 
 Route::get('demo',function(){
     return view('search');

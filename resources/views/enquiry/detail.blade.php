@@ -71,7 +71,6 @@ Enquiry Detail
 
 
 @section('js')
-
     @yield('child_js')
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jquery-step/jquery.steps.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/file-upload/file-upload-with-preview.min.css') }}">
@@ -81,7 +80,7 @@ Enquiry Detail
 <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="{{ asset('assets/js/scrollspyNav.js') }}"></script>
-{{-- <script src="{{ asset('plugins/file-upload/file-upload-with-preview.min.js') }}"></script> --}}
+<script src="{{ asset('plugins/file-upload/file-upload-with-preview.min.js') }}"></script>
 
 
 
@@ -566,91 +565,7 @@ Enquiry Detail
 
     </script>
     <script>
-        // var lfm = function(id, type, options)
-        // {
-        // let button = document.getElementById(id);
-
-        // button.addEventListener('click', function () {
-        //     var route_prefix = (options && options.prefix) ? options.prefix : '/filemanager';
-        //     var target_input = document.getElementById(button.getAttribute('data-input'));
-        //     var target_preview = document.getElementById(button.getAttribute('data-preview'));
-
-        //     window.open(route_prefix + '?type=' + options.type || 'file', 'FileManager', 'width=900,height=600');
-        //     window.SetUrl = function (items) {
-        //     var file_path = items.map(function (item) {
-        //         return item.url;
-        //     }).join(',');
-
-        //     // set the value of the desired input to image url
-        //     target_input.value = "Storage/";
-        //     target_input.dispatchEvent(new Event('change'));
-
-        //     // clear previous preview
-        //     target_preview.innerHtml = '';
-
-        //     // set or change the preview image src
-        //     items.forEach(function (item) {
-        //         let img = document.createElement('img')
-        //         img.setAttribute('style', 'height: 5rem')
-        //         img.setAttribute('src', item.thumb_url)
-        //         target_preview.appendChild(img);
-        //     });
-
-        //     // trigger change event
-        //     target_preview.dispatchEvent(new Event('change'));
-        //     };
-        // });
-        // };
-
-        // lfm('lfm2', 'file', {prefix: route_prefix});
-    </script>
-    <script>
-        $(document).ready(function(){
-
-        // Define function to open filemanager window
-        var lfm = function(options, cb) {
-            var route_prefix = (options && options.prefix) ? options.prefix : '/filemanager';
-            window.open(route_prefix + '?type=' + options.type || 'file', 'FileManager', 'width=900,height=600');
-            window.SetUrl = cb;
-        };
-
-        // Define LFM summernote button
-        var LFMButton = function(context) {
-            // var ui = $.summernote.ui;
-            // var button = ui.button({
-            // contents: '<i class="note-icon-picture"></i> ',
-            // tooltip: 'Insert image with filemanager',
-            // click: function() {
-
-            //     lfm({type: 'image', prefix: '/filemanager'}, function(lfmItems, path) {
-            //     lfmItems.forEach(function (lfmItem) {
-            //         context.invoke('insertImage', lfmItem.url);
-            //     });
-            //     });
-
-            // }
-            // });
-            // return button.render();
-        };
-
-        // Initialize summernote with LFM button in the popover button group
-        // Please note that you can add this button to any other button group you'd like
-        // $('#summernote-editor').summernote({
-        //     toolbar: [
-        //     ['popovers', ['lfm']],
-        //     ],
-        //     buttons: {
-        //     lfm: LFMButton
-        //     }
-        // })
-        });
-    </script>
-
-    <script>
-
-
         var cout=1;
-
         $("#experience_status").change(function(){
             var status=$("#experience_status").val();
             if(status=='Yes')
@@ -813,15 +728,6 @@ Enquiry Detail
                 $("#exam_production_div").show();
                 $("#overall_band_div").show();
             }
-            if(exam_status == "Planning")
-            {
-
-                $("#exam_listening_div").hide();
-                $("#exam_speaking_div").hide();
-                $("#exam_reading_div").hide();
-                $("#exam_writing_div").hide();
-                $("#overall_band_div").hide();
-            }
 
         });
 
@@ -965,16 +871,6 @@ Enquiry Detail
                 $("#overall_band_div"+id).show();
             }
 
-            if(exam_status == "Planning")
-            {
-
-                $("#exam_listening_div").hide();
-                $("#exam_speaking_div").hide();
-                $("#exam_reading_div").hide();
-                $("#exam_writing_div").hide();
-                $("#overall_band_div").hide();
-            }
-
         }
 
 
@@ -1086,21 +982,7 @@ Enquiry Detail
                 {
                     $(".hiddan_data").show();
                     $(".hiddan_data_data").hide();
-                }
-                else if($("#exam_status").val()=="Planning")
-                {
-                    $(".exam_score").hide();
-                    $(".hiddan_data_data").show();
-                    $(".hiddan_data").hide();
-                    $(".hide_col").hide();
 
-                }
-                else if($("#exam_status").val()=="NotPlanning")
-                {
-                    $(".exam_score").hide();
-                    $(".hiddan_data_data").hide();
-                    $(".hiddan_data").hide();
-                    $(".hide_col").hide();
                 }
                 else
                 {
@@ -1115,21 +997,7 @@ Enquiry Detail
                 {
                     $(".hiddan_data").show();
                     $(".hiddan_data_data_"+el).hide();
-                }
-                else if($("#exam_status"+el).val()=="Planning")
-                {
-                    $(".exam_score").hide();
-                    $(".hiddan_data_data_"+el).show();
-                    $(".hiddan_data").hide();
-                    $(".hide_col_").hide();
 
-                }
-                else if($("#exam_status"+el).val()=="NotPlanning")
-                {
-                    $(".exam_score").hide();
-                    $(".hiddan_data_data_"+el).hide();
-                    $(".hiddan_data").hide();
-                    $(".hide_col_").hide();
                 }
                 else
                 {
@@ -1142,6 +1010,7 @@ Enquiry Detail
         }
 
         $("#rejection_if_any").change(function(){
+            console.log($(this).find(":selected").text());
             if($(this).find(":selected").text()=="Yes")
             {
                 $(".refusal_hide").show();
