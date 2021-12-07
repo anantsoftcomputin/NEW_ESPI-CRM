@@ -1,11 +1,14 @@
 <div class="p-2">
     <h1>Application</h1>
+    <a href="{{ route('Assessment.Add',$enquiry->id) }}" class="btn btn-info float-right mb-3">Add Application</a>
+    <br>
     <div class="table-responsive">
         <table class="table table-bordered mb-4">
             <thead>
                 <th>Application Id</th>
                 <th>University</th>
                 <th>Course</th>
+                <th>Country</th>
             </thead>
             <tbody>
 
@@ -15,10 +18,11 @@
                     <td>{{ $item->application_id }}</td>
                     <td>{{ $item->University->name }}</td>
                     <td>{{ $item->Course->name }}</td>
+                    <td>{{ $item->University->Country->name }}</td>
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="3" class="text-center">No Data Found</td>
+                    <td colspan="4" class="text-center">No Data Found</td>
                 </tr>
                 @endforelse
             </tbody>

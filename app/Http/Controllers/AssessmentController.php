@@ -14,6 +14,8 @@ use App\Models\Enquiry;
 use App\Models\Intact;
 use DataTables;
 use App\Models\User;
+use App\Mail\AddAssessments;
+use Illuminate\Support\Facades\Mail;
 
 class AssessmentController extends Controller
 {
@@ -166,8 +168,15 @@ class AssessmentController extends Controller
                 }
 
             }
+            //add a maniple assessment function
+
+            //but for now we have add only one
             $assessment=assessment::insert($data);
+                //A Trigger to display in student detail
                 EnqActivity("Add New Assessment",$data[0]['enquiry_id']);
+                // Add Mail to studant
+                $enquiry=Enquiry::find($data[0]['enquiry_id']);
+                Mail::to($enquiry->email)->send(new AddAssessments($enquiry));
 
             if($this->AutoAddApplication==true)
             {

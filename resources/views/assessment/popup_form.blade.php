@@ -55,8 +55,8 @@
     <div class="form-group">
         <label for="selectyear">Select Year</label>
         <select name="intact_year_id[]" class="form-control" id="selectyear">
-            <option value="01">2021</option>
-            <option value="02">2022</option>
+            <option value="1">2021</option>
+            <option value="2">2022</option>
         </select>
     </div>
 </div>

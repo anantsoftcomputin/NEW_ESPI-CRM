@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class EnquiryDetailController extends Controller
 {
-    public function add($id,$step=1)
+    public function add($id,$step=0)
     {
         $enquiry=Enquiry::find($id);
         return view('enquiry.detail',compact('id','enquiry','step'));
@@ -26,7 +26,7 @@ class EnquiryDetailController extends Controller
         return redirect(route('Enquires.index'));
     }
 
-    public function Show($id,$step=1)
+    public function Show($id,$step=0)
     {
         $enquiry=Enquiry::find($id);
         $enquirydetail=EnquiryDetail::where('enquiry_id',$enquiry->id)->first();

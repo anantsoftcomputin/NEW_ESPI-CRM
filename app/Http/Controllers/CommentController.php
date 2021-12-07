@@ -43,6 +43,13 @@ class CommentController extends Controller
             $comment->parent_id=$request->parent_id;
         }
         $comment->enquiry_id=$enquiry;
+        if($request->has('file'))
+        {
+            $path = $request->file('file')->store(
+                "comment/attachments", 'public'
+            );
+            $comment->attachment="storage/".$path;
+        }
         $comment->save();
         return redirect(route($callback,$enquiry));
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Application\AddApplication;
+use App\Http\Requests\Assessment\AddAssessment;
 use App\Mail\ReConformMailToStudent;
 use App\Models\Application;
 use App\Models\assessment;
@@ -231,5 +232,10 @@ class ApplicationController extends Controller
         }
         $Ass=assessment::find($Ass);
         return view('application.confirm',compact('Ass'));
+    }
+
+    public function QuickApplication(AddAssessment $request)
+    {
+        # code...
     }
 }
