@@ -38,6 +38,7 @@ class EnquiryDetailController extends Controller
     public function Update($id,Request $request)
     {
         $EnquiryDetail=EnquiryDetail::find($id);
+        dd($EnquiryDetail);
         $Activity=Activity::create(['string'=>"Update Enquires Detail",'enquiry_id'=>$id]);
         $EnquiryDetail->data="NOT WORKING";
         $EnquiryDetail->save();
