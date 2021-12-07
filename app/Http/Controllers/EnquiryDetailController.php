@@ -39,14 +39,7 @@ class EnquiryDetailController extends Controller
     {
         $EnquiryDetail=EnquiryDetail::find($id);
         $Activity=Activity::create(['string'=>"Update Enquires Detail",'enquiry_id'=>$id]);
-        if(empty(!$request->all()))
-        {
-            $EnquiryDetail->data = json_encode($request->all());
-        }
-        else
-        {
-            $EnquiryDetail->data="";
-        }
+        $EnquiryDetail->data="";
         $EnquiryDetail->save();
         return redirect(route('Enquires.index'));
     }
