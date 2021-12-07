@@ -39,7 +39,7 @@ class EnquiryDetailController extends Controller
     {
         $EnquiryDetail=EnquiryDetail::find($id);
         $Activity=Activity::create(['string'=>"Update Enquires Detail",'enquiry_id'=>$id]);
-        $EnquiryDetail->data="";
+        $EnquiryDetail->data="NOT WORKING";
         $EnquiryDetail->save();
         return redirect(route('Enquires.index'));
     }
