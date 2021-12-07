@@ -81,7 +81,7 @@ Enquiry Detail
 <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="{{ asset('assets/js/scrollspyNav.js') }}"></script>
-<script src="{{ asset('plugins/file-upload/file-upload-with-preview.min.js') }}"></script>
+{{-- <script src="{{ asset('plugins/file-upload/file-upload-with-preview.min.js') }}"></script> --}}
 
 
 
@@ -566,42 +566,43 @@ Enquiry Detail
 
     </script>
     <script>
-        var lfm = function(id, type, options) {
-        let button = document.getElementById(id);
+        // var lfm = function(id, type, options)
+        // {
+        // let button = document.getElementById(id);
 
-        button.addEventListener('click', function () {
-            var route_prefix = (options && options.prefix) ? options.prefix : '/filemanager';
-            var target_input = document.getElementById(button.getAttribute('data-input'));
-            var target_preview = document.getElementById(button.getAttribute('data-preview'));
+        // button.addEventListener('click', function () {
+        //     var route_prefix = (options && options.prefix) ? options.prefix : '/filemanager';
+        //     var target_input = document.getElementById(button.getAttribute('data-input'));
+        //     var target_preview = document.getElementById(button.getAttribute('data-preview'));
 
-            window.open(route_prefix + '?type=' + options.type || 'file', 'FileManager', 'width=900,height=600');
-            window.SetUrl = function (items) {
-            var file_path = items.map(function (item) {
-                return item.url;
-            }).join(',');
+        //     window.open(route_prefix + '?type=' + options.type || 'file', 'FileManager', 'width=900,height=600');
+        //     window.SetUrl = function (items) {
+        //     var file_path = items.map(function (item) {
+        //         return item.url;
+        //     }).join(',');
 
-            // set the value of the desired input to image url
-            target_input.value = "Storage/";
-            target_input.dispatchEvent(new Event('change'));
+        //     // set the value of the desired input to image url
+        //     target_input.value = "Storage/";
+        //     target_input.dispatchEvent(new Event('change'));
 
-            // clear previous preview
-            target_preview.innerHtml = '';
+        //     // clear previous preview
+        //     target_preview.innerHtml = '';
 
-            // set or change the preview image src
-            items.forEach(function (item) {
-                let img = document.createElement('img')
-                img.setAttribute('style', 'height: 5rem')
-                img.setAttribute('src', item.thumb_url)
-                target_preview.appendChild(img);
-            });
+        //     // set or change the preview image src
+        //     items.forEach(function (item) {
+        //         let img = document.createElement('img')
+        //         img.setAttribute('style', 'height: 5rem')
+        //         img.setAttribute('src', item.thumb_url)
+        //         target_preview.appendChild(img);
+        //     });
 
-            // trigger change event
-            target_preview.dispatchEvent(new Event('change'));
-            };
-        });
-        };
+        //     // trigger change event
+        //     target_preview.dispatchEvent(new Event('change'));
+        //     };
+        // });
+        // };
 
-        lfm('lfm2', 'file', {prefix: route_prefix});
+        // lfm('lfm2', 'file', {prefix: route_prefix});
     </script>
     <script>
         $(document).ready(function(){
@@ -615,33 +616,33 @@ Enquiry Detail
 
         // Define LFM summernote button
         var LFMButton = function(context) {
-            var ui = $.summernote.ui;
-            var button = ui.button({
-            contents: '<i class="note-icon-picture"></i> ',
-            tooltip: 'Insert image with filemanager',
-            click: function() {
+            // var ui = $.summernote.ui;
+            // var button = ui.button({
+            // contents: '<i class="note-icon-picture"></i> ',
+            // tooltip: 'Insert image with filemanager',
+            // click: function() {
 
-                lfm({type: 'image', prefix: '/filemanager'}, function(lfmItems, path) {
-                lfmItems.forEach(function (lfmItem) {
-                    context.invoke('insertImage', lfmItem.url);
-                });
-                });
+            //     lfm({type: 'image', prefix: '/filemanager'}, function(lfmItems, path) {
+            //     lfmItems.forEach(function (lfmItem) {
+            //         context.invoke('insertImage', lfmItem.url);
+            //     });
+            //     });
 
-            }
-            });
-            return button.render();
+            // }
+            // });
+            // return button.render();
         };
 
         // Initialize summernote with LFM button in the popover button group
         // Please note that you can add this button to any other button group you'd like
-        $('#summernote-editor').summernote({
-            toolbar: [
-            ['popovers', ['lfm']],
-            ],
-            buttons: {
-            lfm: LFMButton
-            }
-        })
+        // $('#summernote-editor').summernote({
+        //     toolbar: [
+        //     ['popovers', ['lfm']],
+        //     ],
+        //     buttons: {
+        //     lfm: LFMButton
+        //     }
+        // })
         });
     </script>
 
@@ -1183,7 +1184,7 @@ Enquiry Detail
             cout=cout+1;
         });
 
-        var secondUpload = new FileUploadWithPreview('mySecondImage');
+        // var secondUpload = new FileUploadWithPreview('mySecondImage');
 
 
     </script>
