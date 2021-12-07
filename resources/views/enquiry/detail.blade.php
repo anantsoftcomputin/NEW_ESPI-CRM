@@ -812,6 +812,15 @@ Enquiry Detail
                 $("#exam_production_div").show();
                 $("#overall_band_div").show();
             }
+            if(exam_status == "Planning")
+            {
+
+                $("#exam_listening_div").hide();
+                $("#exam_speaking_div").hide();
+                $("#exam_reading_div").hide();
+                $("#exam_writing_div").hide();
+                $("#overall_band_div").hide();
+            }
 
         });
 
@@ -955,6 +964,16 @@ Enquiry Detail
                 $("#overall_band_div"+id).show();
             }
 
+            if(exam_status == "Planning")
+            {
+
+                $("#exam_listening_div").hide();
+                $("#exam_speaking_div").hide();
+                $("#exam_reading_div").hide();
+                $("#exam_writing_div").hide();
+                $("#overall_band_div").hide();
+            }
+
         }
 
 
@@ -1066,7 +1085,21 @@ Enquiry Detail
                 {
                     $(".hiddan_data").show();
                     $(".hiddan_data_data").hide();
+                }
+                else if($("#exam_status").val()=="Planning")
+                {
+                    $(".exam_score").hide();
+                    $(".hiddan_data_data").show();
+                    $(".hiddan_data").hide();
+                    $(".hide_col").hide();
 
+                }
+                else if($("#exam_status").val()=="NotPlanning")
+                {
+                    $(".exam_score").hide();
+                    $(".hiddan_data_data").hide();
+                    $(".hiddan_data").hide();
+                    $(".hide_col").hide();
                 }
                 else
                 {
@@ -1081,7 +1114,21 @@ Enquiry Detail
                 {
                     $(".hiddan_data").show();
                     $(".hiddan_data_data_"+el).hide();
+                }
+                else if($("#exam_status"+el).val()=="Planning")
+                {
+                    $(".exam_score").hide();
+                    $(".hiddan_data_data_"+el).show();
+                    $(".hiddan_data").hide();
+                    $(".hide_col_").hide();
 
+                }
+                else if($("#exam_status"+el).val()=="NotPlanning")
+                {
+                    $(".exam_score").hide();
+                    $(".hiddan_data_data_"+el).hide();
+                    $(".hiddan_data").hide();
+                    $(".hide_col_").hide();
                 }
                 else
                 {
@@ -1094,7 +1141,6 @@ Enquiry Detail
         }
 
         $("#rejection_if_any").change(function(){
-            console.log($(this).find(":selected").text());
             if($(this).find(":selected").text()=="Yes")
             {
                 $(".refusal_hide").show();

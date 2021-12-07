@@ -749,6 +749,16 @@ div.progress.visible {
             $("#overall_band_div").show();
         }
 
+        if(exam_status == "Planning")
+        {
+
+            $("#exam_listening_div").hide();
+            $("#exam_speaking_div").hide();
+            $("#exam_reading_div").hide();
+            $("#exam_writing_div").hide();
+            $("#overall_band_div").hide();
+        }
+
     });
 
     function refusal_remove(id)
@@ -891,6 +901,16 @@ div.progress.visible {
             $("#overall_band_div"+id).show();
         }
 
+        if(exam_status == "Planning")
+        {
+
+            $("#exam_listening_div").hide();
+            $("#exam_speaking_div").hide();
+            $("#exam_reading_div").hide();
+            $("#exam_writing_div").hide();
+            $("#overall_band_div").hide();
+        }
+
     }
 
 
@@ -1002,6 +1022,22 @@ div.progress.visible {
             {
                 $(".hiddan_data").show();
                 $(".hiddan_data_data").hide();
+
+            }
+            else if($("#exam_status").val()=="Planning")
+            {
+                $(".exam_score").hide();
+                $(".hiddan_data_data").show();
+                $(".hiddan_data").hide();
+                $(".hide_col").hide();
+
+            }
+            else if($("#exam_status").val()=="NotPlanning")
+            {
+                $(".exam_score").hide();
+                $(".hiddan_data_data").hide();
+                $(".hiddan_data").hide();
+                $(".hide_col").hide();
 
             }
             else
