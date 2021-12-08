@@ -59,6 +59,7 @@ Enquiry Detail
 
 
 @section('js')
+{{-- start_child_js --}}
 @yield('child_js')
 <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jquery-step/jquery.steps.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('plugins/file-upload/file-upload-with-preview.min.css"') }}">
@@ -650,6 +651,7 @@ div.progress.visible {
             $("#exam_reading_div").show();
             $("#exam_writing_div").show();
             $("#overall_band_div").show();
+            $("#exam_date").show();
         }
 
         if(examType=="IELTS GENERAL" && exam_status !="Planning")
@@ -659,6 +661,7 @@ div.progress.visible {
             $("#exam_reading_div").show();
             $("#exam_writing_div").show();
             $("#overall_band_div").show();
+            $("#exam_date").show();
         }
 
         if(examType=="SPOKEN ENGLISH" && exam_status !="Planning")
@@ -668,6 +671,7 @@ div.progress.visible {
             $("#exam_reading_div").show();
             $("#exam_writing_div").show();
             $("#overall_band_div").show();
+            $("#exam_date").show();
         }
 
         if(examType=="UKVI" && exam_status !="Planning")
@@ -677,6 +681,7 @@ div.progress.visible {
             $("#exam_reading_div").show();
             $("#exam_writing_div").show();
             $("#overall_band_div").show();
+            $("#exam_date").show();
         }
 
         if(examType=="TOEFL" && exam_status !="Planning")
@@ -686,6 +691,7 @@ div.progress.visible {
             $("#exam_reading_div").show();
             $("#exam_writing_div").show();
             $("#overall_band_div").show();
+            $("#exam_date").show();
         }
 
         if(examType=="SAT" && exam_status !="Planning")
@@ -694,6 +700,7 @@ div.progress.visible {
             $("#exam_evidence_based_reading_writing_div").show();
             $("#exam_essay_div").show();
             $("#overall_band_div").show();
+            $("#exam_date").show();
         }
 
         if(examType=="SAT" && exam_status !="Planning")
@@ -702,6 +709,7 @@ div.progress.visible {
             $("#exam_evidence_based_reading_writing_div").show();
             $("#exam_essay_div").show();
             $("#overall_band_div").show();
+            $("#exam_date").show();
         }
 
         if(examType=="GRE" && exam_status !="Planning")
@@ -710,6 +718,7 @@ div.progress.visible {
             $("#exam_quantitative_reasoning_div").show();
             $("#exam_analytical_writing_div").show();
             $("#overall_band_div").show();
+            $("#exam_date").show();
         }
 
         if(examType=="GMAT" && exam_status !="Planning")
@@ -719,6 +728,7 @@ div.progress.visible {
             $("#exam_analytical_writing_div").show();
             $("#exam_integrated_reasoning_div").show();
             $("#overall_band_div").show();
+            $("#exam_date").show();
         }
 
         if(examType=="PTE" && exam_status !="Planning")
@@ -737,6 +747,7 @@ div.progress.visible {
             $("#exam_vocabulary_div").show();
             $("#exam_written_disclosure_div").show();
             $("#overall_band_div").show();
+            $("#exam_date").show();
         }
 
         if(examType=="DUOLINGO" && exam_status !="Planning")
@@ -747,6 +758,7 @@ div.progress.visible {
             $("#exam_comprehension_div").show();
             $("#exam_production_div").show();
             $("#overall_band_div").show();
+            $("#exam_date").show();
         }
 
         if(exam_status == "Planning")
@@ -757,6 +769,7 @@ div.progress.visible {
             $("#exam_reading_div").hide();
             $("#exam_writing_div").hide();
             $("#overall_band_div").hide();
+            $("#exam_date").hide();
         }
 
     });
@@ -909,6 +922,7 @@ div.progress.visible {
             $("#exam_reading_div").hide();
             $("#exam_writing_div").hide();
             $("#overall_band_div").hide();
+            $("#exam_date").hide();
         }
 
     }

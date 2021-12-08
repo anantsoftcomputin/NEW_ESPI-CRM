@@ -27,7 +27,6 @@ Conform Application
 
             {!! bootstrap_input_6('gender','Gender',$Ass->Enquiry->gender) !!}
 
-            {!! bootstrap_input_6('Marital Status','Marital Status',$Ass->Enquiry->marital_status) !!}
 
             {!! bootstrap_input_6('Postal Code','Postal Code',$Ass->Enquiry->postal_code) !!}
 

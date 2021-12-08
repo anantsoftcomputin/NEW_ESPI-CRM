@@ -25,14 +25,10 @@
                     <option value="">Select Exam Status</option>
                     <option value="Completed">Completed</option>
                     <option value="Planning">Planning</option>
-                    <option value="NotPlanned">Still Not Planned</option>
                 </select>
             </div>
         </div>
 
-
-
-        <div class="col-md-6"></div>
 
         <div class="col-md-12" style="display:none" id="communication_skill_msg">
             <div id="communication_skill_msg">
@@ -67,10 +63,17 @@
             </div>
         </div>
 
-        <div class="col-md-6 hide_col " id="overall_band_div">
+        <div class="col-md-6 hide_col" id="overall_band_div">
             <div class="form-group">
                 <label for="name">Overall Band</label>
                 <input type="text" name="overall_band" id="overall_band" class="form-control">
+            </div>
+        </div>
+
+        <div class="col-md-6 hide_col" id="exam_date">
+            <div class="form-group">
+                <label for="exam">Exam Date</label>
+                <input type="date" name="exam_date" id="exam" class="form-control" required="">
             </div>
         </div>
 

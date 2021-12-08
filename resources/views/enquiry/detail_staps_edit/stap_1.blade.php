@@ -1,22 +1,21 @@
 <div class="row">
-    <div class="col-md-6">
+    {{-- <div class="col-md-6">
         <div class="form-group">
             <label for="name" class="mandatory">Maritial Status </label>
             <Select class="form-control" name="marital_status" required>
                 @foreach (config('espi.enquires_detail.marital_status') as $item)
                     <option value="{{ $item }}">{{ $item }}</option>
                 @endforeach
-                {{-- <option value="married">married</option> --}}
             </Select>
 
         </div>
-    </div>
+    </div> --}}
     <div class="col-md-6">
         <div class="form-group">
             <label for="name">Passport</label>
             <Select class="form-control" name="passport" required>
-                <option value="yes" selected>Yes</option>
-                <option value="no" @if($item=="no") selected @endif >no</option>
+                <option value="yes">Yes</option>
+                <option value="no">no</option>
             </Select>
         </div>
     </div>

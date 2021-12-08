@@ -63,3 +63,8 @@
 </div>
 <br>
 <br>
+
+@section('child_js')
+{{-- rejection_if_any --}}
+
+@endsection
