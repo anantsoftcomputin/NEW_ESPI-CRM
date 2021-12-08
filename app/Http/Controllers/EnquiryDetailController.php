@@ -37,10 +37,10 @@ class EnquiryDetailController extends Controller
 
     public function Update($id,Request $request)
     {
-        $EnquiryDetail=EnquiryDetail::find($id);
-        dd($EnquiryDetail);
+        // $EnquiryDetail=EnquiryDetail::find($id);
+        $EnquiryDetail=EnquiryDetail::where('enquiry_id',$id)->first();
         $Activity=Activity::create(['string'=>"Update Enquires Detail",'enquiry_id'=>$id]);
-        $EnquiryDetail->data="NOT WORKING";
+        $EnquiryDetail->data = json_encode($request->all());
         $EnquiryDetail->save();
         return redirect(route('Enquires.index'));
     }
