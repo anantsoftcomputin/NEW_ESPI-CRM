@@ -63,8 +63,5 @@
 <br>
 
 @section('child_js')
-{{-- rejection_if_any --}}
-<script>
-    alert("edit");
-</script>
+
 @endsection
