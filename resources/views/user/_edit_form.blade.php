@@ -36,10 +36,8 @@
     </div>
 </div>
 <div class="col-md-6">
-    <div class="form-group">
-        {{ Form::label('Status', 'Ststus', ['class' => 'form-control-label']) }}
-        {!! Form::select('status', ['1'=> 'Active','2'=> 'In Active'], 1, ['class' => 'form-control']) !!}
-    </div>
+    {!! Form::radio('status', '1', '1', []) !!} Active
+    {!! Form::radio('status', '0', '0', []) !!} In Active
 </div>
 <div class="col-md-12">
         <label class="new-control new-checkbox checkbox-primary">

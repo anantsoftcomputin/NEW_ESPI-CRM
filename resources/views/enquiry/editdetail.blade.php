@@ -7,6 +7,12 @@ Enquiry Detail
 
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 @section('content')
+<div class="col-lg-12">
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Remarks!</h4>
+        <p>{{ $enquiry->remarks }}</p>
+    </div>
+</div>
 <div class="col-lg-12 layout-spacing">
     <form method="post" action="{{ route('EnquiryDetail.update',$id) }}" id="form-detail">
         @csrf

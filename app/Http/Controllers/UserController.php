@@ -20,10 +20,10 @@ class UserController extends Controller
 
     public function __construct()
     {
-        // $this->middleware('permission:view-user');
-        // $this->middleware('permission:create-user', ['only' => ['create','store']]);
-        // $this->middleware('permission:update-user', ['only' => ['edit','update']]);
-        // $this->middleware('permission:destroy-user', ['only' => ['destroy']]);
+        $this->middleware('permission:view-user');
+        $this->middleware('permission:create-user', ['only' => ['create','store']]);
+        $this->middleware('permission:update-user', ['only' => ['edit','update']]);
+        $this->middleware('permission:destroy-user', ['only' => ['destroy']]);
     }
 
     public function index(Request $request)
@@ -38,7 +38,7 @@ class UserController extends Controller
                         {
                             $status="Active-User";
                         }else{
-                            $status="De-Active-User";
+                            $status="De-Active";
                         }
                         return $status;
                     })
@@ -77,6 +77,7 @@ class UserController extends Controller
      */
     public function store(AddUser $request)
     {
+        //dd($request);
         $user=new User();
         $user->name=$request->name;
         $user->email=$request->email;

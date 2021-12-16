@@ -49,11 +49,6 @@ class User extends Authenticatable
     ];
 
 
-    public function setStatusAttribute($status)
-    {
-        $this->attributes['status'] = ($status)? 1 : 0;
-    }
-    
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = $password;
@@ -62,5 +57,5 @@ class User extends Authenticatable
         //     $this->attributes['password'] = $password;
         // }
     }
-    
+
 }

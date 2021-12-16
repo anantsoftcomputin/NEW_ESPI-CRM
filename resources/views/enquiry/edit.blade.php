@@ -109,11 +109,11 @@ Update Enquiry
 </script>
 
 <link rel="stylesheet" href="{{asset('plugins/datepicker/jquery-ui.css')}}">
-<script src="{{asset('plugins/datepicker/jquery-ui.js')}}"></script>   
+<script src="{{asset('plugins/datepicker/jquery-ui.js')}}"></script>
 <script>
 
 $(document).ready(function () {
-    var currentDate = new Date();  
+    var currentDate = new Date();
       $('.disableFuturedate').datepicker({
       changeMonth: true,
       changeYear: true,
@@ -133,7 +133,7 @@ $(document).ready(function () {
    });
 
 $(document).ready(function(){
-      
+
     var state_id="{{$enquiry->state_id}}";
     if(state_id)
     {
@@ -167,7 +167,7 @@ $(document).ready(function(){
 				}
 			});
     }
-    
+
     $("#general_assessment").hide();
     $('input[type="checkbox"]').click(function(){
             if($(this).prop("checked") == true){
@@ -224,7 +224,7 @@ $(document).ready(function(){
         let URL="{{ url('api/admin/checkemail/') }}/"+email;
         $.ajax(URL,
 		{
-			success: function (data) { 
+			success: function (data) {
                 if(data)
                 {
                     var otpRoute="{{url('admin/enquiryOtpSend/')}}/"+data.id;
@@ -261,7 +261,7 @@ $(document).ready(function(){
       let URL="{{ url('api/admin/getEnquiry/') }}/"+email;
       $.ajax(URL,
 		{
-			success: function (data,status,xhr) { 
+			success: function (data,status,xhr) {
                 $("#name").val(data.name);
                 $('#education option[value='+data.education+']').attr('selected','selected');
                 $('#country option[value='+data.country_id+']').attr('selected','selected');
@@ -299,7 +299,7 @@ $(document).ready(function(){
 				}
 			});
     });
-   
+
     $("#state").change(function(){
         $('#city option[value!="0"]').remove();
         $(this).val();
@@ -325,7 +325,7 @@ $(document).ready(function(){
 </script>
 
 <script>
-    
+
      $("#generate_otp").click(function(){
         $('.error_message').html("");
         var email=$("#email").val();
@@ -345,9 +345,9 @@ $(document).ready(function(){
                     }
                 });
         }
-        
+
     });
-   
+
 </script>
 @endsection
 

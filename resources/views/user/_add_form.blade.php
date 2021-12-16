@@ -11,7 +11,7 @@
     {{ Form::email('email', null, ['class' => 'form-control']) }}
     </div>
 </div>
- 
+
 <div class="col-lg-6">
     <div class="form-group">
         {{ Form::label('phone_number', 'Phone number', ['class' => 'form-control-label']) }}
@@ -39,13 +39,19 @@
         {{ Form::password('password_confirmation', ['class' => 'form-control']) }}
     </div>
 </div>
- 
 <div class="col-md-12">
+    {!! Form::radio('status', '1', '1', []) !!} Active
+    {!! Form::radio('status', '0', '0', []) !!} In Active
+</div>
+<div class="col-md-12">
+
     <div class="n-chk">
-        <label class="new-control new-checkbox checkbox-primary">
-        <input type="checkbox" class="new-control-input" name="status" value="1">
-        <span class="new-control-indicator"></span>Status
-        </label>
+        {{-- <label class="new-control new-checkbox checkbox-primary">
+        <input type="checkbox"  class="new-control-input" name="status" value="1">
+        <span class="new-control-indicator"></span>Active
+        <input type="checkbox" class="new-control-input" name="status" value="2">
+        <span class="new-control-indicator"></span>Active
+        </label> --}}
 
         <label class="new-control new-checkbox checkbox-primary">
         <input type="checkbox" class="new-control-input" onchange="initFirebaseMessagingRegistration()" name="notification">
