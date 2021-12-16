@@ -17,6 +17,9 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FcmTokenController;
+use App\Http\Controllers\FollowUpController;
+use App\Http\Controllers\FrontendController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -80,6 +83,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('assessments/{id}/{status}/change_status', [AssessmentController::class,'status_change'])->name('assessment.status');
     Route::get('AssessmentController/Add/{Enquiry}', [AssessmentController::class,'create'])->name('Assessment.Add');
     Route::get('AssessmentController/Remove/{Enquiry}', [AssessmentController::class,'destroy'])->name('Assessment.Remove');
+    Route::get('EmailNotifyAssessment/{Enquiry}', [AssessmentController::class,'EmailNotifyAssessment'])->name('Assessment.EmailNotifyAssessment');
     Route::get('ApplyApplication/{Assessment}', [ApplicationController::class,'ApplyApplication'])->name('Assessment.Apply');
     Route::post('ApplyApplication/{Assessment}', [ApplicationController::class,'ApplyApplication'])->name('Assessment.ApplySubmit');
     Route::resource("assessments",AssessmentController::class);
@@ -103,6 +107,9 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('document/delete/{Document}/{mode?}', [DocumentController::class,'remove'])->name('document.delete');
 
     Route::resource('/Asset', AssetController::class);
+
+    Route::post('FollowUp/store/{Enquire}',[FollowUpController::class,'store'])->name('FollowUp.store');
+
 });
 
 
@@ -111,6 +118,8 @@ Route::get('demo',function(){
     return view('search');
 });
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/',[App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/{branch_name}/joinespi',[FrontendController::class, 'joinespi'])->name('join_espi');
+Route::post('/{branch_name}/joinespi',[FrontendController::class, 'joinespistore'])->name('join_espi_store');
 
 

@@ -1,20 +1,3 @@
-<div class="col-md-12">
-    <div class="progress">
-        <div class="gradient">
-            <div class="progress-wrapper">
-                <div class="progress-text"></div>
-                <progress></progress>
-            </div>
-        </div>
-    </div>
-</div>
-
-{{-- @if ($errors->any())
-     @foreach ($errors->all() as $error)
-         <div>{{$error}}</div>
-     @endforeach
- @endif --}}
-
 <div class="col-md-3">
     <div class="form-group">
         <label for="email" class="mandatory">Email</label>
@@ -118,8 +101,9 @@
         <label for="country" class="mandatory">Country</label>
         <select name="country_id" id="country" class="@error('country_id') is-invalid @enderror form-control" required>
 
+            <option value="#">Select Country</option>
             @forelse ( get_country() as $country)
-                <option @if ($country->id == 101) selected @endif @if (old('country_id') == $country->id) selected @endif value="{{ $country->id }}">{{ ucfirst($country->name) }}</option>
+                <option value="{{ $country->id }}">{{ ucfirst($country->name) }}</option>
             @empty
                 <option value="#">No Country Available </option>
             @endforelse
@@ -143,7 +127,7 @@
             @forelse ( get_state() as $state)
                 <option @if (old('state_id') == $state->id) selected @endif value="{{ $state->id }}">{{ ucfirst($state->name) }}</option>
             @empty
-                <option value="#">No state Available </option>
+                {{-- <option value="#">No state Available </option> --}}
             @endforelse
         </select>
         {{-- <input type="text" name="state" id="state" class="form-control" required> --}}
@@ -198,8 +182,8 @@
         <select name="gender" value="{{ old('gender') }}" id="gender"
             class="form-control @error('gender') is-invalid @enderror" required>
             <option value="">Select Gender</option>
-            <option @if(old('gender')=="female") selected @endif value="female">Female</option>
-            <option @if(old('gender')=="male") selected @endif value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="male">Male</option>
         </select>
     </div>
     @error('gender')
@@ -219,21 +203,7 @@
     </div>
 </div>
 
-<div class="col-md-6">
-    <div class="form-group">
-        <label for="user" class="mandatory">Select Counsellor</label>
-        <select name="counsellor_id" id="user" class="@error('counsellor_id') is-invalid @enderror form-control"
-            required>
-            <option value="" selected>Select Counsellor</option>
-            @foreach ($user as $item)
-                <option @if (old('counsellor_id') == $item->id) selected @endif value="{{ $item->id }}">{{ $item->name }}</option>
-            @endforeach
-        </select>
-    </div>
-    @error('counsellor_id')
-        <div class="alert alert-danger">{{ $message }}</div>
-    @enderror
-</div>
+
 
 <div class="col-md-6">
     <div class="form-group">

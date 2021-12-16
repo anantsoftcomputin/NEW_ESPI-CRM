@@ -3,7 +3,7 @@
 
         <div class="col-md-6">
             <div class="form-group">
-                <label for="name">Type of Exam - {{ $last->exam_type }}</label>
+                <label for="name">Type of Exam </label>
                 <select name="exam_type" id="exam_type" class="form-control">
                         <option value="">Type of exam </option>
                         <option @if($last->exam_type == "IELTS") selected @endif value="IELTS">IELTS</option>
@@ -27,7 +27,6 @@
                     <option value="">Select Exam Status</option>
                     <option @if($last->exam_status == "Completed") selected @endif value="Completed">Completed</option>
                     <option @if($last->exam_status == "Planning") selected @endif value="Planning">Planning</option>
-                    <option @if($last->exam_status == "NotPlanning") selected @endif value="NotPlanning">Still Not Planning</option>
                 </select>
             </div>
         </div>

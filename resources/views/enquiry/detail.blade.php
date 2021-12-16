@@ -205,7 +205,7 @@ div.progress.visible {
         </div>
         <div class="col-md-2">
             <div class="form-group">
-                <label for="name">Work Profile</label>
+                <label for="name">Designation</label>
                 <input type="text" name="work_profile[]" id="name" value="" class="form-control" required="">
             </div>
         </div>
@@ -1036,7 +1036,6 @@ div.progress.visible {
             {
                 $(".hiddan_data").show();
                 $(".hiddan_data_data").hide();
-
             }
             else if($("#exam_status").val()=="Planning")
             {

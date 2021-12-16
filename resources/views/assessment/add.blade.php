@@ -113,12 +113,20 @@ Add Assessment
                                 </tr> --}}
                             </tbody>
                         </table>
-
                         {{-- <a href="" class="btn btn-info align-self-center">Add More </a> --}}
                         <div class="col-md-12 text-center">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                 Add More
                             </button>
+                            {{-- @if (count($enquiry->assessment))
+
+                            @endif
+                            @empty --}}
+                            @if(count($assessment)>0)
+                                <a class="ml-2 btn btn-dark " href="{{ route('Assessment.EmailNotifyAssessment',$enquiry) }}">
+                                    Notify Email
+                                </a>
+                            @endif
                         </div>
 
                           @include('assessment.AddModel')

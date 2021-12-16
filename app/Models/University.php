@@ -4,38 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Course;
 
 class University extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
 
     protected $fillable = [
-        'name',
-        'email',
-        'phone',
-        'address',
-        'dob',
-        'address',
-        'city_id',
-        'country_id',
-        'state_id',
-        'added_by',
-        'campus',
-        'provision_state',
-        'intake_year',
-        'intake_month',
-        'application_fees',
-        'web',
-        'news_letter',
-        'ten_req',
-        'twelve_req',
-        'bachelor_req',
-        'master_req',
-        'ists_req',
-        'toefl_req',
-        'duolingo_req',
-        'pte_req',
+        'name','email','phone','address','dob','address','city_id','country_id','state_id','added_by','campus','provision_state','intake_year',
+        'intake_month','application_fees','web','news_letter','ten_req','twelve_req','bachelor_req','master_req','ists_req','toefl_req',
+        'duolingo_req','pte_req',
     ];
 
     public function setImageAttribute($value)

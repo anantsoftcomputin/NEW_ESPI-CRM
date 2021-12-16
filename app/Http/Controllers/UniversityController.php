@@ -32,6 +32,7 @@ class UniversityController extends Controller
     }
     public function index(Request $request)
     {
+
         if ($request->ajax()) {
             $data = University::select('*')->with('Course','Country')->orderBy('id', 'DESC');
             return Datatables::of($data)
@@ -43,6 +44,14 @@ class UniversityController extends Controller
                         }
                         if(Auth::user()->hasAnyPermission(['update-university'])){
                            $btn .= '<a href="'.route('University.edit',$row->id).'" title="Edit University" class="edit btn btn-primary btn-sm mt-2"  data-row="'.route('University.edit',$row->id).'">Edit</a>';
+                        }
+                        if(Auth::user()->hasAnyPermission(['destroy-university'])){
+                            $url=route('University.destroy',$row->id);
+                            $btn .='<form action="'.$url.'" method="post">';
+                            $btn .='<input type="hidden" name="_method" value="delete" />';
+                            $btn .='<input type="hidden" name="_token" value="'.csrf_token().'">';
+                            $btn .='<button class="btn btn-danger btn-sm mt-2"> Delete </button></form>';
+                           //$btn .= '<a href="'.route('University.edit',$row->id).'" title="Edit University" class="edit btn btn-danger btn-sm mt-2"  data-row="'.route('University.edit',$row->id).'">Delete</a>';
                         }
                         return $btn;
                     })
@@ -250,9 +259,15 @@ class UniversityController extends Controller
      * @param  \App\Models\University  $university
      * @return \Illuminate\Http\Response
      */
-    public function destroy(University $university)
+    public function destroy($university)
     {
-        //
+        $university=University::find($university);
+        foreach($university->Course as $course)
+        {
+            $course->delete();
+        }
+        $university->delete();
+        return redirect(route('University.index'))->withSuccess('Deleted Successfully');
     }
 
     public function getUniversityFromCountry($country_id)

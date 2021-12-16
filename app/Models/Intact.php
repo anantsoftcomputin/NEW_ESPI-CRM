@@ -9,7 +9,7 @@ class Intact extends Model
 {
     use HasFactory;
 
-    protected $fillable=['year'];
+    protected $fillable=['year','month','university_id','status'];
 
     public function scopeIdDescending($query)
     {

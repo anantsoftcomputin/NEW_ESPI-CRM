@@ -46,7 +46,7 @@ class AssessmentController extends Controller
                             return ucfirst($row->status);
                     })
                     ->addColumn('date', function($model) {
-                        return $model->created_at->diffForHumans();
+                        return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $model->created_at)->format('d/m/Y H:i:s');
                     })
                     ->addColumn('assign_to', function($row){
                         if(empty($row->assign_id))
@@ -175,8 +175,8 @@ class AssessmentController extends Controller
                 //A Trigger to display in student detail
                 EnqActivity("Add New Assessment",$data[0]['enquiry_id']);
                 // Add Mail to studant
-                $enquiry=Enquiry::find($data[0]['enquiry_id']);
-                Mail::to($enquiry->email)->send(new AddAssessments($enquiry));
+                // $enquiry=Enquiry::find($data[0]['enquiry_id']);
+                // Mail::to($enquiry->email)->send(new AddAssessments($enquiry));
 
             if($this->AutoAddApplication==true)
             {
@@ -263,6 +263,22 @@ class AssessmentController extends Controller
     public function assessmentAssign(Request $request)
     {
         assessment::where("id",$request->assessment_id)->update(["assign_id"=>$request->user_id]);
+    }
+
+    public function EmailNotifyAssessment($enquiry_id)
+    {
+        $Enquiry = Enquiry::with('Assessment')->whereHas('Assessment', function ($query) {
+            $query->where('status','apply');
+        })->where('id',$enquiry_id)
+        ->first();
+
+        //$enquiry=Enquiry::find($enquiry_id);
+
+        // $enquiry = Enquiry::with('Assessment')
+        // ->whereHas('Assessment', function ($query) {
+        //     $query->Enquiry('status','NOT','apply');
+        // })->where('id',$enquiry_id)->get();
+        Mail::to($Enquiry->email)->send(new AddAssessments($Enquiry));
     }
 
     public function generateUniqueCode()

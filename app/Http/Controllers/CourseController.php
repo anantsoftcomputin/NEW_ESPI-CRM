@@ -292,7 +292,7 @@ class CourseController extends Controller
 
         //$data = Excel::import(new CourseImport(), request()->file('file'));
 
-//        dd("imported");
+        //dd("imported");
 
         //return view("course.import_fields",compact("data"));
         return redirect()->route("Course.index")->with("success","Courses");

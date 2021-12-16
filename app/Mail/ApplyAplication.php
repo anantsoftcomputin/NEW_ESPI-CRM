@@ -7,19 +7,20 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class AddAssessments extends Mailable
+class ApplyAplication extends Mailable
 {
     use Queueable, SerializesModels;
-    public $enquiry;
+
+    public $name;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($enq)
+    public function __construct($name)
     {
-        $this->enquiry = $enq;
+        $this->name = $name;
     }
 
     /**
@@ -29,6 +30,6 @@ class AddAssessments extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.AddAssessmentMailToStudent')->with('details', $this->enquiry);
+        return $this->markdown('emails.ReConformMailToStudent')->with('details', $this->name);
     }
 }

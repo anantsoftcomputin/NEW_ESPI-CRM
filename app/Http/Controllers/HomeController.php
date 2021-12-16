@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\University;
@@ -25,6 +26,7 @@ class HomeController extends Controller
         $course=Course::all();
         $intake=Intact::all();
         $user=User::role('Counsellor')->get();
+
         return view('home',compact("user","university","course","intake"));
     }
 
@@ -37,4 +39,6 @@ class HomeController extends Controller
     {
         return view("ocr.index");
     }
+
+
 }

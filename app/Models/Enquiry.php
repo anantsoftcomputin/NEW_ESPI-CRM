@@ -33,6 +33,7 @@ class Enquiry extends Model
         'reference_code',
         'reference_name',
         'name',
+        'gender',
         'middle_name',
         'passport_no',
         'passport_image',
@@ -42,12 +43,6 @@ class Enquiry extends Model
     {
         static::addGlobalScope(new CompanyScope);
     }
-
-    public function setAddedByIdAttribute()
-    {
-        $this->attributes['added_by_id'] = Auth::user()->id;
-    }
-
 
     public function City()
     {
@@ -95,6 +90,11 @@ class Enquiry extends Model
         return $this->hasMany(Comment::class);
     }
 
+    // public function getCreatedAtAttribute($date)
+    // {
+    //     return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('Y-m-d');
+    // }
+
     public function Documents()
     {
         return $this->hasMany(Document::class);
@@ -103,6 +103,11 @@ class Enquiry extends Model
     public function Activity()
     {
         return $this->hasMany(Activity::class);
+    }
+
+    public function FollowUp()
+    {
+        return $this->hasMany(FollowUp::class);
     }
 
 

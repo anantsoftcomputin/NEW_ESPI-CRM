@@ -41,10 +41,10 @@ class EnquireController extends Controller
 
             $data = Enquiry::orderBy("updated_at","desc")->select('*')->with('City','State','Country','Counsellor');
 
-            if(\Auth::user()->roles->pluck('name')=="Counsellor")
-            {
-                $data->where('counsellor_id',\Auth::user()->id);
-            }
+            // if(\Auth::user()->roles->pluck('name')=="Counsellor")
+            // {
+            //     $data->where('counsellor_id',\Auth::user()->id);
+            // }
             return Datatables::of($data)
                     ->addColumn('details_url', function($user) {
                         return url('api/admin/inquiry/'.$user->id);
@@ -52,7 +52,7 @@ class EnquireController extends Controller
 
                     ->addIndexColumn()
                     ->addColumn('date', function($model) {
-                        return $model->created_at->diffForHumans();
+                        return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $model->created_at)->format('d/m/Y H:i:s');
                     })
                     ->addColumn('enq', function($row){
                         if($data=$this->existdetail($row->id))
@@ -69,11 +69,13 @@ class EnquireController extends Controller
                            if($data=$this->existdetail($row->id))
                            {
                             $btn .='<a href="'.route('EnquiryDetail.Show',$row->id).'" class="assessment btn btn-success btn-sm mb-2">Show Detail Enquiry</a> ';
-                            $btn .='<a href="'.route('Assessment.Add',$row->id).'" class="assessment btn btn-warning btn-sm">Add Assessment</a>';
+                            $btn .='<a href="'.route('Assessment.Add',$row->id).'" class="assessment btn btn-warning btn-sm mb-2">Add Assessment</a>';
+                            $btn .='<a href="'.route('detail.nav',['Enquire'=>$row->id,'Active'=>'8']).'" class="btn btn-success btn-sm mb-1">Follow Up</a>';
                            }
                            else
                            {
-                               $btn .='<a href="'.route('EnquiryDetail.add',$row->id).'" class="assessment btn btn-info btn-sm">Add Detail Enquiry</a>';
+                               $btn .='<a href="'.route('EnquiryDetail.add',$row->id).'" class="assessment btn btn-info btn-sm mb-1">Add Detail Enquiry</a>';
+
                            }
                            return $btn;
                     })

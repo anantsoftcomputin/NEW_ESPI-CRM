@@ -41,7 +41,7 @@ class ApplicationController extends Controller
                             return $btn;
                     })
                     ->addColumn('date', function($model) {
-                        return $model->created_at->diffForHumans();
+                        return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $model->created_at)->format('d/m/Y H:i:s');
                     })
                     ->rawColumns(['action'])
                     ->make(true);
@@ -223,7 +223,7 @@ class ApplicationController extends Controller
             $assessment=assessment::find($Ass);
             $assessment->status="apply";
             $assessment->save();
-            Mail::to($assessment->Enquiry->email)->send(new ReConformMailToStudent($assessment->Enquiry));
+            //Mail::to($assessment->Enquiry->email)->send(new ReConformMailToStudent($assessment->Enquiry));
             $Ass=assessment::find($Ass)->toArray();
             $Ass['application_id']=$this->generateUniqueCode();
             $Application=Application::create($Ass);

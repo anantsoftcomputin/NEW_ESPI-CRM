@@ -19,7 +19,7 @@
 
 
 @section('child_model')
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-2" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
         <form action="{{ route('document.store',['mode'=>'edit']) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="modal-dialog" role="document">

@@ -60,8 +60,6 @@
     <a class="btn btn-info" style="float: right;" id="refusal_add">Add Refusal</a>
 </div>
 <br>
-<br>
-
 @section('child_js')
 
 @endsection

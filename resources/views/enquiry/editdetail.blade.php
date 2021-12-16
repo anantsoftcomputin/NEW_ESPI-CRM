@@ -204,7 +204,7 @@ div.progress.visible {
         </div>
         <div class="col-md-2">
             <div class="form-group">
-                <label for="name">Work Profile</label>
+                <label for="name">Designation</label>
                 <input type="text" name="work_profile[]" id="name" value="" class="form-control" required="">
             </div>
         </div>

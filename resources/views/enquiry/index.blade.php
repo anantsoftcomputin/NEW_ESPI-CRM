@@ -62,12 +62,10 @@
                 "data":           null,
                 "defaultContent": ''
                 },
+                {data: 'enquiry_id', name: 'enquiry_id'},
                 {data: 'enq', name: 'name'},
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
-                {data: 'counsellor.name', name: 'counsellor.name' ,orderable: false, searchable: false},
-                {data: 'city.name', name: 'city.name' ,orderable: false, searchable: false},
-                {data: 'country.name', name: 'Country.name',orderable: false, searchable: false},
                 {data: 'date', name: 'date',orderable: false, searchable: false},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
@@ -160,12 +158,10 @@ Enquires index
             <thead>
                 <tr>
                     <th>#</th>
+                    <th>EnqId</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
-                    <th>Counsellor</th>
-                    <th>City</th>
-                    <th>Country</th>
                     <th>Date</th>
                     <th width="100px">Action</th>
                 </tr>

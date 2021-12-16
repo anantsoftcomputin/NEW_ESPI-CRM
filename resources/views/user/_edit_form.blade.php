@@ -31,19 +31,17 @@
 </div>
 <div class="col-md-6">
     <div class="form-group">
-    {{ Form::label('password_confirmation', 'Confirm password', ['class' => 'form-control-label']) }}
-    {{ Form::password('password_confirmation', ['class' => 'form-control']) }}
+        {{ Form::label('password_confirmation', 'Confirm password', ['class' => 'form-control-label']) }}
+        {{ Form::password('password_confirmation', ['class' => 'form-control']) }}
     </div>
 </div>
-
+<div class="col-md-6">
+    <div class="form-group">
+        {{ Form::label('Status', 'Ststus', ['class' => 'form-control-label']) }}
+        {!! Form::select('status', ['1'=> 'Active','2'=> 'In Active'], 1, ['class' => 'form-control']) !!}
+    </div>
+</div>
 <div class="col-md-12">
-    <div class="n-chk">
-        {!! Form::hidden('status', 0) !!}
-        <label class="new-control new-checkbox checkbox-primary">
-        <input type="checkbox" {{ $user->status ? 'checked' : ''}} class="new-control-input" name="status" value="1">
-        <span class="new-control-indicator"></span>Status
-        </label>
-        
         <label class="new-control new-checkbox checkbox-primary">
         <input name="notification" type="checkbox" id="notification"  {{ $user->fcm_token ? 'checked' : ''}} class="new-control-input" onchange="initFirebaseMessagingRegistration()" >
         <span class="new-control-indicator"></span>Allow Notification

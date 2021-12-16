@@ -1,7 +1,34 @@
 @component('mail::message')
-# Added new Assessment.
+# New Assesment Added
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
 
-<h1>If you want to see click here </h1>
+</style>
+<table border="1">
+    <tr>
+        <td>Contry</td>
+        <td>University</td>
+        <td>Course</td>
+    </tr>
+    @foreach ($details->Assessment as $item)
+        <tr>
+            <td>
+                {{ $item->University->Country->name }}
+            </td>
+            <td>
+                {{ $item->University->name }}
+            </td>
+            <td>
+                {{ $item->Course->name }}
+            </td>
+        </tr>
+    @endforeach
+</table>
+
+
 
 @component('mail::button', ['url' => "#"])
 Show All Detail

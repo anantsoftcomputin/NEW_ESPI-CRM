@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
 use App\Models\Enquiry;
+use App\Models\FollowUp;
 use Illuminate\Http\Request;
 
-class CommentController extends Controller
+class FollowUpController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,33 +34,32 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($enquiry,Request $request,$callback="detail.nav")
+    public function store(Enquiry $Enquire,Request $request)
     {
-        $comment=New Comment();
-        $comment->string=$request->string;
-        if($request->has('parent_id'))
-        {
-            $comment->parent_id=$request->parent_id;
-        }
-        $comment->enquiry_id=$enquiry;
-        if($request->has('file'))
-        {
-            $path = $request->file('file')->store(
-                "comment/attachments", 'public'
-            );
-            $comment->attachment="storage/".$path;
-        }
-        $comment->save();
-        return redirect(route($callback,['Enquire'=>$enquiry,'Active'=>'7']));
+        $request->validate([
+            'date' => 'required',
+            'status' => 'required',
+            'note' => 'required',
+        ]);
+
+        $followUp=New FollowUp();
+        $followUp->date=$request->date;
+        $followUp->status=$request->status;
+        $followUp->note=$request->note;
+        $followUp->enquiry_id=$Enquire->id;
+        $followUp->company_id=\Auth::user()->company_id;
+        $followUp->assist_by=\Auth::user()->id;
+        $followUp->save();
+        return redirect()->back()->withSuccess('IT WORKS!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Comment  $comment
+     * @param  \App\Models\FollowUp  $followUp
      * @return \Illuminate\Http\Response
      */
-    public function show(Comment $comment)
+    public function show(FollowUp $followUp)
     {
         //
     }
@@ -68,10 +67,10 @@ class CommentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Comment  $comment
+     * @param  \App\Models\FollowUp  $followUp
      * @return \Illuminate\Http\Response
      */
-    public function edit(Comment $comment)
+    public function edit(FollowUp $followUp)
     {
         //
     }
@@ -80,10 +79,10 @@ class CommentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Comment  $comment
+     * @param  \App\Models\FollowUp  $followUp
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comment $comment)
+    public function update(Request $request, FollowUp $followUp)
     {
         //
     }
@@ -91,10 +90,10 @@ class CommentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Comment  $comment
+     * @param  \App\Models\FollowUp  $followUp
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
+    public function destroy(FollowUp $followUp)
     {
         //
     }

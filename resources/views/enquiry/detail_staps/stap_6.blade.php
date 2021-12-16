@@ -19,7 +19,7 @@
 
 
     @section('child_model')
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
             <form action="{{ route('document.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-dialog" role="document">
@@ -60,7 +60,7 @@
                         </div>
                         <div class="modal-footer justify-content-between">
                             <button class="btn btn-outline-primary" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Discard</button>
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="submit" class="btn btn-primary" onclick="Show_loader()">Save</button>
                         </div>
                     </div>
                 </div>
