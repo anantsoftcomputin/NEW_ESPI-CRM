@@ -41,15 +41,14 @@ class EnquireController extends Controller
 
             $data = Enquiry::orderBy("updated_at","desc")->select('*')->with('City','State','Country','Counsellor');
 
-            // if(\Auth::user()->roles->pluck('name')=="Counsellor")
-            // {
-            //     $data->where('counsellor_id',\Auth::user()->id);
-            // }
+            if(\Auth::user()->roles->pluck('name')->first()=="counsellor")
+            {
+                $data->where('counsellor_id',\Auth::user()->id);
+            }
             return Datatables::of($data)
                     ->addColumn('details_url', function($user) {
                         return url('api/admin/inquiry/'.$user->id);
                     })
-
                     ->addIndexColumn()
                     ->addColumn('date', function($model) {
                         return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $model->created_at)->format('d/m/Y H:i:s');
