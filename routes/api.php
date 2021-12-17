@@ -7,8 +7,9 @@ use App\Http\Controllers\UniversityController;
 use App\Http\Controllers\AssessmentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CityController; 
-use App\Http\Controllers\EnquireController; 
+use App\Http\Controllers\CityController;
+use App\Http\Controllers\EnquireController;
+use App\Http\Controllers\FollowUpController;
 use App\Http\Controllers\ReferralCodeController;
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,7 @@ Route::prefix('admin')->group(function () {
     Route::get("checkemail/{email?}",[EnquireController::class,"checkEmail"]);
     Route::get("otp_send/{email?}",[EnquireController::class,'sendOtp']);
     Route::get('inquiry/{id?}',[ApplicationController::class,'detailFromEnq']);
+    Route::get('inquiry/FollowUp/{id?}',[FollowUpController::class,'ListByEnquiry']);
     Route::get('getUniversityFromCountry/{country_id}',[UniversityController::class,'getUniversityFromCountry']);
     Route::get('getCourseFromUniversity/{university_id}',[CourseController::class,'getCourseFromUniversity']);
     Route::get('university_campus/delete/{id}',[UniversityController::class,'university_campus_delete']);

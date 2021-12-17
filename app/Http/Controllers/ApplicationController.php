@@ -33,7 +33,11 @@ class ApplicationController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Application::select('*')->with('University','Course','Enquiry');
+            $data = Application::select('*')->with('University','Course','Enquiry','University.country');
+            if(\Auth::user()->roles->pluck('name')->first()=="counsellor")
+            {
+                $data->where('added_by_id',\Auth::user()->id);
+            }
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){

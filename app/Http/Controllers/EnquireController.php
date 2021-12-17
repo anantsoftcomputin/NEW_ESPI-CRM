@@ -47,7 +47,7 @@ class EnquireController extends Controller
             }
             return Datatables::of($data)
                     ->addColumn('details_url', function($user) {
-                        return url('api/admin/inquiry/'.$user->id);
+                        return url('api/admin/inquiry/FollowUp/'.$user->id);
                     })
                     ->addIndexColumn()
                     ->addColumn('date', function($model) {
@@ -69,7 +69,8 @@ class EnquireController extends Controller
                            {
                             $btn .='<a href="'.route('EnquiryDetail.Show',$row->id).'" class="assessment btn btn-success btn-sm mb-2">Show Detail Enquiry</a> ';
                             $btn .='<a href="'.route('Assessment.Add',$row->id).'" class="assessment btn btn-warning btn-sm mb-2">Add Assessment</a>';
-                            $btn .='<a href="'.route('detail.nav',['Enquire'=>$row->id,'Active'=>'8']).'" class="btn btn-success btn-sm mb-1">Follow Up</a>';
+                            // $btn .='<a href="'.route('detail.nav',['Enquire'=>$row->id,'Active'=>'8']).'" class="btn btn-success btn-sm mb-1">List Follow Up</a>';
+                            $btn .='<a href="javascript:void(0);" onclick="add_follow_up('.$row->id.');" class="btn btn-dark btn-sm mb-1 show_follow_up">Add Follow Up</a>';
                            }
                            else
                            {

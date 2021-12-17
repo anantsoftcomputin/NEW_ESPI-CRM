@@ -35,11 +35,12 @@ class AssessmentController extends Controller
             $data = assessment::select('*')->where('status', '!=', 'approved')
             ->groupBy('enquiry_id')
             ->with('University','Course','User','Enquiry','University.Country');
-            if(Auth::user()->hasRole('Counsellor'))
+
+            if(\Auth::user()->roles->pluck('name')->first()=="counsellor")
             {
-                $data->where('assign_id',Auth::user()->id);
-                //assign_id
+                $data->where('added_by_id',\Auth::user()->id);
             }
+
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('status', function($row){
@@ -267,10 +268,11 @@ class AssessmentController extends Controller
 
     public function EmailNotifyAssessment($enquiry_id)
     {
-        $Enquiry = Enquiry::with('Assessment')->whereHas('Assessment', function ($query) {
-            $query->where('status','apply');
-        })->where('id',$enquiry_id)
-        ->first();
+        $Enquiry = Enquiry::where('id',$enquiry_id)->whereHas('Assessment', function ($query) {
+            $query->where('status','!=','apply');
+        })->first();
+
+
 
         //$enquiry=Enquiry::find($enquiry_id);
 
@@ -278,7 +280,16 @@ class AssessmentController extends Controller
         // ->whereHas('Assessment', function ($query) {
         //     $query->Enquiry('status','NOT','apply');
         // })->where('id',$enquiry_id)->get();
-        Mail::to($Enquiry->email)->send(new AddAssessments($Enquiry));
+        if(isset($Enquiry->email))
+        {
+            Mail::to($Enquiry->email)->send(new AddAssessments($Enquiry));
+            return redirect()->back()->withSuccess('Send Mail SuccessFully');
+        }
+        else
+        {
+
+            return false;
+        }
     }
 
     public function generateUniqueCode()

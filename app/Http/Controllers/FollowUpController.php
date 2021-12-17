@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Enquiry;
 use App\Models\FollowUp;
 use Illuminate\Http\Request;
+use DataTables;
 
 class FollowUpController extends Controller
 {
@@ -13,6 +14,29 @@ class FollowUpController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function ListByEnquiry($enq,Request $request)
+    {
+        if ($request->ajax()) {
+            $data = FollowUp::select('*')->where('enquiry_id', $enq)->with('user');
+            return Datatables::of($data)
+                    ->orderColumn('date', 'date')
+                    ->addColumn('action', function($row){
+                           $btn = '<a href="'.route('Application.edit',$row->id).'" class="edit btn btn-primary btn-sm">Change Status</a>';
+                            return $btn;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+        else
+        {
+            $data = FollowUp::select('*')->where('enquiry_id', $enq)->with('user')->get();
+            return response()->json([
+                'data' => $data,
+            ]);
+        }
+    }
+
     public function index()
     {
         //

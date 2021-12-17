@@ -1,5 +1,14 @@
 @extends('layouts.theam')
 
+@section('css')
+<style>
+    .bg-gray,.bg-gray table{
+        background: #cccccc;
+    }
+</style>
+@endsection
+
+
 @section('js')
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -26,17 +35,18 @@
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script> --}}
 
     <script id="details-template" type="text/x-handlebars-template">
-        <div class="label label-info">User @{{ name }}'s Application</div>
-        <table class="table details-table" id="application-@{{ id }}">
+        <div class="label label-info">Enquiry of @{{ name }}'s Follow Up</div>
+        <table class="table details-table" id="followUp-@{{ id }}">
             <thead>
             <tr>
-                <th>ApplicationId</th>
-                <th>University</th>
-                <th>Course</th>
+                <th>Date</th>
+                <th>AddedBy</th>
                 <th>Status</th>
-                <th>Action</th>
+                <th>Note</th>
             </tr>
             </thead>
+            <tbody>
+            </tbody>
         </table>
     </script>
 
@@ -66,6 +76,7 @@
                 {data: 'enq', name: 'name'},
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
+                {data: 'preferred_country', name: 'preferred_country'},
                 {data: 'date', name: 'date',orderable: false, searchable: false},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
@@ -84,11 +95,10 @@
 
             // Add event listener for opening and closing details
 
-            $('.data-table tbody').on('click', 'td.details-control', function () {
+        $('.data-table tbody').on('click', 'td.details-control', function () {
             var tr = $(this).closest('tr');
             var row = table.row(tr);
-            var tableId = 'application-' + row.data().id;
-            console.log(tableId);
+            var tableId = 'followUp-' + row.data().id;
 
             if (row.child.isShown()) {
                 // This row is already open - close it
@@ -98,7 +108,6 @@
                 // Open this row
                 row.child(template(row.data())).show();
                 initTable(tableId, row.data());
-                console.log(row.data());
                 tr.addClass('shown');
                 tr.next().find('td').addClass('no-padding bg-gray');
             }
@@ -107,27 +116,25 @@
 
         function initTable(tableId, data) {
             $('#' + tableId).DataTable({
-                processing: true,
-                serverSide: true,
+                processing: false,
+                serverSide: false,
                 bFilter: false,
                 lengthChange: false,
                 oLanguage: {
-                    sEmptyTable: "No Applications Received Yet"
+                    sEmptyTable: "No Follow Up Received Yet"
                 },
                 ajax: data.details_url,
                 columns: [
-                    { data: 'application_id', name: 'application_id' },
-                    { data: 'university.name', name: 'university.name' },
-                    { data: 'course.name', name: 'course.name' },
-
+                    { data: 'date', name: 'date' },
+                    { data: 'user.name', name: 'user.name' },
                     { data: 'status', name: 'status' },
-                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                    { data: 'note', name: 'note' },
 
                 ]
             })
         }
         });
-        // Add event listener for opening and closing details
+
 </script>
 
 @endsection
@@ -151,7 +158,101 @@ Enquires index
 @endif
 
     <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
-        <a  href="{{ route('Enquires.create') }}" class="btn btn-info" >Add New Enquiry</a>
+        @can('create-enquiry')
+            <a  href="{{ route('Enquires.create') }}" class="btn btn-info" >Add New Enquiry</a>
+        @endcan
+
+          <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="myLargeModalLabel">Follow Ups</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="modal-text">
+                            <table class="table details-table" id="followUp-model">
+                                <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>AddedBy</th>
+                                    <th>Status</th>
+                                    <th>Note</th>
+                                </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Discard</button>
+                        <button type="button" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="exampleModal01" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <form method="POST" action="#" enctype="multipart/form-data" id="add_follow_ups">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add Follow Up</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+
+                                @csrf
+                                <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="date" class="mandatory">Next Follow-Ups Date</label>
+                                                <input type="date" name="date" id="date" value="{{ old('date') }}"
+                                                    class="@error('date') is-invalid @enderror form-control" required>
+                                            </div>
+                                            @error('date')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="status" class="mandatory">Status</label>
+                                                {{-- <input type="status" name="status" id="status" value="{{ old('status') }}"
+                                                    class="@error('status') is-invalid @enderror form-control" required> --}}
+                                                    <select name="status" id="status" class="@error('status') is-invalid @enderror form-control" required>
+                                                        <option value="Open">Open</option>
+                                                        <option value="Success">Success</option>
+                                                        <option value="Failure">Failure</option>
+                                                    </select>
+                                            </div>
+                                            @error('status')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="note" class="mandatory">Note</label>
+                                                <textarea name="note" id="note" class="form-control"></textarea>
+                                            </div>
+                                            @error('note')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn" style="background-color:var(--danger); color:#fff;" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Discard</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
         <br>
 
         <table class="table table-bordered data-table">
@@ -162,6 +263,7 @@ Enquires index
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
+                    <th>Preferred Country</th>
                     <th>Date</th>
                     <th width="100px">Action</th>
                 </tr>
@@ -171,5 +273,60 @@ Enquires index
         </table>
     </div>
 </div>
+
+<script>
+    function show_follow_up(params) {
+            console.log(params);
+
+            $("#exampleModal").modal('show');
+            // url='url("api/admin/inquiry/FollowUp/'+params+'")';
+            let data=[];
+            data['details_url']='{{ url('api/admin/inquiry/FollowUp/') }}/'+params;
+
+            fetch("{{ url('api/admin/inquiry/FollowUp/') }}/"+params)
+            .then(response => response.json())
+            .then(data => {
+
+                for(var i=0;i<data.data.length;i++){
+                    let row=data.data[i];
+                    console.log(row);
+                    $('#followUp-model tbody').append('<tr>');
+                    $('#followUp-model tbody').append("<td>"+row.date+"</td>");
+                    $('#followUp-model tbody').append("<td>"+row.user.name+"</td>");
+                    $('#followUp-model tbody').append("<td>"+row.status+"</td>");
+                    $('#followUp-model tbody').append("<td>"+row.note+"</td>");
+                    $('#followUp-model tbody').append('</tr>');
+                }
+            });
+        }
+
+    function add_follow_up(params) {
+        $("#exampleModal01").modal('show');
+        url="{{url('admin/FollowUp/store/') }}/"+params;
+        $('#add_follow_ups').attr('action', url);
+        return false;
+            $("#exampleModal").modal('show');
+            let data=[];
+            data['details_url']='{{ url('api/admin/inquiry/FollowUp/') }}/'+params;
+
+            fetch("{{ url('api/admin/inquiry/FollowUp/') }}/"+params)
+            .then(response => response.json())
+            .then(data => {
+
+                for(var i=0;i<data.data.length;i++){
+                    let row=data.data[i];
+                    console.log(row);
+                    $('#followUp-model tbody').append('<tr>');
+                    $('#followUp-model tbody').append("<td>"+row.date+"</td>");
+                    $('#followUp-model tbody').append("<td>"+row.user.name+"</td>");
+                    $('#followUp-model tbody').append("<td>"+row.status+"</td>");
+                    $('#followUp-model tbody').append("<td>"+row.note+"</td>");
+                    $('#followUp-model tbody').append('</tr>');
+                }
+            });
+        }
+</script>
+
+
 
 @endsection

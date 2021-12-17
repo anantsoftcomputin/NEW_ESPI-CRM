@@ -11,7 +11,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
 </li> --}}
 
-@can(["view-enquiry","create-enquiry"])
+@can(["view-enquiry"])
 <li class="menu @if(\Request::route()->getName()=='Enquires.index') active @endif menu-single">
     <a href="{{ route('Enquires.index') }}" @if(\Request::route()->getName()=='Enquires.index') data-active="true" @else data-active="false" @endif class="menu-toggle">
         <div class="base-menu">
@@ -24,8 +24,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
 </li>
 @endcan
-
-@can(["view-application","create-application"])
+@can(["view-application"])
 <li class="menu @if(\Request::route()->getName()=='Application.index') active @endif menu-single">
     <a href="{{ route('Application.index') }}" @if(\Request::route()->getName()=='Application.index') data-active="true" @else data-active="false" @endif class="menu-toggle">
         <div class="base-menu">
@@ -39,7 +38,7 @@
 </li>
 @endcan
 
-@can(["view-assessment","create-assessment"])
+@can(["view-assessment"])
 <li class="menu @if(\Request::route()->getName()=='assessments.index') active @endif menu-single">
     <a href="{{ route('assessments.index') }}" @if(\Request::route()->getName()=='assessments.index') data-active="true" @else data-active="false" @endif class="menu-toggle">
         <div class="base-menu">
@@ -53,7 +52,7 @@
 </li>
 @endcan
 
-@can(["view-university","create-university"])
+@can(["view-university"])
 <li class="menu @if(\Request::route()->getName()=='University.index') active @endif menu-single">
     <a href="{{ route('University.index') }}" @if(\Request::route()->getName()=='University.index') data-active="true" @else data-active="false" @endif class="menu-toggle">
         <div class="base-menu">
@@ -67,7 +66,7 @@
 </li>
 @endcan
 
-@can(["view-course","create-course"])
+@can(["view-course"])
 <li class="menu @if(\Request::route()->getName()=='Course.index') active @endif menu-single">
     <a href="{{ route('Course.index') }}" @if(\Request::route()->getName()=='Course.index') data-active="true" @else data-active="false" @endif class="menu-toggle">
         <div class="base-menu">
@@ -96,7 +95,7 @@
 </li>
 @endcan --}}
 
-@can(["view-role","create-role"])
+@can(["view-role"])
 <li class="menu @if(\Request::route()->getName()=='roles.index') active @endif menu-single">
     <a href="{{ route('roles.index') }}" @if(\Request::route()->getName()=='roles.index') data-active="true" @else data-active="false" @endif class="menu-toggle">
         <div class="base-menu">
@@ -112,7 +111,7 @@
 
 
 
-@can(["view-user","create-user"])
+@can(["view-user"])
     <li class="menu @if(\Request::route()->getName()=='users.index') active @endif menu-single">
         <a href="{{ route('users.index') }}" @if(\Request::route()->getName()=='users.index') data-active="true" @else data-active="false" @endif class="menu-toggle">
             <div class="base-menu">
@@ -126,7 +125,7 @@
     </li>
 @endcan
 
-@can(["view-role","create-role"])
+@can(["view-role"])
 <li class="menu @if(\Request::route()->getName()=='asset.index') active @endif menu-single">
     <a href="{{ route('Asset.index') }}" @if(\Request::route()->getName()=='asset.index') data-active="true" @else data-active="false" @endif class="menu-toggle">
         <div class="base-menu">
@@ -140,7 +139,7 @@
 </li>
 @endcan
 
-
+@can(["view-help"])
 <li class="menu menu-single">
     <a target="_blank" href="{{ url('/admin/help') }}" data-active="false" class="menu-toggle">
         <div class="base-menu">
@@ -152,3 +151,4 @@
     </a>
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
 </li>
+@endcan

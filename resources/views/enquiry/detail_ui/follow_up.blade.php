@@ -62,7 +62,7 @@
                         <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="date" class="mandatory">Date</label>
+                                        <label for="date" class="mandatory">Next Follow-Ups Date</label>
                                         <input type="date" name="date" id="date" value="{{ old('date') }}"
                                             class="@error('date') is-invalid @enderror form-control" required>
                                     </div>
@@ -76,8 +76,9 @@
                                         {{-- <input type="status" name="status" id="status" value="{{ old('status') }}"
                                             class="@error('status') is-invalid @enderror form-control" required> --}}
                                             <select name="status" id="status" class="@error('status') is-invalid @enderror form-control" required>
-                                                <option value="good">Good</option>
-                                                <option value="bed">Bed</option>
+                                                <option value="Open">Open</option>
+                                                <option value="Success">Success</option>
+                                                <option value="Failure">Failure</option>
                                             </select>
                                     </div>
                                     @error('status')
