@@ -54,7 +54,6 @@ Enquiry Detail
 
 
             </div>
-            <h1>Note</h1>
         </div>
     </form>
 </div>
