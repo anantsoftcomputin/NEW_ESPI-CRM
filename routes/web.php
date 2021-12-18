@@ -88,6 +88,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::post('ApplyApplication/{Assessment}', [ApplicationController::class,'ApplyApplication'])->name('Assessment.ApplySubmit');
     Route::resource("assessments",AssessmentController::class);
     Route::resource('Enquires', EnquireController::class);
+    Route::post('send-enquire/{Enquire}',[EnquireController::class,'SendEnquire'])->name('Enquires.send');
     Route::resource('Application', ApplicationController::class);
     Route::get('Application/Add/{Enquiry}', [ApplicationController::class,'create'])->name('Application.Add');
     Route::resource('University', UniversityController::class);
@@ -109,6 +110,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::resource('/Asset', AssetController::class);
 
     Route::post('FollowUp/store/{Enquire}',[FollowUpController::class,'store'])->name('FollowUp.store');
+
+
 
 });
 

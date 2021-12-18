@@ -346,4 +346,12 @@ class EnquireController extends Controller
 
         return redirect()->route("Enquires.index")->with('success_msg',$enq->enquiry_id);
     }
+
+    public function SendEnquire($Enq,Request $request)
+    {
+        $Enquiry=Enquiry::find($Enq);
+        $Enquiry->counsellor_id=$request->counsellor_id;
+        $Enquiry->save();
+        return redirect(route('Enquires.index'))->withSuccess('Move Send Enquiry SuccessFully.');
+    }
 }

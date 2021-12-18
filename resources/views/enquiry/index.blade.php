@@ -48,6 +48,25 @@
             <tbody>
             </tbody>
         </table>
+        <hr>
+        <h3 class="label label-info">Transfer An Enquiry</h3>
+        <form method="POST" action="{{ url('admin/send-enquire') }}/@{{ id }}" id="send-enquiry-@{{ id }}">
+            @csrf
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <select class="form-control" name="counsellor_id">
+                            @foreach (my_team_member() as $item)
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-info">Submit</button>
+                </div>
+            </div>
+        </form>
     </script>
 
 
@@ -76,6 +95,7 @@
                 {data: 'enq', name: 'name'},
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
+                {data: 'counsellor.name', name: 'counsellor_name'},
                 {data: 'preferred_country', name: 'preferred_country'},
                 {data: 'date', name: 'date',orderable: false, searchable: false},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
@@ -263,6 +283,7 @@ Enquires index
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
+                    <th>counsellor_name</th>
                     <th>Preferred Country</th>
                     <th>Date</th>
                     <th width="100px">Action</th>

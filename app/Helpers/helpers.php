@@ -58,7 +58,23 @@ if (! function_exists('get_state')) {
     }
 }
 
+if (! function_exists('my_team_member')) {
+    function my_team_member($role='counsellor') {
 
+        return User::where('company_id',\Auth::user()->company_id)
+        ->whereHas(
+                'roles', function($q) use($role){
+                    $q->where('name', $role);
+                }
+            )
+        ->get();
+        // whereHas(
+        //     'roles', function($q){
+        //         $q->where('name', 'Teacher');
+        //     }
+        // )
+    }
+}
 
 if (! function_exists('get_country')) {
     function get_country($allowed="1") {
