@@ -241,12 +241,10 @@ Enquires index
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="status" class="mandatory">Status</label>
-                                                {{-- <input type="status" name="status" id="status" value="{{ old('status') }}"
-                                                    class="@error('status') is-invalid @enderror form-control" required> --}}
                                                     <select name="status" id="status" class="@error('status') is-invalid @enderror form-control" required>
-                                                        <option value="Open">Open</option>
-                                                        <option value="Success">Success</option>
-                                                        <option value="Failure">Failure</option>
+                                                        @foreach (config('espi.follow_up_status') as $key=>$item)
+                                                            <option value="{{ $item }}">{{ $item }}</option>
+                                                        @endforeach
                                                     </select>
                                             </div>
                                             @error('status')

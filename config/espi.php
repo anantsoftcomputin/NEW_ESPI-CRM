@@ -28,4 +28,13 @@ return [
             'other' => 'Other Documents',
             ]
     ],
+    'follow_up_status' => [
+        'coaching_enroll' => 'Coaching Enroll',
+        'counselling_enroll' => 'Counselling Enroll',
+        'application' => 'Application',
+        'visa_granted' => 'Visa Granted',
+        'visa_rejected' => 'Visa Rejected',
+        're_apply' => 'Re-Apply',
+        'fail' => 'Fail',
+    ],
 ];

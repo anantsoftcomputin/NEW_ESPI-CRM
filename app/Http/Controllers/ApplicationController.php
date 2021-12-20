@@ -39,9 +39,14 @@ class ApplicationController extends Controller
                 $data->where('added_by_id',\Auth::user()->id);
             }
             return Datatables::of($data)
+                    ->addColumn('details_url', function($user) {
+                        return url('admin/inquiry/FollowUp/'.$user->enquiry_id);
+                    })
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
-                           $btn = '<a href="'.route('Application.edit',$row->id).'" class="edit btn btn-primary btn-sm">Change Status</a>';
+                           $btn = '<div><a href="'.route('Application.edit',$row->id).'" class="edit btn btn-primary btn-sm mb-1">Change Status</a>';
+                        //    $btn .= ' <a href="'.route('Application.edit',$row->id).'" class="edit btn btn-dark btn-sm mb-1">Add Follow Up</a></div>';
+                           $btn .='<a href="javascript:void(0);" onclick="add_follow_up('.$row->Enquiry->id.');" class="btn btn-dark btn-sm mb-1 show_follow_up">Add Follow Up</a>';
                             return $btn;
                     })
                     ->addColumn('date', function($model) {
@@ -179,8 +184,14 @@ class ApplicationController extends Controller
      */
     public function update(Request $request,$application)
     {
+        $request->validate([
+            'remark' => 'required',
+            'status' => 'required',
+        ]);
+
         $application_list=Application::find($application);
         $application_list->status=$request->status;
+        $application_list->remark=$request->remark;
         $application_list->save();
         EnqActivity("Update Status Application",$application_list->enquiry_id);
         return redirect(route('Application.index'))->with('success','Application status change successfully!');;

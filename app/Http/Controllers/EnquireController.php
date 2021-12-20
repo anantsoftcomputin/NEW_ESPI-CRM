@@ -47,7 +47,7 @@ class EnquireController extends Controller
             }
             return Datatables::of($data)
                     ->addColumn('details_url', function($user) {
-                        return url('api/admin/inquiry/FollowUp/'.$user->id);
+                        return url('admin/inquiry/FollowUp/'.$user->id);
                     })
                     ->addIndexColumn()
                     ->addColumn('date', function($model) {

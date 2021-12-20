@@ -110,6 +110,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::resource('/Asset', AssetController::class);
 
     Route::post('FollowUp/store/{Enquire}',[FollowUpController::class,'store'])->name('FollowUp.store');
+    Route::get('inquiry/FollowUp/{id?}',[FollowUpController::class,'ListByEnquiry']);
 
 
 

@@ -45,9 +45,9 @@
                                     </div>
                                     <input name="enquiry" type="hidden" value="{{ $enquiry->id }}">
                                     <div class="row">
-                                        <div class="col" id="file_title_document_con" style="display: none">
+                                        <div class="col" id="file_title_document_con">
                                             <label for="file_title_document">File Title</label>
-                                            <input id="file_title_document" type="text" name="title" value="10th Result" class="form-control" placeholder="Title of Documnet" style="display: none" required>
+                                            <input id="file_title_document" type="text" name="title" class="form-control" placeholder="Title of Documnet" required>
                                         </div>
                                     </div>
                                     <div class="row">

@@ -65,7 +65,13 @@ Enquiry Detail
 
 
 @section('js')
+
+<script>
+    //alert("sdfsdf");
+</script>
+
 @yield('child_js')
+
 <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jquery-step/jquery.steps.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('plugins/file-upload/file-upload-with-preview.min.css"') }}">
 <script src="{{ asset('plugins/jquery-step/jquery.steps.min.js') }}"></script>

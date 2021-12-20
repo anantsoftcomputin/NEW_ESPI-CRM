@@ -24,33 +24,36 @@
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
 </li>
 @endcan
-@can(["view-application"])
-<li class="menu @if(\Request::route()->getName()=='Application.index') active @endif menu-single">
-    <a href="{{ route('Application.index') }}" @if(\Request::route()->getName()=='Application.index') data-active="true" @else data-active="false" @endif class="menu-toggle">
-        <div class="base-menu">
-            <div class="base-icons">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-            </div>
-            <span>Application</span>
-        </div>
-    </a>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
-</li>
-@endcan
 
 @can(["view-assessment"])
-<li class="menu @if(\Request::route()->getName()=='assessments.index') active @endif menu-single">
-    <a href="{{ route('assessments.index') }}" @if(\Request::route()->getName()=='assessments.index') data-active="true" @else data-active="false" @endif class="menu-toggle">
-        <div class="base-menu">
-            <div class="base-icons">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pen-tool"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
+    <li class="menu @if(\Request::route()->getName()=='assessments.index') active @endif menu-single">
+        <a href="{{ route('assessments.index') }}" @if(\Request::route()->getName()=='assessments.index') data-active="true" @else data-active="false" @endif class="menu-toggle">
+            <div class="base-menu">
+                <div class="base-icons">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pen-tool"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
+                </div>
+                <span>Assessment</span>
             </div>
-            <span>Assessment</span>
-        </div>
-    </a>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
-</li>
+        </a>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </li>
 @endcan
+
+@can(["view-application"])
+    <li class="menu @if(\Request::route()->getName()=='Application.index') active @endif menu-single">
+        <a href="{{ route('Application.index') }}" @if(\Request::route()->getName()=='Application.index') data-active="true" @else data-active="false" @endif class="menu-toggle">
+            <div class="base-menu">
+                <div class="base-icons">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                </div>
+                <span>Application</span>
+            </div>
+        </a>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </li>
+@endcan
+
+
 
 @can(["view-university"])
 <li class="menu @if(\Request::route()->getName()=='University.index') active @endif menu-single">

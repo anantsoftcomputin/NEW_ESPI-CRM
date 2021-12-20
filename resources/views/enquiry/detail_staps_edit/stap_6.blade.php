@@ -36,7 +36,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <label for="">Select Type</label>
-                                        <select class="form-control" id="file_type_document" onchange="change_type_document('file_type_document')" required>
+                                        <select class="form-control" required>
                                             @foreach (config('espi.enquires_detail.document_list') as $key => $item)
                                                 <option value="{{ $key }}">{{ $item }}</option>
                                             @endforeach
@@ -45,9 +45,9 @@
                                 </div>
                                 <input name="enquiry" type="hidden" value="{{ $enquiry->id }}">
                                 <div class="row">
-                                    <div class="col" id="file_title_document_con" style="display: none">
+                                    <div class="col" id="file_title_document_con">
                                         <label for="file_title_document">File Title</label>
-                                        <input id="file_title_document" type="text" name="title" class="form-control" value="10th Result" placeholder="Title of Documnet" value="10" style="display: none" required>
+                                        <input id="file_title_document" type="text" name="title" class="form-control" placeholder="Title of Documnet" required>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -69,24 +69,3 @@
 @endsection
 
 
-
-@section('child_js')
-<script>
-    function change_type_document(params) {
-        sel= $("#"+params).val();
-        val=$("#"+params+" option:selected").text();
-        if(sel == "other")
-        {
-            $("#file_title_document").val("");
-            $("#file_title_document").show();
-            $("#file_title_document_con").show();
-        }
-        else
-        {
-            $("#file_title_document").val(val);
-            $("#file_title_document").hide();
-            $("#file_title_document_con").hide();
-        }
-    }
-</script>
-@endsection

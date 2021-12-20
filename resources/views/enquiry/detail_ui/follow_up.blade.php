@@ -6,24 +6,28 @@
                 <tr>
                     <th>Name</th>
                     <th>Date</th>
+                    <th>Added By</th>
                     <th>Sale</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse ($enquiry->followUp as $follow)
-                <tr>
-                    <td>
-                        <span class="badge badge-primary">
-                            {{ $follow->date }}
-                        </span>
+                @if ($follow->user->name==\Auth::user()->name OR \Auth::user()->roles->first()->name=="super-admin")
+                    <tr>
+                        <td>
+                            <span class="badge badge-primary">
+                                {{ $follow->date }}
+                            </span>
+                            </td>
+                        <td>{{ $follow->status }}</td>
+                        <td>{{ $follow->user->name }}</td>
+                        <td>
+                            <a class="#" title="{{ $follow->note }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                            </a>
                         </td>
-                    <td>{{ $follow->status }}</td>
-                    <td>
-                        <a class="#" title="{{ $follow->note }}">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-                        </a>
-                    </td>
-                </tr>
+                    </tr>
+                @endif
                 {{-- <hr>
                         <li class="row" style="">
                             <div class="col-md-3">
@@ -76,9 +80,9 @@
                                         {{-- <input type="status" name="status" id="status" value="{{ old('status') }}"
                                             class="@error('status') is-invalid @enderror form-control" required> --}}
                                             <select name="status" id="status" class="@error('status') is-invalid @enderror form-control" required>
-                                                <option value="Open">Open</option>
-                                                <option value="Success">Success</option>
-                                                <option value="Failure">Failure</option>
+                                                @foreach (config('espi.follow_up_status') as $key=>$item)
+                                                    <option value="{{ $item }}">{{ $item }}</option>
+                                                @endforeach
                                             </select>
                                     </div>
                                     @error('status')

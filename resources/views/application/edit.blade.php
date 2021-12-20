@@ -68,6 +68,13 @@ Edit Application
                                 </div>
                             </div>
 
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="status">Status</label>
+                                    <textarea name="remark" class="form-control">{{ $Application->remark }}</textarea>
+                                </div>
+                            </div>
+
                             <div class="col-md-12 text-center">
 
                                 <input type="submit" class="btn btn-primary" value="{{ __('enquire.submit_btn') }}">

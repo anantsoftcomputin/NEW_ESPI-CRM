@@ -19,6 +19,10 @@ class FollowUpController extends Controller
     {
         if ($request->ajax()) {
             $data = FollowUp::select('*')->where('enquiry_id', $enq)->with('user');
+            if(\Auth::user()->roles->first()->name != 'super-admin')
+            {
+                $data->where('assist_by',\Auth::user()->id);
+            }
             return Datatables::of($data)
                     ->orderColumn('date', 'date')
                     ->addColumn('action', function($row){

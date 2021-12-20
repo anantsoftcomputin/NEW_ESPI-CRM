@@ -11,7 +11,6 @@
         <input type="text" placeholder="Enter OTP" name="otp" id="otp" value="{{old('otp')}}" class="form-control" required>
         @include('layouts.message')
     </div>
-    
 </div>
 
 <div class="col-md-12">
