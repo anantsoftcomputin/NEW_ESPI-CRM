@@ -70,7 +70,7 @@ Edit Application
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="status">Status</label>
+                                    <label for="status">Remark</label>
                                     <textarea name="remark" class="form-control">{{ $Application->remark }}</textarea>
                                 </div>
                             </div>
