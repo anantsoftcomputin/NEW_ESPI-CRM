@@ -38,7 +38,7 @@ University
         var table = $('.data-table').DataTable({
             processing: true,
             serverSide: true,
-            bFilter: false,
+            bFilter: true,
             lengthChange: false,
             ajax: "{{ route('University.index') }}",
             columns: [

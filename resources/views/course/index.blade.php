@@ -43,14 +43,14 @@
         var table = $('.data-table').DataTable({
             processing: true,
             serverSide: true,
-            bFilter: false,
+            bFilter: true,
             lengthChange: false,
             ajax: url,
             columns: [
                 {data: 'name', name: 'name'},
                 {data: 'university.name', name: 'University.name', orderable: false, searchable: false},
                 {data: 'course_level', name: 'course_level'},
-                {data: 'university.country.name', name: 'country'},
+                {data: 'university.country.name', name: 'country',orderable: false,searchable: false},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
         });
