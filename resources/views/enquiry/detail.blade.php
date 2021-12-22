@@ -7,9 +7,15 @@ Enquiry Detail
 
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 @section('content')
-<div class="col-lg-12">
+<div class="col-lg-6">
     <div class="alert alert-success" role="alert">
-        <h4 class="alert-heading">Remarks!</h4>
+        <h4 class="alert-heading">Student Remarks!</h4>
+        <p>{{ $enquiry->remarks }}</p>
+    </div>
+</div>
+<div class="col-lg-6">
+    <div class="alert alert-primary" role="alert">
+        <h4 class="alert-heading">Counsellor Remarks!</h4>
         <p>{{ $enquiry->remarks }}</p>
     </div>
 </div>

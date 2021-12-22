@@ -266,13 +266,10 @@ class AssessmentController extends Controller
         assessment::where("id",$request->assessment_id)->update(["assign_id"=>$request->user_id]);
     }
 
-    public function EmailNotifyAssessment($enquiry_id)
+    public function EmailNotifyAssessment($enquiry_id,Request $request)
     {
-        $Enquiry = Enquiry::where('id',$enquiry_id)->whereHas('Assessment', function ($query) {
-            $query->where('status','!=','apply');
-        })->first();
-
-
+        $Enquiry = Enquiry::where('id',$enquiry_id)->first();
+        $Assessment=assessment::where('enquiry_id',$enquiry_id)->where('status','!=','apply')->get();
 
         //$enquiry=Enquiry::find($enquiry_id);
 
@@ -282,7 +279,7 @@ class AssessmentController extends Controller
         // })->where('id',$enquiry_id)->get();
         if(isset($Enquiry->email))
         {
-            Mail::to($Enquiry->email)->send(new AddAssessments($Enquiry));
+            Mail::to($Enquiry->email)->send(new AddAssessments($Enquiry,$Assessment));
             return redirect()->back()->withSuccess('Send Mail SuccessFully');
         }
         else

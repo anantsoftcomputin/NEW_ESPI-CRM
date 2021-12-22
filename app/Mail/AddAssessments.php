@@ -11,15 +11,17 @@ class AddAssessments extends Mailable
 {
     use Queueable, SerializesModels;
     public $enquiry;
+    public $assessment;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($enq)
+    public function __construct($enq,$assessment)
     {
         $this->enquiry = $enq;
+        $this->assessment = $assessment;
     }
 
     /**
@@ -29,6 +31,10 @@ class AddAssessments extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.AddAssessmentMailToStudent')->with('details', $this->enquiry);
+        $data=[
+            'details' => $this->enquiry,
+            'assessments' => $this->assessment,
+        ];
+        return $this->markdown('emails.AddAssessmentMailToStudent')->with($data);
     }
 }

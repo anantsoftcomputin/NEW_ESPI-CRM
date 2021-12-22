@@ -9,11 +9,11 @@
 </style>
 <table border="1">
     <tr>
-        <td>Contry</td>
+        <td>Country</td>
         <td>University</td>
         <td>Course</td>
     </tr>
-    @foreach ($details->Assessment as $item)
+    @foreach ($assessments as $item)
         <tr>
             <td>
                 {{ $item->University->Country->name }}

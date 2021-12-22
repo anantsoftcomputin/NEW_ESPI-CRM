@@ -83,7 +83,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('assessments/{id}/{status}/change_status', [AssessmentController::class,'status_change'])->name('assessment.status');
     Route::get('AssessmentController/Add/{Enquiry}', [AssessmentController::class,'create'])->name('Assessment.Add');
     Route::get('AssessmentController/Remove/{Enquiry}', [AssessmentController::class,'destroy'])->name('Assessment.Remove');
-    Route::get('EmailNotifyAssessment/{Enquiry}', [AssessmentController::class,'EmailNotifyAssessment'])->name('Assessment.EmailNotifyAssessment');
+    Route::post('EmailNotifyAssessment/{Enquiry}', [AssessmentController::class,'EmailNotifyAssessment'])->name('Assessment.EmailNotifyAssessment');
     Route::get('ApplyApplication/{Assessment}', [ApplicationController::class,'ApplyApplication'])->name('Assessment.Apply');
     Route::post('ApplyApplication/{Assessment}', [ApplicationController::class,'ApplyApplication'])->name('Assessment.ApplySubmit');
     Route::resource("assessments",AssessmentController::class);

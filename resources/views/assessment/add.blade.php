@@ -51,6 +51,8 @@ Add Assessment
                     <th role="columnheader">Scholarship</th>
                     <th role="columnheader">Remark</th>
                     <th role="columnheader">Action</th> --}}
+                    <form method="POST" action="{{ route('Assessment.EmailNotifyAssessment',$enquiry) }}">
+                        @csrf
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead>
@@ -68,7 +70,13 @@ Add Assessment
                             <tbody>
                             @forelse ($assessment as $item)
                                 <tr>
-                                    <td class="text-center">{{ $loop->index+1 }}</td>
+                                    <td class="text-center">
+                                        @if ($item->status != "process")
+                                            #
+                                        @else
+                                            <input type="checkbox" name="assessment_id[]" value="{{ $item->id }}">
+                                        @endif
+                                    </td>
                                     <td>{{ $item->University->Country->name }}</td>
                                     <td>{{ $item->University->name }}</td>
                                     <td>{{ $item->Course->name }}</td>
@@ -123,11 +131,13 @@ Add Assessment
                             @endif
                             @empty --}}
                             @if(count($assessment)>0)
-                                <a class="ml-2 btn btn-dark " href="{{ route('Assessment.EmailNotifyAssessment',$enquiry) }}">
+                            <button type="submit" class="ml-2 btn btn-dark"> Notify Email </button>
+                                {{-- <a class="ml-2 btn btn-dark " href="{{ route('Assessment.EmailNotifyAssessment',$enquiry) }}">
                                     Notify Email
-                                </a>
+                                </a> --}}
                             @endif
                         </div>
+                    </form>
 
                           @include('assessment.AddModel')
 
