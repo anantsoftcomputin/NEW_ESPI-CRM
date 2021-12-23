@@ -81,9 +81,6 @@
                 </tr>
             </tbody>
         </table>
-
-{{ $message->details }}
-
     </div>
     </div>
 </div>
