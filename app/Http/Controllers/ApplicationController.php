@@ -6,8 +6,10 @@ use App\Http\Requests\Application\AddApplication;
 use App\Http\Requests\Assessment\AddAssessment;
 use App\Mail\ReConformMailToStudent;
 use App\Models\Application;
+use App\Models\ApplicationDocument;
 use App\Models\assessment;
 use App\Models\Course;
+use App\Models\CourseRequirement;
 use App\Models\Enquiry;
 use App\Models\Intact;
 use App\Models\University;
@@ -109,7 +111,7 @@ class ApplicationController extends Controller
      */
     public function edit($application)
     {
-        $Application=Application::find($application);
+        $Application=Application::findOrFail($application);
 
         $course=Course::find($Application->course_id);
         $university=University::find($Application->university_id);
@@ -172,7 +174,8 @@ class ApplicationController extends Controller
         {
             array_push($status,'Rejected');
         }
-        return view('application.edit',compact('university','country','course','intact','status','Application'));
+        $documents=ApplicationDocument::where('application_id',$Application->id)->get();
+        return view('application.edit',compact('university','country','course','intact','status','Application','documents'));
     }
 
     /**
@@ -233,20 +236,56 @@ class ApplicationController extends Controller
 
     public function ApplyApplication($Ass,Request $request)
     {
+        $Ass=assessment::find($Ass);
+        $requirement=CourseRequirement::where('course_id',$Ass->course_id)->get();
         if($request->isMethod('post'))
         {
-            $assessment=assessment::find($Ass);
-            $assessment->status="apply";
-            $assessment->save();
+            $request_role=array();
+            foreach($requirement as $req)
+            {
+                $request_role[$req->documents]='required';
+            }
+            if(empty(!count($request_role)))
+            {
+                $validated = $request->validate($request_role);
+            }
+
+            $Ass->status="apply";
+            $Ass->save();
             //Mail::to($assessment->Enquiry->email)->send(new ReConformMailToStudent($assessment->Enquiry));
-            $Ass=assessment::find($Ass)->toArray();
-            $Ass['application_id']=$this->generateUniqueCode();
-            $Application=Application::create($Ass);
+            $assment=assessment::find($Ass->id)->toArray();
+            $assment['application_id']=$this->generateUniqueCode();
+            $Application=Application::create($assment);
+
+            foreach($requirement as $application_document)
+            {
+
+                $document=New ApplicationDocument();
+                $document->name=$application_document->documents;
+                $document->company_id=\Auth::user()->company_id;
+                $document->added_by=\Auth::user()->id;
+                $document->application_id=$Application->id;
+                $path = $request->file($application_document->documents)->store(
+                    "enquiry/".$request->enquiry.'/application/'.$Application->id, 'public'
+                );
+                $document->file_name="storage/".$path;
+                $document->status='draft';
+                $file = $request->file($application_document->documents);
+                $document->type=$file->getClientOriginalExtension();
+                $document->save();
+            }
+
+
+
+
+
+
             EnqActivity("Apply Application",$Application->enquiry_id);
             return redirect(route('Application.index'))->with('success','Application');
         }
-        $Ass=assessment::find($Ass);
-        return view('application.confirm',compact('Ass'));
+
+
+        return view('application.confirm',compact('Ass','requirement'));
     }
 
     public function QuickApplication(AddAssessment $request)

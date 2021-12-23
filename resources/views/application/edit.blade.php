@@ -7,9 +7,9 @@ Edit Application
 @section('content')
 <div class="col-md-12">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
         <div class="card">
-                <div class="card-header">{{ __('Edit Application') }}</div>
+                <div class="card-header">Application Edit</div>
                 <div class="card-body">
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -83,6 +83,41 @@ Edit Application
                         </div>
 
                     </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<br>
+<div class="col-md-12 mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+        <div class="card">
+                <div class="card-header">Documnet</div>
+                <div class="card-body">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    @foreach ($documents as $item)
+                        <div class="card component-card_6">
+                            <div class="card-body ">
+                                <div class="">
+                                    <h4 class="card-text">{{ $item->name }} </h4>
+                                    <h6 class="rating-count"><span class="badge outline-badge-primary"> {{ $item->status }} </span></h6>
+                                    <h6 class="rating-count"><a href='{{ asset($item->file_name) }}' target="_blank" class='btn btn-info'>Show</a></h6>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
                 </div>
             </div>
 

@@ -6,6 +6,7 @@ use App\Models\State;
 use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Models\Company;
+use App\Models\FollowUp;
 use App\Models\ReferralCode;
 use App\Models\User;
 use PhpParser\Node\Stmt\Return_;
@@ -73,6 +74,14 @@ if (! function_exists('my_team_member')) {
         //         $q->where('name', 'Teacher');
         //     }
         // )
+    }
+}
+
+if (! function_exists('today_follow_up')) {
+    function today_follow_up($role='counsellor') {
+        return FollowUp::whereDate('date', date('Y-m-d'))
+        ->where('assist_by',\Auth::user()->id)
+        ->get();
     }
 }
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCourseRecruitmentsTable extends Migration
+class CreateCourseRequirementTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCourseRecruitmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('course_recruitments', function (Blueprint $table) {
+        Schema::create('course_requirement', function (Blueprint $table) {
             $table->id();
             $table->string('documents');
             $table->enum('type',['pdf','jpg','doc']);
@@ -34,6 +34,6 @@ class CreateCourseRecruitmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('course_recruitments');
+        Schema::dropIfExists('course_requirement');
     }
 }

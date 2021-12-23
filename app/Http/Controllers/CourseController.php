@@ -6,7 +6,7 @@ use App\Http\Requests\Course\Addcourse;
 use App\Http\Requests\Course\EditCourse;
 use App\Models\Course;
 use App\Models\University;
-use App\Models\CourseRecruitments;
+use App\Models\CourseRequirement;
 use App\Models\Intact;
 use Illuminate\Http\Request;
 use DataTables;
@@ -104,7 +104,7 @@ class CourseController extends Controller
         }
 
         if(isset($data)){
-            CourseRecruitments::insert($data);
+            CourseRequirement::insert($data);
         }
 
 
@@ -132,7 +132,7 @@ class CourseController extends Controller
     {
         $Course=Course::find($id);
         $university=University::all();
-        $course_recruitments=CourseRecruitments::where("course_id",$id)
+        $course_recruitments=CourseRequirement::where("course_id",$id)
         ->get();
         $university_selected=$request->input('university');
         if(isset($university))
@@ -187,7 +187,7 @@ class CourseController extends Controller
             {
                 if($request->course_recruitment_id[$i])
                 {
-                    $CourseRecruitments=CourseRecruitments::find($request->course_recruitment_id[$i]);
+                    $CourseRecruitments=CourseRequirement::find($request->course_recruitment_id[$i]);
                     $CourseRecruitments->documents=$request->course_documents[$i];
                     $CourseRecruitments->type=$request->course_type[$i];
                     $CourseRecruitments->status=$request->course_status[$i];
@@ -218,7 +218,7 @@ class CourseController extends Controller
         }
 
         if(isset($data)){
-            CourseRecruitments::insert($data);
+            CourseRequirement::insert($data);
         }
 
         return redirect(route('Course.index'));

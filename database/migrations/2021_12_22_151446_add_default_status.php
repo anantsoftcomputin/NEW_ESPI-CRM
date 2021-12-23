@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddRemarksToEnquiry extends Migration
+class AddDefaultStatus extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddRemarksToEnquiry extends Migration
      */
     public function up()
     {
-        Schema::table('enquiries', function (Blueprint $table) {
-            $table->longText("remarks")->nullable();
+        Schema::table('courses', function (Blueprint $table) {
+            $table->string('status')->default('Active');
+            $table->renameColumn('ists_req', 'ielts_req');
         });
     }
 
@@ -25,8 +26,8 @@ class AddRemarksToEnquiry extends Migration
      */
     public function down()
     {
-        Schema::table('enquiries', function (Blueprint $table) {
-            $table->dropColumn("remarks");
+        Schema::table('courses', function (Blueprint $table) {
+            $table->renameColumn('ielts_req', 'ists_req');
         });
     }
 }

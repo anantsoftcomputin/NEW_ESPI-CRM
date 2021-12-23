@@ -57,16 +57,19 @@
 
                             <div class="dropdown-item">
                                 <div class="media server-log">
-                                    <div class="media-body">
-                                        <div class="data-info">
-                                            <h6 class="">New Enquires added </h6>
-                                            <p class="">45 min ago</p>
+                                    @foreach (today_follow_up() as $item)
+                                        <div class="media-body">
+                                            <div class="data-info">
+                                                <a href='{{ route('detail.nav',$item->enquiry_id) }}/8'><h6 class="">{{ $item->note }} </h6></a>
+                                                <p class="">{{ $item->status }}</p>
+                                            </div>
+                                            <div class="icon-status">
+                                                <a href="{{ route('detail.nav',$item->enquiry_id) }}/8">
+                                                    <svg style="color:#ffff" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                                </a>
+                                            </div>
                                         </div>
-
-                                        <div class="icon-status">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
