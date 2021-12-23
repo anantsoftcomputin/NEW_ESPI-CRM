@@ -12,13 +12,22 @@
 
                 @csrf
                 <div class="row">
-                        @include('assessment.popup_form')
-                        {{-- <input type="submit" class="btn btn-primary" value="{{ __('enquire.submit_btn') }}"> --}}
-                        {{-- <a href="{{route('assessments.index')}}" class="btn btn-danger" >{{ __('enquire.cancel_btn_btn') }}</a> --}}
+                    @include('assessment.popup_form')
+                    {{-- <input type="submit" class="btn btn-primary" value="{{ __('enquire.submit_btn') }}"> --}}
+                    {{-- <a href="{{route('assessments.index')}}" class="btn btn-danger" >{{ __('enquire.cancel_btn_btn') }}</a> --}}
                 </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <x-EnquiryDetailPopUp type="error" :message="$enquiry_detail" class="mt-4"/>
+                    </div>
+                </div>
+
+
+
 
         </div>
         <div class="modal-footer">
+
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-primary">Save changes</button>
         </div>

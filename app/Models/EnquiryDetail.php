@@ -9,6 +9,11 @@ class EnquiryDetail extends Model
 {
     use HasFactory;
 
+    public function getDataAttribute($value)
+    {
+        return json_decode($value);
+    }
+
     public function Enquiry()
     {
         return $this->belongsTo(Enquiry::class,'enquiry_id','id');

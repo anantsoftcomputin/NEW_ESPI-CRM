@@ -170,3 +170,11 @@ function EnqActivity($mgs,$EnqId)
     return Activity::create(['string'=>$mgs,'enquiry_id' => $EnqId]);
 }
 }
+
+if(! function_exists('data_from_json'))
+{
+function data_from_json($string)
+{
+    return json_decode($string,true);
+}
+}

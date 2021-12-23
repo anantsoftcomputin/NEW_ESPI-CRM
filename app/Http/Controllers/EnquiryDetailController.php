@@ -30,8 +30,7 @@ class EnquiryDetailController extends Controller
     {
         $enquiry=Enquiry::find($id);
         $enquirydetail=EnquiryDetail::where('enquiry_id',$enquiry->id)->first();
-        //$enquiry=Enquiry::find($enquirydetail->enquiry_id);
-        $last=json_decode($enquirydetail->data);
+        $last=$enquirydetail->data;
         return view('enquiry.editdetail',compact('id','enquiry','enquirydetail','last','step'));
     }
 
