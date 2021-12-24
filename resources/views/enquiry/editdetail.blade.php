@@ -16,7 +16,7 @@ Enquiry Detail
 <div class="col-lg-6">
     <div class="alert alert-primary" role="alert">
         <h4 class="alert-heading">Counsellor Remarks!</h4>
-        <p>{{ $enquiry->remarks }}</p>
+        <p>{{ $enquirydetail->remark }}</p>
     </div>
 </div>
 <div class="col-lg-12 layout-spacing">
@@ -317,7 +317,6 @@ div.progress.visible {
                     <option value="">Select Exam Status</option>
                     <option value="Completed">Completed</option>
                     <option value="Planning">Planning</option>
-                    <option value="NotPlanned">Still Not Planned</option>
                 </select>
             </div>
         </div>
@@ -1038,6 +1037,7 @@ div.progress.visible {
         {
             if($("#exam_status").val()=="Completed")
             {
+                $("#exam_type").trigger("change");
                 $(".hiddan_data").show();
                 $(".hiddan_data_data").hide();
 

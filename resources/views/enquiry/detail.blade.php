@@ -13,12 +13,6 @@ Enquiry Detail
         <p>{{ $enquiry->remarks }}</p>
     </div>
 </div>
-<div class="col-lg-6">
-    <div class="alert alert-primary" role="alert">
-        <h4 class="alert-heading">Counsellor Remarks!</h4>
-        <p>{{ $enquiry->remarks }}</p>
-    </div>
-</div>
 <div class="col-lg-12 layout-spacing">
     <form method="post" action="{{ route('EnquiryDetail.store',$id) }}" id="form-detail">
         @csrf
@@ -1046,6 +1040,7 @@ div.progress.visible {
         {
             if($("#exam_status").val()=="Completed")
             {
+
                 $(".hiddan_data").show();
                 $(".hiddan_data_data").hide();
             }

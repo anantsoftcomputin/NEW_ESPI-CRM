@@ -54,4 +54,11 @@
             <input type="number" name="reference_phone" id="name" value="{{ $last->reference_phone }}" class="form-control" required="">
         </div>
     </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="name">Counsellor Remark </label>
+            {{-- <input type="number" name="reference_phone" id="name" value="{{ $last }}" class="form-control" required=""> --}}
+            <textarea name="remark" id="" cols="30" rows="10" class="form-control">{{ $enquirydetail->remark }}</textarea>
+        </div>
+    </div>
 </div>

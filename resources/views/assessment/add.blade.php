@@ -150,4 +150,9 @@ Add Assessment
         </div>
     </div>
 </div>
+<script>
+    function ShowDetail(ID) {
+        $(ID).show();
+    }
+    </script>
 @endsection

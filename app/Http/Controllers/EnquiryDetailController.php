@@ -22,6 +22,7 @@ class EnquiryDetailController extends Controller
         $EnquiryDetail->enquiry_id=$id;
         $data = $request->all();
         $EnquiryDetail->data = json_encode($data);
+        $EnquiryDetail->remark = $request->remark;
         $EnquiryDetail->save();
         return redirect(route('Enquires.index'));
     }
@@ -40,6 +41,7 @@ class EnquiryDetailController extends Controller
         $EnquiryDetail=EnquiryDetail::where('enquiry_id',$id)->first();
         $Activity=Activity::create(['string'=>"Update Enquires Detail",'enquiry_id'=>$id]);
         $EnquiryDetail->data = json_encode($request->all());
+        $EnquiryDetail->remark = $request->remark;
         $EnquiryDetail->save();
         return redirect(route('Enquires.index'));
     }

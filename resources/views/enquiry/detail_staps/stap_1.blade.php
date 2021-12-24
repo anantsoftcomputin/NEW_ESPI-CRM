@@ -56,4 +56,10 @@
             <input type="number" name="reference_phone" id="name" value="{{ $enquiry->reference_phone }}" class="form-control" required="">
         </div>
     </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="name">Counsellor Remark </label>
+            <textarea name="remark" id="" cols="30" rows="10" class="form-control"></textarea>
+        </div>
+    </div>
 </div>

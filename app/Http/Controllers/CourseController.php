@@ -167,7 +167,7 @@ class CourseController extends Controller
         $validated['bachelor_req']=$request->bachelor_req;
         $validated['master_req']=$request->master_req;
 
-        $validated['ists_req']=$request->ists_req;
+        $validated['ielts_req']=$request->ists_req;
         $validated['toefl_req']=$request->toefl_req;
         $validated['duolingo_req']=$request->duolingo_req;
 

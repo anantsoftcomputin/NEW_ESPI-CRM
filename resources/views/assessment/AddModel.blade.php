@@ -16,7 +16,7 @@
                     {{-- <input type="submit" class="btn btn-primary" value="{{ __('enquire.submit_btn') }}"> --}}
                     {{-- <a href="{{route('assessments.index')}}" class="btn btn-danger" >{{ __('enquire.cancel_btn_btn') }}</a> --}}
                 </div>
-                <div class="row">
+                <div class="row" id="student_detail_secation" style="display: none;">
                     <div class="col-md-12">
                         <x-EnquiryDetailPopUp type="error" :message="$enquiry_detail" class="mt-4"/>
                     </div>
@@ -27,9 +27,9 @@
 
         </div>
         <div class="modal-footer">
-
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save changes</button>
+            <a href="#" id="student_detail_secation_hendel" class="btn btn-warning"  onclick="ShowDetail('#student_detail_secation')"> Show Student Detail </a>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>

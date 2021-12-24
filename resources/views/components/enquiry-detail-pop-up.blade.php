@@ -54,7 +54,7 @@
             <tbody>
                 <tr>
                     <th scope="row">Passport</th>
-                    <td><span class="badge badge-primary">{{ $message->details->data->passport }}</span></td>
+                    <td><span class="badge badge-primary">{{ $message->details->data->passport ?? 'Not Set Yet' }}</span></td>
                     <th scope="row">Country Intrusted</th>
                     <td>
                         @foreach ($message->details->data->country_intrusted as $item)
@@ -70,17 +70,55 @@
                 </tr>
             </tbody>
         </table>
-
+        <h5 class="card-title">Education Information</h5>
         <table class="table table-bordered">
             <tbody>
                 <tr>
-                    <td scope="row">Institute</td>
-                    <td scope="row">Percentage</td>
-                    <td scope="row">Passing</td>
-                    <td scope="row">Backlog</td>
+                    <th scope="row">Institute</th>
+                    <th scope="row">Percentage</th>
+                    <th scope="row">Passing</th>
+                    <th scope="row">Backlog</th>
+                </tr>
+                <tr>
+                    <td scope="row">10th</td>
+                    <td scope="row">{{ $message->details->data->ssc_pass_percentage ?? 'not set yet' }}</td>
+                    <td scope="row">{{ $message->details->data->ssc_passing ?? 'not set yet' }}</td>
+                    <td scope="row">{{ $message->details->data->ssc_backlog ?? 'not set yet' }}</td>
+                </tr>
+                <tr>
+                    <td scope="row">12th</td>
+                    <td scope="row">{{ $message->details->data->hsc_pass_percentage ?? 'Not Set Yet' }}</td>
+                    <td scope="row">{{ $message->details->data->hsc_passing ?? 'Not Set Yet' }}</td>
+                    <td scope="row">{{ $message->details->data->hsc_backlog ?? 'Not Set Yet' }}</td>
+                </tr>
+                <tr>
+                    <td scope="row">Master</td>
+                    <td scope="row">{{ $message->details->data->master_pass_percentage ?? 'Not Set Yet' }}</td>
+                    <td scope="row">{{ $message->details->data->master_passing ?? 'Not Set Yet' }}</td>
+                    <td scope="row">{{ $message->details->data->master_backlog ?? 'Not Set Yet' }}</td>
                 </tr>
             </tbody>
         </table>
-    </div>
+
+        <h5 class="card-title">Work Information</h5>
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <th scope="row">work_company</th>
+                    <th scope="row">work_from</th>
+                    <th scope="row">to_work_from</th>
+                    <th scope="row">work_profile</th>
+                </tr>
+                @foreach ($message->details->data->work_company as $item)
+                    <tr>
+                        <td scope="row">{{ $item ?? 'Not Set Yet' }} </td>
+                        <td scope="row">{{ $message->details->data->work_from[$loop->index] ?? 'not set yet' }}</td>
+                        <td scope="row">{{ $message->details->data->to_work_from[$loop->index] ?? 'not set yet' }}</td>
+                        <td scope="row">{{ $message->details->data->work_profile[$loop->index] ?? 'not set yet' }}</td>
+                    </tr>
+                @endforeach
+
+            </tbody>
+        </table>
     </div>
 </div>
