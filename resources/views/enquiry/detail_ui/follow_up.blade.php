@@ -4,10 +4,10 @@
         <table class="table table-bordered mb-4">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Date</th>
+                    <th>date</th>
+                    <th>status</th>
                     <th>Added By</th>
-                    <th>Sale</th>
+                    <th>NOTE</th>
                 </tr>
             </thead>
             <tbody>

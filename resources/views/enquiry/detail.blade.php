@@ -1040,7 +1040,7 @@ div.progress.visible {
         {
             if($("#exam_status").val()=="Completed")
             {
-
+                $("#exam_type").trigger("change");
                 $(".hiddan_data").show();
                 $(".hiddan_data_data").hide();
             }
@@ -1071,6 +1071,7 @@ div.progress.visible {
         {
             if($("#exam_status_"+el).val()=="Completed")
             {
+                $("#exam_type_"+el).trigger("change");
                 $(".hiddan_data").show();
                 $(".hiddan_data_data_"+el).hide();
 

@@ -68,12 +68,7 @@ if (! function_exists('my_team_member')) {
                     $q->where('name', $role);
                 }
             )
-        ->get();
-        // whereHas(
-        //     'roles', function($q){
-        //         $q->where('name', 'Teacher');
-        //     }
-        // )
+        ->get()->except(\Auth::user()->id);
     }
 }
 
@@ -93,7 +88,7 @@ if (! function_exists('get_country')) {
         }
         else
         {
-            return Country::whereIn('id',['101','13','230','82','75','38','212'])->get();
+            return Country::whereIn('id',['101','13','230','82','75','38','212','231'])->get();
         }
     }
 }

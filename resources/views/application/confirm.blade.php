@@ -1,5 +1,10 @@
 @extends('layouts.theam')
 
+@section('css')
+<link rel="stylesheet" href="{{ asset('assets/css/elements/infobox.css') }}">
+<style></style>
+@endsection
+
 @section('title')
 Conform Application
 @endsection
@@ -39,19 +44,21 @@ Conform Application
             {!! bootstrap_input_6('Postal Code','Postal Code',$Ass->Enquiry->postal_code) !!}
             <div class="col-md-12">
                 <form action="{{ route('Assessment.ApplySubmit',[$Ass->id]) }}" method="POST" enctype="multipart/form-data">
-                <hr/>
-                <h1>University Detail</h1>
-                <hr/>
-                <h3>{{ $Ass->University->name }}</h3>
-                <hr/>
                 <br>
-                <h1>Course Detail</h1>
-                <hr/>
-                <h3 data-id="{{ $Ass->Course->id }}">{{ $Ass->Course->name }}</h3>
-                <hr/>
-                @empty(!$requirement)
-                    <h1>Application Requirement</h1>
-                    <hr>
+
+                <div class="infobox-1" style="width:100%">
+                    <div class="info-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-award"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+                    </div>
+                    <h5 class="info-heading">{{ $Ass->University->name }}</h5>
+                    <p class="info-text">{{ $Ass->Course->name }}</p>
+                </div>
+
+                <br>
+
+                <hr>
+                @empty(!count($requirement))
+                    <h3>Application Requirement</h3>
                     @foreach ($requirement as $item)
                         <div class="form-group">
                             <label for="">{{ $item->documents }}</label>
