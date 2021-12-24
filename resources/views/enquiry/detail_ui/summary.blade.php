@@ -1,7 +1,9 @@
 <div class="p-2">
     <h1> Summary </h1>
 
-    <div class="table-responsive">
+    <x-EnquiryDetailPopUp type="error" :message="$enquiry" class="mt-4"/>
+
+    {{-- <div class="table-responsive">
         <table class="table table-bordered mb-4">
             <tbody>
                 <tr>
@@ -30,6 +32,6 @@
                 </tr>
             </tbody>
         </table>
-    </div>
+    </div> --}}
 </div>
 
