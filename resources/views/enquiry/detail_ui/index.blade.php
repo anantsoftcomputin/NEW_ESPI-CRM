@@ -12,6 +12,16 @@
 @endsection
 
 @section('content')
+<style>
+    .nav-link
+    {
+        color: #4362ee;
+    }
+    .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active
+    {
+        color: #4362ee;
+    }
+</style>
 <div class="col-xl-12 col-lg-12 col-md-12 col-12 layout-spacing">
     <div class="widget widget-content-area br-4">
         <div class="widget-one">
