@@ -409,7 +409,7 @@ $(document).ready(function(){
 			{
 				dataType: 'json', // type of response data
 				success: function (data,status,xhr) {   // success callback function
-
+                    $('#state').empty();
                     $('#state').append($("<option></option>").attr("value", "#").attr("disable", true).text("Select State"));
                     $.each(data, function(key, value) {
                         $('#state')
@@ -417,6 +417,11 @@ $(document).ready(function(){
                                     .attr("value", value.id)
                                     .text(value.name));
                     });
+                    if(data==0)
+                    {
+                        $('#state').empty();
+                        $('#state').append($("<option></option>").attr("value", "#").attr("disable", true).text("State Not Available"));
+                    }
 				},
 				error: function (jqXhr, textStatus, errorMessage) { // error callback
 					$('p').append('Error: ' + errorMessage);
@@ -432,12 +437,19 @@ $(document).ready(function(){
 			{
 				dataType: 'json', // type of response data
 				success: function (data,status,xhr) {   // success callback function
+                    $('#city').empty();
+                    $('#city').append($("<option></option>").attr("value", "#").attr("disable", true).text("Select City"));
                     $.each(data, function(key, value) {
                         $('#city')
                             .append($("<option></option>")
                                     .attr("value", value.id)
                                     .text(value.name));
                     });
+                    if(data==0)
+                    {
+                        $('#city').empty();
+                        $('#city').append($("<option></option>").attr("value", "#").attr("disable", true).text("City Not Available"));
+                    }
 				},
 				error: function (jqXhr, textStatus, errorMessage) { // error callback
 					$('p').append('Error: ' + errorMessage);

@@ -1,14 +1,3 @@
-<div class="col-md-12">
-    <div class="progress">
-        <div class="gradient">
-            <div class="progress-wrapper">
-                <div class="progress-text"></div>
-                <progress></progress>
-            </div>
-        </div>
-    </div>
-</div>
-
 {{-- @if ($errors->any())
      @foreach ($errors->all() as $error)
          <div>{{$error}}</div>
