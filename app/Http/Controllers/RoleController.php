@@ -16,7 +16,7 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
+
      public function __construct()
     {
         $this->middleware('permission:view-role');
@@ -34,6 +34,10 @@ class RoleController extends Controller
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
                            $btn = '<a href="'.route('roles.edit',$row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
+                           if($row->name=="counsellor" || $row->name=="super-admin")
+                           {
+                            $btn="";
+                           }
                             return $btn;
                     })
                     ->rawColumns(['action'])
