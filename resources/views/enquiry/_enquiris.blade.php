@@ -238,6 +238,8 @@
             <option @if(old('reference_source') == 'Seminar') selected @endif value="Seminar">Seminar</option>
             <option @if(old('reference_source') == 'Agent') selected @endif value="Agent">Agent</option>
             <option @if(old('reference_source') == 'Classes') selected @endif value="Classes">Classes</option>
+            <option @if(old('reference_source') == 'Relatives') selected @endif value="Relatives">Relatives</option>
+            <option @if(old('reference_source') == 'Friends') selected @endif value="Friends">Friends</option>
         </select>
     </div>
 </div>
