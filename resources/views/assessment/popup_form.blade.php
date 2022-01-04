@@ -96,6 +96,12 @@
 </div>
 <div class="col-md-12">
     <div class="form-group">
+        <label for="selectapp_course_link">Course Link</label>
+        <input type="text" name="course_link[]" class="course_link form-control" id="selectapp_course_link">
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="form-group">
         <label for="remarks">Remarks</label>
         <textarea name="remarks" class="form-control"></textarea>
     </div>
@@ -107,7 +113,9 @@
         $.ajax(URL, {
             dataType: 'json', // type of response data
             success: function(data, status, xhr) { // success callback function
+                console.log(data);
                 $('.specialization').val(data.specialization);
+                $('.course_link').val(data.course_link);
                 $('.duration').val(data.duration);
                 $('.app_fee').val(data.application_fees);
             },
