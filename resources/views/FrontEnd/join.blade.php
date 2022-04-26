@@ -58,6 +58,8 @@
 
 <script>
 
+$('.bs-tooltip').tooltip();
+
     $("#country").change(function(){
 
 // $('#state option[value!="0"]').remove();

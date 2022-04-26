@@ -23,6 +23,7 @@ class EventServiceProvider extends ServiceProvider
         PushNotification::class => [
             PushNotificationFired::class,
         ],
+        'Illuminate\Auth\Events\Login' => ['App\Listeners\LoginSuccessful']
     ];
 
     /**

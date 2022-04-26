@@ -28,10 +28,30 @@ Conform Application
         </div>
     @endif
     <div class="widget-content widget-content-area bx-top-6">
+        <form action="{{ route('Assessment.ApplySubmit',[$Ass->id]) }}" method="POST" enctype="multipart/form-data">
         <div class="row">
             {!! bootstrap_input_6('name','Student Name',$Ass->Enquiry->name) !!}
 
             {!! bootstrap_input_6('email','Student Email',$Ass->Enquiry->email) !!}
+
+            @php
+                $name_coundilar="";
+            @endphp
+            @foreach ($Ass->Enquiry->Counsellor as $item)
+                @php
+                    if ($loop->last)
+                    {
+                        $name_coundilar.=$item->Detail->name;
+                    }
+                    else {
+                        $name_coundilar.=$item->Detail->name.",";
+                    }
+                @endphp
+            @endforeach
+            {!! bootstrap_input_6('Counsellor','Counsellor',$name_coundilar ?? "") !!}
+
+
+            {!! bootstrap_input_6('Country','Country',$Ass->University->Country->name) !!}
 
             {!! bootstrap_input_6('phone','Student Phone',$Ass->Enquiry->phone) !!}
 
@@ -42,8 +62,30 @@ Conform Application
             {!! bootstrap_input_6('gender','Gender',$Ass->Enquiry->gender) !!}
 
             {!! bootstrap_input_6('Postal Code','Postal Code',$Ass->Enquiry->postal_code) !!}
+
+
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="" class="form-label">Select Processor User</label>
+                    <select name="processor_id" class="form-control" required>
+                        @forelse ($processor as $item)
+                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                        @empty
+                            <option value="">No User Found</option>
+                        @endforelse
+                    </select>
+                </div>
+            </div>
+
+            @if ($Ass->Enquiry->reference_source=="Agent")
+                <div class="col-md-6"></div>
+                {!! bootstrap_input_6('Agent Name','Agent Name',$Ass->Enquiry->reference_name) !!}
+                {!! bootstrap_input_6('Agent Phone','Agent Phone',$Ass->Enquiry->reference_phone) !!}
+                {!! bootstrap_input_6('Agent Code','Agent Code',$Ass->Enquiry->reference_code) !!}
+            @endif
+
             <div class="col-md-12">
-                <form action="{{ route('Assessment.ApplySubmit',[$Ass->id]) }}" method="POST" enctype="multipart/form-data">
+
                 <br>
 
                 <div class="infobox-1" style="width:100%">

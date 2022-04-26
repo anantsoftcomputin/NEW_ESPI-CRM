@@ -29,7 +29,6 @@ class PushNotificationFired
      */
     public function handle(PushNotification $event)
     {
-        Log::error("Fire Notification ");
 
         $firebaseToken = User::where('id',$event->userId)->whereNotNull('fcm_token')->pluck('fcm_token')->all();
 
@@ -59,7 +58,5 @@ class PushNotificationFired
         curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
 
         $response = curl_exec($ch);
-
-        Log::error("Lisnar data".json_encode($response));
     }
 }

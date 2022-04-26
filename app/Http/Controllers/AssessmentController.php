@@ -32,13 +32,13 @@ class AssessmentController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = assessment::select('*')->where('status', '!=', 'approved')
+            $data = assessment::select('assessments.*')->where('assessments.status', '!=', 'approved')
             ->groupBy('enquiry_id')
             ->with('University','Course','User','Enquiry','University.Country');
 
             if(\Auth::user()->roles->pluck('name')->first()=="counsellor")
             {
-                $data->where('added_by_id',\Auth::user()->id);
+                $data->where('assessments.added_by_id',\Auth::user()->id);
             }
 
             return Datatables::of($data)
@@ -46,8 +46,34 @@ class AssessmentController extends Controller
                     ->addColumn('status', function($row){
                             return ucfirst($row->status);
                     })
+                    ->addColumn('enquiry_list', function (assessment $assesmenet) {
+                        return $assesmenet->Enquiry->name;
+                    })
+                    ->addColumn('enquiry_id', function (assessment $assesmenet) {
+                        return $assesmenet->Enquiry->enquiry_id;
+                    })
+                    ->addColumn('phone', function (assessment $assesmenet) {
+                        return $assesmenet->Enquiry->phone;
+                    })
+                    ->addColumn('email', function (assessment $assesmenet) {
+                        return $assesmenet->Enquiry->email;
+                    })
                     ->addColumn('date', function($model) {
                         return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $model->created_at)->format('d/m/Y H:i:s');
+                    })
+                    ->addColumn('agent_detail', function($date) {
+                        $colum_row="";
+                        if($date->Enquiry->reference_code)
+                        {
+                            $colum_row.='<span class="badge badge-pill badge-info">#';
+                            $colum_row.=$date->Enquiry->reference_code;
+                        }
+                        else
+                        {
+                            $colum_row.='<span class="badge badge-pill badge-warning" style="text-transform:uppercase;">#';
+                            $colum_row.=get_company_by_id($date->Enquiry->company_id)->name;
+                        }
+                        return $colum_row;
                     })
                     ->addColumn('assign_to', function($row){
                         if(empty($row->assign_id))
@@ -111,7 +137,8 @@ class AssessmentController extends Controller
                     ->addColumn('assign', function($row){
 
                     })
-                    ->rawColumns(['action'])
+                    ->rawColumns(['action','agent_detail'])
+                    ->startsWithSearch()
                     ->make(true);
         }
         return view('assessment.index');
@@ -128,7 +155,12 @@ class AssessmentController extends Controller
         $course=Course::all();
         $intake=Intact::groupBy('month')->orderBy('id', 'asc')->get();
         $assessment=assessment::where('enquiry_id',$enquiry)->with('AddedBy')->get();
-        $enquiry_detail=Enquiry::with('Details')->where('id',$enquiry)->first();
+        $enquiry_detail=Enquiry::with('Details')->has('Details')->where('id',$enquiry)->first();
+        if(empty($enquiry_detail))
+        {
+            return redirect()->route('EnquiryDetail.add',['id'=>$enquiry])->withError("Details doesn't exist. Please fill the details.");
+            abort(401, 'Page not found');
+        }
         return view('assessment.add',compact('enquiry','university','course','intake','assessment','enquiry_detail'));
     }
 
@@ -140,7 +172,6 @@ class AssessmentController extends Controller
      */
     public function store(AddAssessment $AddAssessment)
     {
-
         if(isset($AddAssessment->country_id))
         {
             $totassesment=count($AddAssessment->country_id);
@@ -160,6 +191,8 @@ class AssessmentController extends Controller
                         'level'=>$AddAssessment->level[$i],
                         'duration'=>$AddAssessment->duration[$i],
                         'app_fee'=>$AddAssessment->app_fee[$i],
+                        'tution_fee'=>$AddAssessment->tution_fee[$i],
+                        'program_link'=>$AddAssessment->course_link[$i],
                         'remarks'=>$AddAssessment->remarks,
                         'type'=>"default",
                         'location'=>"default",
@@ -172,9 +205,12 @@ class AssessmentController extends Controller
             //add a maniple assessment function
 
             //but for now we have add only one
+            // $enquiry=Enquiry::find($AddAssessment->enquiry_id);
+            // $enquiry->status="assign";
+            // $enquiry->save();
             $assessment=assessment::insert($data);
                 //A Trigger to display in student detail
-                EnqActivity("Add New Assessment",$data[0]['enquiry_id']);
+                EnqActivity("Add New Assessment.",$data[0]['enquiry_id']);
                 // Add Mail to studant
                 // $enquiry=Enquiry::find($data[0]['enquiry_id']);
                 // Mail::to($enquiry->email)->send(new AddAssessments($enquiry));
@@ -268,23 +304,31 @@ class AssessmentController extends Controller
 
     public function EmailNotifyAssessment($enquiry_id,Request $request)
     {
+        $request->validate([
+            'cc_mail' => 'required',
+            'assessment_id' => 'required'
+        ]);
         $Enquiry = Enquiry::where('id',$enquiry_id)->first();
-        $Assessment=assessment::where('enquiry_id',$enquiry_id)->where('status','!=','apply')->get();
-
+        $Assessment=assessment::where('enquiry_id',$enquiry_id)->whereIn('id',$request->assessment_id)->where('status','!=','apply')->get();
         //$enquiry=Enquiry::find($enquiry_id);
 
         // $enquiry = Enquiry::with('Assessment')
         // ->whereHas('Assessment', function ($query) {
         //     $query->Enquiry('status','NOT','apply');
         // })->where('id',$enquiry_id)->get();
+        $cc=array();
+        if(isset($request->cc_mail))
+        {
+            $cc=explode(',',$request->cc_mail);
+        }
+
         if(isset($Enquiry->email))
         {
-            Mail::to($Enquiry->email)->send(new AddAssessments($Enquiry,$Assessment));
+            Mail::to($Enquiry->email)->cc($cc)->send(new AddAssessments($Enquiry,$Assessment));
             return redirect()->back()->withSuccess('Send Mail SuccessFully');
         }
         else
         {
-
             return false;
         }
     }

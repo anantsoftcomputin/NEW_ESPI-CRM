@@ -7,8 +7,8 @@
     <title>{{ config('app.name'); }} | @yield('title')</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('logo.svg') }}"/>
     <link href="{{ asset('assets/css/loader.css') }}" rel="stylesheet" type="text/css" />
+    <meta name="author" content="Jasmin shukla">
     {{-- <script src="{{ asset('assets/js/loader.js') }}"></script> --}}
-
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&display=swap" rel="stylesheet">
     <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
@@ -31,13 +31,10 @@
             <ul class="navbar-item flex-row navbar-dropdown search-ul">
                 <li class="nav-item dropdown language-dropdown more-dropdown">
                     <div class="dropdown  custom-dropdown-icon">
-                        <a class="dropdown-toggle btn" href="#" role="button" id="customDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset('assets/img/ca.png') }}" class="flag-width" alt="flag">
+                        <a class="dropdown-toggle btn" href="#" role="button" id="customDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset('assets/img/flag-inr.svg') }}" class="flag-width" alt="flag">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="customDropdown">
-                            <a class="dropdown-item" data-img-value="de" data-value="German" href="javascript:void(0);"><img src="{{ asset('assets/img/de.png') }}" class="flag-width" alt="flag"> German</a>
-                            <a class="dropdown-item" data-img-value="jp" data-value="Japanese" href="javascript:void(0);"><img src="{{ asset('assets/img/jp.png') }}" class="flag-width" alt="flag"> Japanese</a>
-                            <a class="dropdown-item" data-img-value="fr" data-value="French" href="javascript:void(0);"><img src="{{ asset('assets/img/fr.png') }}" class="flag-width" alt="flag"> French</a>
-                            <a class="dropdown-item" data-img-value="ca" data-value="English" href="javascript:void(0);"><img src="{{ asset('assets/img/ca.png') }}" class="flag-width" alt="flag"> English</a>
+                            <a class="dropdown-item" data-img-value="de" data-value="German" href="javascript:void(0);"><img src="{{ asset('assets/img/flag-inr.svg') }}" class="flag-width" alt="flag"> English</a>
                         </div>
                     </div>
                 </li>
@@ -49,10 +46,10 @@
                     <div class="dropdown-menu position-absolute" aria-labelledby="notificationDropdown">
                         <div class="notification-scroll">
 
+                            @foreach (today_follow_up() as $item)
                             <div class="dropdown-item">
                                 <div class="media server-log">
                                     <div class="media-body">
-                                        @foreach (today_follow_up() as $item)
                                             <div class="data-info">
                                                 <a href='{{ route('detail.nav',$item->enquiry_id) }}/8'><h6 class="">{{ $item->note }} </h6></a>
                                                 <p class="">{{ $item->status }}</p>
@@ -62,10 +59,10 @@
                                                     <svg style="color:#ffff" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                                                 </a>
                                             </div>
-                                        @endforeach
+                                        </div>
                                     </div>
-                                </div>
                             </div>
+                            @endforeach
                         </div>
                     </div>
                 </li>
@@ -146,13 +143,13 @@
                             <div class="media mx-auto">
                                 <img src="{{ asset('assets/img/90x90.jpg') }}" class="img-fluid mr-2" alt="avatar">
                                 <div class="media-body">
-                                    <h5>{{ Auth::user()->name ?? "Admin" }}</h5>
-                                    <p>{{ Auth::user()->roles->pluck('name')[0] }}</p>
+                                    <h5>{{ Auth::user()->name ?? "Not set Name" }}</h5>
+                                    <p>{{ Auth::user()->roles->pluck('name')[0] ?? '' }}</p>
                                 </div>
                             </div>
                         </div>
                         <div class="dropdown-item">
-                            <a href="user_profile.html">
+                            <a href="user_profile">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> <span> Profile</span>
                             </a>
                         </div>
@@ -210,7 +207,7 @@
             </div>
             <div class="footer-wrapper">
                 <div class="footer-section f-section-1">
-                    <p class="">Copyright © 2021 <a target="_blank" href="https://designreset.com">ASC</a>, All rights reserved.</p>
+                    <p class="">Copyright © {{ date('Y') }} <a target="_blank" href="https://anantsoftcomputing.com/" style="color: blue;">ASC</a>, All rights reserved.</p>
                 </div>
                 <div class="footer-section f-section-2">
                     <p class="">Coded with <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></p>
@@ -231,16 +228,19 @@
     <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>
-    <script src="{{ asset('assets/js/custom.js') }}"></script>
-
-    @yield('js')
-
-    <!-- END GLOBAL MANDATORY SCRIPTS -->
     <script>
         $(document).ready(function() {
             App.init();
         });
     </script>
+    @yield('js')
+
+    <!-- END GLOBAL MANDATORY SCRIPTS -->
+    <script src="{{ asset('plugins/highlight/highlight.pack.js') }}"></script>
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
+
+    <script src="{{ asset('assets/js/elements/tooltip.js') }}"></script>
+    <script src="{{ asset('assets/js/scrollspyNav.js') }}"></script>
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
     {{-- <script src="{{ asset('plugins/apex/apexcharts.min.js') }}"></script> --}}

@@ -18,7 +18,8 @@ class Application extends Model
         'intact_month_id',
         'added_by_id',
         'application_id',
-        'status'
+        'status',
+        'processor_id'
     ];
 
     protected static function booted()
@@ -41,4 +42,24 @@ class Application extends Model
     {
         return $this->hasOne(Course::class,'id','course_id');
     }
+
+    public function FollowUp()
+    {
+        return $this->FollowUpRow();
+    }
+
+    public function LastFollowUp()
+    {
+        return $this->FollowUpRow()->orderby('id','asc');
+    }
+
+    public function FollowUpRow() {
+        return $this->hasMany(ApplicationFollowUps::class);
+    }
+
+    public function Remarks()
+    {
+        return $this->hasMany(ApplicationRemark::class);
+    }
+
 }

@@ -1,11 +1,14 @@
 <?php
 
 use App\Models\Activity;
+use App\Models\Application;
+use App\Models\assessment;
 use App\Models\City;
 use App\Models\State;
 use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Models\Company;
+use App\Models\Enquiry;
 use App\Models\FollowUp;
 use App\Models\ReferralCode;
 use App\Models\User;
@@ -76,7 +79,56 @@ if (! function_exists('today_follow_up')) {
     function today_follow_up($role='counsellor') {
         return FollowUp::whereDate('date', date('Y-m-d'))
         ->where('assist_by',\Auth::user()->id)
+        ->where('is_resolved','0')
         ->get();
+    }
+}
+
+if (! function_exists('get_Inquiry_charts')) {
+    function get_Inquiry_charts() {
+        $array=array();
+        $stop_date = date('Y-m-d');
+        array_push($array,Enquiry::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -7 day')))->count());
+        array_push($array,Enquiry::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -6 day')))->count());
+        array_push($array,Enquiry::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -5 day')))->count());
+        array_push($array,Enquiry::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -4 day')))->count());
+        array_push($array,Enquiry::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -3 day')))->count());
+        array_push($array,Enquiry::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -2 day')))->count());
+        array_push($array,Enquiry::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -1 day')))->count());
+        // array_pu
+        return json_encode($array);
+    }
+}
+
+if (! function_exists('Get_Assessment_Charts')) {
+    function Get_Assessment_Charts() {
+        $array=array();
+        $stop_date = date('Y-m-d');
+        array_push($array,Assessment::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -7 day')))->count());
+        array_push($array,Assessment::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -6 day')))->count());
+        array_push($array,Assessment::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -5 day')))->count());
+        array_push($array,Assessment::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -4 day')))->count());
+        array_push($array,Assessment::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -3 day')))->count());
+        array_push($array,Assessment::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -2 day')))->count());
+        array_push($array,Assessment::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -1 day')))->count());
+        // array_pu
+        return json_encode($array);
+    }
+}
+
+if (! function_exists('Get_Application_Charts')) {
+    function Get_Application_Charts() {
+        $array=array();
+        $stop_date = date('Y-m-d');
+        array_push($array,Application::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -7 day')))->count());
+        array_push($array,Application::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -6 day')))->count());
+        array_push($array,Application::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -5 day')))->count());
+        array_push($array,Application::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -4 day')))->count());
+        array_push($array,Application::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -3 day')))->count());
+        array_push($array,Application::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -2 day')))->count());
+        array_push($array,Application::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -1 day')))->count());
+        // array_pu
+        return json_encode($array);
     }
 }
 
@@ -152,7 +204,7 @@ if (! function_exists('bootstrap_input_6')) {
         <div class="col-md-6">
             <div class="mb-3">
                 <label for="labale'.$name.'" class="form-label">'.Str::ucfirst($label).'</label>
-                <input type="email" class="form-control" id="labale'.$name.'" name="'.$name.'" placeholder="name@example.com" value="'.$value.'">
+                <input type="text" class="form-control" id="labale'.$name.'" name="'.$name.'" placeholder="name@example.com" value="'.$value.'">
             </div>
         </div>';
     }
@@ -160,16 +212,8 @@ if (! function_exists('bootstrap_input_6')) {
 
 if(! function_exists('EnqActivity'))
 {
-function EnqActivity($mgs,$EnqId)
-{
-    return Activity::create(['string'=>$mgs,'enquiry_id' => $EnqId]);
-}
-}
-
-if(! function_exists('data_from_json'))
-{
-function data_from_json($string)
-{
-    return json_decode($string,true);
-}
+    function EnqActivity($mgs,$EnqId)
+    {
+        return Activity::create(['string'=>$mgs,'enquiry_id' => $EnqId,'added_by'=>\Auth::user()->id]);
+    }
 }

@@ -17,9 +17,7 @@
                     checked
                     @endif
                     @endforeach
-                    @if($role->name == 'super-admin')
-                    disabled
-                    @endif>
+                    >
                     {{ Form::label($permission, $permission, ['class' => 'custom-control-label']) }}
                 </div>
             </div>

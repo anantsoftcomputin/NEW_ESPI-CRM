@@ -63,3 +63,13 @@
         </select>
     </div>
 </div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="intact_year_id">Intact Year</label>
+        <select name="intact_year_id" id="intact_year_id" class="form-control" required>
+            <option value="01">2021</option>
+            <option value="02">2022</option>
+        </select>
+    </div>
+</div>

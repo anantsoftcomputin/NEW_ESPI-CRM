@@ -25,9 +25,7 @@ class EditUniversity extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required',
             'country_id' => 'required',
-            'web'=>'required',
             'status'=>'required',
         ];
     }

@@ -13,7 +13,7 @@ try {
       ======================================
   */
 
-  
+
 // Total Visits
 
 var spark1 = {
@@ -152,7 +152,7 @@ var spark2 = {
   }
   ]
 }
-  
+
 
   /*
       ===================================
@@ -160,77 +160,77 @@ var spark2 = {
       ===================================
   */
 
-  var d_1options1 = {
-    chart: {
-      height: 350,
-      type: 'line',
-      toolbar: {
-        show: false,
-      }
-    },
-    plotOptions: {
-      bar: {
-          horizontal: false,
-          columnWidth: '55%',
-      },
-    },
-    legend: {
-      offsetX: 0,
-      offsetY: -10,
-    },
-    colors: ['#d6b007', '#5c1ac3'],
-    
-    series: [{
-      name: 'Organic',
-      type: 'column',
-      data: [4400, 5050, 4140, 6710, 2270, 4130, 2010, 3520, 7520, 3200, 2570, 1600]
-    }, {
-      name: 'Direct',
-      type: 'line',
-      data: [230, 420, 350, 270, 430, 220, 170, 310, 220, 220, 120, 160]
-    }],
-    stroke: {
-      show: true,
-      curve: 'smooth',
-      width: [0, 4],
-      lineCap: 'square'
-    },
-    xaxis: {
-      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-    },
-    yaxis: [{
-      title: {
-        text: 'Organic',
-      },
-  
-    }, {
-      opposite: true,
-      title: {
-        text: 'Direct'
-      }
-    }],
+//   var d_1options1 = {
+//     chart: {
+//       height: 350,
+//       type: 'line',
+//       toolbar: {
+//         show: false,
+//       }
+//     },
+//     plotOptions: {
+//       bar: {
+//           horizontal: false,
+//           columnWidth: '55%',
+//       },
+//     },
+//     legend: {
+//       offsetX: 0,
+//       offsetY: -10,
+//     },
+//     colors: ['#e75159', '#1abc9c'],
 
-    responsive: [{
-      breakpoint: 576,
-      options: {
-        yaxis: [{
-          title: {
-            text: undefined,
-          },
-      
-        }, {
-          opposite: true,
-          title: {
-            text: undefined
-          }
-        }],
-      },
-    }]
-  
-  }
-  
-  
-  
+//     series: [{
+//       name: 'Assessment',
+//       type: 'column',
+//       data: [4400, 5050, 4140, 6710, 2270, 4130, 2010]
+//     }, {
+//       name: 'Application',
+//       type: 'line',
+//       data: [230, 420, 350, 270, 430, 220, 170]
+//     }],
+//     stroke: {
+//       show: true,
+//       curve: 'smooth',
+//       width: [0, 4],
+//       lineCap: 'square'
+//     },
+//     xaxis: {
+//       categories: ['1', '2', '3', '4', '5', '6', '7'],
+//     },
+//     yaxis: [{
+//       title: {
+//         text: 'Application',
+//       },
+
+//     }, {
+//       opposite: true,
+//       title: {
+//         text: 'Assessment'
+//       }
+//     }],
+
+//     responsive: [{
+//       breakpoint: 576,
+//       options: {
+//         yaxis: [{
+//           title: {
+//             text: undefined,
+//           },
+
+//         }, {
+//           opposite: true,
+//           title: {
+//             text: undefined
+//           }
+//         }],
+//       },
+//     }]
+
+//   }
+
+
+
 
   /*
       ==============================
@@ -239,66 +239,69 @@ var spark2 = {
   */
 
   // Followers
+//   var array_d_1options3 = "{!! get_Inquiry_charts() !!}";
 
-  var d_1options3 = {
-    chart: {
-      id: 'sparkline1',
-      type: 'area',
-      height: 160,
-      sparkline: {
-        enabled: true
-      },
-    },
-    stroke: {
-        curve: 'smooth',
-        width: 2,
-    },
-    series: [{
-      name: 'Sales',
-      data: [38, 60, 38, 52, 36, 40, 28 ]
-    }],
-    labels: ['1', '2', '3', '4', '5', '6', '7'],
-    yaxis: {
-      min: 0
-    },
-    colors: ['#4361ee'],
-    tooltip: {
-      x: {
-        show: false,
-      }
-    },
-  }
+//   console.log(array_d_1options3);
+
+//   var d_1options3 = {
+//     chart: {
+//       id: 'sparkline1',
+//       type: 'area',
+//       height: 160,
+//       sparkline: {
+//         enabled: true
+//       },
+//     },
+//     stroke: {
+//         curve: 'smooth',
+//         width: 2,
+//     },
+//     series: [{
+//       name: 'Inquiry',
+//       data: array_d_1options3
+//     }],
+//     labels: ['1', '2', '3', '4', '5', '6', '7'],
+//     yaxis: {
+//       min: 0
+//     },
+//     colors: ['#4361ee'],
+//     tooltip: {
+//       x: {
+//         show: false,
+//       }
+//     },
+//   }
 
   // Referral
 
-  var d_1options4 = {
-    chart: {
-      id: 'sparkline1',
-      type: 'area',
-      height: 160,
-      sparkline: {
-        enabled: true
-      },
-    },
-    stroke: {
-        curve: 'smooth',
-        width: 2,
-    },
-    series: [{
-      name: 'Sales',
-      data: [ 60, 28, 52, 38, 40, 36, 38]
-    }],
-    labels: ['1', '2', '3', '4', '5', '6', '7'],
-    yaxis: {
-      min: 0
-    },
-    colors: ['#e7515a'],
-    tooltip: {
-      x: {
-        show: false,
-      }
-    }
-  }
+//   var d_1options4 = {
+//     chart: {
+//       id: 'sparkline1',
+//       type: 'area',
+//       height: 160,
+//       sparkline: {
+//         enabled: true
+//       },
+//     },
+//     stroke: {
+//         curve: 'smooth',
+//         width: 2,
+//     },
+//     series: [{
+//       name: 'Sales',
+//       data: [ 60, 28, 52, 38, 40, 36, 38]
+//     }],
+//     labels: ['1', '2', '3', '4', '5', '6', '7'],
+//     yaxis: {
+//       min: 0
+//     },
+//     colors: ['#e7515a'],
+//     tooltip: {
+//       x: {
+//         show: false,
+//       }
+//     }
+//   }
 
   // Engagement Rate
 
@@ -334,7 +337,7 @@ var spark2 = {
     }
   }
 
-  
+
 
 
   /*
@@ -379,18 +382,18 @@ var spark2 = {
 
   // Followers
 
-  var d_1C_5 = new ApexCharts(document.querySelector("#hybrid_followers"), d_1options3);
-  d_1C_5.render()
+//   var d_1C_5 = new ApexCharts(document.querySelector("#hybrid_followers"), d_1options3);
+//   d_1C_5.render()
 
   // Referral
 
-  var d_1C_6 = new ApexCharts(document.querySelector("#hybrid_followers1"), d_1options4);
-  d_1C_6.render()
+//   var d_1C_6 = new ApexCharts(document.querySelector("#hybrid_followers1"), d_1options4);
+//   d_1C_6.render()
 
   // Engagement Rate
 
-  var d_1C_7 = new ApexCharts(document.querySelector("#hybrid_followers3"), d_1options5);
-  d_1C_7.render()
+//   var d_1C_7 = new ApexCharts(document.querySelector("#hybrid_followers3"), d_1options5);
+//   d_1C_7.render()
 
 
 

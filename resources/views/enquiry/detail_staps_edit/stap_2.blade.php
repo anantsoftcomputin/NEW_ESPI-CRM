@@ -7,7 +7,7 @@
                <option @if($last->last_education == "10th") selected @endif value="10th">10th</option>
                <option @if($last->last_education == "diploma") selected @endif value="diploma">Diploma</option>
                <option @if($last->last_education == "12th") selected @endif value="12th">12th</option>
-               <option @if($last->last_education == "graduate") selected @endif value="graduate">Graduate</option>
+               <option @if($last->last_education == "graduate") selected @endif value="graduate">Bachelor</option>
                <option @if($last->last_education == "master") selected @endif value="master">Master</option>
 
            </select>
@@ -125,44 +125,44 @@
         <div class="col-md-6">
             <div class="forn-group">
                 <label>Degree Name/Stream</label>
-                <input type="text" name="master_degree_name" class="form-control">
+                <input type="text" name="master_degree_name" class="form-control" value="{{ $last->master_degree_name }}">
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="forn-group">
                 <label>Year of passing</label>
-                <input type="text" name="master_degree_passing" class="form-control">
+                <input type="text" name="master_degree_passing" class="form-control" value="{{ $last->master_degree_passing }}">
             </div>
         </div>
         <div class="col-md-6">
             <div class="forn-group">
                 <label>Percentage</label>
-                <input type="text" name="master_degree_pass_percentage" class="form-control">
+                <input type="text" name="master_degree_pass_percentage" class="form-control" value="{{ $last->master_degree_pass_percentage }}">
             </div>
         </div>
         <div class="col-md-6">
             <div class="forn-group">
                 <label>Name of Institute</label>
-                <input type="text" name="master_degree_institute" class="form-control">
+                <input type="text" name="master_degree_institute" class="form-control" value="{{ $last->master_degree_institute }}">
             </div>
         </div>
         <div class="col md-6">
             <div class="forn-group">
                 <label>Medium of Education</label>
-                <input type="text" name="master_degree_education" class="form-control">
+                <input type="text" name="master_degree_education" class="form-control" value="{{ $last->master_degree_education }}">
             </div>
         </div>
         <div class="col md-6">
             <div class="forn-group">
                 <label>Degree University</label>
-                <input type="text" name="master_degree_university" class="form-control">
+                <input type="text" name="master_degree_university" class="form-control" value="{{ $last->master_degree_university }}">
             </div>
         </div>
         <div class="col md-6">
             <div class="forn-group">
                 <label>Backlogs</label>
-                <input type="text" name="master_degree_backlog" class="form-control">
+                <input type="text" name="master_degree_backlog" class="form-control" value="{{ $last->master_degree_backlog }}">
             </div>
         </div>
     </div>
@@ -170,7 +170,7 @@
 
 <div class="education" id="degree_detail" style="display: none;">
     <div class="text-center">
-        <strong style="font-size: 35px;">Graduate Details</strong>
+        <strong style="font-size: 35px;">Bachelor Details</strong>
     </div>
     <div class="row">
         <div class="col-md-6">
@@ -204,34 +204,34 @@
             </div>
             <div class="form-group">
                 <label>Year of passing</label>
-                <input type="text" name="degree_passing" class="form-control">
+                <input type="text" name="degree_passing" class="form-control" value="{{ $last->degree_passing }}">
             </div>
             <div class="form-group">
                 <label>percentage</label>
-                <input type="text" name="degree_pass_percentage" class="form-control">
+                <input type="text" name="degree_pass_percentage" class="form-control" value="{{ $last->degree_pass_percentage }}">
             </div>
             <div class="form-group">
                 <label>Name of Institute</label>
-                <input type="text" name="degree_institute" class="form-control">
+                <input type="text" name="degree_institute" class="form-control" value="{{ $last->degree_institute }}">
             </div>
 
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <label>Degree Name/Stream</label>
-                <input type="text" name="degree_name" class="form-control">
+                <input type="text" name="degree_name" class="form-control" value="{{ $last->degree_name }}">
             </div>
             <div class="form-group">
                 <label>Medium of Education</label>
-                <input type="text" name="degree_education" class="form-control">
+                <input type="text" name="degree_education" class="form-control" value="{{ $last->degree_education }}">
             </div>
             <div class="form-group">
                 <label>Degree University</label>
-                <input type="text" name="degree_university" class="form-control">
+                <input type="text" name="degree_university" class="form-control" value="{{ $last->degree_university }}">
             </div>
             <div class="form-group">
                 <label>Backlogs</label>
-                <input type="text" name="degree_backlog" class="form-control">
+                <input type="text" name="degree_backlog" class="form-control" value="{{ $last->degree_backlog }}">
             </div>
         </div>
     </div>
@@ -255,30 +255,35 @@
             </div>
             <div class="form-group">
                 <label>Percentage</label>
-                <input type="text" name="hsc_pass_percentage" class="form-control">
+                <input type="text" name="hsc_pass_percentage" class="form-control" value="{{ $last->hsc_pass_percentage }}">
             </div>
             <div class="form-group">
                 <label>Medium of Education</label>
-                <input type="text" name="hsc_education" class="form-control">
+                <input type="text" name="hsc_education" class="form-control" value="{{ $last->hsc_education }}">
             </div>
             <div class="form-group">
-                <label>Backlogs</label>
-                <input type="text" name="hsc_backlog" class="form-control">
+                <label>English Marks</label>
+                <input type="text" name="hsc_english_mark" class="form-control" value="{{ $last->hsc_english_mark ?? "" }}">
             </div>
+
         </div>
         <div class="col md-6">
             <div class="form-group">
                 <label>Year of passing</label>
-                <input type="text" name="hsc_passing" class="form-control">
+                <input type="text" name="hsc_passing" class="form-control" value="{{ $last->hsc_passing }}">
             </div>
             <div class="form-group">
                 <label>Name of Institute/School</label>
-                <input type="text" name="hsc_institute" class="form-control">
+                <input type="text" name="hsc_institute" class="form-control" value="{{ $last->hsc_institute }}">
             </div>
 
             <div class="form-group">
                 <label>Board</label>
-                <input type="text" name="hsc_board" class="form-control">
+                <input type="text" name="hsc_board" class="form-control" value="{{ $last->hsc_board }}">
+            </div>
+            <div class="form-group">
+                <label>Backlogs</label>
+                <input type="text" name="hsc_backlog" class="form-control" value="{{ $last->hsc_backlog }}">
             </div>
 
         </div>

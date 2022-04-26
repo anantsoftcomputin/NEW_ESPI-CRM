@@ -48,9 +48,9 @@
             ajax: url,
             columns: [
                 {data: 'name', name: 'name'},
-                {data: 'university.name', name: 'University.name', orderable: false, searchable: false},
+                {data: 'University', name: 'University.name', orderable: false, searchable: false},
                 {data: 'course_level', name: 'course_level'},
-                {data: 'university.country.name', name: 'country',orderable: false,searchable: false},
+                {data: 'country', name: 'country',orderable: false,searchable: false},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
         });

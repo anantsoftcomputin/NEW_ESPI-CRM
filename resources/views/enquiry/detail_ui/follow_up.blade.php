@@ -8,6 +8,7 @@
                     <th>status</th>
                     <th>Added By</th>
                     <th>NOTE</th>
+                    <th>Operation</th>
                 </tr>
             </thead>
             <tbody>
@@ -15,16 +16,18 @@
                 @if ($follow->user->name==\Auth::user()->name OR \Auth::user()->roles->first()->name=="super-admin")
                     <tr>
                         <td>
-                            <span class="badge badge-primary">
-                                {{ $follow->date }}
-                            </span>
-                            </td>
+                            <span class="badge badge-primary"> {{ $follow->date }} </span>
+                        </td>
                         <td>{{ $follow->status }}</td>
                         <td>{{ $follow->user->name }}</td>
+                        <td>{{ $follow->note }}</td>
                         <td>
-                            <a class="#" title="{{ $follow->note }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-                            </a>
+                            @if ($follow->is_resolved ==0)
+                                <a href="{{ route('FollowUp.resolved',['status'=> 1 ,'FollowUp' => $follow->id ]) }}" class="btn btn-dark" rel="noopener noreferrer"> Done </a>
+                                {{-- <a href="#" class="btn btn-info" target="_blank" rel="noopener noreferrer"> Re Scedule </a> --}}
+                            @else
+                                <span class="badge badge-dark"> Completed </span>
+                            @endif
                         </td>
                     </tr>
                 @endif

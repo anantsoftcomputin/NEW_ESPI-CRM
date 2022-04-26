@@ -9,6 +9,7 @@ use App\Models\Enquiry;
 use Mail;
 use Illuminate\Support\Facades\Log;
 use App\Events\PushNotification;
+use App\Jobs\WelcomeEmailJob;
 use Event;
 use App\Mail\AddEnquiry;
 
@@ -37,6 +38,11 @@ class FrontendController extends Controller
         $validated["first_name"]=$request->first_name;
         $validated["middle_name"]=$request->middle_name;
         $validated["last_name"]=$request->last_name;
+        $validated["alternate"]=$request->alternate;
+        if($request->coaching=='yes')
+        {
+            $validated["status"]='coaching';
+        }
 
         $enq=Enquiry::create($validated);
         $admin=get_user(1);
@@ -66,13 +72,15 @@ class FrontendController extends Controller
             Event::dispatch(new PushNotification($admin->id,'New Enquiry Generate',$NotificationBody));
         }
 
+        dispatch(new WelcomeEmailJob($enq));
+
         return view('FrontEnd.thankyou',compact('branch','enq'));
     }
 
     public function generateUniqueCode()
     {
         do {
-            $code = random_int(10000000, 99999999);
+            $code = "ESPI_".random_int(10000000, 99999999);
         } while (Enquiry::where("enquiry_id", "=", $code)->first());
         return $code;
     }

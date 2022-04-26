@@ -40,8 +40,8 @@
         var table = $('.data-table').DataTable({
             processing: true,
             serverSide: true,
-            bFilter: false,
-            lengthChange: false,
+            bFilter: true,
+            lengthChange: true,
             oLanguage: {
                     sEmptyTable: "No Applications Received Yet"
                 },
@@ -54,24 +54,37 @@
                 "data":           null,
                 "defaultContent": ''
                 },
-                {data: 'application_id', name: 'application_id'},
-                {data: 'enquiry.name', name: 'enquiry.name', orderable: false, searchable: false},
-                {data: 'university.name', name: 'university.name', orderable: false, searchable: false},
-                { data: 'course.name', name: 'course.name' , orderable: false, searchable: false},
-                { data: 'university.country.name', name: 'university.country.name' },
-                {data: 'status', name: 'status'},
-                {data: 'date', name: 'date'},
+                {data: 'detail_enquiry', name: 'Enquiry.name'},
+                {data: 'university_detail', name: 'University.name'},
+                { data: 'course_detail', name: 'Course.name'},
+                { data: 'country_detail', name: 'University.country.name' },
+                {data: 'date', name: 'applications.created_at'},
+                {data: 'processor_id', name: 'processor_id'},
+                {data: 'associated_with', name: 'associated_with'},
+                {data: 'last_follow_up', name: 'last_follow_up'},
+                {data: 'agent_detail', name: 'agent_detail', orderable: false, searchable: false},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
             initComplete: function () {
+                $('.bs-tooltip').tooltip();
+
                 this.api().columns().every(function () {
                     var column = this;
-                    var input = document.createElement("input");
-                    $(input).appendTo($(column.footer()).empty())
-                    .on('change', function () {
-                        var val = $.fn.dataTable.util.escapeRegex($(this).val());
-                        column.search(val ? val : '', true, false).draw();
-                    });
+                    var title = "";
+
+                    var input = '<input type="text" class="form-control" placeholder="'+title+'" />';
+                    if(this.index() != "9" && this.index() != "10" && this.index() != "0")
+                    {
+                        $(input).appendTo($(column.footer()).empty())
+                        .on('change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                            column.search(val ? val : '', true, false).draw();
+                        });
+                    }
+                    else
+                    {
+                        //$(column.footer()).empty();
+                    }
                 });
             }
         });
@@ -133,7 +146,7 @@ Application
     <h1>Application</h1>
 
     <div class="modal fade" id="exampleModal01" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <form method="POST" action="#" enctype="multipart/form-data" id="add_follow_ups">
+        <form method="POST" action="#" enctype="multipart/form-data" id="add_status_follow_ups">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -161,7 +174,7 @@ Application
                                         <div class="form-group">
                                             <label for="status" class="mandatory">Status</label>
                                                 <select name="status" id="status" class="@error('status') is-invalid @enderror form-control" required>
-                                                    @foreach (config('espi.follow_up_status') as $key=>$item)
+                                                    @foreach (config('espi.application_follow_up_status') as $key=>$item)
                                                         <option value="{{ $item }}">{{ $item }}</option>
                                                     @endforeach
                                                 </select>
@@ -195,18 +208,35 @@ Application
         <thead>
             <tr>
                 <th>#</th>
-                <th>Application Ref #</th>
-                <th>Student Email</th>
+                <th>Student Name</th>
                 <th>University</th>
                 <th>Course</th>
-                <th>Contry</th>
-                <th>Status</th>
+                <th>Country</th>
                 <th>Date</th>
+                <th>Processor</th>
+                <th>Associate</th>
+                <th>Followup Status</th>
+                <th>Agent Detail</th>
                 <th width="200px">Action</th>
             </tr>
         </thead>
         <tbody>
         </tbody>
+        <tfoot>
+            <tr>
+                <th>#</th>
+                <th>Student Name</th>
+                <th>University</th>
+                <th>Course</th>
+                <th>Country</th>
+                <th>Date</th>
+                <th>Processor</th>
+                <th>Associate</th>
+                <th>Followup Status</th>
+                <th>Agent Detail</th>
+                <th width="200px">Action</th>
+            </tr>
+        </tfoot>
     </table>
 
 </div>
@@ -214,8 +244,9 @@ Application
 <script>
     function add_follow_up(params) {
         $("#exampleModal01").modal('show');
-        url="{{url('admin/FollowUp/store/') }}/"+params;
-        $('#add_follow_ups').attr('action', url);
+        url="{{url('admin/ApplicationFollowUp/store/') }}/"+params;
+        $('#add_status_follow_ups').attr('action', url);
+        return false;
         return false;
             $("#exampleModal").modal('show');
             let data=[];

@@ -7,7 +7,7 @@
                <option value="10th">10th</option>
                <option value="diploma">Diploma</option>
                <option value="12th">12th</option>
-               <option value="graduate">Graduate</option>
+               <option value="graduate">Bachelor</option>
                <option value="master">Master</option>
 
            </select>
@@ -170,7 +170,7 @@
 
 <div class="education" id="degree_detail" style="display: none;">
     <div class="text-center">
-        <strong style="font-size: 35px;">Graduate Details</strong>
+        <strong style="font-size: 35px;">Bachelor Details</strong>
     </div>
     <div class="row">
         <div class="col-md-6">
@@ -262,9 +262,10 @@
                 <input type="text" name="hsc_education" class="form-control">
             </div>
             <div class="form-group">
-                <label>Backlogs</label>
-                <input type="text" name="hsc_backlog" class="form-control">
+                <label>English Marks</label>
+                <input type="text" name="hsc_english_mark" class="form-control">
             </div>
+
         </div>
         <div class="col md-6">
             <div class="form-group">
@@ -281,6 +282,10 @@
                 <input type="text" name="hsc_board" class="form-control">
             </div>
 
+            <div class="form-group">
+                <label>Backlogs</label>
+                <input type="text" name="hsc_backlog" class="form-control">
+            </div>
         </div>
     </div>
 </div>

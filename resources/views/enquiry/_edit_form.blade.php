@@ -2,7 +2,7 @@
 <div class="col-md-12" id="user_exist" style="color:red">
 
 </div>
-<div class="col-md-6">
+<div class="col-md-3">
     {{-- row 1  --}}
     <div class="form-group">
         <label for="email" class="mandatory">Email</label>
@@ -22,7 +22,7 @@
 <div class="col-md-3">
     <div class="form-group">
         <label for="email" class="mandatory">Middle Name</label>
-        <input type="text" name="middle_name" id="middle_name" value="{{$enquiry->middle_name}}" class="@error('middle_name') is-invalid @enderror form-control" required>   
+        <input type="text" name="middle_name" id="middle_name" value="{{$enquiry->middle_name}}" class="@error('middle_name') is-invalid @enderror form-control" required>
     </div>
     @error('middle_name')
     <div class="alert alert-danger">{{ $message }}</div>
@@ -37,18 +37,32 @@
 </div>
 
 
-<div class="col-md-6">
+<div class="col-md-3">
+    <div class="form-group">
+        <label for="phone" class="mandatory">Passport No</label>
+        <input type="text" value="{{$enquiry->passport_no}}" name="passport_no" id="passport_no" class="form-control" required>
+    </div>
+</div>
+
+<div class="col-md-3">
     <div class="form-group">
         <label for="phone" class="mandatory">Phone</label>
         <input type="number" min="1111111111" max="9999999999" maxlength="10" value="{{$enquiry->phone}}" name="phone" id="phone" class="form-control" required>
     </div>
 </div>
 
-<div class="col-md-6">
+<div class="col-md-3">
     <div class="form-group">
-        <label for="education" class="mandatory">Current Education Status</label>
+        <label for="phone" class="">Alternate</label>
+        <input type="number" min="1111111111" max="9999999999" maxlength="10" value="{{$enquiry->alternate}}" name="alternate" id="alternate" class="form-control">
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <label for="education" class="mandatory">Current / Last Education</label>
         <select name="education" id="education" class="form-control" required>
-            <option value="">Current Education Status</option>
+            <option value="">Current / Last Education</option>
             <option @if($enquiry->education == "10th") selected @endif value="10th">10th</option>
             <option @if($enquiry->education == "diploma") selected @endif value="diploma">Diploma</option>
             <option @if($enquiry->education == "12th") selected @endif value="12th">12th</option>
@@ -60,12 +74,18 @@
     </div>
 </div>
 
+<div class="col-md-12">
+    <div class="form-group">
+        <label for="address" class="mandatory">Address</label>
+        <textarea name="address" id="address" cols="0" rows="5" class="form-control" required>{{$enquiry->address}}</textarea>
+    </div>
+</div>
 
 <div class="col-md-6">
     <div class="form-group">
         <label for="country" class="mandatory">Country</label>
         <select name="country_id" id="country" class="form-control" required>
-            
+
             @forelse ( get_country() as $country)
                 <option @if($enquiry->country_id == $country->id) selected @endif value="{{ $country->id }}">{{ ucfirst($country->name) }}</option>
             @empty
@@ -111,12 +131,6 @@
     </div>
 </div>
 
-<div class="col-md-12">
-    <div class="form-group">
-        <label for="address" class="mandatory">Address</label>
-        <textarea name="address" id="address" cols="0" rows="5" class="form-control" required>{{$enquiry->address}}</textarea>
-    </div>
-</div>
 
 <div class="col-md-6">
     <div class="form-group">
@@ -140,24 +154,25 @@
     <label for="name">Preferred Country</label>
     {{-- <input type="text"   value="" class="form-control tagging" required> --}}
     <select class="form-control tagging" name="preferred_country" id="preferred_country">
-    @foreach (get_country(0) as $item)
-        <option @if($enquiry->preferred_country == $item->id) selected @endif value="{{ $item->id }}">{{ $item->name }}</option>
+    @foreach (config('espi.enquires_detail.country_interested') as $item)
+        <option value="{{ $item }}">{{ $item }}</option>
     @endforeach
     </select>
     </div>
 </div>
-
 <div class="col-md-6">
     <div class="form-group">
-        <label for="user" class="mandatory">Select Counsellor</label>
-        <select name="counsellor_id" id="user" class="form-control" required>
-            <option value="" selected>Select Counsellor</option>
-            @foreach ($user as $item)
-            <option @if($enquiry->counsellor_id == $item->id) selected @endif value="{{ $item->id }}">{{ $item->name }}</option>
-            @endforeach
-        </select>
+    <label for="name">Are You interested for Coaching at ESPI ?</label>
+    {{-- <input type="text"   value="" class="form-control tagging" required> --}}
+    <select name="coaching" class="form-control" required>
+        <option selected disabled>Please Select</option>
+        <option value="yes" @if($enquiry->status=='Coaching') selected @endif>Yes</option>
+        <option value="no">No</option>
+    </select>
+    </select>
     </div>
 </div>
+
 
 <div class="col-md-6">
     <div class="form-group">

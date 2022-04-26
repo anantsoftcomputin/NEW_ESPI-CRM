@@ -25,10 +25,10 @@ class UniversityController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('permission:view-university');
-        //$this->middleware('permission:create-university', ['only' => ['create','store']]);
-        //$this->middleware('permission:update-university', ['only' => ['edit','update']]);
-        //$this->middleware('permission:destroy-university', ['only' => ['destroy']]);
+        // $this->middleware('permission:view-university');
+        // $this->middleware('permission:create-university', ['only' => ['create','store']]);
+        // $this->middleware('permission:update-university', ['only' => ['edit','update']]);
+        // $this->middleware('permission:destroy-university', ['only' => ['destroy']]);
     }
     public function index(Request $request)
     {
@@ -43,7 +43,7 @@ class UniversityController extends Controller
                            $btn .= ' <a href="'.route('course.detail',$row->id).'" title="View Course" class="btn btn-primary btn-sm" data-row="'.route('course.detail',$row->id).'">Course</a>';
                         }
                         if(Auth::user()->hasAnyPermission(['update-university'])){
-                           $btn .= '<a href="'.route('University.edit',$row->id).'" title="Edit University" class="edit btn btn-primary btn-sm mt-2"  data-row="'.route('University.edit',$row->id).'">Edit</a>';
+                           $btn .= '<a href="'.route('University.edit',$row->id).'" title="Edit University" class="edit btn btn-dark btn-sm mt-2"  data-row="'.route('University.edit',$row->id).'">Edit</a>';
                         }
                         if(Auth::user()->hasAnyPermission(['destroy-university'])){
                             $url=route('University.destroy',$row->id);
@@ -100,14 +100,30 @@ class UniversityController extends Controller
         $validated['duolingo_req']=$AddUniversity->duolingo_req;
         $validated['pte_req']=$AddUniversity->pte_req;
 
+        // if($AddUniversity->news_letter)
+        // {
+        //     $avatarPath = $AddUniversity->file('news_letter');
+        //     $avatarName = time() . '.' . $avatarPath->getClientOriginalExtension();
+        //     $file = $AddUniversity->file('news_letter');
+        //     $filename = 'news-letter-' . time() . '.' . $file->getClientOriginalExtension();
+        //     $path = $file->storeAs('news_letter', $filename);
+        //     $validated['news_letter'] =$filename;
+        // }
+
         if($AddUniversity->news_letter)
         {
-            $avatarPath = $AddUniversity->file('news_letter');
-            $avatarName = time() . '.' . $avatarPath->getClientOriginalExtension();
-            $file = $AddUniversity->file('news_letter');
-            $filename = 'news-letter-' . time() . '.' . $file->getClientOriginalExtension();
-            $path = $file->storeAs('news_letter', $filename);
-            $validated['news_letter'] =$filename;
+            $path = $AddUniversity->file('news_letter')->store(
+                "Universities/documents/news_letter", 'public'
+            );
+            $validated['news_letter'] ="storage/".$path;
+        }
+
+        if($AddUniversity->application_form)
+        {
+            $path = $AddUniversity->file('application_form')->store(
+                "Universities/documents/application_form", 'public'
+            );
+            $validated['application_form'] ="storage/".$path;
         }
 
 
@@ -175,6 +191,10 @@ class UniversityController extends Controller
     public function update(EditUniversity $request,$university)
     {
         $validated = $request->validated();
+        if($request->has('description'))
+        {
+            $validated['email']=$request->email;
+        }
         $validated['description']=$request->description;
         $validated['intake_year']=$request->intake_year;
         $validated['intake_month']=$request->intake_month;
@@ -193,14 +213,18 @@ class UniversityController extends Controller
 
         if($request->news_letter)
         {
-            $avatarPath = $request->file('news_letter');
-            $avatarName = time() . '.' . $avatarPath->getClientOriginalExtension();
-            $file = $request->file('news_letter');
-            // generate a new filename. getClientOriginalExtension() for the file extension
-            $filename = 'news-letter-' . time() . '.' . $file->getClientOriginalExtension();
-            // save to storage/app/photos as the new $filename
-            $path = $file->storeAs('news_letter', $filename);
-            $validated['news_letter'] =$filename;
+            $path = $request->file('news_letter')->store(
+                "Universities/documents/news_letter", 'public'
+            );
+            $validated['news_letter'] ="storage/".$path;
+        }
+
+        if($request->application_form)
+        {
+            $path = $request->file('application_form')->store(
+                "Universities/documents/application_form", 'public'
+            );
+            $validated['application_form'] ="storage/".$path;
         }
 
 
@@ -250,7 +274,7 @@ class UniversityController extends Controller
             UniversityCampus::insert($data);
         }
 
-        return redirect(route('University.index'))->with("success","University");
+        return redirect(route('University.index'))->with("University")->withInfo(ucfirst($request->name).' University Updated Successfully.');
     }
 
     /**

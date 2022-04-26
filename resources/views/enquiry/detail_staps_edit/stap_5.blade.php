@@ -59,7 +59,3 @@
 <div class="col-md-12 refusal_hide">
     <a class="btn btn-info" style="float: right;" id="refusal_add">Add Refusal</a>
 </div>
-<br>
-@section('child_js')
-
-@endsection

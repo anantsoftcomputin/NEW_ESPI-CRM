@@ -36,7 +36,9 @@ class Enquiry extends Model
         'gender',
         'middle_name',
         'passport_no',
-        'passport_image',
+        'education',
+        'alternate',
+        'status'
     ];
 
     protected static function booted()
@@ -61,7 +63,7 @@ class Enquiry extends Model
 
     public function Counsellor()
     {
-        return $this->belongsTo(User::class,'counsellor_id');
+        return $this->hasMany(AssignCounsellor::class);
     }
 
     public function Details()
@@ -102,14 +104,31 @@ class Enquiry extends Model
 
     public function Activity()
     {
-        return $this->hasMany(Activity::class);
+        return $this->hasMany(Activity::class)->orderBy('id','desc');
     }
 
     public function FollowUp()
     {
-        return $this->hasMany(FollowUp::class);
+        return $this->hasMany(FollowUp::class)->orderBy('id','desc');
     }
 
+    public function getStatusAttribute($value)
+    {
+        return ucfirst($value);
+    }
 
+    public function Transaction()
+    {
+        return $this->hasMany(Transaction::class)->orderBy('id','desc');
+    }
+    public function TransactionCredit()
+    {
+        return $this->hasMany(TransactionCredit::class)->orderBy('id','desc');
+    }
+
+    public function ExamDetail()
+    {
+        return $this->hasMany(EnquiryOnlineExam::class)->orderBy('id','desc');
+    }
 
 }

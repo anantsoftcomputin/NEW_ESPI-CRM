@@ -43,7 +43,6 @@ class AddEnquireRequest extends FormRequest
             'phone' =>'required|min:10|max:10|unique:enquiries,phone',
             'education' => 'required',
             //'passport_number' => 'required|regex:/[a-zA-Z]{2}[0-9]{7}/|unique:enquiries,passport_no',
-            'passport_number' => 'required|unique:enquiries,passport_no',
             'dob' => 'required|date|before:-15 years',
             'country_id' => 'required|'.Rule::in($this->country),
             'city_id' => 'required|'.Rule::in($this->city),
@@ -51,7 +50,7 @@ class AddEnquireRequest extends FormRequest
             'postal_code' => 'required|max:6|min:6',
             'address' => 'required',
             'gender' => 'required|'.Rule::in(['male', 'female']),
-            'counsellor_id' => 'required',
+
 
         ];
     }

@@ -20,7 +20,7 @@ Edit university
                             </ul>
                         </div>
                         @endif
-                    <form method="POST" action="{{ route('University.update',$university->id) }}">
+                    <form method="POST" action="{{ route('University.update',$university->id) }}" enctype="multipart/form-data">
                         @csrf
                         @method('patch')
                         <div class="row">
@@ -74,7 +74,7 @@ Edit university
                 <input type="text" id="txtnum" onkeypress="return isNumber(event)" name="campus_fees[]" value="" class="form-control">
             </div>
         </div>
-       
+
         <div class="col-md-1">
             <div class="form-group">
                 <label for="name">Remove</label><br>
@@ -107,14 +107,14 @@ Edit university
 
     function delete_row(type)
     {
-        
+
         $("#"+type).remove();
     }
 
 function isNumber(evt)
   {
     var charCode = (evt.which) ? evt.which : evt.keyCode;
-          if (charCode != 46 && charCode > 31 
+          if (charCode != 46 && charCode > 31
             && (charCode < 48 || charCode > 57))
              return false;
 
@@ -122,12 +122,12 @@ function isNumber(evt)
   }
 
   jQuery(document).delegate('a.delete-record', 'click', function(e) {
-      
-     e.preventDefault();    
+
+     e.preventDefault();
      var didConfirm = confirm("Are you sure You want to delete");
      if (didConfirm == true) {
       var id = jQuery(this).attr('data-id');
-     
+
       var targetDiv = jQuery(this).attr('targetDiv');
       var course_requirementid=jQuery('#cr_' + id).val();
       let URL="{{ url('api/admin/university_campus/delete/') }}/"+course_requirementid;
@@ -136,14 +136,14 @@ function isNumber(evt)
             {
                 dataType: 'json', // type of response data
 				success: function (data,status,xhr) {
-                    
+
                 }
             }
          );
       }
       $("#campus_row_"+id).remove();
       jQuery('#campus_row_' + id).remove();
-      
+
     //regnerate index number on table
     return true;
   } else {

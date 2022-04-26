@@ -21,36 +21,6 @@ Add Assessment
                             </ul>
                         </div>
                         @endif
-                    {{-- <form method="POST" action="{{ route('assessments.store') }}">
-                        @csrf
-                        <div class="row">
-                            @include('assessment.add_form')
-                            <div class="col-md-12 text-center">
-
-                                <input type="submit" class="btn btn-primary" value="{{ __('enquire.submit_btn') }}">
-                                <a href="{{route('assessments.index')}}" class="btn btn-danger" >{{ __('enquire.cancel_btn_btn') }}</a>
-                            </div>
-                        </div>
-
-                    </form> --}}
-                    {{-- <th role="columnheader">ASSESSMENT</th>
-                    <th role="columnheader">Country</th>
-                    <th role="columnheader">Intake Year</th>
-                    <th role="columnheader">Intake Month</th>
-                    <th role="columnheader">University</th>
-                    <th role="columnheader">Level</th>
-                    <th role="columnheader">Course</th>
-                    <th role="columnheader">Specialization</th>
-                    <th role="columnheader">Program Link</th>
-                    <th role="columnheader">Duration</th>
-                    <th role="columnheader">Campus</th>
-                    <th role="columnheader">Entry Req</th>
-                    <th role="columnheader">App Fee</th>
-                    <th role="columnheader">App Deadline</th>
-                    <th role="columnheader">Tuition Fee</th>
-                    <th role="columnheader">Scholarship</th>
-                    <th role="columnheader">Remark</th>
-                    <th role="columnheader">Action</th> --}}
                     <form method="POST" action="{{ route('Assessment.EmailNotifyAssessment',$enquiry) }}">
                         @csrf
                     <div class="table-responsive">
@@ -96,46 +66,20 @@ Add Assessment
                             @empty
 
                             @endforelse
-{{--
-                                <tr>
-                                    <td class="text-center">2</td>
-                                    <td>UK</td>
-                                    <td>New York Institute of Technology</td>
-                                    <td>B.S. in Business Administration</td>
-                                    <td>June - 2022 </td>
-                                    <td class="text-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle t-icon t-hover-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x t-icon t-hover-icon"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">3</td>
-                                    <td>UK</td>
-                                    <td>Heriot Watt University</td>
-                                    <td>MSc International Business Management</td>
-                                    <td>March - 2022 </td>
-                                    <td class="text-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle t-icon t-hover-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x t-icon t-hover-icon"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                                    </td>
-                                </tr> --}}
                             </tbody>
                         </table>
-                        {{-- <a href="" class="btn btn-info align-self-center">Add More </a> --}}
-                        <div class="col-md-12 text-center">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                Add More
-                            </button>
-                            {{-- @if (count($enquiry->assessment))
-
-                            @endif
-                            @empty --}}
-                            @if(count($assessment)>0)
-                            <button type="submit" class="ml-2 btn btn-dark"> Notify Email </button>
-                                {{-- <a class="ml-2 btn btn-dark " href="{{ route('Assessment.EmailNotifyAssessment',$enquiry) }}">
-                                    Notify Email
-                                </a> --}}
-                            @endif
+                        <hr>
+                        <div class="col-md-12 ">
+                            <h1 for="skill-input">To CC</h1>
+                            <textarea name="cc_mail" id="skill-input"class="form-control mb-2" placeholder="exampale@gmail.com,exampale1@gmail.com,exampale3@yahoo.com"></textarea>
+                            <div class="cen text-center">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                    Add More
+                                </button>
+                                @if(count($assessment)>0)
+                                    <button type="submit" class="ml-2 btn btn-dark"> Notify Email </button>
+                                @endif
+                            </div>
                         </div>
                     </form>
 
@@ -150,9 +94,28 @@ Add Assessment
         </div>
     </div>
 </div>
+
+@endsection
+
+@section('js')
+<script src="{{ asset('plugins/tagInput/tags-input.js') }}"></script>
 <script>
-    function ShowDetail(ID) {
-        $(ID).show();
+    var instance = new TagsInput({
+        selector: 'skill-input'
+    });
+    instance.addData(['mr.jasmin.shukal@gmail.com'])
+function ShowDetail(ID) {
+    $(ID).show();
+}
+</script>
+@endsection
+
+@section('css')
+<link href="{{ asset('plugins/tagInput/tags-input.css') }}" rel="stylesheet" type="text/css" />
+<style>
+    .tags-input-wrapper input
+    {
+        width: 100%!important;
     }
-    </script>
+</style>
 @endsection

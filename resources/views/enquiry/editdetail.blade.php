@@ -4,8 +4,12 @@
 Enquiry Detail
 @endsection
 
-
+@section('css')
 <meta name="csrf-token" content="{{ csrf_token() }}" />
+@endsection
+
+
+
 @section('content')
 <div class="col-lg-6">
     <div class="alert alert-success" role="alert">
@@ -46,7 +50,7 @@ Enquiry Detail
                     </section>
                     <h3>Online<br>Exam Details</h3>
                     <section>
-                        @include('enquiry.detail_staps_edit.stap_4')
+                        @include('enquiry.detail_staps_edit.stap_4_new_ui')
                     </section>
                     <h3>Applying<br>Details</h3>
                     <section>
@@ -65,28 +69,22 @@ Enquiry Detail
 </div>
 
 @endsection
-
 @yield('child_model')
 
 
 
+
 @section('js')
+    @yield('child_js')
 
-<script>
-    //alert("sdfsdf");
-</script>
-
-@yield('child_js')
-
-<link rel="stylesheet" type="text/css" href="{{ asset('plugins/jquery-step/jquery.steps.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('plugins/file-upload/file-upload-with-preview.min.css"') }}">
-<script src="{{ asset('plugins/jquery-step/jquery.steps.min.js') }}"></script>
-<script src="{{ asset('plugins/jquery-step/custom-jquery.steps.js') }}"></script>
-<link rel="stylesheet" type="text/css" href="{{ asset('plugins/select2/select2.min.css') }}">
-<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="{{ asset('plugins/ocr/js/mrz-worker.bundle-min-wrapped.js')}}"></script>
-<script src="{{ asset('plugins/ocr/js/demo.bundle-min.js')}}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jquery-step/jquery.steps.css') }}">
+    <script src="{{ asset('plugins/jquery-step/jquery.steps.min.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-step/custom-jquery.steps.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/select2/select2.min.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ asset('plugins/ocr/js/mrz-worker.bundle-min-wrapped.js')}}"></script>
+    <script src="{{ asset('plugins/ocr/js/demo.bundle-min.js')}}"></script>
 
 <style>
     hr {
@@ -222,7 +220,7 @@ div.progress.visible {
         </div>
         <div class="col-md-2">
             <div class="form-group">
-                <label for="name">Designation</label>
+                <label for="name">Work Profile</label>
                 <input type="text" name="work_profile[]" id="name" value="" class="form-control" required="">
             </div>
         </div>
@@ -310,16 +308,8 @@ div.progress.visible {
         <hr>
         <hr>
     </div>
-        <div class="col-md-12">
-            <div class="form-group">
-                <label for="name">Exam Status</label>
-                <select class="form-control" id="exam_status_@{{ id }}" name="exam_status" onchange="toggle_exam_status(this,@{{ id }})">
-                    <option value="">Select Exam Status</option>
-                    <option value="Completed">Completed</option>
-                    <option value="Planning">Planning</option>
-                </select>
-            </div>
-        </div>
+
+
         <div class="col-md-6">
             <div class="form-group">
                 <label for="name">Type of Exam</label>
@@ -338,7 +328,16 @@ div.progress.visible {
                 </select>
             </div>
         </div>
-        <div class="col-md-6"></div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="name">Exam Status</label>
+                <select class="form-control" id="exam_status_@{{ id }}" name="exam_status" onchange="toggle_exam_status(this,@{{ id }})">
+                    <option value="">Select Exam Status</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Planning">Planning</option>
+                </select>
+            </div>
+        </div>
         <div class="col-md-12" style="display:none" id="communication_skill_msg_@{{ id }}">
             <div id="communication_skill_msg">
                 Communication Skills
@@ -369,6 +368,13 @@ div.progress.visible {
             <div class="form-group">
                 <label for="name">Writing</label>
                 <input type="text" name="exam_writing" id="exam_writing" class="form-control">
+            </div>
+        </div>
+
+        <div class="col-md-6 hide_col " id="overall_band_div@{{ id }}">
+            <div class="form-group">
+                <label for="name">Overall Bands</label>
+                <input type="text" name="overall_band" id="overall_band" class="form-control">
             </div>
         </div>
 
@@ -512,92 +518,41 @@ div.progress.visible {
 <script>
     (function( $ ){
 
-  $.fn.filemanager = function(type, options) {
-    type = type || 'file';
+    $.fn.filemanager = function(type, options) {
+        type = type || 'file';
 
-    this.on('click', function(e) {
-      var route_prefix = (options && options.prefix) ? options.prefix : '/filemanager';
-      var target_input = $('#' + $(this).data('input'));
-      var target_preview = $('#' + $(this).data('preview'));
-      window.open(route_prefix + '?type=' + type, 'FileManager', 'width=900,height=600');
-      window.SetUrl = function (items) {
-        var file_path = items.map(function (item) {
-          return item.url;
-        }).join(',');
-
-        // set the value of the desired input to image url
-        target_input.val('').val(file_path).trigger('change');
-
-        // clear previous preview
-        target_preview.html('');
-
-        // set or change the preview image src
-        items.forEach(function (item) {
-          target_preview.append(
-            $('<img>').css('height', '5rem').attr('src', item.thumb_url)
-          );
-        });
-
-        // trigger change event
-        target_preview.trigger('change');
-      };
-      return false;
-    });
-  }
-
-})(jQuery);
-
-  </script>
-  <script>
-    $('#lfm').filemanager('image', {prefix: route_prefix});
-    $('#lfm1').filemanager('image', {prefix: route_prefix});
-    $('#diploma_file').filemanager('image', {prefix: route_prefix});
-    $('#master_file').filemanager('image', {prefix: route_prefix});
-    $('#bachelor_file').filemanager('image', {prefix: route_prefix});
-    $('#phd_file').filemanager('image', {prefix: route_prefix});
-    $('#transcript_file').filemanager('image', {prefix: route_prefix});
-    $('#experience_file').filemanager('image', {prefix: route_prefix});
-    $('#resume_file').filemanager('image', {prefix: route_prefix});
-    $('#lor_file').filemanager('image', {prefix: route_prefix});
-
-</script>
-<script>
-    var lfm = function(id, type, options) {
-      let button = document.getElementById(id);
-
-      button.addEventListener('click', function () {
+        this.on('click', function(e) {
         var route_prefix = (options && options.prefix) ? options.prefix : '/filemanager';
-        var target_input = document.getElementById(button.getAttribute('data-input'));
-        var target_preview = document.getElementById(button.getAttribute('data-preview'));
-
-        window.open(route_prefix + '?type=' + options.type || 'file', 'FileManager', 'width=900,height=600');
+        var target_input = $('#' + $(this).data('input'));
+        var target_preview = $('#' + $(this).data('preview'));
+        window.open(route_prefix + '?type=' + type, 'FileManager', 'width=900,height=600');
         window.SetUrl = function (items) {
-          var file_path = items.map(function (item) {
+            var file_path = items.map(function (item) {
             return item.url;
-          }).join(',');
+            }).join(',');
 
-          // set the value of the desired input to image url
-          target_input.value = "Storage/";
-          target_input.dispatchEvent(new Event('change'));
+            // set the value of the desired input to image url
+            target_input.val('').val(file_path).trigger('change');
 
-          // clear previous preview
-          target_preview.innerHtml = '';
+            // clear previous preview
+            target_preview.html('');
 
-          // set or change the preview image src
-          items.forEach(function (item) {
-            let img = document.createElement('img')
-            img.setAttribute('style', 'height: 5rem')
-            img.setAttribute('src', item.thumb_url)
-            target_preview.appendChild(img);
-          });
+            // set or change the preview image src
+            items.forEach(function (item) {
+            target_preview.append(
+                $('<img>').css('height', '5rem').attr('src', item.thumb_url)
+            );
+            });
 
-          // trigger change event
-          target_preview.dispatchEvent(new Event('change'));
+            // trigger change event
+            target_preview.trigger('change');
         };
-      });
-    };
+        return false;
+        });
+    }
 
-    lfm('lfm2', 'file', {prefix: route_prefix});
+    })(jQuery);
+
   </script>
 <script>
 

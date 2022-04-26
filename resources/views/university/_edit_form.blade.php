@@ -43,7 +43,7 @@
 <div class="col-md-6">
     <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" value="{{$university->email ?? ''}}" name="email" id="email" class="form-control" required>
+        <input type="email" value="{{$university->email ?? ''}}" name="email" id="email" class="form-control">
     </div>
     <div class="form-group">
         <label for="status">Status</label>
@@ -195,13 +195,26 @@ University General Requirement
 
 <div class="col-md-6">
     <div class="form-group">
-        <label for="country">News Letter (PDF)</label>
-        <input type="file" name="news_letter" id="news_letter" class="form-control">
+        <label for="country">News Letter (PDF) @if($university->news_letter) <a href="{{ asset($university->news_letter) }}" class="btn btn-info" target="_blan"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></a>@endif</label>
+        <input type="file" name="news_letter" id="news_letter" class="form-control" accept=".pdf">
     </div>
     @if($university->news_letter)
 
     @endif
 </div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="application_form">Application Form (PDF) @if($university->application_form)  <a href="{{ asset($university->application_form) }}" class="btn btn-info" target="_blan"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></a> @endif</label>
+        <input type="file" name="application_form" id="application_form" class="form-control" accept=".pdf">
+    </div>
+    @if($university->application_form)
+
+    @endif
+</div>
+
+
+
 
 <div class="col-md-12">
     <hr>

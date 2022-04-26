@@ -6,6 +6,7 @@ use App\Models\Enquiry;
 use App\Models\FollowUp;
 use Illuminate\Http\Request;
 use DataTables;
+use Illuminate\Support\Facades\Redirect;
 
 class FollowUpController extends Controller
 {
@@ -78,7 +79,14 @@ class FollowUpController extends Controller
         $followUp->company_id=\Auth::user()->company_id;
         $followUp->assist_by=\Auth::user()->id;
         $followUp->save();
-        return redirect()->back()->withSuccess('IT WORKS!');
+
+        if($followUp->status=="Fail")
+        {
+            $Enquire->status="Failed";
+            $Enquire->save();
+
+        }
+        return redirect()->back()->withSuccess('Follow Up.');
     }
 
     /**
@@ -124,5 +132,13 @@ class FollowUpController extends Controller
     public function destroy(FollowUp $followUp)
     {
         //
+    }
+
+    public function resolved($id,$status)
+    {
+        $FollowUp=FollowUp::find($id);
+        $FollowUp->is_resolved=$status;
+        $FollowUp->save();
+        return redirect()->back()->withSuccess("Status");
     }
 }

@@ -23,6 +23,7 @@ class assessment extends Model
         'type',
         'location',
         'status',
+        'program_link',
         'created_at',
         'updated_at'
     ];

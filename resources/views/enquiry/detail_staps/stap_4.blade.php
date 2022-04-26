@@ -1,218 +1,285 @@
-<div class="row exam_container">
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th class="text-center">#</th>
+                <th>Exam Name</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Marks</th>
+                <th class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($enquiry->ExamDetail as $item)
+            <tr>
+                <td class="text-center">{{ $loop->index+1 }}</td>
+                <td>{{ $item->type_exam }}</td>
+                <td>
+                    {{ $item->status }}
+                </td>
+                <td><p class="text-info">{{ $item->exam_date }}</p></td>
+                <td>
 
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="name">Type of Exam</label>
-            <select name="exam_type" id="exam_type" class="form-control">
-                    <option value="">Type of exam</option>
-                    <option value="IELTS">IELTS</option>
-                    <option value="TOEFL">TOEFL</option>
-                    <option value="SAT">SAT</option>
-                    <option value="GRE">GRE</option>
-                    <option value="GMAT">GMAT</option>
-                    <option value="PTE">PTE</option>
-                    <option value="UKVI">UKVI</option>
-                    <option value="IELTS GENERAL">IELTS GENERAL</option>
-                    <option value="DUOLINGO">DUOLINGO</option>
-                    <option value="SPOKEN ENGLISH">SPOKEN ENGLISH</option>
-            </select>
-        </div>
-    </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="name">Exam Status</label>
-                <select class="form-control" id="exam_status" name="exam_status" onchange="toggle_exam_status(this)">
-                    <option value="">Select Exam Status</option>
-                    <option value="Completed">Completed</option>
-                    <option value="Planning">Planning</option>
+                    @if ($item->status!="planning")
+                    @php
+                        $exam=json_decode($item->exam_pattern_value);
+                        $i=0;
+                    @endphp
+                        @foreach(json_decode($item->exam_pattern) as $item_pet)
+                                                <a href="#" class="badge badge-success">{{ str_replace("_"," ",ucfirst($item_pet)) }} : {{ $exam[$i] ?? "-" }}</a>
+                                                @php
+                                                  $i++;
+                                                @endphp
+                        @endforeach
+
+                        @else
+                            <a href="#" class="badge badge-info">Not attempted</a>
+
+                        @endif
+                </td>
+                <td class="text-center">
+                         {{-- <a href="javascript:void(0);"  data-toggle="tooltip" data-placement="top" title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a> --}}
+                    <a href="{{ route('OnlineExam.remove',['id'=> $item->id]) }}" data-toggle="tooltip bs-tooltip" data-placement="top" title="Delete"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></a>
+                </td>
+            </tr>
+            @empty
+                <tr>
+                    <td class="text-center">#</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
+</div>
+
+{{-- <button id="exampleModal" type="button" class="btn btn-primary mb-2 mr-2">Play Youtube</button> --}}
+
+
+
+<div class="text-center">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#OnlineExam">
+        Added Exam
+    </button>
+
+</div>
+
+<div class="modal fade" id="OnlineExam" tabindex="-1" role="dialog" aria-labelledby="OnlineExamLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="OnlineExamLabel">Add Exam</h5>
+            </div>
+            <div class="modal-body">
+                <div class="form-group mb-4">
+                    <label class="control-label">Type of Exam:</label>
+                    {{-- <input type="text" name="type_exam" class="form-control" required> --}}
+                    <select name="exam_type" id="exam_type_pop_model_jess" class="form-control">
+                        <option value="IELTS">IELTS</option>
+                        <option value="TOEFL">TOEFL</option>
+                        <option value="SAT">SAT</option>
+                        <option value="GRE">GRE</option>
+                        <option value="GMAT">GMAT</option>
+                        <option value="PTE">PTE</option>
+                        <option value="UKVI">UKVI</option>
+                        <option value="IELTS_GENERAL">IELTS GENERAL</option>
+                        <option value="DUOLINGO">DUOLINGO</option>
+                        <option value="SPOKEN_ENGLISH">SPOKEN ENGLISH</option>
                 </select>
-            </div>
-        </div>
-
-
-        <div class="col-md-12" style="display:none" id="communication_skill_msg">
-            <div id="communication_skill_msg">
-                Communication Skills
-                <hr>
-            </div>
-        </div>
-        <div class="col-md-6 hide_col " id="exam_listening_div">
-            <div class="form-group">
-                <label for="name">Listening</label>
-                <input type="text" name="exam_listening" id="exam_listening" class="form-control">
-            </div>
-        </div>
-        <div class="col-md-6 hide_col " id="exam_speaking_div">
-            <div class="form-group">
-                <label for="name">Speaking</label>
-                <input type="text" name="exam_speaking" id="exam_speaking" class="form-control">
-            </div>
-        </div>
-
-        <div class="col-md-6 hide_col " id="exam_reading_div">
-            <div class="form-group">
-                <label for="name">Reading</label>
-                <input type="text" name="exam_reading" id="exam_reading" class="form-control">
-            </div>
-        </div>
-
-        <div class="col-md-6 hide_col " id="exam_writing_div">
-            <div class="form-group">
-                <label for="name">Writing</label>
-                <input type="text" name="exam_writing" id="exam_writing" class="form-control">
-            </div>
-        </div>
-
-        <div class="col-md-6 hide_col" id="overall_band_div">
-            <div class="form-group">
-                <label for="name">Overall Band</label>
-                <input type="text" name="overall_band" id="overall_band" class="form-control">
-            </div>
-        </div>
-
-        <div class="col-md-6 hide_col" id="exam_date">
-            <div class="form-group">
-                <label for="exam">Exam Date</label>
-                <input type="date" name="exam_date" id="exam" class="form-control" required="">
-            </div>
-        </div>
-
-        <div class="col-md-6 hide_col " id="exam_math_div">
-            <div class="form-group">
-                <label for="name">Math</label>
-                <input type="text" name="exam_math" id="exam_math" class="form-control">
-            </div>
-        </div>
-
-        <div class="col-md-6 hide_col " id="exam_evidence_based_reading_writing_div">
-            <div class="form-group">
-                <label for="name">Evidence-Based Reading and Writing</label>
-                <input type="text" name="exam_evidence_based_reading_writing" id="exam_evidence_based_reading_writing" class="form-control">
-            </div>
-        </div>
-
-        <div class="col-md-6 hide_col " id="exam_essay_div">
-            <div class="form-group">
-                <label for="name">Essay (optional)</label>
-                <input type="text" name="exam_essay" id="exam_essay" class="form-control">
-            </div>
-        </div>
-
-        <div class="col-md-6 hide_col " id="exam_verbal_reasoning_div">
-            <div class="form-group">
-                <label for="name">Verbal Reasoning</label>
-                <input type="text" name="exam_verbal_reasoning" id="exam_verbal_reasoning" class="form-control">
-            </div>
-        </div>
-
-        <div class="col-md-6 hide_col " id="exam_quantitative_reasoning_div">
-            <div class="form-group">
-                <label for="name">Quantitative Reasoning</label>
-                <input type="text" name="exam_quantitative_reasoning" id="exam_quantitative_reasoning" class="form-control">
-            </div>
-        </div>
-
-        <div class="col-md-6 hide_col " id="exam_analytical_writing_div">
-            <div class="form-group">
-                <label for="name">Analytical Writing</label>
-                <input type="text" name="exam_analytical_writing" id="exam_analytical_writing" class="form-control">
-            </div>
-        </div>
-
-        <div class="col-md-6 hide_col " id="exam_integrated_reasoning_div">
-            <div class="form-group">
-                <label for="name">Integrated Reasoning</label>
-                <input type="text" name="exam_integrated_reasoning" id="exam_integrated_reasoning" class="form-control">
-            </div>
-        </div>
-
-        <div class="col-md-12" style="display:none" id="enable_skill_msg">
-            Enabling Skills
-            <hr>
-        </div>
-        <div class="col-md-6 hide_col" id="exam_grammar_div">
-
-            <div class="form-group">
-                <label for="name">Grammar</label>
-                <input type="text" name="exam_grammar" id="exam_grammar" class="form-control">
-            </div>
-        </div>
-
-        <div class="col-md-6 hide_col" id="exam_fluency_div">
-            <div class="form-group">
-                <label for="name">Fluency</label>
-                <input type="text" name="exam_fluency" id="exam_fluency" class="form-control">
-            </div>
-        </div>
-
-        <div class="col-md-6 hide_col" id="exam_pronunciation_div">
-            <div class="form-group">
-                <label for="name">Pronunciation</label>
-                <input type="text" name="exam_pronunciation" id="exam_pronunciation" class="form-control">
-            </div>
-        </div>
-
-        <div class="col-md-6 hide_col" id="exam_spelling_div">
-            <div class="form-group">
-                <label for="name">Spelling</label>
-                <input type="text" name="exam_spelling" id="exam_spelling" class="form-control">
-            </div>
-        </div>
-
-        <div class="col-md-6 hide_col" id='exam_vocabulary_div'>
-            <div class="form-group">
-                <label for="name">Vocabulary</label>
-                <input type="text" name="exam_vocabulary" id="exam_vocabulary" class="form-control">
-            </div>
-        </div>
-
-        <div class="col-md-6 hide_col" id="exam_written_disclosure_div">
-            <div class="form-group">
-                <label for="name">Written Disclosure</label>
-                <input type="text" name="exam_written_disclosure" id="exam_written_disclosure" class="form-control">
-            </div>
-        </div>
-
-        <div class="col-md-6 hide_col" id="exam_literacy_div">
-            <div class="form-group">
-                <label for="name">Literacy</label>
-                <input type="text" name="exam_literacy" id="exam_literacy" class="form-control">
-            </div>
-        </div>
-
-        <div class="col-md-6 hide_col" id="exam_conversation_div">
-            <div class="form-group">
-                <label for="name">Conversation</label>
-                <input type="text" name="exam_conversation" id="exam_conversation" class="form-control">
-            </div>
-        </div>
-
-        <div class="col-md-6 hide_col" id="exam_comprehension_div">
-            <div class="form-group">
-                <label for="name">Comprehension</label>
-                <input type="text" name="exam_comprehension" id="exam_comprehension" class="form-control">
-            </div>
-        </div>
-
-        <div class="col-md-6 hide_col" id="exam_production_div">
-            <div class="form-group">
-                <label for="name">Production</label>
-                <input type="text" name="exam_production" id="exam_production" class="form-control">
-            </div>
-        </div>
-
-        <div class="hiddan_data_data" style="display:none;">
-            <div class="col-md-12">
+                </div>
                 <div class="form-group">
+                    <label for="name">Exam Status</label>
+                    <select class="form-control" id="ESDFRFTGTH" name="exam_status">
+                        <option value="">Select Exam Status</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Planning">Planning</option>
+                    </select>
+                </div>
+                <div class="form-group" style="display: none;" id="planning_date_input">
                     <label for="name">Planning Date</label>
-                    <input type="date" name="planning_date" id="name" class="form-control" required="">
+                    <input type="date" name="planning_date" id="planning_date_plan_jess" class="form-control" min="{{ date('Y-m-d') }}" value="0">
                 </div>
             </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Discard</button>
+                <button type="button" id="next_step_mark_model" class="btn btn-primary">Next</button>
+            </div>
         </div>
-
+    </div>
 </div>
 
-<div class="TEXT-CENTER">
-    <a href="#" class="btn btn-info" id="add_exam_online">Add More </a>
+<div class="modal fade" id="OnlineExamExamMarks" tabindex="-1" role="dialog" aria-labelledby="OnlineExamExamMarksLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="detail-document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="OnlineExamExamMarksLabel">Add Exam</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row" id="list_content">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Discard</button>
+                <button type="button" class="btn btn-primary" id="Sacve" onclick="storeExam();">Save</button>
+            </div>
+        </div>
+    </div>
 </div>
 
+@section('child_js')
+<script>
+    $('.bs-tooltip').tooltip();
+    $( document ).ready(function() {
+        var listofstuff = @json(config("espi.online_exam_pattern"), JSON_PRETTY_PRINT);
+        $("#ESDFRFTGTH").change(function(e){
+            if($(this).val()=="Planning")
+            {
+                $("#planning_date_input").show();
+            }
+            else
+            {
+                $("#planning_date_input").hide();
+            }
+        });
+        $("#next_step_mark_model").click(function (e) {
+            if($("#ESDFRFTGTH").val()=="Planning")
+            {
+                const data = new Array();
+                const requestOptions = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'My-Custom-Header': 'foobar'
+                    },
+                    body: JSON.stringify({ type_exam:$("#exam_type_pop_model_jess").val(), status:$("#ESDFRFTGTH").val(),exam_date:$("#planning_date_plan_jess").val(),enquiry_id:'{{ $enquiry->id }}',marks:"notset" })
+                };
+                fetch('{{ url('api/admin/OnlineExam/Store') }}', requestOptions)
+                    .then(response => response.json())
+                    .then(data => {
+                        if(data.status==1)
+                        {
+                            location.reload(true);
+                        }
+                        $.each(data.errors, function($key,$value) {
+                            alert($value);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('There was an error!', error);
+                    });
+                return false;
+            }
+            else
+            {
+                $("#OnlineExam").modal("hide");
+                html=get_form_html($("#exam_type_pop_model_jess").val());
+                $("#list_content").html(html);
+                $("#OnlineExamExamMarks").modal("show");
+            }
+        });
+
+        function get_form_html(params) {
+            var form="";
+            $.each(listofstuff[params], function(key, value) {
+                display_value=capitalizeFirstLetter(value.replace("_"," "));
+                form=form+`<div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">${display_value}</label>
+                        <input type="number" name="${value}" value="0" class="form-control" required>
+                    </div>
+                </div>`;
+
+            });
+            @php
+            $current = \Carbon\Carbon::now();
+            $trialExpires = $current->subYears(2)->format('Y-m-d');
+            @endphp
+            return form+`<div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">Exam Date</label>
+                        <input type="date" id="exam_date_model_popup_jess" name="exam_date" class="form-control" min="{{ $trialExpires }}" max="{{ date('Y-m-d') }}" value="0" required>
+                    </div>
+                </div>`;
+        }
+
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
+    });
+    function json2array(json){
+        var result = [];
+        var keys = Object.keys(json);
+        keys.forEach(function(key){
+            result.push(json[key]);
+        });
+        return result;
+    }
+
+    function storeExam() {
+// console.log("Actul_string");
+// console.log(JSON.stringify({ type_exam:$("#exam_type_pop_model_jess").val(), status:$("#ESDFRFTGTH").val(),exam_date:$("#list_content #exam_date_model_popup_jess").val(),enquiry_id:'{{ $enquiry->id }}'}));
+
+const data = new Array();
+// data.push('type_exam', $("#exam_type_pop_model_jess").val());
+// data.push('status', $("#ESDFRFTGTH").val());
+// data.push('exam_date', $("#list_content #exam_date_model_popup_jess").val());
+// data.push('enquiry_id', '{{ $enquiry->id }}');
+
+$.each($("#list_content :input"), function() {
+            if($(this).val()=="")
+            {
+                alert("Please fill the value of "+$(this).attr("name"));
+                return false;
+            }
+            else
+            {
+                if($(this).attr("name")!="exam_date")
+                {
+                    data.push($(this).val());
+                }
+            }
+        });
+        // exam_type_pop_model_jess
+        const requestOptions = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'My-Custom-Header': 'foobar'
+                    },
+                    body: JSON.stringify({ type_exam:$("#exam_type_pop_model_jess").val(), status:$("#ESDFRFTGTH").val(),exam_date:$("#list_content #exam_date_model_popup_jess").val(),enquiry_id:'{{ $enquiry->id }}',marks:data })
+                };
+                fetch('{{ url('api/admin/OnlineExam/Store') }}', requestOptions)
+                    .then(response => response.json())
+                    .then(data => {
+                        if(data.status==1)
+                        {
+                            alert(member);
+                            var member=window.location.href;
+                            var last2 = member.slice(-2);
+                            if(last2=='/3')
+                            {
+                                window.location.href    
+                            }
+                            else
+                            {
+                                window.location.href += "/3";
+                            }
+                        }
+                        $.each(data.errors, function($key,$value) {
+                            alert($value);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('There was an error!', error);
+                    });
+
+    }
+
+</script>
+@endsection

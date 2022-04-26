@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\EnquireController;
 use App\Http\Controllers\FollowUpController;
+use App\Http\Controllers\OnlineExamController;
 use App\Http\Controllers\ReferralCodeController;
 /*
 |--------------------------------------------------------------------------
@@ -45,4 +46,5 @@ Route::prefix('admin')->group(function () {
     Route::get('getState/{country_id}',[StateController::class,'getStateByCountry']);
     Route::get('getCity/{state_id}',[CityController::class,'getCityByState']);
     Route::get("assign_user/{user_id?}/{assessment_id?}",[AssessmentController::class,'assessmentAssign']);
+    Route::post('OnlineExam/Store/',[OnlineExamController::class,'store']);
 });

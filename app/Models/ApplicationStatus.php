@@ -9,4 +9,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class ApplicationStatus extends Model
 {
     use HasFactory,SoftDeletes;
+
+    public function Country()
+    {
+        return $this->belongsTo(Country::class,'countries_id','id');
+    }
 }

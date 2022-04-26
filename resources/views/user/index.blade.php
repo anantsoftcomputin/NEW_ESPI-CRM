@@ -45,6 +45,7 @@
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
                 {data:'status',name:'status'},
+                {data:'roles',name:'roles',orderable: false, searchable: false},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
             initComplete: function () {
@@ -115,7 +116,7 @@ Application
 @section('content')
 <div class="col-md-12">
     <h1>Users</h1>
-    <a href="{{ route('users.create') }}" title="Add User" class="btn btn-info">Add</a>    
+    <a href="{{ route('users.create') }}" title="Add User" class="btn btn-info">Add</a>
     <table class="table table-bordered data-table">
         <thead>
             <tr>
@@ -123,6 +124,7 @@ Application
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Status</th>
+                <th>Roles</th>
                 <th width="100px">Action</th>
             </tr>
         </thead>

@@ -1,5 +1,5 @@
 <div class="p-2">
-    <h1> Summary </h1>
+    <h1> Enquiry Details </h1>
 
     <x-EnquiryDetailPopUp type="error" :message="$enquiry" class="mt-4"/>
 

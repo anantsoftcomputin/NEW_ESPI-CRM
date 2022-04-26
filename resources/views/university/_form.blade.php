@@ -2,7 +2,7 @@
 
     <div class="form-group">
         <label for="name">University / College Name</label>
-        <input type="text" name="name" id="name" value="{{old('name')}}" class="form-control" required>
+        <input type="text" name="name" id="name" value="{{old('name')}}" class="form-control">
     </div>
 
 </div>
@@ -10,7 +10,7 @@
 <div class="col-md-12">
     <div class="form-group">
         <label for="description">Remark</label>
-        <textarea name="description" id="description" cols="0" rows="5" class="form-control" required>{{old('description')}}</textarea>
+        <textarea name="description" id="description" cols="0" rows="5" class="form-control">{{old('description')}}</textarea>
     </div>
 </div>
 
@@ -19,7 +19,7 @@
 <div class="col-md-6">
     <div class="form-group">
         <label for="web">Website</label>
-        <input type="web" value="{{old('web')}}" name="web" id="web" class="form-control" placeholder="www.exampale.com" required>
+        <input type="web" value="{{old('web')}}" name="web" id="web" class="form-control" placeholder="www.exampale.com">
     </div>
 
     <div class="form-group">
@@ -35,7 +35,7 @@
 <div class="col-md-6">
     <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" value="{{old('email')}}" name="email" id="email" class="form-control" required>
+        <input type="email" value="{{old('email')}}" name="email" id="email" class="form-control">
     </div>
 
 
@@ -56,6 +56,7 @@
     <div class="form-group">
         <label for="country">Intake Year</label>
         <select name="intake_year" class="form-control">
+            <option selected>Intack</option>
             @forelse ($intakeYear as $item_intake_month)
             <option value="{{ $item_intake_month->id }}">{{ $item_intake_month->year }}</option>
             @empty
@@ -165,6 +166,15 @@ University General Requirement
     </div>
 </div>
 
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="application_form">Application Form (PDF)</label>
+        <input type="file" name="application_form" id="application_form" class="form-control" accept=".pdf">
+    </div>
+</div>
+
+
+
 <div class="col-md-12">
     <hr>
     <h5>
@@ -177,14 +187,14 @@ University General Requirement
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="name">Campus Name</label>
-                    <input type="text" name="campus_name[]" value="" class="form-control" required="">
+                    <input type="text" name="campus_name[]" value="" class="form-control">
                 </div>
             </div>
 
             <div class="col-md-2">
                 <div class="form-group">
                     <label for="country">Campus Country</label>
-                    <select name="campus_country[]" class="form-control" required>
+                    <select name="campus_country[]" class="form-control">
                         @forelse ( get_country() as $country)
                             <option value="{{ $country->id }}">{{ ucfirst($country->name) }}</option>
                         @empty
@@ -197,13 +207,13 @@ University General Requirement
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="name">Campus Address</label>
-                    <textarea cols="1" rows="1" name="campus_address[]" value="" class="form-control" required=""></textarea>
+                    <textarea cols="1" rows="1" name="campus_address[]" value="" class="form-control"></textarea>
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="form-group">
                     <label for="name">Campus Fees</label>
-                    <input type="text" name="campus_fees[]" onkeypress="return isNumber(event)"  value="" class="form-control" required="">
+                    <input type="text" name="campus_fees[]" onkeypress="return isNumber(event)"  value="" class="form-control">
                 </div>
             </div>
 

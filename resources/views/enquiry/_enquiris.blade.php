@@ -28,9 +28,9 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <label for="email" class="mandatory">Middle Name</label>
+        <label for="email" class="">Middle Name</label>
         <input type="text" name="middle_name" id="middle_name" value="{{ old('middle_name') }}"
-            class="@error('middle_name') is-invalid @enderror form-control" required>
+            class="@error('middle_name') is-invalid @enderror form-control">
     </div>
     @error('middle_name')
         <div class="alert alert-danger">{{ $message }}</div>
@@ -50,9 +50,9 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <label for="email" class="mandatory">Passport No</label>
+        <label for="email" class="">Passport No</label>
         <input type="text" name="passport_number" id="passport_number" value="{{ old('passport_number') }}"
-            class="@error('passport_number') is-invalid @enderror form-control" required>
+            class="@error('passport_number') is-invalid @enderror form-control">
     </div>
     @error('passport_number')
         <div class="alert alert-danger">{{ $message }}</div>
@@ -69,19 +69,25 @@
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
 </div>
-
-<div class="col-md-6">
+<div class="col-md-3">
     <div class="form-group">
-        <label for="education" class="mandatory">Current Education Status</label>
+        <label for="alternate" class="">Alternate Number</label>
+        <input type="number" min="1111111111" max="9999999999" maxlength="10" value="{{ old('alternate') }}" name="alternate"
+            id="alternate" class="@error('alternate') is-invalid @enderror form-control">
+    </div>
+    @error('alternate')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <label for="education" class="mandatory">Current / Last Education</label>
         <select name="education" id="education" class="@error('education') is-invalid @enderror form-control" required>
-            <option value="">Current Education Status</option>
-            <option @if (old('education') == '10th') selected @endif value="10th">10th</option>
-            <option @if (old('education') == 'diploma') selected @endif value="diploma">Diploma</option>
-            <option @if (old('education') == '12th') selected @endif value="12th">12th</option>
-            <option @if (old('education') == 'Under-Graduate') selected @endif value="Under-Graduate">Under-Graduate</option>
-            <option @if (old('education') == 'Graduate') selected @endif value="Graduate">Graduate</option>
-            <option @if (old('education') == 'Post-Graduate') selected @endif value="Post-Graduate">Post-Graduate</option>
-            <option @if (old('education') == 'PHD/Doctorate') selected @endif value="PHD/Doctorate">PHD/Doctorate</option>
+            <option disabled selected>Please Select</option>
+            @foreach (config('espi.enquires_detail.education_level') as $item)
+                <option @if (old('education') == $item) selected @endif value="{{ $item }}">{{ $item }}</option>
+            @endforeach
         </select>
     </div>
     @error('education')
@@ -201,6 +207,7 @@
         <label for="name">Preferred Country</label>
         {{-- <input type="text"   value="" class="form-control tagging" required> --}}
         <select class="form-control tagging" name="preferred_country" id="preferred_country">
+            <option selected disabled>Please Select Country</option>
             @foreach (config('espi.enquires_detail.country_interested') as $item)
                 <option value="{{ $item }}">{{ $item }}</option>
             @endforeach
@@ -265,6 +272,17 @@
         <label id="ref_phone_label">Reference Phone</label>
         <input type="number" min="1111111111" max="9999999999" maxlength="10" name="reference_phone"
             value="{{ old('reference_phone') }}" id="ref_phone" class="form-control">
+    </div>
+</div>
+
+<div class="col-md-6" id="ref_phone_div">
+    <div class="form-group">
+        <label id="ref_phone_label">Are You interested for Coaching at ESPI ?</label>
+        <select name="coaching" class="form-control" required>
+            <option selected disabled>Please Select</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
     </div>
 </div>
 

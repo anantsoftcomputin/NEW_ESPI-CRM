@@ -1,12 +1,9 @@
 <div class="col-md-12">
-
     <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" name="name" id="name" value="{{old('name')}}" class="form-control" required>
+        <input type="text" name="name" id="name" value="{{old('name')}}" class="form-control" >
     </div>
-
 </div>
-
 
 <div class="col-md-6">
     <div class="form-group">
@@ -21,15 +18,14 @@
 
     <div class="form-group">
         <label for="default_assign_emp">Default Assign Emp</label>
-        <input type="default_assign_emp" value="{{old('default_assign_emp')}}" name="default_assign_emp" id="default_assign_emp" class="form-control" placeholder="This Feature Comming" readonly required>
+        <input type="default_assign_emp" value="{{old('default_assign_emp')}}" name="default_assign_emp" id="default_assign_emp" class="form-control" placeholder="This Feature Comming" readonly >
     </div>
 </div>
 <div class="col-md-6">
 
     <div class="form-group">
         <label for="course_level">Level</label>
-        <select name="course_level" id="course_level" class="level form-control" required>
-            <option value="#" selected disabled>Course Level</option>
+        <select name="course_level" id="course_level" class="level form-control" >
             <option value="under-graduate">Under Graduate</option>
             <option value="diploma">Diploma</option>
             <option value="advance-diploma">Advance Diploma</option>
@@ -42,9 +38,8 @@
 
     <div class="form-group">
         <label for="status">Status</label>
-        <select name="status" id="status" class="form-control" required>
-            <option value="#" selected disabled>Status</option>
-            <option value="active">Active</option>
+        <select name="status" id="status" class="form-control" >
+            <option value="active" selected>Active</option>
             <option value="de-active">De-Active</option>
         </select>
     </div>
@@ -65,6 +60,13 @@
     <div class="form-group">
         <label for="course_duration">Application Fees</label>
         <input type="text" name="application_fees" id="application_fees" class="form-control">
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="tuition_fees">Tuition Fees</label>
+        <input type="text" name="tuition_fees" id="tuition_fees" class="form-control">
     </div>
 </div>
 
@@ -180,21 +182,7 @@ Course Special Requirement
       <tr id="">
        <td><span class="sn"></span>.</td>
        <td>
-            <select class="form-control" name="documents[]">
-               <option value="">select document</option>
-               <option value="Photographs">Photographs</option>
-               <option value="Passport">Passport</option>
-               <option value="10th Documents">10th Documents</option>
-               <option value="12th Documents">12th Documents</option>
-               <option value="Diploma Documents">Diploma Documents</option>
-               <option value="Bachelor Documents">Bachelor Documents</option>
-               <option value="Master Documents">Master Documents</option>
-               <option value="Transcript Document(University)">Transcript Document(University)</option>
-               <option value="Work Experience Documents">Work Experience Documents</option>
-               <option value="LOR">LOR</option>
-               <option value="Resume">Resume</option>
-               <option value="Other">Other</option>
-            </select>
+            <input type="text" name="documents[]" class="form-control">
        <td>
            <select class="form-control" name="type[]">
                <option value="">select type</option>

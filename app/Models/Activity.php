@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Activity extends Model
 {
-    protected $fillable = ['string','enquiry_id'];
+    protected $fillable = ['string','enquiry_id','added_by'];
 
     protected static function booted()
     {
@@ -25,5 +25,10 @@ class Activity extends Model
     public function Enquiry()
     {
         return $this->belongsTo(Enquiry::class,'enq');
+    }
+
+    public function User()
+    {
+        return $this->belongsTo(User::class,'added_by');
     }
 }

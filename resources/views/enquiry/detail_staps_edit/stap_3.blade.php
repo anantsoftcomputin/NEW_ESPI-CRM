@@ -49,7 +49,7 @@
 </div>
 
 <div class="col-md-12" >
-<a id="add_more_expiriance" class="btn btn-info" style="float: right;display:none">Add More Experience</a>
+<a id="add_more_expiriance" class="btn btn-info" style="float: right; display:@if($last->experience_status=="Yes") block @else none @endif;">Add More Experience</a>
 </div>
 
 <br><br><br>
@@ -93,7 +93,7 @@
             </div>
         @endfor
 </div>
-<div class="row travel_detail_history" style="display: none;">
+<div class="row travel_detail_history" style="display: @if($last->travel_history_status=="Yes") block @else none @endif;;">
     <div class="col-md-12">
         <a id="add_more_history" class="btn btn-info" style="float: right;">Add More Travel</a>
     </div>

@@ -40,8 +40,11 @@
     {!! Form::radio('status', '0', '0', []) !!} In Active
 </div>
 <div class="col-md-12">
+    {!! Form::checkbox('is_counsellor', '1', $user->hasRole('counsellor') ? '1':'', []) !!} Is Counsellor {{ $user->is_counsellor }}
+</div>
+<div class="col-md-12">
         <label class="new-control new-checkbox checkbox-primary">
-        <input name="notification" type="checkbox" id="notification"  {{ $user->fcm_token ? 'checked' : ''}} class="new-control-input" onchange="initFirebaseMessagingRegistration()" >
+        <input name="notification" type="checkbox" id="notification"  {{ $user->fcm_token ? 'checked' : ''}} class="new-control-input" onchange="initFirebaseMessagingRegistration();" >
         <span class="new-control-indicator"></span>Allow Notification
         </label>
     </div>

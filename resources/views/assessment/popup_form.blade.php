@@ -94,7 +94,14 @@
         <input type="number" name="app_fee[]" class="app_fee form-control" id="selectapp_fee">
     </div>
 </div>
-<div class="col-md-12">
+
+<div class="col-md-4">
+    <div class="form-group">
+        <label for="tution_fee">Tuition Fee</label>
+        <input type="number" name="tution_fee[]" class="tution_fee form-control" id="tution_fee">
+    </div>
+</div>
+<div class="col-md-8">
     <div class="form-group">
         <label for="selectapp_course_link">Course Link</label>
         <input type="text" name="course_link[]" class="course_link form-control" id="selectapp_course_link">
@@ -118,6 +125,7 @@
                 $('.course_link').val(data.course_link);
                 $('.duration').val(data.duration);
                 $('.app_fee').val(data.application_fees);
+                $('.tution_fee').val(data.tuition_fees);
             },
             error: function(jqXhr, textStatus, errorMessage) { // error callback
                 $('p').append('Error: ' + errorMessage);
@@ -218,10 +226,7 @@
             var id = jQuery(this).attr('data-id');
             var targetDiv = jQuery(this).attr('targetDiv');
             jQuery('#rec-' + id).remove();
-
-            //regnerate index number on table
             $('#tbl_posts_body tr').each(function(index) {
-                //alert(index);
                 $(this).find('span.sn').html(index + 1);
             });
             return true;

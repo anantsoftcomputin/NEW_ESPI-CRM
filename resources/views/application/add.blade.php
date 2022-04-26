@@ -28,7 +28,7 @@ Add Application
 
                                 <input type="submit" class="btn btn-primary" value="{{ __('enquire.submit_btn') }}">
                                 <a href="{{route('Application.index')}}" class="btn btn-danger" >{{ __('enquire.cancel_btn_btn') }}</a>
-                                
+
                             </div>
                         </div>
 

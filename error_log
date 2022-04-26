@@ -1,0 +1,16 @@
+[09-Feb-2022 14:43:45 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home2/espicdzk/espi_crm_back/vendor/psr/log/src/LoggerInterface.php on line 30
+[09-Feb-2022 14:43:45 Asia/Kolkata] PHP Fatal error:  Exception thrown without a stack frame in Unknown on line 0
+[09-Feb-2022 14:43:45 Asia/Kolkata] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to Illuminate\Log\Logger::__construct() must be an instance of Psr\Log\LoggerInterface, instance of Monolog\Logger given, called in /home2/espicdzk/espi_crm_back/vendor/laravel/framework/src/Illuminate/Log/LogManager.php on line 182 and defined in /home2/espicdzk/espi_crm_back/vendor/laravel/framework/src/Illuminate/Log/Logger.php:43
+Stack trace:
+#0 /home2/espicdzk/espi_crm_back/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(182): Illuminate\Log\Logger->__construct(Object(Monolog\Logger), Object(Illuminate\Events\Dispatcher))
+#1 /home2/espicdzk/espi_crm_back/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(129): Illuminate\Log\LogManager->createEmergencyLogger()
+#2 /home2/espicdzk/espi_crm_back/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(112): Illuminate\Log\LogManager->get('stack')
+#3 /home2/espicdzk/espi_crm_back/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(590): Illuminate\Log\LogManager->driver()
+#4 /home2/espicdzk/es in /home2/espicdzk/espi_crm_back/vendor/laravel/framework/src/Illuminate/Log/Logger.php on line 43
+[11-Feb-2022 11:33:01 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.0.2". You are running 7.3.33. in /home2/espicdzk/espi_crm_back/vendor/composer/platform_check.php on line 24
+[11-Feb-2022 11:33:42 UTC] PHP Fatal error:  Out of memory (allocated 369631232) (tried to allocate 20480 bytes) in phar:///opt/cpanel/composer/bin/composer/src/Composer/DependencyResolver/GenericRule.php on line 35
+[11-Feb-2022 11:33:54 UTC] PHP Fatal error:  Out of memory (allocated 369631232) (tried to allocate 8192 bytes) in phar:///opt/cpanel/composer/bin/composer/src/Composer/DependencyResolver/GenericRule.php on line 35
+[11-Feb-2022 11:34:52 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.0.2". You are running 7.3.33. in /home2/espicdzk/espi_crm_back/vendor/composer/platform_check.php on line 24
+[11-Feb-2022 11:34:58 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.0.2". You are running 7.3.33. in /home2/espicdzk/espi_crm_back/vendor/composer/platform_check.php on line 24
+[14-Feb-2022 06:24:45 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.0.2". You are running 7.3.33. in /home2/espicdzk/espi_crm_back/vendor/composer/platform_check.php on line 24
+[14-Feb-2022 06:26:06 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.0.2". You are running 7.3.33. in /home2/espicdzk/espi_crm_back/vendor/composer/platform_check.php on line 24
