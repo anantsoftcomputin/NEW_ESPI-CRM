@@ -1,7 +1,7 @@
 @extends('layouts.theam')
 
 @section('title')
-Edit User
+Edit Card
 @endsection
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 @section('content')
@@ -9,7 +9,7 @@ Edit User
     <div class="row justify-content-center">
         <div class="col-md-12 col-xs-12">
         <div class="card">
-                <div class="card-header">{{ __('Edit User') }}</div>
+                <div class="card-header">{{ __('Edit Card') }}</div>
                 <div class="card-body">
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -20,11 +20,11 @@ Edit User
                             </ul>
                         </div>
                         @endif
-                        <form method="POST" action="{{ route('users.update',$user->id) }}">
+                        <form method="POST" action="{{ route('card.update',$Card->id) }}">
                         @csrf
                         @method("patch")
                         <div class="row">
-                            @include('user._edit_form')
+                            @include('card._edit_form')
                             <div class="col-md-12 text-center">
 
                                 <input type="submit" class="btn btn-primary" value="{{ __('enquire.submit_btn') }}">

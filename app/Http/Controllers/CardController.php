@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Requests\Card\EditCard;
 use DataTables;
 use App\Models\Card;
 use Illuminate\Http\Request;
@@ -54,14 +56,24 @@ class CardController extends Controller
         $transaction->save();
         return redirect()->back()->withInfo('Add  Credit Card SuccessFully.');
     }
+    public function edit(Card $Card)
+    {
+        $title = "Card Details";
+        $roles = Role::pluck('name', 'id');
 
-    public function destroy($id) {
-        $Card = Card::findOrFail($id);
-        $Card->delete();
-        return redirect('card.index');
-     }
-     public function show($id)
-     {
-         //
-     }
+        return view('card.edit', compact('Card','title', 'roles'));
+    }
+    public function update(EditCard $request, Card $Card)
+    {
+
+        $Card->name=$request->name;
+        $Card->card_number=$request->card_number;
+        $Card->date=$request->date;
+        $Card->note=$request->note;
+        $Card->company_id=\Auth::user()->company_id;
+        $Card->save();
+
+// print_r($Card);die;
+        return redirect()->route('card.index');
+    }
 }

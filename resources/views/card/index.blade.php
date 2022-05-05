@@ -116,7 +116,7 @@ Application
 @section('content')
 <div class="col-md-12">
     <h1>Credit  Card </h1>
-    <a href="{{ route('card.create') }}" title="Add User" class="btn btn-info">Add  Credit Card</a>
+    <a href="{{ route('card.create') }}" title="Add Credit Card" class="btn btn-info">Add  Credit Card</a>
     <table class="table table-bordered data-table">
         <thead>
             <tr>
