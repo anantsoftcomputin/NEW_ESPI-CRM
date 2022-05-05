@@ -21,20 +21,20 @@ class CardController extends Controller
                     ->addColumn('action', function($row){
                         $btn = "";
                         $btn = '<a href="'.route('card.edit',$row->id).'" title="Edit" class="edit btn btn-primary btn-sm">Edit</a>';
-                        $btn = '<a href="'.route('card.destroy',$row->id).'" title="Delete" class="edit btn btn-danger btn-sm">Delete</a>';
+                        // $btn = '<a href="'.route('card.destroy',$row->id).'" title="Delete" class="edit btn btn-danger btn-sm">Delete</a>';
 
                         return $btn;
                     })
                     ->rawColumns(['action'])
                     ->make(true);
                 }
-        return view('Card.index');
+        return view('card.index');
     }
     public function create()
     {
       //  $title = 'Create user';
         //$roles = Role::pluck('name', 'id');
-        return view('Card.add');
+        return view('card.add');
     }
     public function store (Request $request)
     {
@@ -58,7 +58,7 @@ class CardController extends Controller
     public function destroy($id) {
         $Card = Card::findOrFail($id);
         $Card->delete();
-        return redirect('Card.index');
+        return redirect('card.index');
      }
      public function show($id)
      {

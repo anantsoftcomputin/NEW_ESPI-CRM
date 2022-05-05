@@ -144,8 +144,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('package',[PackageController::class,'index'])->name('package.index');
 
     Route::resource('card',CardController::class);
-    Route::get('card',[CardController::class,'index'])->name('card.index');
-    Route::get('card/{id}', [CardController::class,'destroy'])->name('card.destroy');
+    // Route::get('card',[CardController::class,'index'])->name('card.index');
+    // Route::get('card/{id}', [CardController::class,'destroy'])->name('card.destroy');
 
     // Route::get("/", function(){
     //     return view('user.profile');
@@ -191,7 +191,7 @@ Route::get('/',[App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/{branch_name}/joinespi',[FrontendController::class, 'joinespi'])->name('join_espi');
 Route::post('/{branch_name}/joinespi',[FrontendController::class, 'joinespistore'])->name('join_espi_store');
 
-Route::get('card',[App\Http\Controllers\CardController::class,'index'])->name('card.index');
+// Route::get('card',[App\Http\Controllers\CardController::class,'index'])->name('card.index');
 
 
 
