@@ -16,8 +16,11 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('payment_mode');
+            $table->string('package_name');
+            // $table->string('payment_mode');
+            $table->decimal('package_price', 10, 2);
             $table->decimal('price', 10, 2);
+            $table->decimal('pending_price', 10, 2);
             $table->text('note');
             $table->unsignedBigInteger('company_id');
             $table->foreign('company_id')->references('id')->on('companies');
@@ -29,6 +32,9 @@ class CreateTransactionsTable extends Migration
             $table->timestamps();
         });
     }
+
+
+
 
     /**
      * Reverse the migrations.

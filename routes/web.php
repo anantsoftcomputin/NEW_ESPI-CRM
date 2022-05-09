@@ -187,9 +187,6 @@ Route::get('demo',function(){
 });
 
 
-Route::get('/',[App\Http\Controllers\HomeController::class, 'index']);
-Route::get('/{branch_name}/joinespi',[FrontendController::class, 'joinespi'])->name('join_espi');
-Route::post('/{branch_name}/joinespi',[FrontendController::class, 'joinespistore'])->name('join_espi_store');
 
 // Route::get('card',[App\Http\Controllers\CardController::class,'index'])->name('card.index');
 

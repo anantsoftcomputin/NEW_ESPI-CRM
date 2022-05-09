@@ -68,6 +68,14 @@
     border-left: 6px solid #3989c6
 }
 
+.invoice main .RS{
+    float:left;background: #e42427;color: white;padding: 0px;
+}
+.invoice main .rupe{
+    /* height: 50px; */
+    background: #e42427;
+    color: white;
+}
 .invoice main .notices .notice {
     font-size: 1.2em
 }
@@ -171,6 +179,7 @@
     }
 }
     </style>
+
 <div id="invoice">
 
     <div class="toolbar hidden-print">
@@ -203,15 +212,15 @@
             <main>
                 <div class="row contacts">
                     <div class="col invoice-to">
-                        <div class="text-gray-light">INVOICE TO:</div>
+                        <div class="text-gray-light">Receipt Number  :- <strong> 00<?php  echo $latestid->id   ?>- 22</strong></div>
                         {{-- <h2 class="to">John Doe</h2>
                         <div class="address">796 Silver Harbour, TX 79273, US</div> --}}
-                    <div class="address"><?php  echo $transaction->enquiry_id   ?> </div>
-                        <div class="email"><a href="mailto:john@example.com"><?php  echo $transaction->email   ?></a></div>
+                    <div class="address">Student Id :- <?php  echo $transaction->enquiry_id   ?> </div>
+                        <div class="email">Email :-  <a href="mailto:john@example.com"> <?php  echo $transaction->email   ?></a></div>
                     </div>
                     <div class="col invoice-details">
                         {{-- <h1 class="invoice-id">INVOICE 3-2-1</h1> --}}
-                        <div class="date"><?php  echo $transaction->created_at->format('d-m-Y')   ?></div>
+                        <div class="date">Date :- <?php  echo $transaction->created_at->format('d-m-Y')   ?></div>
                         {{-- <div class="date">Due Date: 30/10/2018</div> --}}
                     </div>
                 </div>
@@ -237,19 +246,26 @@
                         <tr>
                             <td class="no">The Sum of Rupees :- <strong><?php  echo $transaction->price  ?></strong></td>
                             <td class="no">Enrolled :- <strong><?php  echo $transaction->title  ?></strong>   </td>
+                            <td class="no">Package :- <strong><?php  echo $transaction->package_name  ?></strong>   </td>
                             {{-- <td class="text-left">
                                 <h3>Website Design</h3> --}}
                         </tr>
                         <tr>
                             <td class="no">By DD / Cheque No:- <strong><?php  echo $transaction->check_number  ?></strong></td>
                             {{-- <td class="text-left"><h3>Website Development</h3></td> --}}
-                            <td class="no">Dated :- <strong><?php  echo $transaction->check_date  ?></strong></td>
+                            <td class="no">Cheque Dated :- <strong><?php  echo $transaction->check_date  ?></strong></td>
+                            <td class="no">Cheque Amount :- <strong><?php  echo $transaction->check_amount  ?></strong></td>
                         </tr>
                         <tr>
-                            <td class="no">Package :- <strong><?php  echo $transaction->package_name  ?></strong>   </td>
+                            <td class="no">UPI Type :- <strong><?php  echo $transaction->upi_type  ?></strong></td>
+                            <td class="no">UPI Id :- <strong><?php  echo $transaction->upi_id  ?></strong></td>
+                            <td class="no">UPI Amount :- <strong><?php  echo $transaction->upi_amount  ?></strong></td>
+                        </tr>
+                        <tr>
 
-                            <td class="no">Cash Payment :-  <strong><?php  echo "cash Payment   "  ?></strong></td>
 
+                            <td class="no">Cash Payment :-  <strong><?php  echo $transaction->cash_amount   ?></strong></td>
+                            <td class="no">Pending Amount :-  <strong><?php  echo $transaction->pending_price   ?></strong></td>
                             {{-- <td class="text-left"><h3>Website Development</h3></td> --}}
                         </tr>
                         {{-- <tr>
@@ -277,8 +293,23 @@
                             <td>$6,500.00</td>
                         </tr> --}}
                     </tfoot>
+                    <?php
+                    $pen = $transaction->pending_price ;
+                    $pri = $transaction->price ;
+
+                    $total = $pri - $pen;
+
+                    ?>
                 </table><br><br><br><br>
-                <div class="notices">
+                <div class="RS row"  >
+                    <div class=" rupe"   ><h1>Rs. </h1></div>
+                    <input type="text" value="<?php  echo $total  ?>" style="width: 245px;border: 1px solid #e42427;padding: 0 20px;font-weight: 700;font-size: 30px;" >
+                </div>
+                <div style="position: absolute;margin-top: 53px;margin-left: 50px;color: #e42427;font-weight: 700;">NON REFUNDABLE</div>
+                <br/>
+                {{-- <div class="NON">
+                    NON REFUNDABLE</div> --}}
+                <div class="notices"  style="float: right;" >
                     {{-- <div>NOTICE:</div> --}}
                     <div class="notice">
                         For ESPI VISA CONSULTANTS PVT LTD.</div>
