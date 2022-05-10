@@ -361,7 +361,7 @@ Enquires index
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="package_price" class="mandatory">Package  price</label>
-                                                    <select  id="package_price"  name="package_price" class="@error('package_price') is-invalid @enderror form-control" required>
+                                                    <select  id="value1"  name="package_price" class="@error('package_price') is-invalid @enderror form-control" required>
                                                     <option value="select">select</option>
                                                         @foreach ($Package as $key=>$item)
                                                             <option value="{{ $item ->price}}">{{ $item->price}}</option>
@@ -375,7 +375,7 @@ Enquires index
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="price" class="">Payment Paid</label>
-                                                <input type="number" name="price" id="price" value="{{ old('price') }}"
+                                                <input type="number" name="price" id="value2" value="{{ old('price') }}"
                                                     class="@error('price') is-invalid @enderror form-control" >
                                             </div>
                                             @error('price')
@@ -385,7 +385,7 @@ Enquires index
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="pending_price" class="">Payment Pending Amount</label>
-                                                <input type="number" name="pending_price" id="pending_price" value="{{ old('pending_price') }}"
+                                                <input type="number" name="pending_price" id="sum" value="{{ old('pending_price') }}"
                                                     class="@error('pending_price') is-invalid @enderror form-control" >
                                             </div>
                                             @error('pending_price')
@@ -420,9 +420,10 @@ Enquires index
                                         </div> --}}
 
                                         <div class="col-md-12">
+                                            <label style="font-weight: 800;">Bank Payment Mode</label>
                                             <div class="form-group">
                                                 <label for="bank_name" class="">Cheque Bank Name</label>
-                                                <input type="text" name="bank_name" id="price" value="{{ old('bank_name') }}"
+                                                <input type="text" name="bank_name"  value="{{ old('bank_name') }}"
                                                     class="@error('bank_name') is-invalid @enderror form-control" >
                                             </div>
                                             @error('bank_name')
@@ -432,7 +433,7 @@ Enquires index
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="check_number" class="">Cheque  Number</label>
-                                                <input type="number" name="check_number" id="price" value="{{ old('check_number') }}"
+                                                <input type="number" name="check_number"  value="{{ old('check_number') }}"
                                                     class="@error('check_number') is-invalid @enderror form-control" >
                                             </div>
                                             @error('check_number')
@@ -442,7 +443,7 @@ Enquires index
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="check_number" class="">Cheque  Date</label>
-                                                <input type="date" name="check_date" id="price" value="{{ old('check_date') }}"
+                                                <input type="date" name="check_date"  value="{{ old('check_date') }}"
                                                     class="@error('check_date') is-invalid @enderror form-control" >
                                             </div>
                                             @error('check_date')
@@ -460,6 +461,7 @@ Enquires index
                                             @enderror
                                         </div>
                                         <div class="col-md-12">
+                                            <label style="font-weight: 800;">UPI Payment Mode</label>
                                             <div class="form-group">
                                                 <label for="upi_type" class="">UPI Payment Type</label>
                                                 <input type="text" name="upi_type" id="upi_type" value="{{ old('upi_type') }}"
@@ -471,7 +473,7 @@ Enquires index
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="upi_id" class="">UPI I'd</label>
+                                                <label for="upi_id" class="">UPI Id</label>
                                                 <input type="text" name="upi_id" id="upi_id" value="{{ old('upi_id') }}"
                                                     class="@error('upi_id') is-invalid @enderror form-control" >
                                             </div>
@@ -490,6 +492,7 @@ Enquires index
                                             @enderror
                                         </div>
                                         <div class="col-md-12">
+                                            <label style="font-weight: 800;">Cash Payment Mode</label>
                                             <div class="form-group">
                                                 <label for="cash_mode" class="">Cash Payment Type</label>
                                                 <select name="cash_mode" id="cash_mode" class="@error('cash_mode') is-invalid @enderror form-control" required>
@@ -740,8 +743,27 @@ Enquires index
         return false;
 
     }
-</script>
 
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script >
+$(document).ready(function(){
+            $('#value1, #value2').keyup(function(){
+               var value1 = parseFloat($('#value1').val()) || 0;
+               var value2 = parseFloat($('#value2').val()) || 0;
+               $('#sum').val(value1 - value2);
+            });
+         });
+//         $(document).on("change keyup blur", "#Payment_price", function(e) {
+//   var amd = $('#package_price').val();
+//   var disc = $('#Payment_price').val();
+//   if (disc != '' && amd != '') {
+//     $('#pending_price').val((parseInt(amd)) - (parseInt(disc)));
+//   }else{
+//     $('#pending_price').val(parseInt(amd));
+//   }
+// });
+    </script>
 {{-- <script>
     $(function() {
     $('#payment_mode').change(function(){
