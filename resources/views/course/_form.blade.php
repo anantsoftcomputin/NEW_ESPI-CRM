@@ -26,11 +26,12 @@
     <div class="form-group">
         <label for="course_level">Level</label>
         <select name="course_level" id="course_level" class="level form-control" >
-            <option value="under graduate">Under Graduate</option>
+            <option value="under-graduate">Under Graduate</option>
             <option value="diploma">Diploma</option>
-            <option value="advance diploma">Advance Diploma</option>
+            <option value="advance-diploma">Advance Diploma</option>
             <option value="bachelor">Bachelor</option>
-            <option value="post graduate diploma">Post Graduate Diploma</option>
+            <option value="post-graduate-diploma">Post Graduate Diploma</option>
+            <option value="post-graduate">Post Graduate</option>
             <option value="master">Master</option>
         </select>
     </div>

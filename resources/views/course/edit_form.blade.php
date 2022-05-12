@@ -23,11 +23,12 @@
         <label for="course_level">Level</label>
         <select name="course_level" id="course_level" class="form-control" required>
             <option  selected  value="{{ $Course->course_level }}">{{ $Course->course_level }}</option>
-            <option @if($Course->course_level=="under graduate") selected @endif value="under graduate">Under Graduate</option>
+            <option @if($Course->course_level=="under-graduate") selected @endif value="under-graduate">Under Graduate</option>
             <option @if($Course->course_level=="diploma") selected @endif value="diploma">Diploma</option>
-            <option @if($Course->course_level=="advance diploma") selected @endif value="advance diploma">Advance Diploma</option>
+            <option @if($Course->course_level=="advance-diploma") selected @endif value="advance-diploma">Advance Diploma</option>
             <option @if($Course->course_level=="bachelor") selected @endif value="bachelor">Bachelor</option>
-            <option @if($Course->course_level=="post graduate diploma") selected @endif value="post graduate diploma">Post Graduate Diploma</option>
+            <option @if($Course->course_level=="post-graduate-diploma") selected @endif value="post-graduate-diploma">Post Graduate Diploma</option>
+            <option  @if($Course->course_level=="post-graduate") selected @endif  value="post-graduate">Post Graduate</option>
             <option @if($Course->course_level=="master") selected @endif value="master">Master</option>
         </select>
     </div>
