@@ -356,6 +356,7 @@ class UniversityController extends Controller
 
             $university->company_id=\Auth::user()->company_id;
             $university->added_by=\Auth::user()->id;
+
             $university->save();
 
             if(isset($request->campus_name[$i]))
