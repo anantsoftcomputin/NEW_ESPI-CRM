@@ -159,7 +159,7 @@ class EnquireController extends Controller
                     ->rawColumns(['action','enq','counsellor_name','is_enrolled'])
                     ->make(true);
         }
-        $Transaction= TransactionCredit::all();
+        $Transaction= card::all();
         $Package= Package::all();
 
         // print_r($Transaction);
