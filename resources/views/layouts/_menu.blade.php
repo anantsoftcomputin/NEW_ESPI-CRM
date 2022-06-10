@@ -42,7 +42,7 @@
 </li>
 @endcan
 
-@can(["coaching-lead"])
+<!-- @can(["coaching-lead"])
 <li class="menu @if(\Request::route()->getName()=='Enquires.Failed') active @endif menu-single">
     <a href="{{ route('Enquires.Failed') }}" @if(\Request::route()->getName()=='Enquires.Failed') data-active="true" @else data-active="false" @endif class="menu-toggle">
         <div class="base-menu">
@@ -54,7 +54,7 @@
     </a>
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
 </li>
-@endcan
+@endcan -->
 
 @can(["view-assessment"])
     <li class="menu @if(\Request::route()->getName()=='assessments.index') active @endif menu-single">
@@ -84,7 +84,7 @@
     </li>
 @endcan
 
-@can(["view-application_status"])
+<!-- @can(["view-application_status"])
 <li class="menu menu-single">
     <a href="{{ route('task.index') }}" data-active="false" class="menu-toggle">
         <div class="base-menu">
@@ -96,7 +96,7 @@
     </a>
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
 </li>
-@endcan
+@endcan -->
 
 
 {{--

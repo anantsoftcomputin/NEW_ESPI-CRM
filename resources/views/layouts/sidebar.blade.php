@@ -32,8 +32,21 @@
                     <a href="{{ route('Report.index') }}"> Reports </a>
                 </li>
                 @endcan
-            </ul>
+                @can(["coaching-lead"])
+<li class="menu @if(\Request::route()->getName()=='Enquires.Failed') active @endif menu-single">
+    <a href="{{ route('Enquires.Failed') }}" @if(\Request::route()->getName()=='Enquires.Failed') data-active="true" @else data-active="false" @endif class="menu-toggle">
+        <div class="base-menu">
+           
+            <span>Failed Leads</span>
         </div>
+    </a>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
+</li>
+@endcan
+            </ul>
+
+        </div>
+        
         @endcan
 
         @canany(['view-user','view-role','view-university','view-course'])
