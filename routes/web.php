@@ -27,6 +27,7 @@ use App\Http\Controllers\OnlineExamController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\PackageController;
+use App\Http\Controllers\TaskController;
 use App\Models\ApplicationFollowUps;
 use App\Models\ApplicationStatus;
 
@@ -144,6 +145,10 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('package',[PackageController::class,'index'])->name('package.index');
 
     Route::resource('card',CardController::class);
+    Route::resource('task',TaskController::class);
+    // Route::get('task',[TaskController::class,'index'])->name('task.index');
+    Route::get('/task/{task}', [TaskController::class,'destroy'])->name('task.destroy');
+    // Route::post('/tasks/{id}', 'TaskController@destroy')->name('task.destroy');
     // Route::get('card',[CardController::class,'index'])->name('card.index');
     // Route::get('card/{id}', [CardController::class,'destroy'])->name('card.destroy');
 
