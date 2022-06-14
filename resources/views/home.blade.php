@@ -44,7 +44,7 @@
                     </div>
             </a>
 
-                    <div id="table-wrapper">
+                    <!-- <div id="table-wrapper">
   <div id="table-scroll">
                     <table id="example" class="table table-bordered data-table">
         <thead>
@@ -62,7 +62,7 @@
                 @endforeach
         </tbody>
     </table>
-  </div></div>
+  </div></div> -->
                     <!-- <div class="widget-content">
                         <div class="w-chart">
                             <div id="hybrid_followers"></div>
