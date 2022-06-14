@@ -69,27 +69,7 @@
                     </div>
                 </div>
             </a>
-            <div id="table-wrapper">
-  <div id="table-scroll">
-    <table id="example" class="table table-bordered data-table">
-        <thead>
-            <tr>
-                <th>Enquiry Id</th>
-                <th>Student Name</th>
-            </tr>
-        </thead>
-        <tbody>
-        @foreach  ($assessment as $assessments)
-                    <tr>
-                    <!-- <td>{{ $assessments->course_id }}</td> -->
-                    <td>{{ $assessments->enquiry_id }}</td>
-                    <td>{{ $assessments->name }}</td>
-                    </tr>
-                @endforeach
-        </tbody>
-    </table>
-  </div>
-            </div>
+            
 
                  <div class="widget-content">
                     <div class="w-chart">
