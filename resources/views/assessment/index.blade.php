@@ -152,5 +152,4 @@ Application
     </table>
 
 </div>
-
 @endsection
