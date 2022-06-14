@@ -136,7 +136,7 @@ Assessments
                 <th width="100px">Action</th>
             </tr>
         </thead>
-        <tfoot >
+        <tfoot>
             <tr>
                 <th>Enquiry Id</th>
                 <th>Student Name</th>
