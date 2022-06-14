@@ -78,15 +78,15 @@
                     <table class="table table-bordered mb-4">
             <thead>
                 <tr>
+                    <th>Enquiry Id</th>
                     <th>Student Name</th>
-                    <th>University</th>
                 </tr>
             </thead>
             <tbody>
-            @foreach  ($Application as $transaction)
+            @foreach  ($assessment as $assessments)
                     <tr>
-                    <td>{{ $transaction->name }}</td>
-                    <td>{{ $transaction->currency_name }}</td>
+                        <td>{{ $assessments->enquiry_id }}</td>
+                    <td>{{ $assessments->name }}</td>
                     </tr>
                 @endforeach
             </tbody>
