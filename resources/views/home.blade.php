@@ -55,15 +55,15 @@
                     <table class="table table-bordered mb-4">
             <thead>
                 <tr>
-                    <th>Enquiry Id</th>
-                    <th>Student Name</th>
+                    <th>Name</th>
+                    <th>Email</th>
                 </tr>
             </thead>
             <tbody>
-            @foreach  ($assessment as $assessments)
+            @foreach  ($Enquiry as $Enquirys)
                     <tr>
-                        <td>{{ $assessments->enquiry_id }}</td>
-                    <td>{{ $assessments->name }}</td>
+                    <td>{{ $Enquirys->name }}</td>
+                    <td>{{ $Enquirys->email }}</td>
                     </tr>
                 @endforeach
             </tbody>
