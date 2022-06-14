@@ -86,8 +86,8 @@
                     </div>
                 </div>
             </a>
-            <div id="table-wrapper">
-  <div id="table-scroll">
+            <!-- <div id="table-wrapper">
+  <div id="table-scroll"> -->
     <table id="example" class="table table-bordered data-table">
         <thead>
             <tr>
@@ -105,8 +105,8 @@
                 @endforeach
         </tbody>
     </table>
-  </div>
-            </div>
+  <!-- </div>
+            </div> -->
 
                 <!-- <div class="widget-content">
                     <div class="w-chart">
