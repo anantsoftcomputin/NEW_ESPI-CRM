@@ -4,18 +4,16 @@
 
 {{-- colum 1 --}}
 <style>
-
 #table-wrapper {
   position:relative;
 }
 #table-scroll {
-  height:150px;
+  height:200px;
   overflow:auto;  
   margin-top:20px;
 }
 #table-wrapper table {
   width:100%;
-
 }
 #table-wrapper table thead th .text {
   position:absolute;   
@@ -24,7 +22,6 @@
   height:20px;
   width:35%;
 }
-
 </style>
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
     <div class="row widget-statistic">
@@ -385,10 +382,8 @@
 <script>
       // Followers
   var array_d_1options3 = JSON.parse("{!! get_Inquiry_charts() !!}");
-
 //     alert(array_d_1options3);
 //   console.log(array_d_1options3);
-
   var d_1options3 = {
     chart: {
       id: 'sparkline1',
@@ -417,12 +412,9 @@
       }
     },
   }
-
   var d_1C_5 = new ApexCharts(document.querySelector("#hybrid_followers"), d_1options3);
   d_1C_5.render()
-
   var array_d_1options4 = JSON.parse("{!! Get_Assessment_Charts() !!}");
-
   var d_1options4 = {
     chart: {
       id: 'sparkline1',
@@ -451,15 +443,9 @@
       }
     }
   }
-
   var d_1C_6 = new ApexCharts(document.querySelector("#hybrid_followers1"), d_1options4);
   d_1C_6.render()
-
-
-
   var array_d_1options5 = JSON.parse("{!! Get_Application_Charts() !!}");
-
-
   var d_1options5 = {
     chart: {
       id: 'sparkline1',
@@ -491,13 +477,10 @@
       }
     }
   }
-
   var d_1C_7 = new ApexCharts(document.querySelector("#hybrid_followers3"), d_1options5);
   d_1C_7.render()
-
   var assesmenet_summary_chart = JSON.parse("{!! Get_Assessment_Charts() !!}");
 var application_summary_chart = JSON.parse("{!! Get_Application_Charts() !!}");
-
   var d_1options1 = {
     chart: {
       height: 350,
@@ -517,7 +500,6 @@ var application_summary_chart = JSON.parse("{!! Get_Application_Charts() !!}");
       offsetY: -10,
     },
     colors: ['#e75159', '#1abc9c'],
-
     series: [{
       name: 'Assessment',
       type: 'column',
@@ -540,14 +522,12 @@ var application_summary_chart = JSON.parse("{!! Get_Application_Charts() !!}");
       title: {
         text: 'Application',
       },
-
     }, {
       opposite: true,
       title: {
         text: 'Assessment'
       }
     }],
-
     responsive: [{
       breakpoint: 576,
       options: {
@@ -555,7 +535,6 @@ var application_summary_chart = JSON.parse("{!! Get_Application_Charts() !!}");
           title: {
             text: undefined,
           },
-
         }, {
           opposite: true,
           title: {
@@ -564,15 +543,12 @@ var application_summary_chart = JSON.parse("{!! Get_Application_Charts() !!}");
         }],
       },
     }]
-
   }
-
   var d_1C_3 = new ApexCharts(
       document.querySelector("#uniqueVisits"),
       d_1options1
   );
   d_1C_3.render();
-
 </script>
 @endsection
 
