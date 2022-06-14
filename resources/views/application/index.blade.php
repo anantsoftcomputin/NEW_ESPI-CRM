@@ -220,7 +220,7 @@ Application
                 <th width="200px">Action</th>
             </tr>
         </thead>
-        <tfoot>
+        <tfoot style="display:table-header-group;">
 
             <tr>
                 <th>#</th>
