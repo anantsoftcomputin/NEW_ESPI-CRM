@@ -50,6 +50,25 @@
                             <div id="hybrid_followers"></div>
                         </div>
                     </div> 
+                    <div id="table-wrapper">
+             <div id="table-scroll">
+                    <table class="table table-bordered mb-4">
+            <thead>
+                <tr>
+                    <th>Enquiry Id</th>
+                    <th>Student Name</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach  ($assessment as $assessments)
+                    <tr>
+                        <td>{{ $assessments->enquiry_id }}</td>
+                    <td>{{ $assessments->name }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+  </div></div> 
                 </div>
         </div>
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
