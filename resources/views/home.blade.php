@@ -44,8 +44,8 @@
                     </div>
             </a>
 
-                    <div id="table-wrapper">
-  <div id="table-scroll">
+                    <div id="">
+  <div id="">
                     <table id="example" class="table table-bordered data-table">
         <thead>
             <tr>
