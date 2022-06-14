@@ -69,12 +69,33 @@
                     </div>
                 </div>
             </a>
-            
-                 <div class="widget-content">
+            <div id="table-wrapper">
+  <div id="table-scroll">
+    <table id="example" class="table table-bordered data-table">
+        <thead>
+            <tr>
+                <th>Enquiry Id</th>
+                <th>Student Name</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach  ($assessment as $assessments)
+                    <tr>
+                    <!-- <td>{{ $assessments->course_id }}</td> -->
+                    <td>{{ $assessments->enquiry_id }}</td>
+                    <td>{{ $assessments->name }}</td>
+                    </tr>
+                @endforeach
+        </tbody>
+    </table>
+  </div>
+            </div>
+
+                 <!-- <div class="widget-content">
                     <div class="w-chart">
                         <div id="hybrid_followers1"></div>
                     </div>
-                </div> 
+                </div>  -->
             </div>
         </div>
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
@@ -118,6 +139,8 @@
                         </div>
                     </div> -->
                 </div>
+
+                
         </div>
     </div>
 </div>
