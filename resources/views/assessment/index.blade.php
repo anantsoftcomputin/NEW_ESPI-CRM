@@ -117,7 +117,7 @@
 @endsection
 
 @section('title')
-Application
+Assessments
 @endsection
 
 
@@ -136,10 +136,7 @@ Application
                 <th width="100px">Action</th>
             </tr>
         </thead>
-        
-        <tbody>
-        </tbody>
-        <tfoot>
+        <tfoot  style="display:table-header-group;">
             <tr>
                 <th>Enquiry Id</th>
                 <th>Student Name</th>
@@ -149,6 +146,9 @@ Application
                 <th width="100px">Action</th>
             </tr>
         </tfoot>
+        <tbody>
+        </tbody>
+        
     </table>
 
 </div>
