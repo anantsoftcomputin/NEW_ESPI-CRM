@@ -74,24 +74,27 @@
                     </div>
                 </div> -->
                 <div id="table-wrapper">
-             <div id="table-scroll">
-                    <table class="table table-bordered mb-4">
-            <thead>
-                <tr>
-                    <th>Student Name</th>
-                    <th>University</th>
-                </tr>
-            </thead>
-            <tbody>
-            @foreach  ($Application as $transaction)
+  <div id="table-scroll">
+    <table id="example" class="table table-bordered data-table">
+        <thead>
+            <tr>
+                <th>Enquiry Id</th>
+                <th>Student Name</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach  ($assessment as $assessments)
                     <tr>
-                    <td>{{ $transaction->name }}</td>
-                    <td>{{ $transaction->currency_name }}</td>
+                    <!-- <td>{{ $assessments->course_id }}</td> -->
+                    <td>{{ $assessments->enquiry_id }}</td>
+                    <td>{{ $assessments->name }}</td>
                     </tr>
                 @endforeach
-            </tbody>
-        </table>
-  </div></div> 
+        </tbody>
+    </table>
+  </div>
+            </div>
+
             </div>
         </div>
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
