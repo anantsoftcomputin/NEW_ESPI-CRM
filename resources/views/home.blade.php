@@ -73,7 +73,7 @@
                         <div id="hybrid_followers1"></div>
                     </div>
                 </div> -->
-                <div id="table-wrapper">
+  <div id="table-wrapper">
   <div id="table-scroll">
     <table id="example" class="table table-bordered data-table">
         <thead>
@@ -92,8 +92,7 @@
                 @endforeach
         </tbody>
     </table>
-  </div>
-            </div>
+  </div> </div>
 
             </div>
         </div>
