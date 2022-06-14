@@ -93,11 +93,31 @@
                         </div>
                     </div>
             </a>
-                     <div class="widget-content">
+            <div id="table-wrapper">
+  <div id="table-scroll">
+                    <table class="table table-bordered mb-4">
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>University</th>
+
+                </tr>
+            </thead>
+            <tbody>
+            @foreach  ($Application as $transaction)
+                    <tr>
+                    <td>{{ $transaction->name }}</td>
+                    <td>{{ $transaction->currency_name }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+  </div></div>
+                     <!-- <div class="widget-content">
                         <div class="w-chart">
                             <div id="hybrid_followers3"></div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
         </div>
     </div>
