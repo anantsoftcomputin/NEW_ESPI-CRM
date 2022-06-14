@@ -136,16 +136,6 @@ Assessments
                 <th width="100px">Action</th>
             </tr>
         </thead>
-        <tfoot>
-            <tr>
-                <th>Enquiry Id</th>
-                <th>Student Name</th>
-                <th>Phone</th>
-                <th>Email</th>
-                <th>Agent Detail</th>
-                <th width="100px">Action</th>
-            </tr>
-        </tfoot>
         <tbody>
         </tbody>
     </table>
