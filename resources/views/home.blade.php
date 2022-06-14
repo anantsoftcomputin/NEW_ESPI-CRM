@@ -9,7 +9,7 @@
   position:relative;
 }
 #table-scroll {
-  height:200px;
+  height:150px;
   overflow:auto;  
   margin-top:20px;
 }
@@ -45,25 +45,24 @@
             </a>
 
                     <div id="table-wrapper">
-                        <div id="table-scroll">
+  <div id="table-scroll">
                     <table id="example" class="table table-bordered data-table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    @foreach  ($Enquiry as $Enquirys)
-                                <tr>
-                                <td>{{ $Enquirys->name }}</td>
-                                <td>{{ $Enquirys->email }}</td>
-                                </tr>
-                            @endforeach
-                    </tbody>
-                    </table>
-                </div>
-              </div>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach  ($Enquiry as $Enquirys)
+                    <tr>
+                    <td>{{ $Enquirys->name }}</td>
+                    <td>{{ $Enquirys->email }}</td>
+                    </tr>
+                @endforeach
+        </tbody>
+    </table>
+  </div></div>
                     <!-- <div class="widget-content">
                         <div class="w-chart">
                             <div id="hybrid_followers"></div>
