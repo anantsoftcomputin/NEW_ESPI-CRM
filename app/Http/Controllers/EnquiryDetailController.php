@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Enquiry;
 use App\Models\EnquiryDetail;
 use App\Models\Document;
+use App\Models\Package;
+use App\Models\Card;
+
 use Illuminate\Http\Request;
 
 class EnquiryDetailController extends Controller
@@ -58,7 +61,10 @@ class EnquiryDetailController extends Controller
         }
         $enquiry->Details->data=$enquiry->Details->data;
 
-        return view('enquiry.detail_ui.index',compact('enquiry','active'));
+        $Transaction= card::all();
+        $Package= Package::all();
+
+        return view('enquiry.detail_ui.index',compact('enquiry','active','Package','Transaction'));
     }
 
     public function conform_document($id,Request $request)

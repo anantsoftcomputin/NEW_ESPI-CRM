@@ -103,7 +103,7 @@ Add Assessment
     var instance = new TagsInput({
         selector: 'skill-input'
     });
-    instance.addData(['mr.jasmin.shukal@gmail.com'])
+    instance.addData(['varghesegifty08@gmail.com'])
 function ShowDetail(ID) {
     $(ID).show();
 }

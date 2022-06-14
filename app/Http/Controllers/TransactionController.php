@@ -38,6 +38,7 @@ class TransactionController extends Controller
         $transaction->receive_by=\Auth::user()->id;
         $transaction->save();
 
+        // print_r($transaction);die;
         return redirect()->back()->withInfo('Add Transaction SuccessFully.');
     }
     public function receipt($id)
@@ -53,22 +54,7 @@ class TransactionController extends Controller
                        // print_r($transaction);die;
          return view('enquiry/receipt',compact('transaction','latestid'));
 
-        // $transaction = Transaction::find($id);
-        // $university=University::all();
-        // $course=Course::all();
-        // $enquiry=Enquiry::all();
-        // return view('enquiry/receipt',compact('transaction','university','course','enquiry'));
     }
-    // public function edit($enquiri)
-    // {
-    //     $user=User::role('Counsellor')->get();
-    //     $university=University::all();
-    //     $course=Course::all();
-    //     $intake=Intact::all();
-    //     $page="Enquiry";
-    //     $title="Update Enquiry";
-    //     $enquiry=Enquiry::find($enquiri);
-    //     return view('enquiry.edit',compact('user','university','course','intake','page','title','enquiry'));
-    // }
+    
 
 }

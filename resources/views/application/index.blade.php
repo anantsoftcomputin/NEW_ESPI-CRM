@@ -220,9 +220,8 @@ Application
                 <th width="200px">Action</th>
             </tr>
         </thead>
-        <tbody>
-        </tbody>
-        <tfoot>
+        <tfoot style="display:table-header-group;">
+
             <tr>
                 <th>#</th>
                 <th>Student Name</th>
@@ -237,6 +236,9 @@ Application
                 <th width="200px">Action</th>
             </tr>
         </tfoot>
+        <tbody>
+        </tbody>
+
     </table>
 
 </div>

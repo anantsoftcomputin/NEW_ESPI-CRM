@@ -340,4 +340,5 @@ class AssessmentController extends Controller
         } while (Application::where("application_id", "=", $code)->first());
         return $code;
     }
+    
 }

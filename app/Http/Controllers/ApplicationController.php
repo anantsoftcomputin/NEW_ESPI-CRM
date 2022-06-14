@@ -19,6 +19,7 @@ use App\Models\EnquiryDetail;
 use Illuminate\Http\Request;
 use DataTables;
 use Illuminate\Support\Facades\Mail;
+use SebastianBergmann\Environment\Console;
 
 class ApplicationController extends Controller
 {
@@ -397,4 +398,6 @@ class ApplicationController extends Controller
         // EnqActivity("Process Application. Status :".$status_id,\App\Models\Application::find('application_id')->Enquiry->id);
         return redirect()->route('Application.edit',['Application'=>$application_id])->withInfo("Start Work on Remark successfully.");
     }
+
+    
 }

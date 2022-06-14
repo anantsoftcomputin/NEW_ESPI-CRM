@@ -38,5 +38,14 @@ class University extends Model
     {
         return $this->belongsTo(Country::class);
     }
+    public function University()
+    {
+        return $this->hasOne(University::class,'id','university_id');
+    }
+
+    public function Enquiry()
+    {
+        return $this->belongsTo(Enquiry::class,'id','enquiry_id');
+    }
 
 }

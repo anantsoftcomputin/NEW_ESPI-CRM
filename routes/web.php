@@ -60,7 +60,7 @@ Route::get("ocr",[HomeController::class,"ocr"]);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']); 
 
 Route::post('/save-token', [UserController::class, 'saveToken'])->name('save-token');
 
@@ -136,6 +136,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::resource('Transactions', TransactionController::class);
     Route::post('Transactions/Add/{Enquire}',[TransactionController::class,'add'])->name('Transaction.Add');
     Route::get('enquiry/{id}/receipt',[TransactionController::class,'receipt'])->name('Transaction.receipt');
+    // Route::post('FollowUp/store/{Enquire}',[FollowUpController::class,'store'])->name('FollowUp.store');
 
 
     Route::post('TransactionCredit/Add/{Enquire}',[TransactionCreditController::class,'add'])->name('TransactionCredit.Add');
@@ -155,7 +156,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     // Route::get("/", function(){
     //     return view('user.profile');
     // });
-    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.index');
+    // Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.index');
 
     Route::get('email-test', function(){
         $details = App\Models\Enquiry::find(1);
@@ -200,4 +201,10 @@ Route::get('demo',function(){
 Route::get('/', function () {
     return 'First sub domain';
 })->domain('/{branch_name}.'.env('APP_URL'));
+
+
+Route::get('/',[App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/{branch_name}/joinespi',[FrontendController::class, 'joinespi'])->name('join_espi');
+Route::post('/{branch_name}/joinespi',[FrontendController::class, 'joinespistore'])->name('join_espi_store');
+
 

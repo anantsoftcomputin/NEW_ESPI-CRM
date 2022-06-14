@@ -49,6 +49,9 @@ class TaskController extends Controller
     {
         $request->validate([
             'subject'=>'required',
+
+
+            
             'file'=>'required'
         ]);
         // print_r($request->all());

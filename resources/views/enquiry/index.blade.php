@@ -418,9 +418,20 @@ Enquires index
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div> --}}
+<!-- new -->
+<div id="main" style="WIDTH:100%;">
+  <div class="container">
+<div class="accordion" id="faq">
+                    <div class="card">
+                        <div class="card-header" id="faqhead1">
+                            <a href="#" class="btn btn-header-link" data-toggle="collapse" data-target="#faq1"
+                            aria-expanded="true" aria-controls="faq1">Bank Payment Mode</a>
+                        </div>
 
-                                        <div class="col-md-12">
-                                            <label style="font-weight: 800;">Bank Payment Mode</label>
+                        <div id="faq1" class="collapse show" aria-labelledby="faqhead1" data-parent="#faq">
+                            <div class="card-body">
+                            <div class="col-md-12">
+                                            <!-- <label style="font-weight: 800;">Bank Payment Mode</label> -->
                                             <div class="form-group">
                                                 <label for="bank_name" class="">Cheque Bank Name</label>
                                                 <input type="text" name="bank_name"  value="{{ old('bank_name') }}"
@@ -430,7 +441,7 @@ Enquires index
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="check_number" class="">Cheque  Number</label>
                                                 <input type="number" name="check_number"  value="{{ old('check_number') }}"
@@ -440,7 +451,7 @@ Enquires index
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="check_number" class="">Cheque  Date</label>
                                                 <input type="date" name="check_date"  value="{{ old('check_date') }}"
@@ -450,7 +461,7 @@ Enquires index
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="check_number" class="">Cheque  Amount</label>
                                                 <input type="number" name="check_amount" id="check_amount" value="{{ old('check_amount') }}"
@@ -459,9 +470,20 @@ Enquires index
                                             @error('check_amount')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
-                                        </div>
-                                        <div class="col-md-12">
-                                            <label style="font-weight: 800;">UPI Payment Mode</label>
+                                        </div>       
+                        </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqhead2">
+                            <a href="#" class="btn btn-header-link collapsed" data-toggle="collapse" data-target="#faq2"
+                            aria-expanded="true" aria-controls="faq2">UPI Payment Mode</a>
+                        </div>
+
+                        <div id="faq2" class="collapse" aria-labelledby="faqhead2" data-parent="#faq">
+                            <div class="card-body">
+                            <div class="col-md-12">
+                                            <!-- <label style="font-weight: 800;">UPI Payment Mode</label> -->
                                             <div class="form-group">
                                                 <label for="upi_type" class="">UPI Payment Type</label>
                                                 <input type="text" name="upi_type" id="upi_type" value="{{ old('upi_type') }}"
@@ -471,7 +493,7 @@ Enquires index
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="upi_id" class="">UPI Id</label>
                                                 <input type="text" name="upi_id" id="upi_id" value="{{ old('upi_id') }}"
@@ -481,7 +503,7 @@ Enquires index
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="upi_amount" class="">UPI Amount</label>
                                                 <input type="number" name="upi_amount" id="upi_amount" value="{{ old('upi_amount') }}"
@@ -490,9 +512,20 @@ Enquires index
                                             @error('upi_amount')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
-                                        </div>
-                                        <div class="col-md-12">
-                                            <label style="font-weight: 800;">Cash Payment Mode</label>
+                                        </div>      
+                        </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqhead3">
+                            <a href="#" class="btn btn-header-link collapsed" data-toggle="collapse" data-target="#faq3"
+                            aria-expanded="true" aria-controls="faq3">Cash Payment Mode</a>
+                        </div>
+
+                        <div id="faq3" class="collapse" aria-labelledby="faqhead3" data-parent="#faq">
+                            <div class="card-body">
+                            <div class="col-md-12">
+                                            <!-- <label style="font-weight: 800;"></label> -->
                                             <div class="form-group">
                                                 <label for="cash_mode" class="">Cash Payment Type</label>
                                                 <select name="cash_mode" id="cash_mode" class="@error('cash_mode') is-invalid @enderror form-control" required>
@@ -504,7 +537,7 @@ Enquires index
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="cash_amount" class="">Cash Amount</label>
                                                 <input type="number" name="cash_amount" id="cash_amount" value="{{ old('cash_amount') }}"
@@ -514,7 +547,7 @@ Enquires index
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="cash_date" class="">Cash Payment Date</label>
                                                 <input type="date" name="cash_date" id="cash_date" value="{{ old('cash_date') }}"
@@ -523,7 +556,75 @@ Enquires index
                                             @error('cash_date')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
-                                        </div>
+                                        </div>       
+                        </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+  </div>
+  <style>
+    #main {
+  margin: 50px 0;
+}
+
+#main #faq .card {
+  margin-bottom: 30px;
+  border: 0;
+}
+
+#main #faq .card .card-header {
+  border: 0;
+  -webkit-box-shadow: 0 0 20px 0 rgba(213, 213, 213, 0.5);
+          box-shadow: 0 0 20px 0 rgba(213, 213, 213, 0.5);
+  border-radius: 2px;
+  padding: 0;
+}
+
+#main #faq .card .card-header .btn-header-link {
+  color: #fff;
+  display: block;
+  text-align: left;
+  background: #e5e5e5;
+  color: #222;
+  padding: 20px;
+}
+
+#main #faq .card .card-header .btn-header-link:after {
+  content: "\f107";
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  float: right;
+}
+
+#main #faq .card .card-header .btn-header-link.collapsed {
+  background: #2196f3;
+  color: #fff;
+}
+
+#main #faq .card .card-header .btn-header-link.collapsed:after {
+  content: "\f106";
+}
+
+#main #faq .card .collapsing {
+  background: #e5e5e5;
+  line-height: 30px;
+}
+
+#main #faq .card .collapse {
+  border: 0;
+}
+
+#main #faq .card .collapse.show {
+  background: #e5e5e5;
+  line-height: 30px;
+  color: #222;
+}
+  </style>
+<!-- end -->
+                                        
+                                        
+                                         
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="note" class="">Note</label>
@@ -562,7 +663,7 @@ Enquires index
                                             <label for="price" class="mandatory"> Name</label>
                                             {{-- <input type="text" name="name" id="name" value="{{ old('name') }}"
                                                 class="@error('name') is-invalid @enderror form-control" required> --}}
-                                                <select name="card_number" id="card_number" class="@error('card_number') is-invalid @enderror form-control" required>
+                                                <select name="name" id="name" class="@error('card_number') is-invalid @enderror form-control" required>
                                                     @foreach ( $Transaction as  $item)
                                                     <option value="select">select</option>
                                                         <option value="{{ $item -> name }}">{{ $item -> name }}</option>

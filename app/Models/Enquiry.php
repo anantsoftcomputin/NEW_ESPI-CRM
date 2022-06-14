@@ -130,5 +130,9 @@ class Enquiry extends Model
     {
         return $this->hasMany(EnquiryOnlineExam::class)->orderBy('id','desc');
     }
+    public function University()
+    {
+        return $this->hasOne(University::class,'id','university_id');
+    }
 
 }

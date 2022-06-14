@@ -117,7 +117,7 @@
 @endsection
 
 @section('title')
-Application
+Assessments
 @endsection
 
 
@@ -125,7 +125,7 @@ Application
 <div class="col-md-12">
     <h1>Assessments</h1>
 
-    <table class="table table-bordered data-table">
+    <table id="example" class="table table-bordered data-table">
         <thead>
             <tr>
                 <th>Enquiry Id</th>
@@ -136,9 +136,7 @@ Application
                 <th width="100px">Action</th>
             </tr>
         </thead>
-        <tbody>
-        </tbody>
-        <tfoot>
+        <tfoot style="display:table-header-group;">
             <tr>
                 <th>Enquiry Id</th>
                 <th>Student Name</th>
@@ -148,7 +146,8 @@ Application
                 <th width="100px">Action</th>
             </tr>
         </tfoot>
-
+        <tbody>
+        </tbody>
     </table>
 
 </div>

@@ -189,7 +189,6 @@ class EnquireController extends Controller
         $intake=Intact::all();
         $page="Enquiry";
         $title="Add New Enquiry";
-
         //$user=User::where('company_id','1')->whereNotIn('id',[\Auth::user()->id])->get();
         return view('enquiry.add',compact('user','university','course','intake','page','title'));
     }
