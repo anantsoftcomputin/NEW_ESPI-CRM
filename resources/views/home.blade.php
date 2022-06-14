@@ -70,33 +70,12 @@
                     </div>
                 </div>
             </a>
-            <div id="table-wrapper">
-  <div id="table-scroll">
-    <table id="example" class="table table-bordered data-table">
-        <thead>
-            <tr>
-                <th>Enquiry Id</th>
-                <th>Student Name</th>
-            </tr>
-        </thead>
-        <tbody>
-        @foreach  ($assessment as $assessments)
-                    <tr>
-                    <!-- <td>{{ $assessments->course_id }}</td> -->
-                    <td>{{ $assessments->enquiry_id }}</td>
-                    <td>{{ $assessments->name }}</td>
-                    </tr>
-                @endforeach
-        </tbody>
-    </table>
-  </div>
-            </div>
-
-                <!-- <div class="widget-content">
+            
+                 <div class="widget-content">
                     <div class="w-chart">
                         <div id="hybrid_followers1"></div>
                     </div>
-                </div> -->
+                </div> 
             </div>
         </div>
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
@@ -114,32 +93,11 @@
                         </div>
                     </div>
             </a>
-
-                    <div id="table-wrapper">
-  <div id="table-scroll">
-                    <table class="table table-bordered mb-4">
-            <thead>
-                <tr>
-                    <th>Student Name</th>
-                    <th>University</th>
-
-                </tr>
-            </thead>
-            <tbody>
-            @foreach  ($Application as $transaction)
-                    <tr>
-                    <td>{{ $transaction->name }}</td>
-                    <td>{{ $transaction->currency_name }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-  </div></div>
-                    <!-- <div class="widget-content">
+                     <div class="widget-content">
                         <div class="w-chart">
                             <div id="hybrid_followers3"></div>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
         </div>
     </div>
