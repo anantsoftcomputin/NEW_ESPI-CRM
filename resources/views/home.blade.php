@@ -44,14 +44,32 @@
                         </div>
                     </div>  
                 </a>
-
-              
                     <div class="widget-content">
                         <div class="w-chart">
                             <div id="hybrid_followers"></div>
                         </div>
                     </div> 
                 </div>
+                <div id="table-wrapper">
+  <div id="table-scroll">
+                    <table id="example" class="table table-bordered data-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach  ($Enquiry as $Enquirys)
+                    <tr>
+                    <td>{{ $Enquirys->name }}</td>
+                    <td>{{ $Enquirys->email }}</td>
+                    </tr>
+                @endforeach
+        </tbody>
+    </table>
+  </div></div>
+  
         </div>
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
             <a href="{{ route('assessments.index') }}">
