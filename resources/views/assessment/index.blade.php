@@ -136,6 +136,9 @@ Application
                 <th width="100px">Action</th>
             </tr>
         </thead>
+        
+        <tbody>
+        </tbody>
         <tfoot>
             <tr>
                 <th>Enquiry Id</th>
@@ -146,8 +149,6 @@ Application
                 <th width="100px">Action</th>
             </tr>
         </tfoot>
-        <tbody>
-        </tbody>
     </table>
 
 </div>
