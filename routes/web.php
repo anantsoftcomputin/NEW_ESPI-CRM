@@ -54,6 +54,11 @@ Route::get('optimize', function () {
     return redirect('home');
 });
 
+Route::get('/clear-cache', function() {
+     \Artisan::call('cache:clear');
+    return redirect('home');
+
+});
 
 
 Route::get("ocr",[HomeController::class,"ocr"]);
