@@ -98,6 +98,7 @@
         <tbody>
         @foreach  ($assessment as $assessments)
                     <tr>
+                    <!-- <td>{{ $assessments->course_id }}</td> -->
                     <td>{{ $assessments->enquiry_id }}</td>
                     <td>{{ $assessments->name }}</td>
                     </tr>
