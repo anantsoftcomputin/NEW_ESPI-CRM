@@ -105,8 +105,8 @@
                 @endforeach
         </tbody>
     </table>
-  <!-- </div>
-            </div> -->
+  </div>
+            </div>
 
                 <!-- <div class="widget-content">
                     <div class="w-chart">
