@@ -45,11 +45,11 @@
                     </div>  
                 </a>
                 
-                    <div class="widget-content">
+                    <!-- <div class="widget-content">
                         <div class="w-chart">
                             <div id="hybrid_followers"></div>
                         </div>
-                    </div> 
+                    </div>  -->
                     <div id="table-wrapper">
              <div id="table-scroll">
                     <table class="table table-bordered mb-4">
