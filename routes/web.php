@@ -66,7 +66,7 @@ Route::get("ocr",[HomeController::class,"ocr"]);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']); 
-Route::get('home', [HomeController::class,'search'])->name('search');
+Route::get('/home', [HomeController::class,'search'])->name('search');
 Route::post('/save-token', [UserController::class, 'saveToken'])->name('save-token');
 
 Route::post('import_parse', [UniversityController::class,"parseImport"])->name('import_parse');
