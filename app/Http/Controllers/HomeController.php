@@ -12,6 +12,7 @@ use App\Models\Enquiry;
 use App\Models\Application;
 use App\Models\assessment;
 use App\Models\Country;
+use DataTables;
 
 use Carbon\Carbon;
 use GuzzleHttp\RetryMiddleware;
@@ -78,7 +79,9 @@ class HomeController extends Controller
                     // $assessment = assessment::select('assessments.*')->where('assessments.status', '!=', 'approved')
                     // ->groupBy('enquiry_id')
                     // ->with('University','Course','User','Enquiry','University.Country');
+
         return view('home', compact('Enquiry','Application','assessment'));
     }
    
+    
 }
