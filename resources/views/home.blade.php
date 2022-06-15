@@ -38,7 +38,9 @@
 <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+<script>
 
+</script>
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
     <div class="row widget-statistic">
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
@@ -57,16 +59,16 @@
                     </div>  
                 </a>
                 
-    <!-- </table>
+                 <!-- </table>
                   <div class="widget-content">
                         <div class="w-chart">
                             <div id="hybrid_followers"></div>
                         </div>
                     </div>   -->
                     
-<form action="{{ route('search') }}" method="GET" class="text-center">
+<form action="{{ route('search') }}"  method="GET"  class="text-center">
   <input type="text" name="search" class="form-control-sm" required/>
-  <button type="submit" class="btn btn-info">Search</button>
+  <button type="submit" class="btn btn-info" >Search</button>
 </form>
 
                      <div id="table-wrapper">
@@ -81,7 +83,7 @@
             <tbody>
             @foreach  ($Enquiry as $Enq)
                     <tr>
-                    <td>{{ $Enq->name }}</td>
+                    <td><a href="{{ route('detail.nav', $Enq->id) }}" style="color:blue;">{{ $Enq->name }}</a></td>
                     <td>{{ $Enq->email }}</td>
                     </tr>
                 @endforeach
