@@ -27,6 +27,18 @@
 
 </style>
 
+<link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="https://datatables.yajrabox.com/css/datatables.bootstrap.css" rel="stylesheet">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
     <div class="row widget-statistic">
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
@@ -45,14 +57,21 @@
                     </div>  
                 </a>
                 
-                    <!-- <div class="widget-content">
+    <!-- </table>
+                  <div class="widget-content">
                         <div class="w-chart">
                             <div id="hybrid_followers"></div>
                         </div>
-                    </div>  -->
-                    <div id="table-wrapper">
+                    </div>   -->
+                    
+<form action="{{ route('search') }}" method="GET" class="text-center">
+  <input type="text" name="search" class="form-control-sm" required/>
+  <button type="submit" class="btn btn-info">Search</button>
+</form>
+
+                     <div id="table-wrapper">
              <div id="table-scroll">
-                    <table class="table table-bordered mb-4">
+                    <table class="table table-bordered data-table ">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -60,7 +79,7 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach  ($Enquiry as $Enquirys)
+            @foreach  ($posts as $Enquirys)
                     <tr>
                     <td>{{ $Enquirys->name }}</td>
                     <td>{{ $Enquirys->email }}</td>
@@ -68,9 +87,10 @@
                 @endforeach
             </tbody>
         </table>
-  </div></div> 
+  </div></div>  
                 </div>
         </div>
+        
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
             <a href="{{ route('assessments.index') }}">
             <div class="widget widget-one_hybrid widget-referral">
@@ -78,7 +98,6 @@
                     <div class="w-title">
                         <div class="w-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pen-tool"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
-
                         </div>
                         <div class="">
                             <p class="w-value">{{ count(\App\Models\assessment::all()) }}</p>

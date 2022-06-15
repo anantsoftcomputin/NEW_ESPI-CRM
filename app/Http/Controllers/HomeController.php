@@ -29,7 +29,7 @@ class HomeController extends Controller
     }
 
     public function index()
-    {
+   {
         $university=University::all();
         $course=Course::all();
         $intake=Intact::all();
@@ -60,6 +60,27 @@ class HomeController extends Controller
     {
         return view("ocr.index");
     }
-
+    public function search(Request $request){
+       
+        $search = $request->input('search');
+  
+        $posts = Enquiry::query()
+                    ->where('name', 'LIKE', "%{$search}%")
+                    ->orWhere('email', 'LIKE', "%{$search}%")
+                    ->get();
+                    $Application = Application::join('enquiries', 'enquiries.id', '=', 'applications.enquiry_id')
+                    ->join('universities', 'universities.id', '=', 'applications.university_id')
+                    ->get(['applications.*', 'enquiries.name','universities.name as currency_name']);
+                    
+            
+                    $assessment = assessment::join('enquiries', 'enquiries.id', '=', 'assessments.enquiry_id')
+                    ->where('assessments.status', '!=', 'approved')
+                    ->get(['assessments.*', 'enquiries.name','enquiries.enquiry_id']);
+                    // $assessment = assessment::select('assessments.*')->where('assessments.status', '!=', 'approved')
+                    // ->groupBy('enquiry_id')
+                    // ->with('University','Course','User','Enquiry','University.Country');
+                 
+        return view('home', compact('posts','Application','assessment'));
+    }
    
 }
