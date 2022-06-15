@@ -79,12 +79,7 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach  ($enquiry as $Enq)
-                    <tr>
-                    <td>{{ $Enq->name }}</td>
-                    <td>{{ $Enq->email }}</td>
-                    </tr>
-                @endforeach
+           
             </tbody>
         </table>
   </div></div>  
