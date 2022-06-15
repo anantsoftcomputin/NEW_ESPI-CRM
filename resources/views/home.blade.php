@@ -79,7 +79,7 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach  ($posts as $Enquirys)
+            @foreach  ($Enquiry as $Enquirys)
                     <tr>
                     <td>{{ $Enquirys->name }}</td>
                     <td>{{ $Enquirys->email }}</td>
