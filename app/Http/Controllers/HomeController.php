@@ -33,7 +33,6 @@ class HomeController extends Controller
         $university=University::all();
         $course=Course::all();
         $intake=Intact::all();
-        $Enquiry=Enquiry::all();
         //  $Application=Application::with('Enquiry.University')->get();
         $user=User::role('Counsellor')->get();
         $Application = Application::join('enquiries', 'enquiries.id', '=', 'applications.enquiry_id')
@@ -48,7 +47,7 @@ class HomeController extends Controller
         // ->groupBy('enquiry_id')
         // ->with('University','Course','User','Enquiry','University.Country');
         
-        return view('home',compact("user","university","course","intake","Application","assessment","Enquiry"));
+        return view('home',compact("user","university","course","intake","Application","assessment"));
     }
 
     public function front_end()
@@ -64,7 +63,7 @@ class HomeController extends Controller
        
         $search = $request->input('search');
   
-        $posts = Enquiry::query()
+        $Enquiry = Enquiry::query()
                     ->where('name', 'LIKE', "%{$search}%")
                     ->orWhere('email', 'LIKE', "%{$search}%")
                     ->get();
@@ -80,7 +79,7 @@ class HomeController extends Controller
                     // ->groupBy('enquiry_id')
                     // ->with('University','Course','User','Enquiry','University.Country');
                  
-        return view('home', compact('posts','Application','assessment'));
+        return view('home', compact('Enquiry','Application','assessment'));
     }
    
 }
