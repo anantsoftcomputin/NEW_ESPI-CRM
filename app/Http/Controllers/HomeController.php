@@ -33,21 +33,8 @@ class HomeController extends Controller
         $university=University::all();
         $course=Course::all();
         $intake=Intact::all();
-        //  $Application=Application::with('Enquiry.University')->get();
-        $user=User::role('Counsellor')->get();
-        $Application = Application::join('enquiries', 'enquiries.id', '=', 'applications.enquiry_id')
-        ->join('universities', 'universities.id', '=', 'applications.university_id')
-        ->get(['applications.*', 'enquiries.name','universities.name as currency_name']);
         
-
-        $assessment = assessment::join('enquiries', 'enquiries.id', '=', 'assessments.enquiry_id')
-        ->where('assessments.status', '!=', 'approved')
-        ->get(['assessments.*', 'enquiries.name','enquiries.enquiry_id']);
-        // $assessment = assessment::select('assessments.*')->where('assessments.status', '!=', 'approved')
-        // ->groupBy('enquiry_id')
-        // ->with('University','Course','User','Enquiry','University.Country');
-        
-        return view('home',compact("user","university","course","intake","Application","assessment"));
+        return view('home',compact("university","course","intake"));
     }
 
     public function front_end()
@@ -63,23 +50,20 @@ class HomeController extends Controller
        
         $search = $request->input('search');
   
-        $Enquiry = Enquiry::query()
+        $enquiry = Enquiry::query()
                     ->where('name', 'LIKE', "%{$search}%")
                     ->orWhere('email', 'LIKE', "%{$search}%")
                     ->get();
-                    $Application = Application::join('enquiries', 'enquiries.id', '=', 'applications.enquiry_id')
+      
+        $Application = Application::join('enquiries', 'enquiries.id', '=', 'applications.enquiry_id')
                     ->join('universities', 'universities.id', '=', 'applications.university_id')
                     ->get(['applications.*', 'enquiries.name','universities.name as currency_name']);
-                    
             
-                    $assessment = assessment::join('enquiries', 'enquiries.id', '=', 'assessments.enquiry_id')
+        $assessment = assessment::join('enquiries', 'enquiries.id', '=', 'assessments.enquiry_id')
                     ->where('assessments.status', '!=', 'approved')
                     ->get(['assessments.*', 'enquiries.name','enquiries.enquiry_id']);
-                    // $assessment = assessment::select('assessments.*')->where('assessments.status', '!=', 'approved')
-                    // ->groupBy('enquiry_id')
-                    // ->with('University','Course','User','Enquiry','University.Country');
-                 
-        return view('home', compact('Enquiry','Application','assessment'));
+                                    
+        return view('home', compact('enquiry','Application','assessment'));
     }
    
 }
