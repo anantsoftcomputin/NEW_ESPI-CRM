@@ -117,7 +117,7 @@
 @endsection
 
 @section('title')
-Application
+Assessments
 @endsection
 
 
