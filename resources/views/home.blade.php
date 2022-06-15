@@ -43,7 +43,7 @@
 </script>
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
     <div class="row widget-statistic">
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
+        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-12 layout-spacing">
                 <a href="{{ route('Enquires.index') }}">
                 <div class="widget widget-one_hybrid widget-followers">
                     <div class="widget-heading">
@@ -78,6 +78,7 @@
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
+                    <th>Phone</th>
                 </tr>
             </thead>
             <tbody>
@@ -85,6 +86,7 @@
                     <tr>
                     <td><a href="{{ route('detail.nav', $Enq->id) }}" style="color:blue;">{{ $Enq->name }}</a></td>
                     <td>{{ $Enq->email }}</td>
+                    <td>{{ $Enq->phone }}</td>
                     </tr>
                 @endforeach
             </tbody>
@@ -93,96 +95,9 @@
                 </div>
         </div>
         
+      
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
-            <a href="{{ route('assessments.index') }}">
-            <div class="widget widget-one_hybrid widget-referral">
-                <div class="widget-heading">
-                    <div class="w-title">
-                        <div class="w-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pen-tool"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
-                        </div>
-                        <div class="">
-                            <p class="w-value">{{ count(\App\Models\assessment::all()) }}</p>
-                            <h5 class="">Assessment</h5>
-                        </div>
-                    </div>
-                </div>
-            </a>
-                 <!-- <div class="widget-content">
-                    <div class="w-chart">
-                        <div id="hybrid_followers1"></div>
-                    </div>
-                </div> -->
-                <div id="table-wrapper">
-             <div id="table-scroll">
-                    <table class="table table-bordered mb-4">
-            <thead>
-                <tr>
-                    <th>Enquiry Id</th>
-                    <th>Student Name</th>
-                </tr>
-            </thead>
-            <tbody>
-            @foreach  ($assessment as $assessments)
-                    <tr>
-                        <td>{{ $assessments->enquiry_id }}</td>
-                    <td>{{ $assessments->name }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-  </div></div> 
-            </div>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
-            <a href="{{ route('Application.index') }}">
-                <div class="widget widget-one_hybrid widget-engagement">
-                    <div class="widget-heading">
-                        <div class="w-title">
-                            <div class="w-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                            </div>
-                            <div class="">
-                                <p class="w-value">{{ count(\App\Models\Application::all()) }}</p>
-                                <h5 class="">Application</h5>
-                            </div>
-                        </div>
-                    </div>
-            </a>
-            <div id="table-wrapper">
-             <div id="table-scroll">
-                    <table class="table table-bordered mb-4">
-            <thead>
-                <tr>
-                    <th>Student Name</th>
-                    <th>University</th>
-                </tr>
-            </thead>
-            <tbody>
-            @foreach  ($Application as $transaction)
-                    <tr>
-                    <td>{{ $transaction->name }}</td>
-                    <td>{{ $transaction->currency_name }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-  </div></div>
-                     <!-- <div class="widget-content">
-                        <div class="w-chart">
-                            <div id="hybrid_followers3"></div>
-                        </div>
-                    </div> -->
-                </div>
-
-                
-        </div>
-    </div>
-</div>
-
-
-{{-- colum 2 --}}
-<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
+        <!-- <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing"> -->
     <div class="widget widget-activity-five">
 
         <div class="widget-heading">
@@ -234,7 +149,68 @@
         </div>
     </div>
 </div>
+                
+        </div>
+    </div>
+</div>
 
+
+{{-- colum 2 --}}
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    <div class="row widget-statistic">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
+               <a href="{{ route('Application.index') }}">
+                <div class="widget widget-one_hybrid widget-engagement">
+                    <div class="widget-heading">
+                        <div class="w-title">
+                            <div class="w-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                            </div>
+                            <div class="">
+                                <p class="w-value">{{ count(\App\Models\Application::all()) }}</p>
+                                <h5 class="">Application</h5>
+                            </div>
+                        </div>
+                    </div>
+            </a>
+                     <div class="widget-content">
+                        <div class="w-chart">
+                            <div id="hybrid_followers3"></div>
+                        </div>
+                    </div> 
+                </div>
+        </div>
+        
+      
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
+        <!-- <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing"> -->
+    <div class="widget widget-activity-five">
+<a href="{{ route('assessments.index') }}">
+<div class="widget widget-one_hybrid widget-referral">
+    <div class="widget-heading">
+        <div class="w-title">
+            <div class="w-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pen-tool"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
+            </div>
+            <div class="">
+                <p class="w-value">{{ count(\App\Models\assessment::all()) }}</p>
+                <h5 class="">Assessment</h5>
+            </div>
+        </div>
+    </div>
+</a>
+     <div class="widget-content">
+        <div class="w-chart">
+            <div id="hybrid_followers1"></div>
+        </div>
+    </div>
+                
+        </div>
+    </div>
+</div>
+<!-- start -->
+
+<!-- new -->
 <div class="col-xl-9 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
     <div class="widget widget-chart-three">
         <div class="widget-heading">
@@ -259,6 +235,7 @@
             <div id="uniqueVisits"></div>
         </div>
     </div>
+    
 </div>
 
 {{-- colum 3 --}}
