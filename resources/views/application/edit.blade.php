@@ -90,7 +90,7 @@ Edit Application
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="status">Apply Through</label>
-                                    <input type="text" name="associated_with" id="status" class="form-control" value="{{ $Application->associated_with ?? "" }}" @isset($Application->associated_with) readonly @else required @endisset>
+                                    <input type="text" name="associated_with" id="status" class="form-control" value="{{ $Application->associated_with ?? "" }}" @isset($Application->associated_with)  @else required @endisset>
                                 </div>
                             </div>
 
