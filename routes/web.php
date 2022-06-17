@@ -141,14 +141,14 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::resource('Transactions', TransactionController::class);
     Route::post('Transactions/Add/{Enquire}',[TransactionController::class,'add'])->name('Transaction.Add');
     Route::get('enquiry/{id}/receipt',[TransactionController::class,'receipt'])->name('Transaction.receipt');
-    Route::get('Transaction/{id}/edit',[TransactionController::class,'edit'])->name('Transaction.edit');
+    // Route::get('Transaction/{id}/edit',[TransactionController::class,'edit'])->name('Transaction.edit');
     // Route::get('Transaction/{id}/editreceipt',[TransactionController::class,'editreceipt'])->name('Transaction.editreceipt');
-    Route::post('Transaction/{id}/edit',[TransactionController::class,'update'])->name('Transaction.update');
+    // Route::post('Transaction/{id}/edit',[TransactionController::class,'update'])->name('Transaction.update');
     // Route::post('Transaction/{id}/editreceipt',[TransactionController::class,'update'])->name('Transaction.update');
     // Route::post('FollowUp/store/{Enquire}',[FollowUpController::class,'store'])->name('FollowUp.store');
 
     Route::resource('TransactionCredit', TransactionCredit::class);
-    Route::get('TransactionCredit/{id}/edit',[TransactionCreditController::class,'edit'])->name('TransactionCreditController.edit');
+    // Route::get('TransactionCredit/{id}/edit',[TransactionCreditController::class,'edit'])->name('TransactionCreditController.edit');
     Route::post('TransactionCredit/Add/{Enquire}',[TransactionCreditController::class,'add'])->name('TransactionCredit.Add');
     // Route::get('enquiry.index',[TransactionCreditController::class,'get'])->name('TransactionCredit.get');
 
