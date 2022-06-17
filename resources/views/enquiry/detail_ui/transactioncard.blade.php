@@ -8,7 +8,6 @@
                     <th>payment Status</th>
                     <th>receiver </th>
                     <th>Date</th>
-                    <th>note</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,8 +20,6 @@
                             <td><span class="badge badge-primary">{{ $transaction->payment_status }}</span></td>
                             <td>{{ $transaction->user->name }}</td>
                             <td>{{ $transaction->created_at->format('d-m-Y') }}</td>
-                            <td>{{ $transaction->note }}</td>
-                        <td> <a href="{{ route('TransactionCredit.edit',$transaction->id) }}" style="background: #9b59b6; color: #fff;" class="assessment" >Edit</a></td>
                                                                             
                         </tr>
                     {{-- @endif --}}
