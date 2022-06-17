@@ -26,7 +26,6 @@
                         <!-- <td>{{ $transaction->payment_mode }}</td> -->
                         <td>{{ $transaction->user->name }}</td>
                         <td>{{ $transaction->created_at->format('d-m-Y') }}</td>
-                        <td> <a href="{{ route('Transaction.edit',$transaction->id) }}" style="background: #9b59b6; color: #fff;" class="assessment" >Edit</a></td>
 
                         <td><a target="_blank" href="{{ route('Transaction.receipt', $transaction->id) }}"
                                 {{-- style="background: #9b59b6; color: #fff;" --}}
