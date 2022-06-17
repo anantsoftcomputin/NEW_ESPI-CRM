@@ -15,8 +15,8 @@ class TransactionController extends Controller
     public function add(Request $request,$enquiryId)
     {
         $request->validate([
-            'price'=>'required|numeric',
         ]);
+        // print_r($request->all());die;
         $transaction=new Transaction();
         $transaction->package_name=$request->package_name;
         $transaction->package_price=$request->package_price;
@@ -30,10 +30,10 @@ class TransactionController extends Controller
         $transaction->check_amount=$request->check_amount;
         $transaction->upi_type=$request->upi_type;
         $transaction->upi_id=$request->upi_id;
-           $transaction->upi_amount=$request->upi_amount;
+        $transaction->upi_amount=$request->upi_amount;
         $transaction->cash_mode=$request->cash_mode;
-           $transaction->cash_amount=$request->cash_amount;
-         $transaction->cash_date=$request->cash_date;
+        $transaction->cash_amount=$request->cash_amount;
+        $transaction->cash_date=$request->cash_date;
         $transaction->note=$request->note;
         $transaction->enquiry_id=$enquiryId;
         $transaction->company_id=\Auth::user()->company_id;
@@ -45,6 +45,7 @@ class TransactionController extends Controller
     }
     public function receipt($id)
     {
+
         $transaction = Transaction::join('enquiries', 'transactions.enquiry_id', '=', 'enquiries.id')
                             ->select(['transactions.*', 'enquiries.*'])
                             ->where('transactions.id',$id)
@@ -53,12 +54,13 @@ class TransactionController extends Controller
         $latestid  =Transaction::select('*')->where('transactions.id',$id)->first();
         // $transaction = Transaction::with('Enquiry')->get();
         //dd($transaction);
-                       // print_r($transaction);die;
+                        print_r($latestid);die;
          return view('enquiry/receipt',compact('transaction','latestid'));
 
     }
     public function editreceipt($id)
      {
+        
     //     $transaction = Transaction::join('enquiries', 'transactions.enquiry_id', '=', 'enquiries.id')
     //     ->select(['transactions.*', 'enquiries.*'])
     //     ->where('transactions.id',$id)
