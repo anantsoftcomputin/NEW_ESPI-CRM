@@ -95,8 +95,8 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="price" class="">Payment Paid</label>
-                                                <input type="number" name="price" id="value2" value="value2"
-                                                    class="@error('price') is-invalid @enderror form-control" disabled>
+                                                <input type="number" name="price" id="value2" 
+                                                    class="@error('price') is-invalid @enderror form-control" >
                                             </div>
                                             @error('price')
                                                 <div class="alert alert-danger">{{ $message }}</div>
