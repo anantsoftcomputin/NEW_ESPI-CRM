@@ -24,7 +24,9 @@
   height:20px;
   width:35%;
 }
-
+.widget.widget-one_hybrid.widget-followers {
+    padding: 30px;
+}
 </style>
 
 <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
@@ -64,7 +66,7 @@
                             <div id="hybrid_followers"></div>
                         </div>
                     </div>   -->
-<form action="{{ route('search') }}"  method="GET"  class="text-center">
+<form action="{{ route('search') }}"  method="GET"  class="text-right">
   <input type="text" name="search" class="form-control-sm" required/>
   <button type="submit" class="btn btn-info" >Search</button>
 </form>
