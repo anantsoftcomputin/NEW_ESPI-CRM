@@ -376,7 +376,7 @@ Enquires index
                                             <div class="form-group">
                                                 <label for="price" class="">Payment Paid</label>
                                                 <input type="number" name="price" id="value2" value="{{ old('price') }}"
-                                                    class="@error('price') is-invalid @enderror form-control" >
+                                                    class="@error('price') is-invalid @enderror form-control" disabled>
                                             </div>
                                             @error('price')
                                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -847,14 +847,25 @@ Enquires index
 
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script >
+
+<script type="text/javascript">
 $(document).ready(function(){
-            $('#value1, #value2').keyup(function(){
-               var value1 = parseFloat($('#value1').val()) || 0;
-               var value2 = parseFloat($('#value2').val()) || 0;
-               $('#sum').val(value1 - value2);
+            $('#check_amount, #upi_amount, #cash_amount').keyup(function(){
+               var value1 = parseFloat($('#check_amount').val()) || 0;
+               var value2 = parseFloat($('#upi_amount').val()) || 0;
+               var value3 = parseFloat($('#cash_amount').val()) || 0;
+               $('#value2').val(value1 + value2 + value3);
             });
          });
+    </script>  
+<script >
+// $(document).ready(function(){
+//             $('#value1, #value2').keyup(function(){
+//                var value1 = parseFloat($('#value1').val()) || 0;
+//                var value2 = parseFloat($('#value2').val()) || 0;
+//                $('#sum').val(value1 - value2);
+//             });
+//          });
 //         $(document).on("change keyup blur", "#Payment_price", function(e) {
 //   var amd = $('#package_price').val();
 //   var disc = $('#Payment_price').val();
