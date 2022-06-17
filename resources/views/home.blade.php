@@ -157,7 +157,7 @@
     <div class="row widget-statistic">
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
                <a href="{{ route('Application.index') }}">
-                <div class="widget widget-one_hybrid widget-engagement">
+                <div class="widget widget-one_hybrid widget-engagement" style="height:290px ;">
                     <div class="widget-heading">
                         <div class="w-title">
                             <div class="w-icon">
