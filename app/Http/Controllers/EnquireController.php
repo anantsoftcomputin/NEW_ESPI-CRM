@@ -162,7 +162,7 @@ class EnquireController extends Controller
         $Transaction= card::all();
         $Package= Package::all();
 
-        // print_r($Transaction);
+        //  print_r($test);die;
         // return view('enquiry.index', compact('Transaction'));
         return view('enquiry.index ',compact('Transaction','Package'));
     }
