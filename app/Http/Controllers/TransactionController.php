@@ -76,7 +76,7 @@ class TransactionController extends Controller
 
     public function update(Request $request){
     
-        print_r($request->all());die;
+        // print_r($request->all());die;
     $Transaction  =Transaction::find();
     $Transaction->package_name=$request->get('package_name');
     $Transaction->package_price=$request->get('package_price');
