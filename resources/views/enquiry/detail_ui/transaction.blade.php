@@ -5,10 +5,10 @@
                 <tr>
                     <th>title</th>
                     <th>Price</th>
+                    <th>Pending Price</th>
                     <!-- <th>payment mode</th> -->
                     <th>receiver </th>
                     <th>Date</th>
-                    <th>note</th>
                     <th>Receipt</th>
 
                 </tr>
@@ -22,11 +22,11 @@
                             <span class="badge badge-primary"> {{ $transaction->title }} </span>
                         </td>
                         <td>{{ $transaction->price }}</td>
+                          <td>{{ $transaction->pending_price }}</td>
                         <!-- <td>{{ $transaction->payment_mode }}</td> -->
                         <td>{{ $transaction->user->name }}</td>
                         <td>{{ $transaction->created_at->format('d-m-Y') }}</td>
-                        <td>{{ $transaction->note }}</td>
-                        {{-- <a href="'.route('Enquires.edit',$row->id).'" style="background: #9b59b6; color: #fff;" class="assessment" title="Edit Enquiry"> --}}
+                        <td> <a href="{{ route('Transaction.edit',$transaction->id) }}" style="background: #9b59b6; color: #fff;" class="assessment" >Edit</a></td>
 
                         <td><a target="_blank" href="{{ route('Transaction.receipt', $transaction->id) }}"
                                 {{-- style="background: #9b59b6; color: #fff;" --}}
@@ -45,11 +45,12 @@
             </tbody>
         </table>
     </div>
+
+
     <button type="button" class="btn btn-primary mb-2 mr-2" data-toggle="modal" data-target="#Transaction">
         Add Transaction
       </button>
 </div>
-
 
 <div class="modal fade" id="Transaction" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <form method="POST" action="{{ route('Transaction.Add',$enquiry->id) }}" enctype="multipart/form-data" id="add_transactions_form">
@@ -365,3 +366,22 @@
                 </div>
             </form>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+            $('#value1, #value2').keyup(function(){
+               var value1 = parseFloat($('#value1').val()) || 0;
+               var value2 = parseFloat($('#value2').val()) || 0;
+               $('#sum').val(value1 - value2);
+            });
+         });
+//         $(document).on("change keyup blur", "#Payment_price", function(e) {
+//   var amd = $('#package_price').val();
+//   var disc = $('#Payment_price').val();
+//   if (disc != '' && amd != '') {
+//     $('#pending_price').val((parseInt(amd)) - (parseInt(disc)));
+//   }else{
+//     $('#pending_price').val(parseInt(amd));
+//   }
+// });
+    </script>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\TransactionCredit;
 use Illuminate\Http\Request;
+use App\Http\Requests\TransactionCredit\EditTransactionCredit;
 
 class TransactionCreditController extends Controller
 {
@@ -40,4 +41,29 @@ class TransactionCreditController extends Controller
 
         return view('enquiry.index', compact('data'));
     }
+
+    public function edit(TransactionCredit $TransactionCredit)
+    {
+        $title = "User Details";
+        $roles = Role::pluck('name', 'id');
+        return view('TransactionCredit.edit', compact('TransactionCredit','title', 'roles'));
+    }
+    public function update(EditTransactionCredit $request, TransactionCredit $TransactionCredit)
+    {
+
+        $TransactionCredit->name=$request->name;
+        $TransactionCredit->price=$request->price;
+        $TransactionCredit->card_number=$request->card_number;
+        $TransactionCredit->payment_title=$request->payment_title;
+        $TransactionCredit->payment_status=$request->payment_status;
+        $TransactionCredit->note=$request->note;
+        $TransactionCredit->enquiry_id=$enquiryId;
+        $TransactionCredit->company_id=\Auth::user()->company_id;
+        $TransactionCredit->receive_by=\Auth::user()->id;
+        $TransactionCredit->save();
+
+
+        return redirect()->back()->withInfo('Update  Credit Card Transaction SuccessFully.');
+    }
+  
 }

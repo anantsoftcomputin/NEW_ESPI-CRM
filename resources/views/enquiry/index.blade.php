@@ -346,7 +346,7 @@ Enquires index
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="package_name" class="mandatory">Package  Name</label>
+                                                <label for="package_name" class="">Package  Name</label>
                                                     <select  id="package_name"  name="package_name"  class="@error('package_name') is-invalid @enderror form-control" required>
                                                     <option value="select">select</option>
                                                         @foreach ($Package as $key=>$item)
@@ -360,7 +360,7 @@ Enquires index
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="package_price" class="mandatory">Package  price</label>
+                                                <label for="package_price" class="">Package  price</label>
                                                     <select  id="value1"  name="package_price" class="@error('package_price') is-invalid @enderror form-control" required>
                                                     <option value="select">select</option>
                                                         @foreach ($Package as $key=>$item)
@@ -660,7 +660,7 @@ Enquires index
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="price" class="mandatory"> Name</label>
+                                            <label for="price" class=""> Name</label>
                                             {{-- <input type="text" name="name" id="name" value="{{ old('name') }}"
                                                 class="@error('name') is-invalid @enderror form-control" required> --}}
                                                 <select name="name" id="name" class="@error('card_number') is-invalid @enderror form-control" required>
@@ -676,7 +676,7 @@ Enquires index
                                     </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="price" class="mandatory">Card Number</label>
+                                                <label for="price" class="">Card Number</label>
                                                 {{-- <input type="number" name="card_number" id="card_number" value="{{ old('card_number') }}"
                                                     class="@error('card_number') is-invalid @enderror form-control" required> --}}
                                                     <select name="card_number" id="card_number" class="@error('card_number') is-invalid @enderror form-control" required>
@@ -868,7 +868,7 @@ $(document).ready(function(){
 {{-- <script>
     $(function() {
     $('#payment_mode').change(function(){
-      $('#check_date').hide();
+      $('#check_date').hide();  
 
       $('#' + $(this).val()).show();
       if($(this).val()=="Case Payment ")

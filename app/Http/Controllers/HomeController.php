@@ -13,6 +13,7 @@ use App\Models\Application;
 use App\Models\assessment;
 use App\Models\Country;
 use DataTables;
+use App\Models\AssignCounsellor;
 
 use Carbon\Carbon;
 use GuzzleHttp\RetryMiddleware;
@@ -34,6 +35,7 @@ class HomeController extends Controller
         $university=University::all();
         $course=Course::all();
         $Enquiry=Enquiry::all();
+        
         $intake=Intact::all();
         //  $Application=Application::with('Enquiry.University')->get();
         $user=User::role('Counsellor')->get();
@@ -69,10 +71,13 @@ class HomeController extends Controller
                     ->where('name', 'LIKE', "%{$search}%")
                     ->orWhere('email', 'LIKE', "%{$search}%")
                     ->get();
+                
+                    
                     $Application = Application::join('enquiries', 'enquiries.id', '=', 'applications.enquiry_id')
                     ->join('universities', 'universities.id', '=', 'applications.university_id')
                     ->get(['applications.*', 'enquiries.name','universities.name as currency_name']);
-                    
+                
+                 
             
                     $assessment = assessment::join('enquiries', 'enquiries.id', '=', 'assessments.enquiry_id')
                     ->where('assessments.status', '!=', 'approved')

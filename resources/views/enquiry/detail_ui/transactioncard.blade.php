@@ -22,6 +22,8 @@
                             <td>{{ $transaction->user->name }}</td>
                             <td>{{ $transaction->created_at->format('d-m-Y') }}</td>
                             <td>{{ $transaction->note }}</td>
+                        <td> <a href="{{ route('TransactionCredit.edit',$transaction->id) }}" style="background: #9b59b6; color: #fff;" class="assessment" >Edit</a></td>
+                                                                            
                         </tr>
                     {{-- @endif --}}
                 @empty
@@ -30,6 +32,8 @@
             </tbody>
         </table>
     </div>
+
+
     <button type="button" class="btn btn-primary mb-2 mr-2" data-toggle="modal" data-target="#TransactionCard">
         Add  Transaction Credit  Card
       </button>
