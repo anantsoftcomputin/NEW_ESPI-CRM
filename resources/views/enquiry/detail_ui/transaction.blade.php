@@ -1,3 +1,4 @@
+
 <div class="col-md-12 text-center mt-2 mb-3">
     <div class="table-responsive">
         <table class="table table-bordered mb-4">
@@ -26,7 +27,6 @@
                         <!-- <td>{{ $transaction->payment_mode }}</td> -->
                         <td>{{ $transaction->user->name }}</td>
                         <td>{{ $transaction->created_at->format('d-m-Y') }}</td>
-
                         <td><a target="_blank" href="{{ route('Transaction.receipt', $transaction->id) }}"
                                 {{-- style="background: #9b59b6; color: #fff;" --}}
                                 class="assessment btn rounded-circle mb-2 mr-1 bs-tooltip" title="RECEIPT"><svg
@@ -95,8 +95,8 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="price" class="">Payment Paid</label>
-                                                <input type="number" name="price" id="value2" value="{{ old('price') }}"
-                                                    class="@error('price') is-invalid @enderror form-control" >
+                                                <input type="number" name="price" id="value2" value="value2"
+                                                    class="@error('price') is-invalid @enderror form-control" disabled>
                                             </div>
                                             @error('price')
                                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -105,7 +105,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="pending_price" class="">Payment Pending Amount</label>
-                                                <input type="number" name="pending_price" id="sum" value="{{ old('pending_price') }}"
+                                                <input type="number" name="pending_price" id="sum" value="{{ $transaction->pending_price }}"
                                                     class="@error('pending_price') is-invalid @enderror form-control" >
                                             </div>
                                             @error('pending_price')
@@ -367,20 +367,22 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
+// $(document).ready(function(){
+//             $('#value1, #value2').keyup(function(){
+//                var value1 = parseFloat($('#value1').val()) || 0;
+//                var value2 = parseFloat($('#value2').val()) || 0;
+//                $('#sum').val(value1 - value2);
+//             });
+//          });
+    </script>
+  
+  <script type="text/javascript">
 $(document).ready(function(){
-            $('#value1, #value2').keyup(function(){
-               var value1 = parseFloat($('#value1').val()) || 0;
-               var value2 = parseFloat($('#value2').val()) || 0;
-               $('#sum').val(value1 - value2);
+            $('#check_amount, #upi_amount, #cash_amount').keyup(function(){
+               var value1 = parseFloat($('#check_amount').val()) || 0;
+               var value2 = parseFloat($('#upi_amount').val()) || 0;
+               var value3 = parseFloat($('#cash_amount').val()) || 0;
+               $('#value2').val(value1 + value2 + value3);
             });
          });
-//         $(document).on("change keyup blur", "#Payment_price", function(e) {
-//   var amd = $('#package_price').val();
-//   var disc = $('#Payment_price').val();
-//   if (disc != '' && amd != '') {
-//     $('#pending_price').val((parseInt(amd)) - (parseInt(disc)));
-//   }else{
-//     $('#pending_price').val(parseInt(amd));
-//   }
-// });
-    </script>
+    </script>  
